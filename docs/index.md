@@ -5,7 +5,10 @@ layout: home
 hero:
   name: "STEREO READER"
   text: "Train or relax your eyes with Stereo Reader app"
-  tagline: My great project tagline
+  #tagline: My great project tagline
+  image:
+    src: /logo.svg
+    alt: STEREO READER
   actions:
     - theme: brand
       text: Markdown Examples
@@ -13,7 +16,6 @@ hero:
     - theme: alt
       text: API Examples
       link: /api-examples
-
 features:
   - title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
