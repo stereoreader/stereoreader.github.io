@@ -5,6 +5,7 @@ export default defineConfig({
     title: "STEREO READER",
     description: "Train or relax your eyes with Stereo Reader app",
     themeConfig: {
+        logo: '/logo.svg',
         // https://vitepress.dev/reference/default-theme-config
         nav: [
             { text: 'Home', link: '/' },
