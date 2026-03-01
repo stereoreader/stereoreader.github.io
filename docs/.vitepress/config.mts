@@ -20,7 +20,7 @@ export default defineConfig({
             `
         ]
     ],
-    title: "STEREO READER: improve vision with reading",
+    title: "STEREO READER: improve vision while reading",
     description: "Train or relax your eyes, ease myopia symptoms with Stereo Reader app",
     themeConfig: {
         logo: '/logo.svg',
