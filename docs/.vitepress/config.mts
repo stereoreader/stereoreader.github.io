@@ -23,6 +23,7 @@ export default defineConfig({
     title: "STEREO READER: improve vision while reading",
     description: "Train or relax your eyes, ease myopia symptoms with Stereo Reader app",
     themeConfig: {
+        siteTitle: 'STEREO READER',
         logo: '/logo.svg',
         // https://vitepress.dev/reference/default-theme-config
         nav: [
