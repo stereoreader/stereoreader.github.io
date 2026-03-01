@@ -2,8 +2,26 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: "STEREO READER",
-    description: "Train or relax your eyes with Stereo Reader app",
+    head: [
+        [
+            'script',
+            { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-CWXQF8PH4S' }
+        ],
+        [
+            'script',
+            {},
+            `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-CWXQF8PH4S', {
+                product_surface: 'website'
+            });
+            `
+        ]
+    ],
+    title: "STEREO READER: improve vision with reading",
+    description: "Train or relax your eyes, ease myopia symptoms with Stereo Reader app",
     themeConfig: {
         logo: '/logo.svg',
         // https://vitepress.dev/reference/default-theme-config

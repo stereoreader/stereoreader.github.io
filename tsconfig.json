@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "moduleResolution": "bundler",
+        "target": "ESNext",
+        "module": "ESNext",
+        "types": ["vitepress"]
+    },
+    "include": ["docs/**/*.ts", "docs/**/*.mts"]
+}
