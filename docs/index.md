@@ -19,7 +19,7 @@ hero:
     #  link: /api-examples
 features:
   - title: Read your favorite books
-    details: You can read text, PDF, EPUB, FB2 files in stereo or mono format
+    details: You can read text, PDF, EPUB, FB2 files in stereo or mono mode
     icon:
       src: /feature-read.png
       width: 100%
@@ -29,7 +29,7 @@ features:
       src: /feature-relax.png
       width: 100%
   - title: Train your eyes
-    details: You can train your vision to become more sharp by reading with uncomfortable settings (smaller font size, wider gap between columns)
+    details: You can train your vision to improve focus and clarity by reading with more challenging settings (smaller font size, wider gap between columns, longer distance)
     icon:
       src: /feature-train.png
       width: 100%
