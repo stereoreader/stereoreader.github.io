@@ -14,6 +14,9 @@ hero:
       text: Open the App
       link: /app/
       target: _blank
+    - text: Ask Questions
+      link: https://t.me/stereoreader_chat
+      theme: alt
     #- theme: alt
     #  text: API Examples
     #  link: /api-examples
