@@ -14,6 +14,10 @@ hero:
       text: Open the App
       link: /app/
       target: _blank
+    - theme: alt
+      text: Open a Book
+      link: /app/#try
+      target: _blank
     - text: Ask Questions
       link: https://t.me/stereoreader_chat
       theme: alt
@@ -22,7 +26,7 @@ hero:
     #  link: /api-examples
 features:
   - title: Read your favorite books
-    details: You can read text, PDF, EPUB, FB2 files in stereo or mono mode
+    details: You can read text, PDF, <a href="https://stereoreader.github.io/app/#try">EPUB</a>, FB2 files in stereo or mono mode
     icon:
       src: /feature-read.png
       width: 100%

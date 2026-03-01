@@ -1,12 +1,20 @@
 .dark {
+
     //--vp-c-bg: black;
-    body{
+    body {
         background-color: black;
     }
+
     .VPHome {
         background: linear-gradient(to bottom,
                 #000 0%,
                 var(--vp-c-bg) 50%,
                 #000 100%);
+    }
+}
+
+.VPFeatures {
+    a {
+        text-decoration: underline;
     }
 }

@@ -29,7 +29,7 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'Try Now', link: '/app/', target: '_blank' }
+            { text: 'Try Now', link: '/app/#try', target: '_blank' }
         ],
 
         sidebar: [
