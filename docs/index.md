@@ -43,3 +43,4 @@ features:
 
 ---
 
+<!--@include: ./story.md-->
