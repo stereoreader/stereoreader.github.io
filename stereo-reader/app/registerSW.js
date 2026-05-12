@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/stereo-reader/app/service-worker.js', { scope: '/stereo-reader/app/' })})}

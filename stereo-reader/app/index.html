@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/stereo-reader/app/favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>STEREO READER</title>
+    <!-- PWA manifest -->
+    <meta name="theme-color" content="#000000">
+
+  <script type="module" crossorigin src="/stereo-reader/app/assets/index-GNiefLRY.js"></script>
+  <link rel="stylesheet" crossorigin href="/stereo-reader/app/assets/index-CLitDnyu.css">
+<link rel="manifest" href="/stereo-reader/app/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/stereo-reader/app/registerSW.js"></script></head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CWXQF8PH4S"></script>
+<script>
+
+    if (/^([\d.]+|localhost)$/.test(location.hostname)) {
+
+    } else {
+
+        function detectAppContext() {
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+            const isIOSStandalone = window.navigator.standalone === true;
+
+            if (isStandalone || isIOSStandalone) {
+                return 'app_pwa';
+            }
+
+            return 'app_browser';
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-CWXQF8PH4S', {
+            app_context: detectAppContext(),
+            product_surface: 'app'
+        });
+
+    }
+</script>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+import{_ as t,o as a,c as r,ai as n}from"./chunks/framework.CaiDwmc7.js";const p=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"story.md","filePath":"story.md"}'),o={name:"story.md"};function i(s,e,l,c,h,d){return a(),r("div",null,[...e[0]||(e[0]=[n("",13)])])}const u=t(o,[["render",i]]);export{p as __pageData,u as default};
