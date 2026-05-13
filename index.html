@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Personal Developer Site</title>
+    <title>Alek Labs - Home for productivity tools</title>
     <style>
         :root {
             color-scheme: dark;
@@ -14,6 +15,7 @@
             --muted: #b8bac4;
             --border: #2d303a;
             --accent: #7d8cff;
+            --border-radius: 16px;
         }
 
         * {
@@ -56,8 +58,7 @@
             align-items: center;
             min-height: 150px;
             padding: 16px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
+            border-radius: var(--border-radius);
             background: var(--panel);
             color: inherit;
             text-decoration: none;
@@ -65,9 +66,9 @@
 
         .card:hover,
         .card:focus-visible {
-            border-color: var(--accent);
             background: var(--panel-hover);
             outline: none;
+            box-shadow: 0 0 48px rgba(255, 255, 255, .05);
         }
 
         .thumb {
@@ -75,7 +76,6 @@
             height: 126px;
             object-fit: cover;
             border-radius: 10px;
-            border: 1px solid var(--border);
             background: #050506;
         }
 
@@ -109,29 +109,123 @@
                 aspect-ratio: 16 / 9;
             }
         }
+
+        .logo {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 32px;
+            position: relative;
+
+            transition:
+                filter 40ms linear,
+                transform 40ms linear,
+                opacity 40ms linear;
+        }
+
+        .logo img {
+            width: 100%;
+            animation: logo-animate 3s infinite alternate;
+        }
+
+        @keyframes logo-animate {
+            from {
+                filter: brightness(1);
+            }
+
+            to {
+                filter: brightness(2);
+            }
+        }
+
+        #overlay {
+            position: absolute;
+            z-index: 1;
+            opacity: .05;
+            background-image: url('./assets/screen.gif');
+            inset: 0;
+        }
     </style>
 </head>
+
 <body>
     <main>
-        <p class="intro">This is my personal web site and home of my productivity tools:</p>
-
+        <div class="logo">
+            <img src="./assets/logo.jpg">
+            <div id="overlay"></div>
+        </div>
         <section class="tools" aria-label="Productivity tools">
             <a class="card" href="/stereo-reader">
-                <img class="thumb" src="assets/stereo-reader-preview.png" alt="Stereo Reader preview">
+                <img class="thumb" src="assets/stereo-reader-preview.jpg" alt="Stereo Reader preview">
                 <div>
                     <h2 class="title">Stereo Reader</h2>
-                    <p class="description">A reader aimed to improve vision by training or relaxing your eyes while reading books. Supports text, PDF, EPUB, and FB2 files in stereo or mono mode.</p>
+                    <p class="description">A reader aimed to improve vision by training or relaxing your eyes while
+                        reading books. Supports text, PDF, EPUB, and FB2 files in stereo or mono mode.</p>
                 </div>
             </a>
 
-            <a class="card" href="https://chromewebstore.google.com/detail/youtube-send-to-ai-chat/jfclfogdljgmnbbkdpkbnmfkfaahelhp">
+            <a class="card"
+                href="https://chromewebstore.google.com/detail/youtube-send-to-ai-chat/jfclfogdljgmnbbkdpkbnmfkfaahelhp">
                 <img class="thumb" src="assets/youtube-send-to-ai-chat.png" alt="Youtube: Send to AI chat preview">
                 <div>
                     <h2 class="title">Youtube: Send to AI chat</h2>
-                    <p class="description">A browser extension that sends YouTube transcripts to AI chats for timestamped summaries, Q&amp;A, inline video playback, clickable timestamp navigation, and customizable prompts.</p>
+                    <p class="description">A browser extension that sends YouTube transcripts to AI chats for
+                        timestamped summaries, Q&amp;A, inline video playback, clickable timestamp navigation, and
+                        customizable prompts.</p>
                 </div>
             </a>
         </section>
     </main>
+    <script>
+        const element = document.querySelector('.logo');
+
+        setInterval(() => {
+            const active = Math.random() < 0.05;
+
+            if (!active) {
+                resetEffect();
+                return;
+            }
+
+            const blur = random(0, 3);
+            const brightness = random(1, 2);
+            const contrast = random(0.8, 2.5);
+            const hue = random(-40, 40);
+
+            const s = random(.2, .5);
+            const translateX = random(-8 * s, 8 * s);
+            const scaleY = random(1 - .1 * s, 1 + .1 * s);
+            const opacity = random(0.75, 1);
+
+            element.style.filter = [
+                `blur(${blur.toFixed(2)}px)`,
+                `brightness(${brightness.toFixed(2)})`,
+                `contrast(${contrast.toFixed(2)})`,
+                `hue-rotate(${hue.toFixed(2)}deg)`
+            ].join(' ');
+
+            element.style.transform = [
+                `translateX(${translateX.toFixed(2)}px)`,
+                `scaleY(${scaleY.toFixed(3)})`
+            ].join(' ');
+
+            element.style.opacity = opacity.toFixed(2);
+
+            const duration = random(40, 180);
+
+            setTimeout(resetEffect, duration);
+
+        }, 120);
+
+        function resetEffect() {
+            element.style.filter = '';
+            element.style.transform = '';
+            element.style.opacity = '';
+        }
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    </script>
 </body>
+
 </html>
