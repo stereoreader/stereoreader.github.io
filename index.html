@@ -16,6 +16,7 @@
             --border: #2d303a;
             --accent: #7d8cff;
             --border-radius: 16px;
+            --saturate-base: .7;
         }
 
         * {
@@ -144,6 +145,75 @@
             background-image: url('./assets/screen.gif');
             inset: 0;
         }
+
+        .links {
+            justify-content: center;
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+
+        .links a {
+            filter: saturate(0);
+            opacity: .7;
+            --border-radius: calc(var(--border-radius) / 2);
+            --overflow: hidden;
+            width: 64px;
+            height: 64px;
+            transition: transform .3s;
+        }
+
+        .links a:hover {
+            filter: saturate(var(--saturate-base));
+            opacity: 1;
+            transform: scale(1.1);
+            background-color: transparent;
+            animation: glow 1.6s infinite;
+
+        }
+
+        @keyframes glow {
+
+            /* baseline */
+            0% {
+                filter:
+                    saturate(var(--saturate-base)) drop-shadow(0 0 12px #4fc3ff);
+            }
+
+            /* first weaker pulse */
+            8% {
+                filter:
+                    saturate(calc(var(--saturate-base) + (1 - var(--saturate-base)) * 0.5)) drop-shadow(0 0 18px #a88cb3);
+            }
+
+            16% {
+                filter:
+                    saturate(calc(var(--saturate-base) + (1 - var(--saturate-base)) * 0.2)) drop-shadow(0 0 13px #6bb7eb);
+            }
+
+            /* second stronger pulse */
+            24% {
+                filter:
+                    saturate(1) drop-shadow(0 0 24px #ff0000);
+            }
+
+            36% {
+                filter:
+                    saturate(calc(var(--saturate-base) + (1 - var(--saturate-base)) * 0.3)) drop-shadow(0 0 14px #4fc3ff);
+            }
+
+            /* relaxation */
+            100% {
+                filter:
+                    saturate(var(--saturate-base)) drop-shadow(0 0 12px #4fc3ff);
+            }
+        }
+
+        .links a img {
+            width: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 
@@ -152,6 +222,34 @@
         <div class="logo">
             <img src="./assets/logo.jpg">
             <div id="overlay"></div>
+        </div>
+        <div class="links">
+            <a href="https://www.linkedin.com/in/alexander-nenashev-930731288/" target="_blank">
+                <img style="transform:scale(.8)" src="./assets/icons/linkedin.svg">
+            </a>
+            <a href="https://stackoverflow.com/users/14098260/alexander-nenashev" target="_blank">
+                <img style="transform:scale(.8)" src="./assets/icons/stackoverflow.svg">
+            </a>
+            <a href="https://stackoverflow.com/search?tab=votes&q=user%3a14098260%20%5bvue.js%5d%20or%20%5bvuejs3%5d&searchOn=3"
+                target="_blank">
+                <img src="./assets/icons/vue.svg">
+            </a>
+            <a href="https://stackoverflow.com/search?tab=votes&q=user%3a14098260%20%5bvite%5d%20&searchOn=3"
+                target="_blank">
+                <img style="transform:scale(.9)" src="./assets/icons/vite.svg">
+            </a>
+            <a href="https://stackoverflow.com/search?tab=votes&q=user%3a14098260%20%5btypescript%5d&searchOn=3"
+                target="_blank">
+                <img src="./assets/icons/typescript.svg">
+            </a>
+            <a href="https://stackoverflow.com/search?tab=votes&q=user%3a14098260%20%5bjavascript%5d&searchOn=3"
+                target="_blank">
+                <img src="./assets/icons/javascript.svg">
+            </a>
+            <a href="https://stackoverflow.com/search?tab=votes&q=user%3a14098260%20%5bcss%5d&searchOn=3"
+                target="_blank">
+                <img style="transform:scale(.85);position:relative;top:2px;" src="./assets/icons/css.svg">
+            </a>
         </div>
         <section class="tools" aria-label="Productivity tools">
             <a class="card" href="/stereo-reader">
