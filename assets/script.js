@@ -31,10 +31,12 @@ function drawHeartBeat(canvas, origin) {
     const pointColor = '#ff0000'; // color of the moving point
     const pointRadius = 2;
     const pointBlur = 2; // blur of the point in pixels
+    const pointOpacity = 1; // 0..1
 
     const lineColor = '#ff7700';
     const lineThickness = 1;
     const lineBlur = 1;
+    const lineOpacity = 0.5; // 0..1
 
     const baselineY = origin?.y ?? 0; // CSS pixel baseline
     const amplitude = 0.32; // 0..1, relative canvas height
@@ -42,8 +44,6 @@ function drawHeartBeat(canvas, origin) {
     const trailLength = 260; // pixels
     const trailAlphaMin = 0.18;
     const trailAlphaMax = 1;
-
-    const backgroundFadeAlpha = 0.08; // lower = longer visual persistence
 
     const wrapGap = 20; // prevents drawing a line across right-to-left wrap
     const pixelRatio = window.devicePixelRatio || 1;
@@ -94,7 +94,7 @@ function drawHeartBeat(canvas, origin) {
             points.shift();
         }
 
-        fadeBackground(width, height);
+        clearFrame(width, height);
         drawTrail(x);
         drawPoint(x, y);
 
@@ -119,12 +119,8 @@ function drawHeartBeat(canvas, origin) {
         ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     }
 
-    function fadeBackground(width, height) {
-        ctx.save();
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.fillStyle = `rgba(0, 0, 0, ${backgroundFadeAlpha})`;
-        ctx.fillRect(0, 0, width, height);
-        ctx.restore();
+    function clearFrame(width, height) {
+        ctx.clearRect(0, 0, width, height);
     }
 
     function drawTrail(currentX) {
@@ -136,9 +132,7 @@ function drawHeartBeat(canvas, origin) {
         ctx.lineWidth = lineThickness;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        ctx.shadowColor = lineColor;
         ctx.shadowBlur = lineBlur;
-        ctx.strokeStyle = lineColor;
 
         for (let i = 1; i < points.length; i++) {
             const previous = points[i - 1];
@@ -151,8 +145,10 @@ function drawHeartBeat(canvas, origin) {
             const distanceBehind = currentX - next.x;
             const t = Math.max(0, Math.min(1, 1 - distanceBehind / trailLength));
             const alpha = trailAlphaMin + (trailAlphaMax - trailAlphaMin) * t;
+            const segmentOpacity = alpha * lineOpacity;
 
-            ctx.globalAlpha = alpha;
+            ctx.strokeStyle = withOpacity(lineColor, segmentOpacity);
+            ctx.shadowColor = withOpacity(lineColor, segmentOpacity);
             ctx.beginPath();
             ctx.moveTo(previous.x, previous.y);
             ctx.lineTo(next.x, next.y);
@@ -164,9 +160,8 @@ function drawHeartBeat(canvas, origin) {
 
     function drawPoint(x, y) {
         ctx.save();
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = pointColor;
-        ctx.shadowColor = pointColor;
+        ctx.fillStyle = withOpacity(pointColor, pointOpacity);
+        ctx.shadowColor = withOpacity(pointColor, pointOpacity);
         ctx.shadowBlur = pointBlur;
 
         ctx.beginPath();
@@ -225,4 +220,27 @@ function getLinkCenter(link) {
 function getHeartbeatBpm(element) {
     const bpm = Number.parseFloat(getComputedStyle(element).getPropertyValue('--heartbeat-bpm'));
     return Number.isFinite(bpm) && bpm > 0 ? bpm : 75;
+}
+
+function withOpacity(color, opacity) {
+    const alpha = Math.max(0, Math.min(1, opacity));
+    const hex = color.startsWith('#') ? color.slice(1) : null;
+
+    if (!hex) {
+        return color;
+    }
+
+    const normalizedHex = hex.length === 3
+        ? hex.split('').map((char) => char + char).join('')
+        : hex;
+
+    if (normalizedHex.length !== 6) {
+        return color;
+    }
+
+    const r = Number.parseInt(normalizedHex.slice(0, 2), 16);
+    const g = Number.parseInt(normalizedHex.slice(2, 4), 16);
+    const b = Number.parseInt(normalizedHex.slice(4, 6), 16);
+
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
