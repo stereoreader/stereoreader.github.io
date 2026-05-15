@@ -38,8 +38,8 @@ function drawHeartBeat(canvas, origin) {
     const lineBlur = 1;
     const lineOpacity = 0.5; // 0..1
 
-    const baselineY = origin?.y ?? 0; // CSS pixel baseline
-    const amplitude = 0.32; // 0..1, relative canvas height
+    const linePositionFromBottom = 0.35; // 0..1, where 0.5 is vertical center
+    const amplitude = 0.6; // 0..1, relative canvas height
 
     const trailLength = 260; // pixels
     const trailAlphaMin = 0.18;
@@ -173,7 +173,7 @@ function drawHeartBeat(canvas, origin) {
 
     function getHeartbeatY(distance, height) {
         const phase = ((distance % beatWidth) + beatWidth) % beatWidth;
-        const base = baselineY || height * 0.55;
+        const base = height * (1 - clamp01(linePositionFromBottom));
         const amp = height * amplitude;
         const p = phase / beatWidth;
 
@@ -243,4 +243,8 @@ function withOpacity(color, opacity) {
     const b = Number.parseInt(normalizedHex.slice(4, 6), 16);
 
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function clamp01(value) {
+    return Math.max(0, Math.min(1, value));
 }

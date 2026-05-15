@@ -163,7 +163,7 @@ main {
     transform: scale(1.1);
     background-color: transparent;
     animation: glow var(--heartbeat-duration) infinite linear;
-    filter: drop-shadow(0 0 12px oklab(77.617% -0.07692 -0.10977));
+    filter: drop-shadow(0 0 12px #4fc3ff);
     animation-delay: calc(var(--heartbeat-duration) * 0.07);
 }
 
