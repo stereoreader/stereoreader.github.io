@@ -29,11 +29,11 @@ function drawHeartBeat(canvas, origin) {
     const beatWidth = 100; // width between beats in pixels
 
     const pointColor = '#ff0000'; // color of the moving point
-    const pointRadius = 3;
+    const pointRadius = 2;
     const pointBlur = 2; // blur of the point in pixels
 
     const lineColor = '#ff7700';
-    const lineThickness = 2;
+    const lineThickness = 1;
     const lineBlur = 1;
 
     const baselineY = origin?.y ?? 0; // CSS pixel baseline
