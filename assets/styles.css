@@ -157,6 +157,10 @@ main {
     transition: transform .3s;
 }
 
+.links a span {
+    display: none;
+}
+
 .links a:hover {
     filter: saturate(var(--saturate-base));
     opacity: 1;
@@ -166,6 +170,19 @@ main {
     filter: drop-shadow(0 0 12px #4fc3ff);
     animation-delay: calc(var(--heartbeat-duration) * 0.07);
 }
+
+.links a:hover span {
+    font-size: 12px;
+    color: #bbb;
+    display: block;
+    position: absolute;
+    top: 64px;
+    width: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
 
 @keyframes glow {
     0% {
