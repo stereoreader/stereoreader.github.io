@@ -1,0 +1,4 @@
+import{k as u,J as m,F as p,u as y,p as v,j as g,z as h}from"./Cn_vWEdw.js";const $=Symbol.for("nuxt:client-only");function c(){return u("div")}async function O(e){const t=await e(),n=t.default||t;return b(n)}const d=new WeakMap;function b(e){if(d.has(e))return d.get(e);const t={...e};if(t.render)t.render=(n,o,s,r,i,a)=>r.mounted$??n.mounted$?u(e.render?.bind(n)(n,o,s,r,i,a)):c();else{const n="<div></div>";t.template&&=`
+      <template v-if="mounted$">${e.template}</template>
+      <template v-else>${n}</template>
+    `}return t.setup=(n,o)=>{const s=m(),r=p(s.isHydrating===!1);h($,!0);const i=g();i&&(i._nuxtClientOnly=!0),y(()=>{r.value=!0});const a=e.setup?.(n,o)||{};return v(a)?Promise.resolve(a).then(l=>typeof l!="function"?(l||={},l.mounted$=r,l):(...f)=>r.value||!s.isHydrating?u(l(...f)):c()):typeof a=="function"?(...l)=>r.value||!s.isHydrating?u(a(...l)):c():Object.assign(a,{mounted$:r})},d.set(e,t),t}export{O as createClientPage};
