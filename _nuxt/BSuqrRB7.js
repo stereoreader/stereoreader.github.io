@@ -1,1 +1,0 @@
-import{u as t}from"./C53Kq_nB.js";import{h as o,B as r}from"./Cn_vWEdw.js";const f=o({__name:"default",setup(s){return t({title:"Alek Labs - Home for productivity tools"}),(e,a)=>r(e.$slots,"default")}});export{f as default};
