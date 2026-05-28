@@ -1,1 +1,0 @@
-import{u as o}from"./CasSeBaL.js";import{l as t,z as a,g as s,E as l}from"./CE7-CXLc.js";const u=t({__name:"default",setup(r){return o({titleTemplate:e=>e?`${e} - Alek Labs`:"Alek Labs - Home for productivity tools"}),(e,n)=>(a(),s("main",null,[l(e.$slots,"default")]))}});export{u as default};

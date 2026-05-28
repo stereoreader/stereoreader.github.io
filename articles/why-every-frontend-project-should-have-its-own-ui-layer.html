@@ -1,0 +1,343 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Why Every Frontend Project Should Have Its Own UI Layer - Alek Labs</title><style>:root{color-scheme:dark;--bg:#0b0b0d;--panel:#121318;--panel-hover:#161821;--text:#f1f1f3;--muted:#b8bac4;--border:#2d303a;--accent:#7d8cff;--border-radius:16px;--saturate-base:.7}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5}main{width:min(920px,100% - 32px);margin:0 auto;padding:48px 0}</style><style>.article[data-v-bd81486b]{background-color:#111;padding:32px;border-radius:8px;color:#ccc;overflow:hidden}.topbar[data-v-bd81486b]{gap:32px;margin-bottom:16px}.topbar[data-v-bd81486b],.topbar a[data-v-bd81486b]{display:flex;align-items:center}.topbar a[data-v-bd81486b]{gap:8px}.topbar a img[data-v-bd81486b]{width:32px}.status[data-v-bd81486b]{display:flex;color:#999;gap:16px}</style><style>.article h1,.article h2,.article h3{color:#ddd}.article p:has(.article-cover){margin:0}.article .article-cover{margin:-32px -32px 32px;width:calc(100% + 64px)}.article pre:has(>code){background:#222;padding:8px;border-radius:4px;background:#223;color:orange}.article blockquote{border-left:3px solid #555;background:#222;margin-left:0;padding-inline:32px;display:block;padding-block:1px}.article hr{margin-top:48px;margin-bottom:48px;margin-inline:auto;width:25%;border:1px solid #333}</style><link rel="modulepreload" as="script" crossorigin href="/_nuxt/Cj3TDLGi.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DSNrtQwJ.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/Bcn4YnlT.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/C_V45fnL.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/z4uMaJPX.js"><script type="module" src="/_nuxt/Cj3TDLGi.js" crossorigin></script><link rel="prefetch" as="image" type="image/png" href="/_nuxt/coderlegion.com.CDWd63tx.png"><link rel="prefetch" as="image" type="image/webp" href="/_nuxt/dev.to.lKKTobT5.webp"><link rel="prefetch" as="image" type="image/png" href="/_nuxt/medium.com.Ca5uAH9K.png"><link rel="prefetch" as="image" type="image/webp" href="/_nuxt/cover.D7EDmnD9.webp"><link rel="prefetch" as="image" type="image/webp" href="/_nuxt/cover.DrB9i5VT.webp"><meta name="description" content="Learn why frontend projects need an internal UI layer to reduce vendor lock-in, centralize design systems, and make UI libraries replaceable."><meta property="og:title" content="Why Every Frontend Project Should Have Its Own UI Layer"><meta property="og:description" content="I argue that frontend projects should own an internal UI layer instead of scattering third-party components across product code. Wrappers create stable contracts, centralize accessibility, theming, defaults, localization, and vendor quirks, reduce migration risk, and make UI architecture product-owned."><meta property="og:image" content="/_nuxt/cover.DrB9i5VT.webp"></head><body><div id="__nuxt"><div><main><!--[--><main><!--[--><div class="topbar" data-v-bd81486b><a href="/" data-v-bd81486b>Back to home</a><span data-v-bd81486b>Read on:</span><!--[--><a target="_blank" href="https://dev.to/alexander-nenashev/why-every-frontend-project-should-have-its-own-ui-layer-3jj2" data-v-bd81486b><img src="/_nuxt/dev.to.lKKTobT5.webp" data-v-bd81486b>dev.to</a><a target="_blank" href="https://coderlegion.com/18448/why-every-frontend-project-should-have-its-own-ui-layer" data-v-bd81486b><img src="/_nuxt/coderlegion.com.CDWd63tx.png" data-v-bd81486b>coderlegion.com</a><a target="_blank" href="https://medium.com/@aleklabs.dev/why-every-frontend-project-should-have-its-own-ui-layer-f7a0ead42da3" data-v-bd81486b><img src="/_nuxt/medium.com.Ca5uAH9K.png" data-v-bd81486b>medium.com</a><!--]--></div><div class="article" data-v-bd81486b><img src="/_nuxt/cover.DrB9i5VT.webp" class="article-cover" data-v-bd81486b><div class="status" data-v-bd81486b><span class="date" data-v-bd81486b>May 18, 2026</span><span class="words" data-v-bd81486b>1128 words ~ 6 minutes</span></div><span data-v-bd81486b><h1>Why Every Frontend Project Should Have Its Own UI Layer</h1>
+<p>Modern frontend development is heavily centered around component frameworks: Vue, React, Svelte, Solid, Angular, and others. The ecosystem also provides endless UI libraries: Vuetify, PrimeVue, Naive UI, MUI, Ant Design, Chakra, Radix, Headless UI, shadcn/ui, and hundreds more.</p>
+<p>Most teams directly import these libraries into application code.</p>
+<p>I think that is a long-term architectural mistake.</p>
+<p>Every serious frontend project should have its own internal UI layer — its own component system — even if internally it relies almost entirely on third-party libraries.</p>
+<p>Not because reinventing buttons is fun.
+Because abstraction boundaries matter.</p>
+<hr>
+<h2>The Problem With Directly Using UI Libraries</h2>
+<p>Direct usage tightly couples the application to external implementation details.</p>
+<p>You start with something simple:</p>
+<pre><code class="language-vue">&lt;ElButton type=&quot;primary&quot; size=&quot;small&quot;&gt;
+    Save
+&lt;/ElButton&gt;
+</code></pre>
+<p>A year later:</p>
+<ul>
+<li>the library changes APIs,</li>
+<li>design requirements evolve,</li>
+<li>accessibility requirements appear,</li>
+<li>dark theme becomes mandatory,</li>
+<li>SSR breaks,</li>
+<li>bundle size becomes a problem,</li>
+<li>a component becomes abandoned,</li>
+<li>or the team simply wants another UI system.</li>
+</ul>
+<p>Now the entire codebase depends on thousands of scattered library-specific decisions.</p>
+<p>The UI library stops being a dependency.</p>
+<p>It becomes infrastructure.</p>
+<hr>
+<h1>Your UI Layer Is An Architectural Boundary</h1>
+<p>Instead of using third-party components directly, create your own application-level components:</p>
+<pre><code class="language-vue">&lt;AppButton&gt;
+&lt;AppInput&gt;
+&lt;AppDialog&gt;
+&lt;AppTable&gt;
+&lt;AppDatePicker&gt;
+&lt;AppPageLayout&gt;
+&lt;AppEntityEditor&gt;
+</code></pre>
+<p>Internally, these components may use:</p>
+<ul>
+<li>PrimeVue</li>
+<li>Vuetify</li>
+<li>Radix</li>
+<li>native browser APIs</li>
+<li>custom rendering</li>
+<li>or completely different implementations</li>
+</ul>
+<p>The application itself should not care.</p>
+<p>This creates a stable internal contract between the product and external dependencies.</p>
+<p>The application talks to <em>your</em> UI architecture.</p>
+<p>Your architecture talks to vendor libraries.</p>
+<hr>
+<h1>Wrappers Are Not &quot;Extra Boilerplate&quot;</h1>
+<p>A common objection:</p>
+<blockquote>
+<p>&quot;Why wrap everything? That&#39;s just unnecessary abstraction.&quot;</p>
+</blockquote>
+<p>It is not abstraction for abstraction&#39;s sake.</p>
+<p>It is containment.</p>
+<p>The wrapper layer centralizes:</p>
+<ul>
+<li>naming conventions,</li>
+<li>defaults,</li>
+<li>accessibility,</li>
+<li>theme propagation,</li>
+<li>behavior normalization,</li>
+<li>analytics hooks,</li>
+<li>keyboard handling,</li>
+<li>validation,</li>
+<li>localization,</li>
+<li>performance workarounds,</li>
+<li>SSR compatibility,</li>
+<li>browser quirks,</li>
+<li>and migration strategy.</li>
+</ul>
+<p>Without wrappers, all of this leaks into product code.</p>
+<p>Then every page becomes infrastructure code.</p>
+<hr>
+<h1>The Biggest Advantage: Replaceability</h1>
+<p>This is the most important benefit.</p>
+<p>When UI libraries are hidden behind your own components, replacing them becomes feasible.</p>
+<p>Example:</p>
+<pre><code class="language-txt">&lt;AppDatePicker&gt;
+</code></pre>
+<p>Today internally:</p>
+<pre><code class="language-txt">PrimeVue DatePicker
+</code></pre>
+<p>Tomorrow:</p>
+<pre><code class="language-txt">Flatpickr
+</code></pre>
+<p>Or:</p>
+<pre><code class="language-txt">Native browser date input
+</code></pre>
+<p>Or:</p>
+<pre><code class="language-txt">Custom implementation
+</code></pre>
+<p>The application code remains unchanged.</p>
+<p>This matters more than most teams realize.</p>
+<p>UI ecosystems move extremely fast. Libraries become abandoned surprisingly often.</p>
+<p>A thin internal UI layer dramatically reduces migration cost.</p>
+<hr>
+<h1>Mixing Multiple UI Libraries Becomes Safe</h1>
+<p>Direct usage of multiple UI systems usually creates chaos.</p>
+<p>Different:</p>
+<ul>
+<li>design languages,</li>
+<li>spacing systems,</li>
+<li>keyboard behavior,</li>
+<li>focus handling,</li>
+<li>overlay logic,</li>
+<li>animation systems,</li>
+<li>theming models,</li>
+<li>and accessibility semantics.</li>
+</ul>
+<p>But with an internal UI layer, multiple libraries can coexist safely.</p>
+<p>Example:</p>
+<ul>
+<li>one library provides excellent tables,</li>
+<li>another has better dialogs,</li>
+<li>another has superior date pickers,</li>
+<li>another has accessible comboboxes.</li>
+</ul>
+<p>Your application never sees this complexity directly.</p>
+<p>Your wrapper layer normalizes it.</p>
+<p>This is extremely powerful.</p>
+<hr>
+<h1>Your UI Layer Is Also A Design System</h1>
+<p>The important shift:</p>
+<p>Your design system should not belong to the UI vendor.</p>
+<p>It should belong to the product.</p>
+<p>That means:</p>
+<ul>
+<li>your naming,</li>
+<li>your semantics,</li>
+<li>your defaults,</li>
+<li>your UX patterns,</li>
+<li>your layout philosophy,</li>
+<li>your interaction rules.</li>
+</ul>
+<p>Not whatever the library authors decided.</p>
+<p>Example:</p>
+<pre><code class="language-vue">&lt;AppDangerButton /&gt;
+</code></pre>
+<p>is far more meaningful than:</p>
+<pre><code class="language-vue">&lt;ElButton type=&quot;danger&quot; plain /&gt;
+</code></pre>
+<p>The first expresses product semantics.</p>
+<p>The second expresses vendor implementation details.</p>
+<p>That distinction becomes critical at scale.</p>
+<hr>
+<h1>Default Configuration Reduces Massive Verbosity</h1>
+<p>One underrated benefit of internal wrappers:</p>
+<p>They eliminate repetitive configuration.</p>
+<p>Without wrappers:</p>
+<pre><code class="language-vue">&lt;ThirdPartyInput
+    size=&quot;small&quot;
+    variant=&quot;filled&quot;
+    density=&quot;compact&quot;
+    clearable
+    rounded
+    theme=&quot;dark&quot;
+/&gt;
+</code></pre>
+<p>Repeated hundreds or thousands of times.</p>
+<p>With wrappers:</p>
+<pre><code class="language-vue">&lt;AppInput /&gt;
+</code></pre>
+<p>The wrapper already encodes:</p>
+<ul>
+<li>project defaults,</li>
+<li>theme defaults,</li>
+<li>accessibility defaults,</li>
+<li>density rules,</li>
+<li>validation behavior,</li>
+<li>localization behavior,</li>
+<li>analytics integration,</li>
+<li>focus handling.</li>
+</ul>
+<p>This massively reduces UI noise in application code.</p>
+<p>The application becomes more declarative.</p>
+<hr>
+<h1>Theme Propagation Becomes Centralized</h1>
+<p>Third-party UI libraries usually bring their own theme systems.</p>
+<p>That becomes problematic when multiple libraries coexist.</p>
+<p>Each library wants:</p>
+<ul>
+<li>its own tokens,</li>
+<li>its own variables,</li>
+<li>its own dark mode implementation,</li>
+<li>its own color system.</li>
+</ul>
+<p>Your internal UI layer solves this.</p>
+<p>The application owns the real design tokens:</p>
+<pre><code class="language-css">:root {
+    --color-bg: #ffffff;
+    --color-text: #111111;
+    --color-primary: #3b82f6;
+}
+</code></pre>
+<p>Then wrapper components propagate these tokens into underlying libraries.</p>
+<p>Your product controls the visual system.</p>
+<p>Libraries adapt to <em>you</em>, not the other way around.</p>
+<p>This is one of the cleanest ways to support:</p>
+<ul>
+<li>dark mode,</li>
+<li>white-labeling,</li>
+<li>custom themes,</li>
+<li>enterprise branding,</li>
+<li>runtime theme switching.</li>
+</ul>
+<hr>
+<h1>Modern Browser APIs Make Custom UI More Realistic</h1>
+<p>Five years ago, fully custom UI infrastructure was expensive.</p>
+<p>Today browsers provide much better primitives.</p>
+<p>Examples:</p>
+<ul>
+<li><code>&lt;dialog&gt;</code></li>
+<li>Popover API</li>
+<li>anchor positioning</li>
+<li><code>:has()</code></li>
+<li>CSS nesting</li>
+<li>container queries</li>
+<li>inert</li>
+<li>view transitions</li>
+<li>modern focus management</li>
+<li>top-layer behavior</li>
+</ul>
+<p>Especially important are the newer overlay-related APIs.</p>
+<p>Historically, dialogs, dropdowns, popovers, tooltips, and context menus were extremely difficult because of:</p>
+<ul>
+<li>z-index wars,</li>
+<li>focus traps,</li>
+<li>scroll locking,</li>
+<li>portal systems,</li>
+<li>positioning,</li>
+<li>stacking contexts.</li>
+</ul>
+<p>Modern browser primitives increasingly solve these problems natively.</p>
+<p>This changes the economics of UI architecture.</p>
+<p>Building internal abstractions is becoming cheaper and more maintainable.</p>
+<hr>
+<h1>UI Architecture Is More Than Form Controls</h1>
+<p>Many teams think only about atomic components:</p>
+<ul>
+<li>buttons,</li>
+<li>inputs,</li>
+<li>selects,</li>
+<li>checkboxes.</li>
+</ul>
+<p>But the real value appears higher in the hierarchy.</p>
+<p>Your internal UI layer can orchestrate:</p>
+<ul>
+<li>page layouts,</li>
+<li>entity editors,</li>
+<li>filter panels,</li>
+<li>data tables,</li>
+<li>toolbar systems,</li>
+<li>sidebars,</li>
+<li>navigation structures,</li>
+<li>CRUD workflows,</li>
+<li>master-detail layouts,</li>
+<li>save/cancel flows,</li>
+<li>loading orchestration,</li>
+<li>permissions handling.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-vue">&lt;EntityPage&gt;
+    &lt;EntityToolbar /&gt;
+    &lt;EntityFilters /&gt;
+    &lt;EntityTable /&gt;
+&lt;/EntityPage&gt;
+</code></pre>
+<p>Now your product develops consistent workflow patterns.</p>
+<p>Not just reusable buttons.</p>
+<p>This is where frontend architecture starts becoming a platform.</p>
+<hr>
+<h1>Internal UI Layers Improve Long-Term Stability</h1>
+<p>Projects live longer than frontend trends.</p>
+<p>The average enterprise frontend outlives:</p>
+<ul>
+<li>multiple framework trends,</li>
+<li>multiple design trends,</li>
+<li>multiple UI libraries,</li>
+<li>and sometimes even multiple frontend teams.</li>
+</ul>
+<p>A dedicated UI layer creates isolation from ecosystem volatility.</p>
+<p>It reduces the blast radius of change.</p>
+<p>That is not premature abstraction.</p>
+<p>That is operational risk management.</p>
+<hr>
+<h1>This Applies Beyond Vue</h1>
+<p>Vue examples are convenient because Vue component composition is extremely ergonomic.</p>
+<p>But the idea is framework-agnostic.</p>
+<p>The same architecture works in:</p>
+<ul>
+<li>React</li>
+<li>Svelte</li>
+<li>Angular</li>
+<li>Solid</li>
+<li>Web Components</li>
+<li>even server-rendered systems</li>
+</ul>
+<p>Any component-based frontend benefits from stable internal UI contracts.</p>
+<hr>
+<h1>A Practical Rule</h1>
+<p>One of the first architectural tasks in a frontend project should be:</p>
+<blockquote>
+<p>Define the project&#39;s internal UI hierarchy before building product pages.</p>
+</blockquote>
+<p>Not after.</p>
+<p>Not during migration.</p>
+<p>Not after technical debt accumulates.</p>
+<p>At the beginning.</p>
+<p>Because once product code directly depends on third-party UI libraries, decoupling becomes expensive.</p>
+<hr>
+<h1>Potential Downsides</h1>
+<p>This approach is not free.</p>
+<p>Possible drawbacks:</p>
+<ul>
+<li>initial setup cost,</li>
+<li>additional maintenance,</li>
+<li>risk of over-abstraction,</li>
+<li>wrapper drift from underlying libraries,</li>
+<li>documentation burden,</li>
+<li>onboarding complexity,</li>
+<li>temptation to reinvent mature solutions.</li>
+</ul>
+<p>Poorly designed wrappers can absolutely become worse than direct usage.</p>
+<p>The goal is not to hide everything.</p>
+<p>The goal is to own the architectural boundary.</p>
+<hr>
+<h1>Final Thought</h1>
+<p>Frontend developers often discuss frameworks.</p>
+<p>But frameworks are transient.</p>
+<p>Architecture lasts much longer.</p>
+<p>A frontend codebase should not structurally depend on the internal API decisions of a third-party UI vendor.</p>
+<p>It should depend on its own UI language.</p>
+<p>That language becomes one of the most valuable assets in the entire frontend architecture.</p>
+<hr>
+<p>What additional advantages or disadvantages have you seen with internal UI layers and wrapper-based component systems?</p>
+</span></div><!--]--></main><!--]--></main></div></div><div id="teleports"></div><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"89e10d28-e88c-4d09-b907-029294cccb17",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">[["ShallowReactive",1],{"prerenderedAt":2,"data":3,"state":5,"once":14,"_errors":15,"serverRendered":17,"path":18},1779957920718,["ShallowReactive",4],{},["Reactive",6],{"$ssite-config":7},{"_priority":8,"env":11,"name":12,"url":13},{"env":9,"url":10,"name":10},-15,-3,"production","Alek Labs","https:\u002F\u002Faleklabs.dev",["Set"],["ShallowReactive",16],{},true,"\u002Farticles\u002Fwhy-every-frontend-project-should-have-its-own-ui-layer"]</script></body></html>
