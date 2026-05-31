@@ -1,4 +1,4 @@
-import"./CAhdn4wc.js";const ls=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,cs=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,us=`---\r
+import"./CDXIWolj.js";const ls=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,cs=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,us=`---\r
 date: 2026-05-16\r
 slug: stop-turning-the-mobile-web-into-a-second-class-platform\r
 readOn: \r
@@ -419,7 +419,7 @@ It becomes infrastructure.\r
 \r
 ---\r
 \r
-# Your UI Layer Is An Architectural Boundary\r
+## Your UI Layer Is An Architectural Boundary\r
 \r
 Instead of using third-party components directly, create your own application-level components:\r
 \r
@@ -452,7 +452,7 @@ Your architecture talks to vendor libraries.\r
 \r
 ---\r
 \r
-# Wrappers Are Not "Extra Boilerplate"\r
+## Wrappers Are Not "Extra Boilerplate"\r
 \r
 A common objection:\r
 \r
@@ -484,7 +484,7 @@ Then every page becomes infrastructure code.\r
 \r
 ---\r
 \r
-# The Biggest Advantage: Replaceability\r
+## The Biggest Advantage: Replaceability\r
 \r
 This is the most important benefit.\r
 \r
@@ -530,7 +530,7 @@ A thin internal UI layer dramatically reduces migration cost.\r
 \r
 ---\r
 \r
-# Mixing Multiple UI Libraries Becomes Safe\r
+## Mixing Multiple UI Libraries Becomes Safe\r
 \r
 Direct usage of multiple UI systems usually creates chaos.\r
 \r
@@ -562,7 +562,7 @@ This is extremely powerful.\r
 \r
 ---\r
 \r
-# Your UI Layer Is Also A Design System\r
+## Your UI Layer Is Also A Design System\r
 \r
 The important shift:\r
 \r
@@ -601,7 +601,7 @@ That distinction becomes critical at scale.\r
 \r
 ---\r
 \r
-# Default Configuration Reduces Massive Verbosity\r
+## Default Configuration Reduces Massive Verbosity\r
 \r
 One underrated benefit of internal wrappers:\r
 \r
@@ -645,7 +645,7 @@ The application becomes more declarative.\r
 \r
 ---\r
 \r
-# Theme Propagation Becomes Centralized\r
+## Theme Propagation Becomes Centralized\r
 \r
 Third-party UI libraries usually bring their own theme systems.\r
 \r
@@ -686,7 +686,7 @@ This is one of the cleanest ways to support:\r
 \r
 ---\r
 \r
-# Modern Browser APIs Make Custom UI More Realistic\r
+## Modern Browser APIs Make Custom UI More Realistic\r
 \r
 Five years ago, fully custom UI infrastructure was expensive.\r
 \r
@@ -724,7 +724,7 @@ Building internal abstractions is becoming cheaper and more maintainable.\r
 \r
 ---\r
 \r
-# UI Architecture Is More Than Form Controls\r
+## UI Architecture Is More Than Form Controls\r
 \r
 Many teams think only about atomic components:\r
 \r
@@ -768,7 +768,7 @@ This is where frontend architecture starts becoming a platform.\r
 \r
 ---\r
 \r
-# Internal UI Layers Improve Long-Term Stability\r
+## Internal UI Layers Improve Long-Term Stability\r
 \r
 Projects live longer than frontend trends.\r
 \r
@@ -789,7 +789,7 @@ That is operational risk management.\r
 \r
 ---\r
 \r
-# This Applies Beyond Vue\r
+## This Applies Beyond Vue\r
 \r
 Vue examples are convenient because Vue component composition is extremely ergonomic.\r
 \r
@@ -808,7 +808,7 @@ Any component-based frontend benefits from stable internal UI contracts.\r
 \r
 ---\r
 \r
-# A Practical Rule\r
+## A Practical Rule\r
 \r
 One of the first architectural tasks in a frontend project should be:\r
 \r
@@ -826,7 +826,7 @@ Because once product code directly depends on third-party UI libraries, decoupli
 \r
 ---\r
 \r
-# Potential Downsides\r
+## Potential Downsides\r
 \r
 This approach is not free.\r
 \r
@@ -848,7 +848,7 @@ The goal is to own the architectural boundary.\r
 \r
 ---\r
 \r
-# Final Thought\r
+## Final Thought\r
 \r
 Frontend developers often discuss frameworks.\r
 \r
