@@ -1,22 +1,4 @@
-let canEncodeWebp: boolean | undefined;
-
-async function canEncodeCanvasWebP(): Promise<boolean> {
-
-    if (typeof OffscreenCanvas === 'undefined') {
-        return false;
-    }
-
-    try {
-        const canvas = new OffscreenCanvas(1, 1);
-        const blob = await canvas.convertToBlob({
-            type: 'image/webp',
-            quality: 0.8,
-        });
-        return blob.type === 'image/webp';
-    } catch {
-        return false;
-    }
-}
+import imageModuleUrl from './image?url';
 
 import { workerFunction } from './worker-function';
 
@@ -212,10 +194,10 @@ export class ImageUtils {
     }
 
     static scaleTo(...args: Parameters<typeof scaleTo>): ReturnType<typeof scaleTo> {
-        return workerFunction<typeof scaleTo>(new URL('./image', import.meta.url), 'scaleTo', ...args);
+        return workerFunction<typeof scaleTo>(imageModuleUrl, 'scaleTo', ...args);
     }
 
     static async scaleToDataURL(...args: Parameters<typeof scaleToDataURL>): Promise<string> {
-        return workerFunction<typeof scaleToDataURL>(new URL('./image', import.meta.url), 'scaleToDataURL', ...args);
+        return workerFunction<typeof scaleToDataURL>(imageModuleUrl, 'scaleToDataURL', ...args);
     }
 }
