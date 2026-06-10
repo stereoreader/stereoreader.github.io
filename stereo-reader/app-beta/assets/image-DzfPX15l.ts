@@ -212,10 +212,10 @@ export class ImageUtils {
     }
 
     static scaleTo(...args: Parameters<typeof scaleTo>): ReturnType<typeof scaleTo> {
-        return workerFunction<typeof scaleTo>(new URL('./image.ts?scaleTo', import.meta.url), ...args);
+        return workerFunction<typeof scaleTo>(new URL('./image', import.meta.url), 'scaleTo', ...args);
     }
 
     static async scaleToDataURL(...args: Parameters<typeof scaleToDataURL>): Promise<string> {
-        return workerFunction<typeof scaleToDataURL>(new URL('./image.ts?scaleToDataURL', import.meta.url), ...args);
+        return workerFunction<typeof scaleToDataURL>(new URL('./image', import.meta.url), 'scaleToDataURL', ...args);
     }
 }
