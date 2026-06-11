@@ -1,1 +1,0 @@
-(function(){"use strict";addEventListener("message",async a=>{try{const t=await import(a.data.url);if(!a.data.name)throw new Error("Function name not provided");if(!(a.data.name in t))throw new Error("Function not found");const e=await t[a.data.name](...a.data.params);postMessage({type:"result",data:e})}catch(t){postMessage({type:"error",data:t})}finally{self.close()}})})();
