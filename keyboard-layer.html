@@ -1,0 +1,200 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alek Labs Keyboard Layer</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-CWXQF8PH4S"></script><script>
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-CWXQF8PH4S', {
+                            product_surface: 'website'
+                        });
+                    </script><style>:root{color-scheme:dark;--bg:#0b0b0d;--panel:#121318;--panel-hover:#161821;--text:#f1f1f3;--muted:#b8bac4;--border:#2d303a;--accent:#7d8cff;--border-radius:16px;--saturate-base:.7}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5}main{width:min(920px,100% - 32px);margin:0 auto;padding:48px 0}</style><style>header{width:min(920px,100% - 32px);text-transform:uppercase;text-align:center;padding-top:16px;margin:0 auto 16px;letter-spacing:4px}</style><style>.article[data-v-c78b7b9c]{background-color:#111;padding:32px;border-radius:8px;color:#ccc;overflow:hidden}.status[data-v-c78b7b9c]{display:flex;color:#999;gap:16px}</style><style>.article h1,.article h2,.article h3{color:#ddd}.article .article-cover{margin:-32px -32px 32px;width:calc(100% + 64px)}.article pre:has(>code){background:#222;padding:8px;border-radius:4px;background:#223;color:orange}.article blockquote{border-left:3px solid #555;background:#222;margin-left:0;padding-inline:32px;display:block;padding-block:1px}.article hr{margin-top:48px;margin-bottom:48px;margin-inline:auto;width:25%;border:1px solid #333}</style><link rel="stylesheet" href="/_nuxt/al-header.BjSU5z9h.css" crossorigin><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CCKrocHi.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/hBSqWN0X.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/NgRhS-iR.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/bwNii3CB.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/B0-pzjs1.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CFT98tUN.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CwlQ2mJD.js"><script type="module" src="/_nuxt/CCKrocHi.js" crossorigin></script><link rel="prefetch" as="image" type="image/webp" href="/_nuxt/cover.vWE35UWj.webp"><link rel="icon" type="image/svg+xml" href="logo.svg"><meta name="description" content="Alek Labs Keyboard Layer is an AutoHotkey command layer for Windows keyboards that improves programming and text editing productivity with ergonomic shortcuts for cursor navigation, selection, deletion, clipboard operations, undo, redo, and Enter while preserving the standard QWERTY layout."><meta property="og:title" content="Alek Labs Keyboard Layer"><meta property="og:description" content="Alek Labs Keyboard Layer is an AutoHotkey command layer for Windows keyboards that improves programming and text editing productivity with ergonomic shortcuts for cursor navigation, selection, deletion, clipboard operations, undo, redo, and Enter while preserving the standard QWERTY layout."><meta property="og:image" content="/_nuxt/cover.vWE35UWj.webp"></head><body><div id="__nuxt"><div><!--[--><header><a href="/">AlekLabs.dev</a></header><main><!--[--><div class="article" data-v-c78b7b9c><img src="/_nuxt/cover.vWE35UWj.webp" alt="Alek Labs Keyboard Layer" class="article-cover" data-v-c78b7b9c><div class="status" data-v-c78b7b9c><span class="words" data-v-c78b7b9c>1269 words ~ 7 minutes</span></div><span data-v-c78b7b9c><h1>Alek Labs Keyboard Layer</h1>
+<p><strong>Ergonomic keyboard commands for more productive Windows programming sessions.</strong></p>
+<p>Alek Labs Keyboard Layer is an AutoHotkey-based keyboard command layer for Windows. It keeps the standard QWERTY layout intact, but changes how common editing, navigation, deletion, and clipboard operations are triggered. The primary target audience is programmers, because programming involves constant micro-editing: moving through identifiers, jumping across lines, selecting fragments, deleting words, copying snippets, pasting code, undoing changes, and refining text inside editors, terminals, browsers, documentation, and issue trackers.</p>
+<p>The project started from a practical programming problem: during long coding sessions, a significant amount of time and attention is spent not on typing new characters, but on navigating and modifying existing text. <code>Enter</code> is on the right edge of the keyboard and is normally pressed by extending the right hand or right pinky. Arrow keys require leaving the main typing area. <code>Home</code>, <code>End</code>, <code>Delete</code>, and <code>Backspace</code> are also positioned away from the main typing zone. Standard shortcuts such as <code>Ctrl + C</code>, <code>Ctrl + V</code>, <code>Ctrl + X</code>, <code>Ctrl + Z</code>, and <code>Ctrl + A</code> require repeated left-hand stretching. These movements are small individually, but they accumulate heavily during programming, where precise text manipulation happens continuously.</p>
+<p>Alek Labs Keyboard Layer addresses this by turning underused and accessible keys into editing infrastructure. <code>CapsLock</code> becomes <code>Enter</code>, which gives the left hand direct access to one of the most common action keys. <code>Left Alt</code> becomes the main command-layer modifier, pressed naturally by the left thumb. While <code>Left Alt</code> is held, selected keys around the home position become navigation, selection, deletion, and clipboard commands.</p>
+<p>This is not a modal editor in the Vim sense. There is no separate navigation mode that must be entered and exited. Instead, the command layer is transient: hold <code>Left Alt</code>, press the command key, release it, and continue typing. This preserves the directness of normal Windows editing while adding a compact navigation and command system that works across ordinary applications. For programmers, this matters because the same muscle memory can be used not only inside a code editor, but also in commit messages, search fields, browser text boxes, chat tools, documentation pages, terminals, and configuration files.</p>
+<p>Navigation is handled mostly by the right hand while the left thumb holds <code>Alt</code>. <code>Alt + H</code> and <code>Alt + ;</code> move one character left and right. <code>Alt + I</code> and <code>Alt + K</code> move up and down. <code>Alt + J</code> and <code>Alt + L</code> move by words. <code>Alt + U</code> and <code>Alt + O</code> move to the beginning and end of the line. These commands keep cursor movement close to the home position instead of sending the right hand to the arrow cluster, <code>Home</code>, or <code>End</code>. In programming, this is especially useful for moving through identifiers, arguments, operators, indentation, short statements, and dense code lines without breaking hand position.</p>
+<p>Selection follows the same spatial model. Adding <code>Shift</code> to the same navigation commands turns movement into selection, matching the standard Windows convention where <code>Shift</code> modifies navigation into selection. <code>Alt + Shift + H</code> selects one character to the left, <code>Alt + Shift + L</code> selects one word to the right, and <code>Alt + Shift + U</code> or <code>Alt + Shift + O</code> selects to the beginning or end of the line. This makes it faster to select variables, function arguments, property chains, string fragments, expressions, and partial lines without reaching for the arrow cluster.</p>
+<p>Deletion is built on the same directional structure. <code>CapsLock</code> normally acts as <code>Enter</code>, but when combined with the <code>Alt</code> command layer it becomes a deletion modifier. <code>Alt + CapsLock + H</code> deletes one character to the left, <code>Alt + CapsLock + ;</code> deletes one character to the right, <code>Alt + CapsLock + J</code> and <code>Alt + CapsLock + L</code> delete words, and <code>Alt + CapsLock + U</code> or <code>Alt + CapsLock + O</code> delete to the beginning or end of the line. In practical use, <code>Alt</code> activates the layer first, and <code>CapsLock</code> modifies the active command into a destructive editing action. This keeps deletion consistent with navigation: the same directional keys operate on the same text direction, while the modifier changes the operation type. For code editing, this makes common operations such as removing an identifier, deleting an argument, clearing the rest of a line, or backing out part of an expression faster and more regular.</p>
+<p>Clipboard and editing commands are placed near the left hand because they are not directional navigation actions. <code>Alt + Q</code> copies, <code>Alt + W</code> pastes, <code>Alt + S</code> cuts, <code>Alt + D</code> undoes, <code>Alt + E</code> redoes, and <code>Alt + A</code> selects all. These mappings reduce dependence on <code>Ctrl</code> chords and make common editing operations available without repeated left-pinky stretching. During programming sessions, this directly affects repeated actions such as copying a symbol, moving a line fragment, pasting a path, undoing an edit, replacing selected code, or selecting all text in a field.</p>
+<p>The intended result is a keyboard workflow where the hands stay close to the home position while programming. The right hand no longer has to travel to the arrow cluster for routine navigation. The left hand no longer has to rely as heavily on <code>Ctrl</code>-based shortcut chords. <code>Enter</code>, cursor movement, selection, deletion, copy, paste, cut, undo, redo, and select-all become part of a compact command layer over standard QWERTY. In my own programming sessions, this made editing noticeably more productive because the mechanical overhead around navigation and text manipulation was reduced.</p>
+<p>The learning curve is intentionally small. Alek Labs Keyboard Layer does not ask the user to relearn letter positions, abandon QWERTY, or switch to a full modal editing environment. The main habit is learning that <code>Left Alt</code> opens a temporary command layer, while <code>Shift</code> and <code>CapsLock</code> modify that layer into selection and deletion. After several focused evenings of use, the mappings become mechanical: navigation, selection, deletion, and clipboard operations become available without reaching for distant keys.</p>
+<p>Alek Labs Keyboard Layer can be useful for general writing, documentation, translation, and note-taking, but its strongest use case is programming. Code editing produces a high frequency of cursor movement, word-level navigation, line-level operations, selection, deletion, copy/paste, undo, and redo. That is exactly the operation profile this command layer is designed to optimize.</p>
+<h2>Source code</h2>
+<p><a href="https://github.com/aleklabs/keyboard-layer">https://github.com/aleklabs/keyboard-layer</a></p>
+<h2>Installation</h2>
+<p>Alek Labs Keyboard Layer requires <a href="https://www.autohotkey.com/">AutoHotkey</a> on Windows.</p>
+<h3>Recommended installation</h3>
+<ol>
+<li>Install <a href="https://www.autohotkey.com/">AutoHotkey</a>.</li>
+<li>Download the latest release: <a href="https://github.com/AlekLabs/keyboard-layer/releases/latest/download/aleklabs-keyboard-layer.zip">aleklabs-keyboard-layer.zip</a>.</li>
+<li>Extract the ZIP file.</li>
+<li>Run <code>aleklabs-keyboard-layer.ahk</code>.</li>
+</ol>
+<p>The release package includes the script, tray icon, README, and MIT license.</p>
+<h3>Start automatically with Windows</h3>
+<p>To start the script after login:</p>
+<ol>
+<li>Press <code>Win + R</code>.</li>
+<li>Enter <code>shell:startup</code>.</li>
+<li>Create a shortcut to <code>aleklabs-keyboard-layer.ahk</code> in the opened Startup folder.</li>
+</ol>
+<h2>Hotkeys</h2>
+<table>
+<thead>
+<tr>
+<th>Hotkey</th>
+<th>Action</th>
+<th>Problem solved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CapsLock</code></td>
+<td><code>Enter</code></td>
+<td>Moves <code>Enter</code> to a large, accessible left-side key and reduces right-pinky extension toward the keyboard edge.</td>
+</tr>
+<tr>
+<td><code>Alt + I</code></td>
+<td>Move cursor up</td>
+<td>Keeps vertical navigation near the home position instead of using the arrow-key cluster.</td>
+</tr>
+<tr>
+<td><code>Alt + K</code></td>
+<td>Move cursor down</td>
+<td>Keeps vertical navigation near the home position instead of using the arrow-key cluster.</td>
+</tr>
+<tr>
+<td><code>Alt + H</code></td>
+<td>Move cursor one character left</td>
+<td>Keeps character-level navigation inside the main typing area.</td>
+</tr>
+<tr>
+<td><code>Alt + ;</code></td>
+<td>Move cursor one character right</td>
+<td>Keeps character-level navigation inside the main typing area.</td>
+</tr>
+<tr>
+<td><code>Alt + J</code></td>
+<td>Move cursor one word left</td>
+<td>Replaces <code>Ctrl + Left</code> with a home-position command-layer chord.</td>
+</tr>
+<tr>
+<td><code>Alt + L</code></td>
+<td>Move cursor one word right</td>
+<td>Replaces <code>Ctrl + Right</code> with a home-position command-layer chord.</td>
+</tr>
+<tr>
+<td><code>Alt + U</code></td>
+<td>Move to beginning of line</td>
+<td>Avoids reaching for <code>Home</code>.</td>
+</tr>
+<tr>
+<td><code>Alt + O</code></td>
+<td>Move to end of line</td>
+<td>Avoids reaching for <code>End</code>.</td>
+</tr>
+<tr>
+<td><code>Alt + Shift + I</code></td>
+<td>Select upward</td>
+<td>Replaces <code>Shift + Up</code> without using the arrow-key cluster.</td>
+</tr>
+<tr>
+<td><code>Alt + Shift + K</code></td>
+<td>Select downward</td>
+<td>Replaces <code>Shift + Down</code> without using the arrow-key cluster.</td>
+</tr>
+<tr>
+<td><code>Alt + Shift + H</code></td>
+<td>Select one character left</td>
+<td>Keeps character selection near the home position.</td>
+</tr>
+<tr>
+<td><code>Alt + Shift + ;</code></td>
+<td>Select one character right</td>
+<td>Keeps character selection near the home position.</td>
+</tr>
+<tr>
+<td><code>Alt + Shift + J</code></td>
+<td>Select one word left</td>
+<td>Replaces <code>Ctrl + Shift + Left</code> with a home-position command-layer chord.</td>
+</tr>
+<tr>
+<td><code>Alt + Shift + L</code></td>
+<td>Select one word right</td>
+<td>Replaces <code>Ctrl + Shift + Right</code> with a home-position command-layer chord.</td>
+</tr>
+<tr>
+<td><code>Alt + Shift + U</code></td>
+<td>Select to beginning of line</td>
+<td>Avoids reaching for <code>Shift + Home</code>.</td>
+</tr>
+<tr>
+<td><code>Alt + Shift + O</code></td>
+<td>Select to end of line</td>
+<td>Avoids reaching for <code>Shift + End</code>.</td>
+</tr>
+<tr>
+<td><code>Alt + CapsLock + H</code></td>
+<td>Delete character left / <code>Backspace</code></td>
+<td>Deletes leftward without reaching for <code>Backspace</code>.</td>
+</tr>
+<tr>
+<td><code>Alt + CapsLock + ;</code></td>
+<td>Delete character right</td>
+<td>Deletes rightward without reaching for <code>Delete</code>.</td>
+</tr>
+<tr>
+<td><code>Alt + CapsLock + J</code></td>
+<td>Delete word left</td>
+<td>Replaces <code>Ctrl + Backspace</code> with a directional deletion chord.</td>
+</tr>
+<tr>
+<td><code>Alt + CapsLock + L</code></td>
+<td>Delete word right</td>
+<td>Replaces <code>Ctrl + Delete</code> with a directional deletion chord.</td>
+</tr>
+<tr>
+<td><code>Alt + CapsLock + U</code></td>
+<td>Delete to beginning of line</td>
+<td>Provides line-head deletion without manual selection followed by <code>Delete</code> or <code>Backspace</code>.</td>
+</tr>
+<tr>
+<td><code>Alt + CapsLock + O</code></td>
+<td>Delete to end of line</td>
+<td>Provides line-tail deletion without manual selection followed by <code>Delete</code> or <code>Backspace</code>.</td>
+</tr>
+<tr>
+<td><code>Alt + Q</code></td>
+<td>Copy</td>
+<td>Replaces <code>Ctrl + C</code> and reduces repeated left-pinky <code>Ctrl</code> usage.</td>
+</tr>
+<tr>
+<td><code>Alt + W</code></td>
+<td>Paste</td>
+<td>Replaces <code>Ctrl + V</code> and reduces repeated left-pinky <code>Ctrl</code> usage.</td>
+</tr>
+<tr>
+<td><code>Alt + S</code></td>
+<td>Cut</td>
+<td>Replaces <code>Ctrl + X</code> and reduces repeated left-pinky <code>Ctrl</code> usage.</td>
+</tr>
+<tr>
+<td><code>Alt + D</code></td>
+<td>Undo</td>
+<td>Replaces <code>Ctrl + Z</code> and reduces repeated left-pinky <code>Ctrl</code> usage.</td>
+</tr>
+<tr>
+<td><code>Alt + E</code></td>
+<td>Redo</td>
+<td>Replaces <code>Ctrl + Y</code> and reduces repeated left-pinky <code>Ctrl</code> usage.</td>
+</tr>
+<tr>
+<td><code>Alt + A</code></td>
+<td>Select all</td>
+<td>Replaces <code>Ctrl + A</code> and reduces repeated left-pinky <code>Ctrl</code> usage.</td>
+</tr>
+<tr>
+<td><code>Alt + Backspace</code></td>
+<td>Delete previous word</td>
+<td>Provides direct word deletion without using the standard <code>Ctrl + Backspace</code> chord.</td>
+</tr>
+</tbody></table>
+</span></div><!--]--></main><!--]--></div></div><div id="teleports"></div><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"bc640c70-11c2-4b64-8ea8-40d9eae11b80",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">[["ShallowReactive",1],{"prerenderedAt":2,"data":3,"state":5,"once":14,"_errors":15,"serverRendered":17,"path":18},1781700182643,["ShallowReactive",4],{},["Reactive",6],{"$ssite-config":7},{"_priority":8,"env":11,"name":12,"url":13},{"env":9,"url":10,"name":10},-15,-3,"production","Alek Labs","https:\u002F\u002Faleklabs.dev",["Set"],["ShallowReactive",16],{},true,"\u002Fkeyboard-layer"]</script></body></html>
