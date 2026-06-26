@@ -1,0 +1,148 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BOOST — Enterprise Resource Management SPA</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-CWXQF8PH4S"></script><script>
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-CWXQF8PH4S', {
+                            product_surface: 'website'
+                        });
+                    </script><style>:root{color-scheme:dark;--bg:#0b0b0d;--panel:#121318;--panel-hover:#161821;--text:#f1f1f3;--muted:#b8bac4;--border:#2d303a;--accent:#7d8cff;--border-radius:16px;--saturate-base:.7}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5}main{width:min(920px,100% - 32px);margin:0 auto;padding:48px 0}</style><style>header{width:min(920px,100% - 32px);text-transform:uppercase;text-align:center;padding-top:16px;margin:0 auto 16px;letter-spacing:4px}</style><style>.article[data-v-8a81f6f2]{background-color:#111;padding:32px;border-radius:8px;color:#ccc;overflow:hidden}.topbar[data-v-8a81f6f2]{gap:32px;margin-bottom:16px}.topbar[data-v-8a81f6f2],.topbar a[data-v-8a81f6f2]{display:flex;align-items:center}.topbar a[data-v-8a81f6f2]{gap:8px}.topbar a img[data-v-8a81f6f2]{width:32px}.status[data-v-8a81f6f2]{display:flex;color:#999;gap:16px}</style><style>.article h1,.article h2,.article h3{color:#ddd}.article p:has(.article-cover){margin:0}.article .article-cover{margin:-32px -32px 32px;width:calc(100% + 64px)}.article pre:has(>code){background:#222;padding:8px;border-radius:4px;background:#223;color:orange}.article blockquote{border-left:3px solid #555;background:#222;margin-left:0;padding-inline:32px;display:block;padding-block:1px}.article hr{margin-top:48px;margin-bottom:48px;margin-inline:auto;width:25%;border:1px solid #333}</style><link rel="stylesheet" href="/_nuxt/al-header.BjSU5z9h.css" crossorigin><link rel="modulepreload" as="script" crossorigin href="/_nuxt/D-tZ_i1K.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DmihUL-T.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CiEQac7A.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/C5fKzCFy.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DViBdg68.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/BJigEU74.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/Cy0Em4ir.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CFT98tUN.js"><script type="module" src="/_nuxt/D-tZ_i1K.js" crossorigin></script><link rel="prefetch" as="image" type="image/webp" href="/_nuxt/cover.qYX_eQYy.webp"><link rel="icon" type="image/svg+xml" href="logo.svg"><meta name="description" content="Why the mobile web should not become a second-class platform: browsers, PWAs, open standards, user control, and the risks of app-first ecosystems."><meta property="og:title" content="BOOST — Enterprise Resource Management SPA"><meta property="og:description" content="Built complex SPA interfaces, scalable frontend architecture with stores and reactive model classes, custom UI components including virtual tables and forms, and AI-agent-assisted delivery with E2E verification."><meta property="og:image" content="/_nuxt/cover.qYX_eQYy.webp"></head><body><div id="__nuxt"><div><!--[--><header><a href="/">AlekLabs.dev</a></header><main><!--[--><div class="article" data-v-8a81f6f2><img src="/_nuxt/cover.qYX_eQYy.webp" class="article-cover" data-v-8a81f6f2><span data-v-8a81f6f2><h1>BOOST — Enterprise Resource Management SPA</h1>
+<p>BOOST is a modular Enterprise Resource Management SPA built with Vue 3, TypeScript, Vite, and a custom frontend framework. The application covers multiple business domains including sales, accounting, finance, HRM, inventory, procurement, document management, projects, work orders, facility management, contact center, users, settings, reporting, and API management.</p>
+<p>The project is not a typical Vue application assembled from an external UI kit. Its frontend is structured as a platform: separate modular Vue applications are loaded through a shared shell, while domain models, stores, routing, data synchronization, UI components, editable tables, filters, dialogs, selectors, forms, and layout primitives are implemented as reusable internal packages.</p>
+<h2>My Role</h2>
+<p>I designed and implemented the core frontend architecture and the custom UI/data framework used across the BOOST application modules.</p>
+<p>My work included:</p>
+<ul>
+<li>modular Vue application architecture;</li>
+<li>shared shell application with dynamic app loading and cross-app navigation;</li>
+<li>custom <code>Model</code> class for reactive domain entities;</li>
+<li>shared repository/store layer for API access, local cache, synchronization, and entity lifecycle;</li>
+<li>IndexedDB entity caching with checksum-based synchronization;</li>
+<li>client-side filtering and search for large local data sets;</li>
+<li>virtual editable data table with custom cell rendering, keyboard interaction, row operations, sorting, filtering, and selection;</li>
+<li>custom UI component framework covering inputs, selects, tables, layouts, dialogs, file handling, model views, comments, task widgets, and domain-specific controls;</li>
+<li>strict TypeScript configuration across applications and shared packages.</li>
+</ul>
+<h2>Source-Code Scale</h2>
+<p>The uploaded source archive shows a monorepo-style frontend structure:</p>
+<ul>
+<li><code>applications/*</code> — separate business modules;</li>
+<li><code>shell</code> — application shell, app loader, top navigation, side menu, tenant routing;</li>
+<li><code>packages/ui</code> — custom UI framework;</li>
+<li><code>packages/repository</code> — domain models, stores, API/cache synchronization;</li>
+<li><code>packages/shared</code> — shared API and utilities;</li>
+<li><code>packages/utils</code> — business-agnostic utilities.</li>
+</ul>
+<p>The codebase contains 28 application directories, 578 Vue single-file components, 655 TypeScript files, approximately 160 <code>Model</code>-based domain classes, and more than 150 custom <code>lq-*</code> UI components.</p>
+<h2>Modular SPA Architecture</h2>
+<p>BOOST is organized as a set of independent Vue application modules instead of one flat SPA. Each module exposes its own route configuration and is created through a shared <code>createVueApp()</code> factory. The shell discovers module entry points through Vite glob imports, mounts the active application into the shell container, and coordinates routing between modules.</p>
+<p>This architecture gives the system clear module boundaries while keeping a unified UX and shared infrastructure. Business domains such as accounting, sales, projects, work orders, HRM, documents, settings, and users can evolve separately but still use the same model layer, routing conventions, table system, layout primitives, dialogs, and selectors.</p>
+<p>The shell also implements cross-application navigation through a shared router bridge. It resolves route ownership, loads the required app, passes tenant-aware route params, and supports navigation between modules without treating the whole frontend as one monolithic route tree.</p>
+<h2>Custom Domain Model Layer</h2>
+<p>The <code>Model</code> abstraction is one of the central parts of the project. It converts plain API data into rich reactive domain objects with methods, computed properties, nested child models, collections, lifecycle hooks, route metadata, persistence methods, and store integration.</p>
+<p>The model layer supports:</p>
+<ul>
+<li>typed child models and child collections;</li>
+<li>partial and full entity loading;</li>
+<li>phantom UUIDs for unsaved editable entities;</li>
+<li><code>create()</code>, <code>get()</code>, <code>getFull()</code>, <code>save()</code>, <code>update()</code>, <code>delete()</code>, <code>batchDelete()</code>, and custom request methods;</li>
+<li>route-aware item loaders;</li>
+<li>reactive class properties through custom ref/computed-ref helpers;</li>
+<li>nested collection synchronization before and after parent save;</li>
+<li>model-level event dispatch on updates;</li>
+<li>serialization/deserialization with date handling.</li>
+</ul>
+<p>This gives the frontend a domain-oriented programming model instead of scattering business state across unrelated Vue components and ad hoc stores.</p>
+<h2>Repository and Store Layer</h2>
+<p>The shared repository package connects the <code>Model</code> layer to API access, IndexedDB cache, MQTT synchronization, and application loading state.</p>
+<p>Each model class can register a store through <code>createStore()</code>. The store exposes loaded items, item fetching, full loading, save/update/delete operations, query support, and error/loading state. This makes domain models self-contained: a component can work with <code>Item.items</code>, <code>SalesOrder.loadedItems</code>, <code>WorkOrder.getFull(UUID)</code>, or <code>JournalEntry.itemLoader</code> without manually wiring HTTP requests in every page.</p>
+<p>The store layer also deduplicates concurrent item requests and keeps in-memory model instances synchronized when new data arrives.</p>
+<h2>IndexedDB Caching and Synchronization</h2>
+<p>BOOST uses IndexedDB as a local entity cache for models whose storage policy allows it. The cache is tenant-aware and creates object stores dynamically based on entity metadata. Cached data is loaded into memory immediately, which improves perceived performance for large entity lists and repeated navigation.</p>
+<p>The synchronization flow includes:</p>
+<ul>
+<li>immediate population from IndexedDB;</li>
+<li>server sync-state comparison;</li>
+<li>checksum-based validation;</li>
+<li>partial update loading when possible;</li>
+<li>full refresh fallback when local checksum validation fails;</li>
+<li>Web Worker usage for heavier sync work;</li>
+<li>local <code>EntitySyncState</code> storage;</li>
+<li>XOR/hash-based verification of local item versions.</li>
+</ul>
+<p>This is substantially more advanced than simple <code>localStorage</code> caching. It is a client-side data persistence layer designed for large enterprise lists and long-running business sessions.</p>
+<h2>Client-Side Filtering and Search</h2>
+<p>The UI framework includes a crossfilter-based filtering system used across list pages. It supports reusable filter widgets, search filters, select/multi-select filters, filter clearing, persistent filter state, and reactive updates when source data changes.</p>
+<p>This design allows large lists to be loaded once, cached locally, and then filtered on the client without forcing every table interaction through backend round trips. It is especially useful for ERM/ERP-style interfaces where users repeatedly segment entities by status, customer, project, role, stock state, VAT/account data, work type, assignee, and other dimensions.</p>
+<h2>Virtual Editable Data Table</h2>
+<p>The custom <code>lq-table</code> is a core technical feature of the project. It is not a basic table wrapper. It implements a reusable enterprise data grid with:</p>
+<ul>
+<li>virtual scrolling;</li>
+<li>fixed and dynamic row-height modes;</li>
+<li>editable cells;</li>
+<li>typed cell rendering;</li>
+<li>custom cell components;</li>
+<li>keyboard navigation;</li>
+<li>dirty/saved/error cell state;</li>
+<li>row add/delete/move operations;</li>
+<li>row selection and batch actions;</li>
+<li>sortable columns;</li>
+<li>configurable visible columns;</li>
+<li>search highlighting;</li>
+<li>readonly and editable modes;</li>
+<li>route activation on row click;</li>
+<li>pagination-table and page-table wrappers;</li>
+<li>tree-table variant.</li>
+</ul>
+<p>The table is integrated with the custom input components and the model/store system, so it can be used both for readonly entity lists and dense editable business forms such as order lines, materials, time reports, accounting data, settings, attributes, and transactional rows.</p>
+<h2>Custom UI Framework</h2>
+<p>The project includes a broad custom component library under <code>@boost/ui</code>. The naming convention is consistent (<code>lq-*</code>), and the components cover the main UI needs of a business application:</p>
+<ul>
+<li>inputs: text, number, integer, money, email, phone, masked input, textarea, datepicker, hour input, checkbox;</li>
+<li>selects: autocomplete, table select, tree select, multi-select, inline select, button select;</li>
+<li>layout: pages, sections, rows, columns, toolbar, topbar, tabs, cards, menus, popups;</li>
+<li>tables: editable table, page table, pagination table, tree table, row menu, row delete, table config;</li>
+<li>dialogs and modals;</li>
+<li>files and images;</li>
+<li>comments and notes;</li>
+<li>model utilities such as logs, model add, model footer, model notes;</li>
+<li>domain-specific controls for items, agreements, addresses, parties, projects, tasks, work orders, accounting, prices, and system units.</li>
+</ul>
+<p>This demonstrates framework-level UI engineering: the project does not only contain many screens, it contains the reusable frontend system required to build those screens consistently.</p>
+<h2>TypeScript and Code Organization</h2>
+<p>The workspace uses strict TypeScript settings, project references, shared path aliases, Vue type checking, and package-level builds. The codebase separates generic UI, data models, shared API logic, application modules, and shell-level orchestration.</p>
+<p>The strict typing is visible not only in normal component props but also in deeper abstractions: table column definitions, typed model children, typed collections, route definitions, store interfaces, pagination, and model loaders.</p>
+<h2>Business Domains Implemented</h2>
+<p>The source includes modules and model structures for multiple enterprise areas:</p>
+<ul>
+<li>sales orders and sales invoices;</li>
+<li>supplier invoices and payments;</li>
+<li>accounting, fiscal years, accounts, journal entries, bank accounts;</li>
+<li>inventory, items, item groups, item types, item attributes, price lists, campaigns;</li>
+<li>purchase orders and procurement suggestions;</li>
+<li>work orders, materials, time reports, statuses, forms;</li>
+<li>projects, scheduling, Gantt-style views, project settings;</li>
+<li>HRM employees and work schedules;</li>
+<li>contact center organizations and persons;</li>
+<li>document center, document approval groups, document automation, files;</li>
+<li>facility objects, systems, and units;</li>
+<li>users, roles, permissions, settings, and authorization;</li>
+<li>reports and dashboards.</li>
+</ul>
+<p>This range matters because reusable frontend architecture is tested by domain diversity. A framework that works for editable sales order lines, document approval rules, work order materials, HR schedules, and inventory attributes is solving more than isolated page composition.</p>
+<h2>Engineering Value</h2>
+<p>The main engineering value of BOOST is that it treats frontend development as a product platform problem. The codebase shows the ability to design abstractions that reduce repetition across many business modules while still handling complex UX and data cases.</p>
+<p>For technical reviewers, the strongest signals are:</p>
+<ul>
+<li>independent modular Vue apps coordinated by a shell;</li>
+<li>reusable app factory and route parser;</li>
+<li>custom model/store abstraction rather than only component-local state;</li>
+<li>IndexedDB caching with sync verification;</li>
+<li>custom virtual editable table;</li>
+<li>crossfilter-based local filtering;</li>
+<li>custom UI framework instead of dependence on a generic UI kit;</li>
+<li>strict TypeScript across a large Vue codebase.</li>
+</ul>
+<p>For HR or non-technical reviewers, the project demonstrates senior frontend ownership: I built the application architecture, data layer, and UI framework required for a complex enterprise system, not only individual screens.</p>
+<h2>Technologies</h2>
+<p>Vue 3, TypeScript, Vite, Vue Router, Vue I18n, IndexedDB, Web Workers, MQTT over WebSocket, Axios, crossfilter2, SCSS, custom component framework, custom domain model layer, virtual scrolling, editable data grids, strict TypeScript, monorepo workspace architecture.</p>
+</span></div><!--]--></main><!--]--></div></div><div id="teleports"></div><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"5560d66c-d321-43e5-b17c-a427e34d30eb",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">[["ShallowReactive",1],{"prerenderedAt":2,"data":3,"state":5,"once":14,"_errors":15,"serverRendered":17,"path":18},1782463443670,["ShallowReactive",4],{},["Reactive",6],{"$ssite-config":7},{"_priority":8,"env":11,"name":12,"url":13},{"env":9,"url":10,"name":10},-15,-3,"production","Alek Labs","https:\u002F\u002Faleklabs.dev",["Set"],["ShallowReactive",16],{},true,"\u002Fexperience\u002Fsenior-frontend-develop-at-luqon"]</script></body></html>
