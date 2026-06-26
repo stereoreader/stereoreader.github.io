@@ -1,0 +1,233 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Hotel and Train Ticket Booking SPA</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-CWXQF8PH4S"></script><script>
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-CWXQF8PH4S', {
+                            product_surface: 'website'
+                        });
+                    </script><style>:root{color-scheme:dark;--bg:#0b0b0d;--panel:#121318;--panel-hover:#161821;--text:#f1f1f3;--muted:#b8bac4;--border:#2d303a;--accent:#7d8cff;--border-radius:16px;--saturate-base:.7}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5}main{width:min(920px,100% - 32px);margin:0 auto;padding:48px 0}</style><style>header{width:min(920px,100% - 32px);text-transform:uppercase;text-align:center;padding-top:16px;margin:0 auto 16px;letter-spacing:4px}</style><style>.article[data-v-8a81f6f2]{background-color:#111;padding:32px;border-radius:8px;color:#ccc;overflow:hidden}.topbar[data-v-8a81f6f2]{gap:32px;margin-bottom:16px}.topbar[data-v-8a81f6f2],.topbar a[data-v-8a81f6f2]{display:flex;align-items:center}.topbar a[data-v-8a81f6f2]{gap:8px}.topbar a img[data-v-8a81f6f2]{width:32px}.status[data-v-8a81f6f2]{display:flex;color:#999;gap:16px}</style><style>.article h1,.article h2,.article h3{color:#ddd}.article p:has(.article-cover){margin:0}.article .article-cover{margin:-32px -32px 32px;width:calc(100% + 64px)}.article pre:has(>code){background:#222;padding:8px;border-radius:4px;background:#223;color:orange}.article blockquote{border-left:3px solid #555;background:#222;margin-left:0;padding-inline:32px;display:block;padding-block:1px}.article hr{margin-top:48px;margin-bottom:48px;margin-inline:auto;width:25%;border:1px solid #333}</style><link rel="stylesheet" href="/_nuxt/al-header.BjSU5z9h.css" crossorigin><link rel="modulepreload" as="script" crossorigin href="/_nuxt/BBzSQB2b.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DKoAWsNH.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DORrwOjp.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/BK_HVuh9.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DAWILi-4.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/B1X-LTsT.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/Cy0Em4ir.js"><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CFT98tUN.js"><script type="module" src="/_nuxt/BBzSQB2b.js" crossorigin></script><link rel="prefetch" as="image" type="image/webp" href="/_nuxt/cover.qYX_eQYy.webp"><link rel="prefetch" as="image" type="image/webp" href="/_nuxt/cover.B_Dao0Q8.webp"><link rel="icon" type="image/svg+xml" href="logo.svg"><meta name="description" content="Vue 3 / TypeScript / Vite SPA for hotel and train ticket reservations, with custom Vite plugins, interactive maps, dynamic SVG train-seat layouts, client-side filtering, complex booking state, and a reusable form validation framework."><meta property="og:title" content="Hotel and Train Ticket Booking SPA"><meta property="og:description" content="Vue 3 / TypeScript / Vite SPA for hotel and train ticket reservations, with custom Vite plugins, interactive maps, dynamic SVG train-seat layouts, client-side filtering, complex booking state, and a reusable form validation framework."><meta property="og:image" content="/_nuxt/cover.B_Dao0Q8.webp"></head><body><div id="__nuxt"><div><!--[--><header><a href="/">AlekLabs.dev</a></header><main><!--[--><div class="article" data-v-8a81f6f2><img src="/_nuxt/cover.B_Dao0Q8.webp" class="article-cover" data-v-8a81f6f2><span data-v-8a81f6f2><h1>Hotel and Train Ticket Booking SPA</h1>
+<h2>Overview</h2>
+<p>This is a B2B travel booking application used by company employees and internal operators to reserve hotels and train tickets for customers. The application supports operator-grade booking workflows: hotel search, hotel filtering, interactive map exploration, railway route search, train selection, car and seat selection, passenger data entry, validation, prebooking, and final reservation submission.</p>
+<p>The frontend is a Vue 3 / TypeScript / Vite SPA integrated into an existing travel platform. My work focused on advanced frontend engineering: custom Vite tooling, complex reactive booking state, client-side filtering, interactive maps, dynamic SVG-based train layouts, custom form infrastructure, and reusable UI components for dense reservation workflows.</p>
+<h2>Role</h2>
+<p>Senior Frontend Developer / Frontend Architecture.</p>
+<p>I implemented advanced frontend functionality across the hotel and railway booking flows, including custom Vite plugins, routing infrastructure, client-side filtering, interactive Yandex Maps integration, dynamic SVG-to-Vue rendering for train layouts, complex order-state management, and a custom form/input validation framework.</p>
+<h2>Product Context</h2>
+<p>The application is used by operators who process reservations on behalf of customers. This creates stricter UX requirements than a simple public booking form: operators need fast filtering, predictable navigation between booking steps, persistent form data, clear validation, structured passenger data, and reliable handling of supplier-specific edge cases.</p>
+<p>The railway booking flow includes several dependent steps:</p>
+<ol>
+<li>Search route and travel dates.</li>
+<li>Select outbound and optional return trains.</li>
+<li>Select car groups and concrete cars.</li>
+<li>Select seats by graphical scheme or by preferences.</li>
+<li>Validate passenger and seat-selection rules.</li>
+<li>Enter passenger and customer data.</li>
+<li>Submit reservation and handle conflict/confirmation cases.</li>
+</ol>
+<p>The hotel booking flow includes:</p>
+<ol>
+<li>Hotel search by destination, dates, and guests.</li>
+<li>Incremental result loading.</li>
+<li>Client-side filtering by hotel and rate-plan properties.</li>
+<li>Interactive map view.</li>
+<li>Hotel details, photos, room plans, and policies.</li>
+<li>Prebooking and final order submission.</li>
+</ol>
+<h2>Custom Vite Tooling</h2>
+<p>I implemented a custom Vite build layer instead of relying only on standard Vue plugin behavior.</p>
+<p>The project included a shared Vite configuration that automatically discovered local <code>vite.plugin.*</code> modules, applied project-level and shared frontend plugins, configured aliases, injected global SCSS mixins/theme data, and generated a multi-entry build for separate application entry points.</p>
+<p>The most important custom plugin was an SFC transform pipeline. It parsed Vue SFC templates before Vue compilation and applied custom transforms to the template DOM. This enabled project-specific syntax and build-time automation.</p>
+<p>Implemented Vite/SFC tooling included:</p>
+<ul>
+<li>automatic discovery and loading of custom Vite plugins;</li>
+<li>custom bare-name component resolution for <code>.vue</code> and <code>.ts</code> components;</li>
+<li>template-level auto-import of Vue components based on encountered tags;</li>
+<li>directive auto-import from the local directives directory;</li>
+<li>custom <code>v-show.lazy</code> transform that converts lazy visibility into delayed <code>v-if</code> mounting;</li>
+<li>multi-entry Vite build for search, hotel results, and train results apps;</li>
+<li>shared alias resolution for source, service, design, image, and data imports;</li>
+<li>global SCSS mixin/theme injection through Vite preprocessor options.</li>
+</ul>
+<p>This reduced component boilerplate and gave the codebase framework-level behavior tailored to the application instead of generic project defaults.</p>
+<h2>Modular SPA Integration</h2>
+<p>The frontend is split into separate application entry points for search, hotel results, and train results. These apps are mounted into existing platform pages through a small injection layer that passes server-provided page data into Vue application instances.</p>
+<p>This allows Vue modules to coexist with the wider platform while still using modern Vue Router, Composition API, dynamic imports, TypeScript-oriented module structure, and Vite build output.</p>
+<p>The routing layer was also customized. It supports compact route definitions, nested relative route names, route-level parse/stringify functions, reactive <code>viewRoute</code> metadata, route-param preservation, and helper methods such as <code>pushParams()</code> and <code>replaceParams()</code>. This is especially useful for deeply parameterized booking routes: hotel search params, dates, guests, map state, selected hotel, photo dialogs, train direction state, selected train, selected car, selected seats, and order pages.</p>
+<h2>Client-Side Filtering Architecture</h2>
+<p>The application uses a client-side filtering architecture for search results and train options. I implemented reusable filtering abstractions around filter dimensions, grouped values, selected items, incremental updates, remove/reload operations, and filter event dispatching.</p>
+<p>The filtering system supports:</p>
+<ul>
+<li>reusable filter widgets;</li>
+<li>multi-value filters;</li>
+<li>range filters;</li>
+<li>AND-mode filters;</li>
+<li>distinct counting;</li>
+<li>grouped aggregation;</li>
+<li>reactive filter item counts;</li>
+<li>filter restoration after data updates;</li>
+<li>item-level update/remove handling;</li>
+<li>selection state synchronized with filtered result sets.</li>
+</ul>
+<p>In the hotel flow, rate plans are filtered client-side while visible hotels are derived from filtered plan IDs. In the train flow, filters are applied to train, car, service, time, price, and availability dimensions while the UI remains reactive as train and car data loads asynchronously.</p>
+<p>This design avoids excessive backend round trips for every filter operation and makes dense search-result interaction responsive.</p>
+<h2>Interactive Hotel Map</h2>
+<p>The hotel results page includes an interactive Yandex Maps view loaded lazily only when the user opens the map mode. The map component is dynamically imported after the Yandex Maps API becomes available, with graceful fallback behavior if the map cannot be loaded.</p>
+<p>The map integration includes:</p>
+<ul>
+<li>lazy loading of the Yandex Maps API;</li>
+<li>dynamic Vue component import for the map view;</li>
+<li>Yandex clusterer integration;</li>
+<li>custom placemark layouts rendered from hotel-card data;</li>
+<li>price markers based on the cheapest visible rate plan;</li>
+<li>active marker state with expanded hotel-card preview;</li>
+<li>multiple hotels at the same coordinates grouped into one marker;</li>
+<li>route synchronization for map center and zoom;</li>
+<li>restoration of map state from route params;</li>
+<li>automatic map bounds adjustment;</li>
+<li>click-through from active map cards to hotel details.</li>
+</ul>
+<p>The hotel service layer also supports location enrichment, including geocoding-based updates when hotel metadata is incomplete.</p>
+<h2>Dynamic SVG Vue Components for Train Layouts</h2>
+<p>One of the most technically advanced parts of the project is the graphical train car seat-layout interaction.</p>
+<p>Railway car schemes are loaded as SVG/HTML fragments from the supplier API. Instead of rendering them as static images, the frontend parses the SVG, patches the SVG DOM, injects Vue bindings into seat elements, scopes embedded SVG styles, and compiles the resulting template as an interactive Vue component.</p>
+<p>This converts supplier-provided SVG layouts into dynamic Vue-driven seat selectors.</p>
+<p>The seat-layout system supports:</p>
+<ul>
+<li>dynamic compilation of SVG fragments into Vue-renderable components;</li>
+<li>DOM patching of seat elements by IDs such as <code>Seat&lt;number&gt;</code>;</li>
+<li>injected Vue <code>:class</code> bindings for seat state;</li>
+<li>injected click handlers for free-seat SVG elements;</li>
+<li>tooltip rendering inside SVG seat nodes;</li>
+<li>gender-specific seat styling;</li>
+<li>selected/free/occupied seat visual states;</li>
+<li>two-storey car layouts;</li>
+<li>fallback preference-based selection when no SVG scheme is available.</li>
+</ul>
+<p>The result is a graphical train-seat selector where operators can interact directly with train layout diagrams while all selection state remains connected to Vue reactivity and booking-state validation.</p>
+<h2>Complex Train Booking State</h2>
+<p>The train booking flow uses a custom reactive state model built around direction-level and order-level domain classes.</p>
+<p>The state model handles outbound and optional return directions independently while exposing shared validation and navigation logic at the top level. Each direction tracks selected train, selected car, loaded trains, loaded cars, selected places, place filters, special-seat conditions, loading errors, and derived validity of each booking step.</p>
+<p>Implemented state logic includes:</p>
+<ul>
+<li>reactive class properties using Vue refs and computed values;</li>
+<li>automatic train fetching when route/date/station search params change;</li>
+<li>automatic car fetching after train selection;</li>
+<li>automatic scheme fetching after car selection;</li>
+<li>dependent page transitions between trains, cars, places, and order;</li>
+<li>validation of each booking step;</li>
+<li>support for outbound-only and round-trip flows;</li>
+<li>gender-cabin validation;</li>
+<li>special place validation for mother-and-baby and child seats;</li>
+<li>free-place range validation;</li>
+<li>automatic expansion of selected seats to compartment-related neighbor places when required by supplier reservation rules;</li>
+<li>derived passenger count from selected places;</li>
+<li>shared order payload construction from selected directions, cars, trains, places, passengers, and customer data.</li>
+</ul>
+<p>This is domain-specific booking state, not simple component-local state. It combines route state, API-loaded data, graphical seat selection, business validation, and reservation payload construction into one controlled flow.</p>
+<h2>Domain Object Normalization</h2>
+<p>Supplier API responses are normalized into richer frontend domain objects. Train, car, car group, place, hotel, room, and rate-plan objects receive derived properties, lazy prototype properties, stable IDs, normalized service lists, inferred features, and links back to parent entities.</p>
+<p>Examples of this approach include:</p>
+<ul>
+<li>generating stable train IDs from train number, provider, date, and station codes;</li>
+<li>grouping raw car/place data into car groups and car entities;</li>
+<li>deriving free places from supplier strings;</li>
+<li>deriving service icons and service lists;</li>
+<li>deriving hotel and rate-plan features from provider metadata;</li>
+<li>converting hotel rooms and rate plans into objects with computed key features;</li>
+<li>adding lazy cached properties for expensive transformations.</li>
+</ul>
+<p>This keeps UI components focused on presentation and interaction while domain objects handle supplier-specific data normalization.</p>
+<h2>Custom Form Constructor and Validation Engine</h2>
+<p>The project includes a custom form framework built around reusable form containers, input registration, input wrappers, and custom input components.</p>
+<p>The form layer uses Vue <code>provide/inject</code> to register child inputs into the nearest form context. Inputs can bind to nested data paths such as customer contacts or passenger fields, expose validation methods, report focus/dirty state, and receive server-side validation errors.</p>
+<p>The form engine supports:</p>
+<ul>
+<li>nested form data paths;</li>
+<li>custom input registration;</li>
+<li>dirty-state detection;</li>
+<li>required-field validation;</li>
+<li>custom per-input validation callbacks;</li>
+<li>native validity integration for pattern/type mismatch;</li>
+<li>async submit handling;</li>
+<li>API validation error mapping;</li>
+<li>global form-level errors;</li>
+<li>localStorage persistence of partially entered booking data;</li>
+<li>automatic submit mode;</li>
+<li>form reset/focus methods exposed to parent components;</li>
+<li>JSON and <code>FormData</code> submission modes.</li>
+</ul>
+<p>Custom inputs include text inputs, masked inputs, email inputs, phone inputs, country inputs, autocomplete, single-select, multi-select, date inputs, radio selects, checkbox inputs, password inputs, and textarea components.</p>
+<p>The autocomplete component implements debounced async search, stale-request cancellation, keyboard handling, dropdown opening/closing, loading state, and optional auto-selection of the only result. Select components support grouped options, icons, descriptions, counts, disabled states, and reactive item updates.</p>
+<h2>Order Forms</h2>
+<p>Hotel and train order forms reuse the same form infrastructure but apply different domain rules.</p>
+<p>The hotel order form handles:</p>
+<ul>
+<li>prebooking before final order;</li>
+<li>company/contact data autofill;</li>
+<li>guest data collection;</li>
+<li>selected room/rate-plan data;</li>
+<li>payment data;</li>
+<li>privacy agreement validation;</li>
+<li>localStorage persistence of contact/passenger fields;</li>
+<li>final booking API call.</li>
+</ul>
+<p>The train order form handles:</p>
+<ul>
+<li>passenger arrays represented by reactive domain objects;</li>
+<li>adult/child/baby ticket types;</li>
+<li>child-age validation;</li>
+<li>special-seat validation;</li>
+<li>similar-order confirmation flow;</li>
+<li>company payment selection;</li>
+<li>optional order remarks;</li>
+<li>full reservation payload generation from selected train directions.</li>
+</ul>
+<h2>API Layer</h2>
+<p>The API layer provides a reusable request abstraction with token handling, payload normalization, content-type selection, JSON parsing with date revival, validation error conversion, authentication retry handling, supplier timeout handling, and support for JSON and <code>FormData</code> payloads.</p>
+<p>This makes API integration more predictable and gives forms a consistent mechanism for receiving field-level validation errors.</p>
+<h2>Performance and UX Techniques</h2>
+<p>The project includes several performance-oriented and UX-oriented techniques:</p>
+<ul>
+<li>lazy loading of heavy map functionality;</li>
+<li>dynamic imports for route-level and feature-level code splitting;</li>
+<li>incremental hotel result loading;</li>
+<li>async search with debouncing and stale-request cancellation;</li>
+<li>client-side result filtering to avoid unnecessary network requests;</li>
+<li>cached derived properties on normalized domain objects;</li>
+<li>delayed rendering through custom lazy visibility logic;</li>
+<li>selective mounting of heavy UI parts;</li>
+<li>reactive route-state synchronization;</li>
+<li>graphical train layout interaction instead of static form-only selection;</li>
+<li>reusable validation and error-display infrastructure.</li>
+</ul>
+<p>These techniques improve operator efficiency in dense booking workflows where slow filtering, unstable route state, or unreliable form validation would directly reduce productivity.</p>
+<h2>Technical Highlights</h2>
+<p>Key advanced techniques used in the project:</p>
+<ul>
+<li>custom Vite plugin system;</li>
+<li>SFC template transformation before Vue compilation;</li>
+<li>component and directive auto-import at template-transform level;</li>
+<li>custom lazy visibility transform compiled into reactive mounting logic;</li>
+<li>multi-entry Vite build integrated into an existing platform;</li>
+<li>Vue app injection into existing platform containers;</li>
+<li>custom Vue Router abstraction with route parsing/stringifying;</li>
+<li>client-side filtering and aggregation for hotel/train search results;</li>
+<li>lazy-loaded Yandex Maps integration;</li>
+<li>custom Yandex placemark layouts with hotel-card previews;</li>
+<li>map state synchronized through route params;</li>
+<li>runtime compilation of patched SVG train layouts into Vue components;</li>
+<li>graphical seat selection using supplier SVG schemes;</li>
+<li>reactive class-based state model for train booking steps;</li>
+<li>custom form constructor and validation framework;</li>
+<li>nested input registration through provide/inject;</li>
+<li>domain object normalization with lazy computed properties;</li>
+<li>complex passenger, seat, train, car, and reservation validation logic;</li>
+<li>incremental hotel result loading;</li>
+<li>localStorage persistence for partially completed order forms.</li>
+</ul>
+<h2>Technologies</h2>
+<p>Vue 3, TypeScript, Vite, Vue Router, Composition API, SCSS, Yandex Maps JavaScript API, Inputmask, dynamic imports, runtime Vue template compilation, custom Vite plugins, custom form framework, custom filtering framework, reactive domain classes, REST API integration.</p>
+<h2>Production Value</h2>
+<p>The application demonstrates frontend engineering beyond screen implementation. It required custom build-time tooling, runtime abstractions, complex state management, graphical interaction, client-side data filtering, reusable form infrastructure, and integration with external supplier APIs.</p>
+<p>The strongest technical value is that the application solves complex operator workflows through custom frontend infrastructure: Vite plugins for developer productivity, client-side filtering for responsive result exploration, dynamic SVG compilation for train-seat selection, Yandex Maps for hotel exploration, and a reusable validation/form system for high-density booking forms.</p>
+</span></div><!--]--></main><!--]--></div></div><div id="teleports"></div><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"038b02e3-fb6a-4436-8451-b2c0ec61388f",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">[["ShallowReactive",1],{"prerenderedAt":2,"data":3,"state":5,"once":14,"_errors":15,"serverRendered":17,"path":18},1782466636010,["ShallowReactive",4],{},["Reactive",6],{"$ssite-config":7},{"_priority":8,"env":11,"name":12,"url":13},{"env":9,"url":10,"name":10},-15,-3,"production","Alek Labs","https:\u002F\u002Faleklabs.dev",["Set"],["ShallowReactive",16],{},true,"\u002Fexperience\u002Fsenior-frontend-develop-at-hotels-ru"]</script></body></html>
