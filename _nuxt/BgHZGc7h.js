@@ -1,4 +1,4 @@
-import"./a7Orfa-Y.js";import{p}from"./Cy0Em4ir.js";import{Y as d}from"./CFT98tUN.js";const m=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,u=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,h=`---\r
+import"./BookGU3E.js";import{p}from"./Cy0Em4ir.js";import{Y as d}from"./CFT98tUN.js";const m=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,u=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,h=`---\r
 date: 2026-05-16\r
 slug: stop-turning-the-mobile-web-into-a-second-class-platform\r
 readOn: \r
