@@ -1,4 +1,4 @@
-import{b as P}from"./App-CS0OumXc.js";import"./index-BJKVeAfA.js";const X=`<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+import{a as P}from"./App-kI2UjpMZ.js";import"./index-CqwUgqP_.js";const X=`<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <svg version="1.1" id="designs" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" \r
 	 width="800px" height="800px" viewBox="0 0 32 32" xml:space="preserve">\r
 <style type="text/css">\r

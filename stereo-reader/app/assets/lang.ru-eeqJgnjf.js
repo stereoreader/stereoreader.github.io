@@ -1,1 +1,0 @@
-const e={Modulation:"Модуляция",Amount:"Величина",Playback:"Проигрывание",Curve:"Кривая",Mirrored:"Зеркально","M. inverted":"З. инвертировано",Smoothing:"Сглаживание",Normalize:"Нормализовать",Reset:"Сбросить","Select waveform":"Выберите форму",Triangle:"Треугольник",Sine:"Синус",Linear:"Прямая"};export{e as default};
