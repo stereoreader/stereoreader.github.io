@@ -1,4 +1,663 @@
-import"./DK9x0xtI.js";import{p}from"./Cy0Em4ir.js";import{Y as d}from"./CFT98tUN.js";const m=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,u=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,h=`---\r
+import"./C2ZCnyyC.js";import{p as h}from"./Cy0Em4ir.js";import{Y as m}from"./CFT98tUN.js";const u=""+new URL("cover.CbGmTKpN.webp",import.meta.url).href,b=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,y=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,f=`---\r
+date: 2026-07-06\r
+slug: hard-object-references\r
+readOn: \r
+    \r
+seoDescription: "Hard Object References is a mutable state discipline for JavaScript and TypeScript: stable object references, copy-in updates, stale alias prevention, and safer object graphs."\r
+description: "I explain Hard Object References as a practical rule for mutable application state: use stable object and array references, avoid rebinding and nested reference replacement, and copy data into existing objects instead. This approach helps reduce stale aliases, obsolete references, and hard-to-debug state bugs in complex TypeScript and frontend applications."\r
+---\r
+# Hard Object References: Stable Object References for Mutable Application State\r
+\r
+In JavaScript and TypeScript, object references are often treated as disposable. An object is created, assigned to a variable, passed around, replaced, copied, spread, cloned, and eventually discarded.\r
+\r
+That is normal language behavior, but in larger mutable systems it creates a specific class of bugs: stale aliases.\r
+\r
+A stale alias appears when one part of the program still holds a reference to an old object while another part has already replaced that object with a new one. The old reference is still valid JavaScript, but it no longer points to current data.\r
+\r
+Hard Object References is a discipline for avoiding that class of bugs.\r
+\r
+The idea is simple:\r
+\r
+> Object and array references should be stable. Do not replace them as a normal update mechanism. Copy data into existing objects instead.\r
+\r
+This rule is useful for application state, but it is not limited to global stores. It applies to ordinary variables, local component state, nested fields, arrays, drafts, snapshots, runtime models, and temporary objects.\r
+\r
+The broader principle is:\r
+\r
+> Replace primitive values. Do not replace object and array references.\r
+\r
+## The First Rule: \`const\` for Objects and Arrays\r
+\r
+The first level is variable bindings.\r
+\r
+If a variable holds an object or array, it should normally be declared with \`const\`:\r
+\r
+\`\`\`ts id="cr991s"\r
+const user = { /* ... */ };\r
+\r
+const items = [ /* ... */ ];\r
+\`\`\`\r
+\r
+not:\r
+\r
+\`\`\`ts id="39h0m5"\r
+let user = { /* ... */ };\r
+\r
+let items = [ /* ... */ ];\r
+\`\`\`\r
+\r
+The point is not that the object becomes immutable. It does not.\r
+\r
+This is still possible:\r
+\r
+\`\`\`ts id="fzne9n"\r
+user.name = 'Alex';\r
+items.push(nextItem);\r
+\`\`\`\r
+\r
+The point is that the variable should not be rebound to a different object:\r
+\r
+\`\`\`ts id="cnf3xt"\r
+user = nextUser;\r
+items = nextItems;\r
+\`\`\`\r
+\r
+That replacement changes which object the variable points to. Any other code that still holds the old reference now points to obsolete data.\r
+\r
+So the first rule is:\r
+\r
+> Use \`const\` for object and array references. Mutate or copy data into the object. Do not rebind the reference.\r
+\r
+This rule also applies to temporary objects. A temporary object may be short-lived, but while it exists, its reference should still be stable.\r
+\r
+## The Stale Alias Problem\r
+\r
+Consider this code:\r
+\r
+\`\`\`ts id="3l5sa4"\r
+const user = {\r
+    name: 'John',\r
+    address: {\r
+        city: 'Paris',\r
+        street: 'Main'\r
+    }\r
+};\r
+\r
+const address = user.address;\r
+\`\`\`\r
+\r
+Now another part of the code replaces the nested object:\r
+\r
+\`\`\`ts id="jp3h7p"\r
+user.address = {\r
+    city: 'Berlin',\r
+    street: 'Main'\r
+};\r
+\`\`\`\r
+\r
+After this assignment:\r
+\r
+\`\`\`ts id="a1v9k0"\r
+address === user.address; // false\r
+\`\`\`\r
+\r
+The variable \`address\` still points to a valid object, but it points to obsolete data.\r
+\r
+That is the dangerous part. The program does not necessarily crash. It continues to operate on the wrong object.\r
+\r
+A Hard Object References approach avoids the replacement:\r
+\r
+\`\`\`ts id="o0jvv4"\r
+HardObject.set(user.address, {\r
+    city: 'Berlin'\r
+});\r
+\r
+address === user.address; // true\r
+address.city; // 'Berlin'\r
+\`\`\`\r
+\r
+The reference stayed stable. The data changed.\r
+\r
+## Temporary Objects Are Not an Exception\r
+\r
+A temporary object is not an excuse to use unstable references.\r
+\r
+This is fine:\r
+\r
+\`\`\`ts id="843fdf"\r
+const draft = {\r
+    // ...\r
+};\r
+\r
+HardObject.set(draft, {\r
+    name: 'Alex',\r
+    address: {\r
+        city: 'Berlin'\r
+    }\r
+});\r
+\`\`\`\r
+\r
+This is suspicious:\r
+\r
+\`\`\`ts id="vm97w2"\r
+let draft = {\r
+    // ...\r
+};\r
+\r
+draft = {\r
+    name: 'Alex',\r
+    address: {\r
+        city: 'Berlin'\r
+    }\r
+};\r
+\`\`\`\r
+\r
+The object may be temporary, but rebinding the reference still breaks the same mental model.\r
+\r
+If a temporary object needs new data, copy the data into it:\r
+\r
+\`\`\`ts id="f3c5bf"\r
+HardObject.set(draft, nextDraftData);\r
+\`\`\`\r
+\r
+not:\r
+\r
+\`\`\`ts id="7h0jgm"\r
+draft = nextDraftData;\r
+\`\`\`\r
+\r
+This matters because temporary objects often become inputs to state updates:\r
+\r
+\`\`\`ts id="c8sbec"\r
+const draft = {\r
+    // ...\r
+};\r
+\r
+HardObject.set(draft, formData);\r
+HardObject.set(state.user, draft);\r
+\`\`\`\r
+\r
+The draft is not necessarily installed application state, but it still follows the same reference discipline.\r
+\r
+So the stronger rule is:\r
+\r
+> The reference-stability discipline applies to objects in general. Application state is where violating it becomes most expensive.\r
+\r
+## Application State Makes the Rule Critical\r
+\r
+In small local code, replacing an object may be harmless.\r
+\r
+In application state, the same operation becomes dangerous because many parts of the program may retain references to the same object:\r
+\r
+\`\`\`ts id="vodaw7"\r
+const selectedAddress = state.user.address;\r
+const editorTarget = state.user.address;\r
+const validationTarget = state.user.address;\r
+const renderTarget = state.user.address;\r
+\`\`\`\r
+\r
+If this happens later:\r
+\r
+\`\`\`ts id="cg3ssu"\r
+state.user.address = nextAddress;\r
+\`\`\`\r
+\r
+all previous references may become stale.\r
+\r
+This is why Hard Object References is especially important for state graphs:\r
+\r
+\`\`\`ts id="gxt08d"\r
+state.user\r
+state.user.address\r
+state.settings\r
+state.document\r
+state.document.pages\r
+state.selection\r
+\`\`\`\r
+\r
+These are not just values. They are live reference nodes.\r
+\r
+Once an object participates in such a graph, replacing its reference should not be the normal update mechanism.\r
+\r
+## From Principle to Utility\r
+\r
+The principle can be followed manually:\r
+\r
+\`\`\`ts id="lc4t6u"\r
+const state = {\r
+    // ...\r
+};\r
+\r
+HardObject.set(state.user, nextUser);\r
+HardObject.set(state.settings, nextSettings);\r
+HardObject.set(state.items, nextItems);\r
+\`\`\`\r
+\r
+But a consistent helper can make the rule explicit.\r
+\r
+For explanation, call that helper \`HardObject\`.\r
+\r
+\`HardObject\` is not the principle itself. It is only one possible way to express the principle:\r
+\r
+\`\`\`ts id="grhdsk"\r
+const state = HardObject.create(rawState);\r
+\`\`\`\r
+\r
+The purpose of \`HardObject.create()\` is to install an object graph under a hard-reference contract.\r
+\r
+The matching update operation is:\r
+\r
+\`\`\`ts id="s8i5l0"\r
+HardObject.set(state.user, nextUser);\r
+\`\`\`\r
+\r
+This means:\r
+\r
+> Copy compatible data from \`nextUser\` into \`state.user\` without replacing object or array references.\r
+\r
+So the conceptual pair is:\r
+\r
+\`\`\`ts id="kr82x0"\r
+const state = HardObject.create(rawState);\r
+\r
+HardObject.set(state.user, nextUser);\r
+\`\`\`\r
+\r
+\`create()\` establishes the hard-reference boundary.\r
+\`set()\` updates data inside that boundary.\r
+\r
+## Type-Level Installation\r
+\r
+In the simplest implementation, \`HardObject.create()\` can be only a TypeScript-level identity function.\r
+\r
+At runtime, it may simply return the same object:\r
+\r
+\`\`\`ts id="n2iwku"\r
+class HardObject {\r
+    public static create<T>(value: T): Hard<T> {\r
+        return value as Hard<T>;\r
+    }\r
+}\r
+\`\`\`\r
+\r
+The value is returned as-is, but TypeScript can expose it as a type where object and array references are readonly.\r
+\r
+A simplified type could look like this:\r
+\r
+\`\`\`ts id="xkxrod"\r
+type Primitive =\r
+    | string\r
+    | number\r
+    | boolean\r
+    | bigint\r
+    | symbol\r
+    | null\r
+    | undefined;\r
+\r
+type Hard<T> =\r
+    T extends Primitive\r
+        ? T\r
+        : T extends Array<infer TItem>\r
+            ? ReadonlyArray<Hard<TItem>>\r
+            : {\r
+                readonly [TKey in keyof T]: Hard<T[TKey]>;\r
+            };\r
+\`\`\`\r
+\r
+This version is intentionally simplified. A real implementation may use a more refined type where primitive fields remain writable while object and array references become readonly.\r
+\r
+The architectural point is:\r
+\r
+> \`HardObject.create()\` gives the object graph a hard-reference contract.\r
+\r
+That contract can start as TypeScript-only. Later, it can add runtime enforcement without changing the call site.\r
+\r
+## Runtime Enforcement\r
+\r
+TypeScript can catch many mistakes during development, but it does not enforce the rule at runtime.\r
+\r
+If runtime enforcement is needed, \`HardObject.create()\` can recursively walk the object graph.\r
+\r
+Whenever it finds a property whose value is an object or array, it can make that property non-writable on its parent object:\r
+\r
+\`\`\`ts id="fqr6hx"\r
+Object.defineProperty(target, key, {\r
+    value,\r
+    writable: false,\r
+    configurable: false,\r
+    enumerable: true\r
+});\r
+\`\`\`\r
+\r
+Then it continues recursively into that nested object or array and applies the same rule to its children.\r
+\r
+The developer does not manually lock every nested property. \`HardObject.create()\` is the centralized installation point.\r
+\r
+So \`HardObject.create()\` can evolve in stages:\r
+\r
+| Stage             | Runtime behavior                                | Purpose                                          |\r
+| ----------------- | ----------------------------------------------- | ------------------------------------------------ |\r
+| Type-only         | Returns the same object                         | Provides a TypeScript hard-reference contract    |\r
+| Runtime-enforced  | Recursively locks object/array fields           | Prevents object-reference replacement at runtime |\r
+| Framework adapter | Installs the graph into a reactive/store system | Integrates with a specific environment           |\r
+\r
+The rule is not:\r
+\r
+> Nothing can change.\r
+\r
+The rule is:\r
+\r
+> Primitive values may change. Object and array references should remain stable.\r
+\r
+So this is a normal update:\r
+\r
+\`\`\`ts id="8gcdiw"\r
+state.user.name = 'Alex';\r
+state.user.address.city = 'Berlin';\r
+\`\`\`\r
+\r
+But this is not:\r
+\r
+\`\`\`ts id="4q2fs9"\r
+state.user.address = {\r
+    city: 'Berlin',\r
+    street: 'Main'\r
+};\r
+\`\`\`\r
+\r
+The \`address\` reference is hard.\r
+\r
+The correct update path is:\r
+\r
+\`\`\`ts id="k6or21"\r
+HardObject.set(state.user, {\r
+    address: {\r
+        city: 'Berlin'\r
+    }\r
+});\r
+\`\`\`\r
+\r
+## Updating a Hard Object Graph\r
+\r
+\`HardObject.set()\` is a copy-in operation:\r
+\r
+\`\`\`ts id="dpmoiy"\r
+HardObject.set(state.user, {\r
+    name: 'Alex',\r
+    address: {\r
+        city: 'Berlin'\r
+    }\r
+});\r
+\`\`\`\r
+\r
+It means:\r
+\r
+> Copy compatible data from the source object into the target object without replacing object and array references.\r
+\r
+Primitive fields can be assigned directly:\r
+\r
+\`\`\`ts id="351d3m"\r
+name: 'Alex'\r
+\`\`\`\r
+\r
+Nested objects are updated recursively:\r
+\r
+\`\`\`ts id="6qvgi8"\r
+address.city = 'Berlin'\r
+\`\`\`\r
+\r
+But the \`address\` object itself is not replaced.\r
+\r
+Arrays follow the same principle: the array reference remains stable, while its contents are updated through controlled logic.\r
+\r
+The exact implementation can vary. \`HardObject\` may be a utility, a base class, a model method, a store helper, or a framework-specific adapter. The concept is lower-level than any one implementation.\r
+\r
+## Change Tracking\r
+\r
+A common objection is:\r
+\r
+> If references do not change, how do you detect changes?\r
+\r
+The answer depends on the environment.\r
+\r
+In a reactive system, reference replacement does not have to be the primary change signal. If primitive fields and nested object properties are reactive, then normal mutation tracking can already observe changes inside the stable object graph.\r
+\r
+For example, in Vue or a similar reactive system, a deep watcher, computed dependency, proxy trap, or framework-level reactive effect may observe this operation:\r
+\r
+\`\`\`ts id="8f9idu"\r
+HardObject.set(state.user, {\r
+    name: 'Alex',\r
+    address: {\r
+        city: 'Berlin'\r
+    }\r
+});\r
+\`\`\`\r
+\r
+The reference stays stable, but reactive property writes still occur.\r
+\r
+In that case, \`HardObject.onChange()\` may not be necessary. The reactive system already provides change tracking.\r
+\r
+In a non-reactive system, \`HardObject\` can provide a simple explicit notification mechanism:\r
+\r
+\`\`\`ts id="ylwxa6"\r
+HardObject.onChange(change => {\r
+    // mark dirty, update UI, notify observers, sync state, etc.\r
+});\r
+\`\`\`\r
+\r
+\`HardObject.set()\` can emit a change only if it actually changed at least one value. If the incoming data is equal to the current data, no change event is needed.\r
+\r
+So the rule is:\r
+\r
+> Do not require object replacement to be the change signal.\r
+\r
+Use the mechanism that fits the environment: framework reactivity, deep watchers, proxy-based tracking, explicit events, dirty flags, version counters, or observers.\r
+\r
+Hard Object References only says that object references should remain stable. It does not prescribe one universal change-tracking system.\r
+\r
+## Contrast with Immutable State\r
+\r
+Immutable update style treats state as a value. Updating state usually means producing a new object graph:\r
+\r
+\`\`\`ts id="xl7q5n"\r
+const nextState = {\r
+    ...state,\r
+    user: {\r
+        ...state.user,\r
+        name: 'Alex'\r
+    }\r
+};\r
+\`\`\`\r
+\r
+Reference replacement is intentional. Changed references are used to detect changed branches.\r
+\r
+Hard Object References uses a different model:\r
+\r
+\`\`\`ts id="xq1v80"\r
+HardObject.set(state.user, {\r
+    name: 'Alex'\r
+});\r
+\`\`\`\r
+\r
+The object remains the same. Its data changes.\r
+\r
+The central contrast is:\r
+\r
+> In immutable systems, references are change signals.\r
+> In Hard Object References, references are stable addresses.\r
+\r
+## Comparison\r
+\r
+| Topic                    | Immutable Update Style                  | Hard Object References                                   |\r
+| ------------------------ | --------------------------------------- | -------------------------------------------------------- |\r
+| Main model               | State as value                          | State as object graph                                    |\r
+| Update mechanism         | Produce new state                       | Copy into existing graph                                 |\r
+| Object binding           | May be replaced                         | Prefer \`const\` for object/array references               |\r
+| Object field replacement | Normal                                  | Forbidden or controlled                                  |\r
+| Object identity          | Often disposable                        | Stable                                                   |\r
+| Nested references        | Commonly replaced                       | Preserved                                                |\r
+| Change signal            | Reference change                        | Reactivity, event, dirty flag, version counter, observer |\r
+| Best fit                 | Serializable state, reducers, snapshots | Complex mutable runtime state                            |\r
+| Main risk                | Stale captured old state                | Uncontrolled mutation                                    |\r
+\r
+Neither model is universally better.\r
+\r
+Immutable updates are excellent when state is mostly plain data and the architecture benefits from treating every update as a value transformation.\r
+\r
+Hard Object References is useful when state is a mutable object graph and references are used as live handles.\r
+\r
+## Where This Works Well\r
+\r
+Hard Object References fits systems where object references are retained and reused over time:\r
+\r
+\`\`\`ts id="aopv1w"\r
+complex frontend state\r
+large component-local state\r
+document editors\r
+visual editors\r
+reader engines\r
+graph editors\r
+timeline editors\r
+canvas or layout tools\r
+class-based domain models\r
+runtime controllers\r
+selection models\r
+render pipelines\r
+async processes that keep object handles\r
+\`\`\`\r
+\r
+The boundary is not global state versus local state.\r
+\r
+A large component with complex internal state can suffer from the same stale-reference problems as an application-level store. If nested objects are passed around inside that component and later replaced, local aliases can become obsolete too.\r
+\r
+The real boundary is:\r
+\r
+> Can another piece of logic keep this object reference and later expect it to remain current?\r
+\r
+If yes, the reference should usually be hard.\r
+\r
+## When This Rule Is Less Important\r
+\r
+This discipline is less critical for:\r
+\r
+\`\`\`ts id="ujkqsr"\r
+primitive values\r
+short-lived scalar calculations\r
+small isolated functions\r
+pure transformation pipelines\r
+immutable reducer-based architectures\r
+throwaway objects that never escape their local scope\r
+\`\`\`\r
+\r
+But even then, the same bias can remain useful:\r
+\r
+\`\`\`ts id="i2pr5q"\r
+const temp = {\r
+    // ...\r
+};\r
+\`\`\`\r
+\r
+not:\r
+\r
+\`\`\`ts id="q9kziz"\r
+let temp = {\r
+    // ...\r
+};\r
+\`\`\`\r
+\r
+The question is not only:\r
+\r
+> Is this global application state?\r
+\r
+The better question is:\r
+\r
+> Can this reference escape, be retained, or become obsolete after replacement?\r
+\r
+If yes, use a stable reference.\r
+\r
+## Benefits\r
+\r
+The main benefit is not less code. The main benefit is a stronger state invariant.\r
+\r
+Object references remain valid.\r
+\r
+Retained object handles do not silently become obsolete.\r
+\r
+Nested state ownership becomes clearer.\r
+\r
+Debugging gets a simple rule:\r
+\r
+> If an object reference changed, something violated the reference discipline.\r
+\r
+This is especially useful in systems where many subsystems interact with the same mutable object graph.\r
+\r
+## Costs\r
+\r
+The costs are real.\r
+\r
+Mutation must be controlled. If every part of the application mutates everything freely, the system becomes unstable.\r
+\r
+Change tracking must exist. In reactive systems, this may already be handled by the framework. In non-reactive systems, it may require explicit events, observers, dirty flags, or version counters.\r
+\r
+The approach is also less natural for tooling built around immutable snapshots, reducer replay, time travel, and structural sharing.\r
+\r
+Hard Object References is not a replacement for immutable architecture in every application. It is a different tradeoff for a different kind of state.\r
+\r
+## Conclusion\r
+\r
+Hard Object References treats object references as stable addresses, not disposable values.\r
+\r
+The rule starts with ordinary programming practice:\r
+\r
+\`\`\`ts id="qjdm52"\r
+const object = {\r
+    // ...\r
+};\r
+\r
+const array = [\r
+    // ...\r
+];\r
+\`\`\`\r
+\r
+not:\r
+\r
+\`\`\`ts id="frhzln"\r
+let object = {\r
+    // ...\r
+};\r
+\r
+let array = [\r
+    // ...\r
+];\r
+\`\`\`\r
+\r
+It continues inside object graphs:\r
+\r
+\`\`\`ts id="h1xd8e"\r
+HardObject.set(user.address, nextAddress);\r
+\`\`\`\r
+\r
+not:\r
+\r
+\`\`\`ts id="z9r5l6"\r
+user.address = nextAddress;\r
+\`\`\`\r
+\r
+A utility such as \`HardObject\` can make the rule explicit. \`HardObject.create()\` establishes a hard-reference contract. It can start as a type-level identity function and later add runtime enforcement without changing the call site. \`HardObject.set()\` updates the graph by copying data into existing references.\r
+\r
+This is not presented as a newly invented universal pattern. The underlying concerns are old: object identity, aliasing, ownership, mutation control, and stable object graphs. Hard Object References is my practical formulation of those concerns after repeatedly seeing the same class of bugs in mutable applications: references becoming obsolete because some part of the object graph was replaced instead of updated.\r
+\r
+In my own code, this discipline became a stability rule. It reduces Heisenbug-like behavior where the program still runs but some logic works with a detached object. It also changes the mental model: objects are no longer disposable containers that can be swapped at any level. They become stable addresses, and updates become explicit data transfer into those addresses.\r
+\r
+The core rule is:\r
+\r
+> Replace primitive values. Do not replace object and array references.\r
+\r
+Or shorter:\r
+\r
+> References are not change signals. They are stable addresses.\r
+\r
+`,g=`---\r
 date: 2026-05-16\r
 slug: stop-turning-the-mobile-web-into-a-second-class-platform\r
 readOn: \r
@@ -363,7 +1022,7 @@ It becomes stronger only if people continue using it.\r
 What do you think?\r
 \r
 Are mobile apps genuinely superior for most modern products, or are we underinvesting in the mobile web ecosystem?\r
-`,b=`---\r
+`,v=`---\r
 date: 2026-05-18\r
 slug: why-every-frontend-project-should-have-its-own-ui-layer\r
 readOn: \r
@@ -865,5 +1524,5 @@ That language becomes one of the most valuable assets in the entire frontend arc
 ---\r
 \r
 What additional advantages or disadvantages have you seen with internal UI layers and wrapper-based component systems?\r
-`,y=Object.assign({"../content/articles/mobile-web/cover.webp":m,"../content/articles/ui-layer/cover.webp":u}),f=Object.assign({"../content/articles/mobile-web/index.md":h,"../content/articles/ui-layer/index.md":b}),k=Object.entries(f).map(([t,a])=>{const o=a.replace(/^\uFEFF/u,"").replace(/\r\n?/g,`
-`),r=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(o);if(!(typeof r?.[1]=="string"&&typeof r?.[2]=="string"))throw new Error("No meta for"+t);const e=p(r[1]);e.data=r[2],e.title=i(a),e.date=new Date(e.date),e.readOn??=[];const s=y[t.replace("index.md","cover.webp")];if(!s)throw new Error("No cover image for "+e.title);return e.coverUrl=s,e;function i(l){const c=d(l);for(const n of c)if(n.type==="heading"&&n.depth===1)return n.text.trim();return null}});export{k as a};
+`,o=Object.assign({"../content/articles/hard-objects/cover.png":u,"../content/articles/mobile-web/cover.webp":b,"../content/articles/ui-layer/cover.webp":y}),w=Object.assign({"../content/articles/hard-objects/index.md":f,"../content/articles/mobile-web/index.md":g,"../content/articles/ui-layer/index.md":v}),k=Object.entries(w).map(([a,s])=>{const l=s.replace(/^\uFEFF/u,"").replace(/\r\n?/g,`
+`),r=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(l);if(!(typeof r?.[1]=="string"&&typeof r?.[2]=="string"))throw new Error("No meta for"+a);const e=h(r[1]);e.data=r[2],e.title=d(s),e.date=new Date(e.date),e.readOn??=[];const c=Object.keys(o).find(n=>n.includes(a.replace("index.md","")))??"",i=o[c];if(!i)throw new Error("No cover image for "+e.title);return e.coverUrl=i,e;function d(n){const p=m(n);for(const t of p)if(t.type==="heading"&&t.depth===1)return t.text.trim();return null}});export{k as a};
