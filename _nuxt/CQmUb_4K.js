@@ -1,1 +1,0 @@
-import{l as o,R as s,A as a,g as n,d as r,f as _}from"./C2ZCnyyC.js";const c={key:0},m=o({__name:"al-header",setup(u){const t=s().fullPath==="/";return(l,e)=>t?_("",!0):(a(),n("header",c,[...e[0]||(e[0]=[r("a",{href:"/"},"AlekLabs.dev",-1)])]))}}),f=Object.assign(m,{__name:"AlHeader"});export{f as _};

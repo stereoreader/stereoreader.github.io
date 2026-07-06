@@ -1,4 +1,4 @@
-import"./C2ZCnyyC.js";import{p as h}from"./Cy0Em4ir.js";import{Y as m}from"./CFT98tUN.js";const u=""+new URL("cover.CbGmTKpN.webp",import.meta.url).href,b=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,y=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,f=`---\r
+import"./xirBm09s.js";import{p as h}from"./Cy0Em4ir.js";import{Y as m}from"./CFT98tUN.js";const u=""+new URL("cover.CbGmTKpN.webp",import.meta.url).href,b=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,y=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,f=`---\r
 date: 2026-07-06\r
 slug: hard-object-references\r
 readOn: \r
@@ -32,7 +32,7 @@ The first level is variable bindings.\r
 \r
 If a variable holds an object or array, it should normally be declared with \`const\`:\r
 \r
-\`\`\`ts id="cr991s"\r
+\`\`\`ts\r
 const user = { /* ... */ };\r
 \r
 const items = [ /* ... */ ];\r
@@ -40,7 +40,7 @@ const items = [ /* ... */ ];\r
 \r
 not:\r
 \r
-\`\`\`ts id="39h0m5"\r
+\`\`\`ts\r
 let user = { /* ... */ };\r
 \r
 let items = [ /* ... */ ];\r
@@ -50,14 +50,14 @@ The point is not that the object becomes immutable. It does not.\r
 \r
 This is still possible:\r
 \r
-\`\`\`ts id="fzne9n"\r
+\`\`\`ts\r
 user.name = 'Alex';\r
 items.push(nextItem);\r
 \`\`\`\r
 \r
 The point is that the variable should not be rebound to a different object:\r
 \r
-\`\`\`ts id="cnf3xt"\r
+\`\`\`ts\r
 user = nextUser;\r
 items = nextItems;\r
 \`\`\`\r
@@ -74,7 +74,7 @@ This rule also applies to temporary objects. A temporary object may be short-liv
 \r
 Consider this code:\r
 \r
-\`\`\`ts id="3l5sa4"\r
+\`\`\`ts\r
 const user = {\r
     name: 'John',\r
     address: {\r
@@ -88,7 +88,7 @@ const address = user.address;\r
 \r
 Now another part of the code replaces the nested object:\r
 \r
-\`\`\`ts id="jp3h7p"\r
+\`\`\`ts\r
 user.address = {\r
     city: 'Berlin',\r
     street: 'Main'\r
@@ -97,7 +97,7 @@ user.address = {\r
 \r
 After this assignment:\r
 \r
-\`\`\`ts id="a1v9k0"\r
+\`\`\`ts\r
 address === user.address; // false\r
 \`\`\`\r
 \r
@@ -107,7 +107,7 @@ That is the dangerous part. The program does not necessarily crash. It continues
 \r
 A Hard Object References approach avoids the replacement:\r
 \r
-\`\`\`ts id="o0jvv4"\r
+\`\`\`ts\r
 HardObject.set(user.address, {\r
     city: 'Berlin'\r
 });\r
@@ -124,7 +124,7 @@ A temporary object is not an excuse to use unstable references.\r
 \r
 This is fine:\r
 \r
-\`\`\`ts id="843fdf"\r
+\`\`\`ts\r
 const draft = {\r
     // ...\r
 };\r
@@ -139,7 +139,7 @@ HardObject.set(draft, {\r
 \r
 This is suspicious:\r
 \r
-\`\`\`ts id="vm97w2"\r
+\`\`\`ts\r
 let draft = {\r
     // ...\r
 };\r
@@ -156,19 +156,19 @@ The object may be temporary, but rebinding the reference still breaks the same m
 \r
 If a temporary object needs new data, copy the data into it:\r
 \r
-\`\`\`ts id="f3c5bf"\r
+\`\`\`ts\r
 HardObject.set(draft, nextDraftData);\r
 \`\`\`\r
 \r
 not:\r
 \r
-\`\`\`ts id="7h0jgm"\r
+\`\`\`ts\r
 draft = nextDraftData;\r
 \`\`\`\r
 \r
 This matters because temporary objects often become inputs to state updates:\r
 \r
-\`\`\`ts id="c8sbec"\r
+\`\`\`ts\r
 const draft = {\r
     // ...\r
 };\r
@@ -189,7 +189,7 @@ In small local code, replacing an object may be harmless.\r
 \r
 In application state, the same operation becomes dangerous because many parts of the program may retain references to the same object:\r
 \r
-\`\`\`ts id="vodaw7"\r
+\`\`\`ts\r
 const selectedAddress = state.user.address;\r
 const editorTarget = state.user.address;\r
 const validationTarget = state.user.address;\r
@@ -198,7 +198,7 @@ const renderTarget = state.user.address;\r
 \r
 If this happens later:\r
 \r
-\`\`\`ts id="cg3ssu"\r
+\`\`\`ts\r
 state.user.address = nextAddress;\r
 \`\`\`\r
 \r
@@ -206,7 +206,7 @@ all previous references may become stale.\r
 \r
 This is why Hard Object References is especially important for state graphs:\r
 \r
-\`\`\`ts id="gxt08d"\r
+\`\`\`ts\r
 state.user\r
 state.user.address\r
 state.settings\r
@@ -223,7 +223,7 @@ Once an object participates in such a graph, replacing its reference should not 
 \r
 The principle can be followed manually:\r
 \r
-\`\`\`ts id="lc4t6u"\r
+\`\`\`ts\r
 const state = {\r
     // ...\r
 };\r
@@ -239,7 +239,7 @@ For explanation, call that helper \`HardObject\`.\r
 \r
 \`HardObject\` is not the principle itself. It is only one possible way to express the principle:\r
 \r
-\`\`\`ts id="grhdsk"\r
+\`\`\`ts\r
 const state = HardObject.create(rawState);\r
 \`\`\`\r
 \r
@@ -247,7 +247,7 @@ The purpose of \`HardObject.create()\` is to install an object graph under a har
 \r
 The matching update operation is:\r
 \r
-\`\`\`ts id="s8i5l0"\r
+\`\`\`ts\r
 HardObject.set(state.user, nextUser);\r
 \`\`\`\r
 \r
@@ -257,7 +257,7 @@ This means:\r
 \r
 So the conceptual pair is:\r
 \r
-\`\`\`ts id="kr82x0"\r
+\`\`\`ts\r
 const state = HardObject.create(rawState);\r
 \r
 HardObject.set(state.user, nextUser);\r
@@ -272,7 +272,7 @@ In the simplest implementation, \`HardObject.create()\` can be only a TypeScript
 \r
 At runtime, it may simply return the same object:\r
 \r
-\`\`\`ts id="n2iwku"\r
+\`\`\`ts\r
 class HardObject {\r
     public static create<T>(value: T): Hard<T> {\r
         return value as Hard<T>;\r
@@ -284,7 +284,7 @@ The value is returned as-is, but TypeScript can expose it as a type where object
 \r
 A simplified type could look like this:\r
 \r
-\`\`\`ts id="xkxrod"\r
+\`\`\`ts\r
 type Primitive =\r
     | string\r
     | number\r
@@ -320,7 +320,7 @@ If runtime enforcement is needed, \`HardObject.create()\` can recursively walk t
 \r
 Whenever it finds a property whose value is an object or array, it can make that property non-writable on its parent object:\r
 \r
-\`\`\`ts id="fqr6hx"\r
+\`\`\`ts\r
 Object.defineProperty(target, key, {\r
     value,\r
     writable: false,\r
@@ -351,14 +351,14 @@ The rule is:\r
 \r
 So this is a normal update:\r
 \r
-\`\`\`ts id="8gcdiw"\r
+\`\`\`ts\r
 state.user.name = 'Alex';\r
 state.user.address.city = 'Berlin';\r
 \`\`\`\r
 \r
 But this is not:\r
 \r
-\`\`\`ts id="4q2fs9"\r
+\`\`\`ts\r
 state.user.address = {\r
     city: 'Berlin',\r
     street: 'Main'\r
@@ -369,7 +369,7 @@ The \`address\` reference is hard.\r
 \r
 The correct update path is:\r
 \r
-\`\`\`ts id="k6or21"\r
+\`\`\`ts\r
 HardObject.set(state.user, {\r
     address: {\r
         city: 'Berlin'\r
@@ -381,7 +381,7 @@ HardObject.set(state.user, {\r
 \r
 \`HardObject.set()\` is a copy-in operation:\r
 \r
-\`\`\`ts id="dpmoiy"\r
+\`\`\`ts\r
 HardObject.set(state.user, {\r
     name: 'Alex',\r
     address: {\r
@@ -396,13 +396,13 @@ It means:\r
 \r
 Primitive fields can be assigned directly:\r
 \r
-\`\`\`ts id="351d3m"\r
+\`\`\`ts\r
 name: 'Alex'\r
 \`\`\`\r
 \r
 Nested objects are updated recursively:\r
 \r
-\`\`\`ts id="6qvgi8"\r
+\`\`\`ts\r
 address.city = 'Berlin'\r
 \`\`\`\r
 \r
@@ -424,7 +424,7 @@ In a reactive system, reference replacement does not have to be the primary chan
 \r
 For example, in Vue or a similar reactive system, a deep watcher, computed dependency, proxy trap, or framework-level reactive effect may observe this operation:\r
 \r
-\`\`\`ts id="8f9idu"\r
+\`\`\`ts\r
 HardObject.set(state.user, {\r
     name: 'Alex',\r
     address: {\r
@@ -439,7 +439,7 @@ In that case, \`HardObject.onChange()\` may not be necessary. The reactive syste
 \r
 In a non-reactive system, \`HardObject\` can provide a simple explicit notification mechanism:\r
 \r
-\`\`\`ts id="ylwxa6"\r
+\`\`\`ts\r
 HardObject.onChange(change => {\r
     // mark dirty, update UI, notify observers, sync state, etc.\r
 });\r
@@ -459,7 +459,7 @@ Hard Object References only says that object references should remain stable. It
 \r
 Immutable update style treats state as a value. Updating state usually means producing a new object graph:\r
 \r
-\`\`\`ts id="xl7q5n"\r
+\`\`\`ts\r
 const nextState = {\r
     ...state,\r
     user: {\r
@@ -473,7 +473,7 @@ Reference replacement is intentional. Changed references are used to detect chan
 \r
 Hard Object References uses a different model:\r
 \r
-\`\`\`ts id="xq1v80"\r
+\`\`\`ts\r
 HardObject.set(state.user, {\r
     name: 'Alex'\r
 });\r
@@ -510,21 +510,19 @@ Hard Object References is useful when state is a mutable object graph and refere
 \r
 Hard Object References fits systems where object references are retained and reused over time:\r
 \r
-\`\`\`ts id="aopv1w"\r
-complex frontend state\r
-large component-local state\r
-document editors\r
-visual editors\r
-reader engines\r
-graph editors\r
-timeline editors\r
-canvas or layout tools\r
-class-based domain models\r
-runtime controllers\r
-selection models\r
-render pipelines\r
-async processes that keep object handles\r
-\`\`\`\r
+- complex frontend state\r
+- large component-local state\r
+- document editors\r
+- visual editors\r
+- reader engines\r
+- graph editors\r
+- timeline editors\r
+- canvas or layout tools\r
+- class-based domain models\r
+- runtime controllers\r
+- selection models\r
+- render pipelines\r
+- async processes that keep object handles\r
 \r
 The boundary is not global state versus local state.\r
 \r
@@ -540,40 +538,16 @@ If yes, the reference should usually be hard.\r
 \r
 This discipline is less critical for:\r
 \r
-\`\`\`ts id="ujkqsr"\r
-primitive values\r
-short-lived scalar calculations\r
-small isolated functions\r
-pure transformation pipelines\r
-immutable reducer-based architectures\r
-throwaway objects that never escape their local scope\r
-\`\`\`\r
+* primitive values\r
+* short-lived scalar calculations\r
+* small isolated functions\r
+* pure transformation pipelines\r
+* immutable reducer-based architectures\r
+* throwaway objects that never escape their local scope\r
 \r
-But even then, the same bias can remain useful:\r
-\r
-\`\`\`ts id="i2pr5q"\r
-const temp = {\r
-    // ...\r
-};\r
-\`\`\`\r
-\r
-not:\r
-\r
-\`\`\`ts id="q9kziz"\r
-let temp = {\r
-    // ...\r
-};\r
-\`\`\`\r
-\r
-The question is not only:\r
-\r
-> Is this global application state?\r
-\r
-The better question is:\r
+Even in these cases, the rule can still be useful as a default bias, because reference stability depends on a question that is often hard to answer upfront:\r
 \r
 > Can this reference escape, be retained, or become obsolete after replacement?\r
-\r
-If yes, use a stable reference.\r
 \r
 ## Benefits\r
 \r
@@ -607,39 +581,15 @@ Hard Object References is not a replacement for immutable architecture in every 
 \r
 Hard Object References treats object references as stable addresses, not disposable values.\r
 \r
-The rule starts with ordinary programming practice:\r
+The rule starts with mandatory use of \`const\` with objects and arrays and continues inside object graphs:\r
 \r
-\`\`\`ts id="qjdm52"\r
-const object = {\r
-    // ...\r
-};\r
-\r
-const array = [\r
-    // ...\r
-];\r
-\`\`\`\r
-\r
-not:\r
-\r
-\`\`\`ts id="frhzln"\r
-let object = {\r
-    // ...\r
-};\r
-\r
-let array = [\r
-    // ...\r
-];\r
-\`\`\`\r
-\r
-It continues inside object graphs:\r
-\r
-\`\`\`ts id="h1xd8e"\r
+\`\`\`ts\r
 HardObject.set(user.address, nextAddress);\r
 \`\`\`\r
 \r
 not:\r
 \r
-\`\`\`ts id="z9r5l6"\r
+\`\`\`ts\r
 user.address = nextAddress;\r
 \`\`\`\r
 \r
