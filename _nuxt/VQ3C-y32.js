@@ -1,8 +1,9 @@
-import"./xirBm09s.js";import{p as h}from"./Cy0Em4ir.js";import{Y as m}from"./CFT98tUN.js";const u=""+new URL("cover.CbGmTKpN.webp",import.meta.url).href,b=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,y=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,f=`---\r
+import"./DNJdIZyS.js";import{p as h}from"./Cy0Em4ir.js";import{Y as m}from"./CFT98tUN.js";const u=""+new URL("cover.CbGmTKpN.webp",import.meta.url).href,b=""+new URL("cover.D7EDmnD9.webp",import.meta.url).href,y=""+new URL("cover.DrB9i5VT.webp",import.meta.url).href,f=`---\r
 date: 2026-07-06\r
 slug: hard-object-references\r
 readOn: \r
-    \r
+    - https://dev.to/alexander-nenashev/hard-object-references-stable-object-references-for-mutable-application-state-6el\r
+    - https://coderlegion.com/22147/hard-object-references-stable-object-references-for-mutable-application-state?prompt=cl_engage_notification\r
 seoDescription: "Hard Object References is a mutable state discipline for JavaScript and TypeScript: stable object references, copy-in updates, stale alias prevention, and safer object graphs."\r
 description: "I explain Hard Object References as a practical rule for mutable application state: use stable object and array references, avoid rebinding and nested reference replacement, and copy data into existing objects instead. This approach helps reduce stale aliases, obsolete references, and hard-to-debug state bugs in complex TypeScript and frontend applications."\r
 ---\r
