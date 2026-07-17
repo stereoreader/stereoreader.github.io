@@ -1,0 +1,1 @@
+import{_ as t}from"./BOsJ662j.js";import{n,U as s,D as _,h as a,e as c,m as r,g as m}from"./B1gX9pUy.js";const p={key:0},u={href:"/"},d=n({__name:"al-header",setup(i){const e=s().fullPath==="/";return(h,f)=>{const o=t;return e?m("",!0):(_(),a("header",p,[c("a",u,[r(o,{text:"ALEK LABS",size:64})])]))}}}),g=Object.assign(d,{__name:"AlHeader"});export{g as _};
