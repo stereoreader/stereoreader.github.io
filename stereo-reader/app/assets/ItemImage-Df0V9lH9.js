@@ -1,4 +1,4 @@
-import{_ as M,t as _,h as U}from"./index-DqZa2zGs.js";import{I as E,C as O,s as g}from"./App-Y1YH5iwi.js";const L=200,R=256,k=`
+import{_ as M,t as _,h as U}from"./index-B2YI5jvm.js";import{I as E,C as O,s as g}from"./App-DZ_gb9XQ.js";const L=200,R=256,k=`
 struct Params {
     width: u32,
     height: u32,
