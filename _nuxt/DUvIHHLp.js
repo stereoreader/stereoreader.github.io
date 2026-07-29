@@ -1,4 +1,4 @@
-import"./DfOLS5YC.js";import{p as u}from"./Cy0Em4ir.js";import{Y as m}from"./CFT98tUN.js";const h=""+new URL("cover.gIW4jzB_.webp",import.meta.url).href,g=""+new URL("cover.CCsFhWvG.webp",import.meta.url).href,f=`---\r
+import"./DEASxkpn.js";import{p as u}from"./Cy0Em4ir.js";import{Y as m}from"./CFT98tUN.js";const h=""+new URL("cover.gIW4jzB_.webp",import.meta.url).href,g=""+new URL("cover.CCsFhWvG.webp",import.meta.url).href,f=`---\r
 slug: senior-frontend-develop-at-luqon\r
 seoDescription: Built complex SPA interfaces, scalable frontend architecture with stores and reactive model classes, custom\r
             UI components including virtual tables and forms, and AI-agent-assisted delivery with E2E verification.\r
