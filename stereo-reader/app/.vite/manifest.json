@@ -1,15 +1,15 @@
 {
-  "_App-BD0x3eY0.js": {
-    "file": "assets/node_modules/spark-md5/App-BD0x3eY0.js",
+  "_App-ClV1s5Dz.js": {
+    "file": "assets/node_modules/spark-md5/App-ClV1s5Dz.js",
     "name": "App",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ],
     "dynamicImports": [
-      "_index-DiVBF_-_.js",
-      "_index-DFoot-az.js",
-      "_jszip.min-Etw1KGjq.js",
+      "_index-CLkHg_Mz.js",
+      "_index-Ct9qQQsR.js",
+      "_jszip.min-9aXegxBD.js",
       "src/_items/ItemFb2.ts",
       "src/_items/pdf/ItemPdfEmbed.ts",
       "src/_items/image/ItemImage.ts",
@@ -36,7 +36,7 @@
       "src/modules/modulation/_modulation-targets.ts",
       "src/_items/pdf/PdfSettings.vue",
       "src/_items/shulte/ShultePanel.vue",
-      "_ModulationPanel-BDznsODE.js",
+      "_ModulationPanel-DY54skn3.js",
       "src/modules/modulation/items/ListDialog.vue",
       "src/modules/training/TrainingPanel.vue",
       "src/modules/training/items/ListDialog.vue",
@@ -46,7 +46,7 @@
       "src/demos/forest-stereo.jpg",
       "src/utils/swipes.ts",
       "src/demos/demo-styles.epub?url",
-      "_shared-link-B-1yAjzb.js",
+      "_shared-link-iZpcCHew.js",
       "src/demos/demo-en.epub?url",
       "src/demos/demo-ru.epub?url",
       "src/utils/keep-awake.ts"
@@ -55,41 +55,41 @@
       "assets/phone-DpBo1XNe.png"
     ]
   },
-  "_EditDialog.vue_vue_type_script_setup_true_lang-Bfjaii4m.js": {
-    "file": "assets/modules/training/items/EditDialog.vue_vue_type_script_setup_true_lang-Bfjaii4m.js",
+  "_EditDialog.vue_vue_type_script_setup_true_lang-DiA3Hp2D.js": {
+    "file": "assets/modules/training/items/EditDialog.vue_vue_type_script_setup_true_lang-DiA3Hp2D.js",
     "name": "EditDialog.vue_vue_type_script_setup_true_lang",
     "imports": [
       "src/modules/modulation/items/EditDialog.vue",
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
-  "_ListMenu-NsHRUnCl.js": {
-    "file": "assets/modules/training/items/ListMenu-NsHRUnCl.js",
+  "_ListMenu-DXmSWLqT.js": {
+    "file": "assets/modules/training/items/ListMenu-DXmSWLqT.js",
     "name": "ListMenu",
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
-  "_ModulationCurve-eMDxEJGF.js": {
-    "file": "assets/modules/modulation/ModulationCurve-eMDxEJGF.js",
+  "_ModulationCurve-D991zyW4.js": {
+    "file": "assets/modules/modulation/ModulationCurve-D991zyW4.js",
     "name": "ModulationCurve",
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
-  "_ModulationPanel-BDznsODE.js": {
-    "file": "assets/_shared/ModulationPanel-BDznsODE.js",
+  "_ModulationPanel-DY54skn3.js": {
+    "file": "assets/_shared/ModulationPanel-DY54skn3.js",
     "name": "ModulationPanel",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_App-BD0x3eY0.js",
-      "_al-setting-range-CcW6MBV-.js",
-      "_ModulationCurve-eMDxEJGF.js",
-      "_shared-link-B-1yAjzb.js"
+      "_App-ClV1s5Dz.js",
+      "_al-setting-range-ezXRdUVA.js",
+      "_ModulationCurve-D991zyW4.js",
+      "_shared-link-iZpcCHew.js"
     ],
     "dynamicImports": [
       "src/modules/modulation/ModulationCurve.vue",
@@ -99,61 +99,61 @@
       "src/modules/modulation/items/EditDialog.vue"
     ]
   },
-  "_TimelinePreview-D9b6oB6D.js": {
-    "file": "assets/modules/training/TimelinePreview-D9b6oB6D.js",
+  "_TimelinePreview-DliLrFGv.js": {
+    "file": "assets/modules/training/TimelinePreview-DliLrFGv.js",
     "name": "TimelinePreview",
     "imports": [
       "index.html",
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ]
   },
-  "_al-setting-range-CcW6MBV-.js": {
-    "file": "assets/components/al-setting-range-CcW6MBV-.js",
+  "_al-setting-range-ezXRdUVA.js": {
+    "file": "assets/components/al-setting-range-ezXRdUVA.js",
     "name": "al-setting-range",
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
-  "_index-DFoot-az.js": {
-    "file": "assets/node_modules/iconv-lite/index-DFoot-az.js",
+  "_index-CLkHg_Mz.js": {
+    "file": "assets/node_modules/jschardet/index-CLkHg_Mz.js",
     "name": "index",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ]
   },
-  "_index-DiVBF_-_.js": {
-    "file": "assets/node_modules/jschardet/index-DiVBF_-_.js",
+  "_index-Ct9qQQsR.js": {
+    "file": "assets/node_modules/iconv-lite/index-Ct9qQQsR.js",
     "name": "index",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ]
   },
-  "_jszip.min-Etw1KGjq.js": {
-    "file": "assets/node_modules/jszip/jszip.min-Etw1KGjq.js",
+  "_jszip.min-9aXegxBD.js": {
+    "file": "assets/node_modules/jszip/jszip.min-9aXegxBD.js",
     "name": "jszip.min",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ]
   },
-  "_shared-link-B-1yAjzb.js": {
-    "file": "assets/_shared/shared-link-B-1yAjzb.js",
+  "_shared-link-iZpcCHew.js": {
+    "file": "assets/_shared/shared-link-iZpcCHew.js",
     "name": "shared-link",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ],
     "dynamicImports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "src/demos/forest-stereo.jpg"
     ]
   },
   "index.html": {
-    "file": "assets/index-CaDTypWE.js",
+    "file": "assets/index-BJtzcrWb.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
@@ -173,7 +173,7 @@
       "src/views/speech-commands/lang.ru.ts",
       "src/views/start/lang.ru.ts",
       "node_modules/workbox-window/build/workbox-window.prod.es5.mjs",
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ]
   },
   "node_modules/@embedpdf/pdfium/dist/index.browser.js": {
@@ -205,100 +205,100 @@
     "isDynamicEntry": true
   },
   "src/_items/ItemDocx.ts": {
-    "file": "assets/_items/ItemDocx-3QXA4H4O.js",
+    "file": "assets/_items/ItemDocx-CzdTafxI.js",
     "name": "ItemDocx",
     "src": "src/_items/ItemDocx.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/_items/ItemFb2.ts": {
-    "file": "assets/_items/ItemFb2-CcKjU6Js.js",
+    "file": "assets/_items/ItemFb2-lgURlPH4.js",
     "name": "ItemFb2",
     "src": "src/_items/ItemFb2.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "src/utils/image.ts",
       "index.html"
     ]
   },
   "src/_items/ItemItems.ts": {
-    "file": "assets/_items/ItemItems-DcsVWJm2.js",
+    "file": "assets/_items/ItemItems-D4Mr9Unj.js",
     "name": "ItemItems",
     "src": "src/_items/ItemItems.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/_items/epub/ItemEpub.ts": {
-    "file": "assets/_items/epub/ItemEpub-DLXmdu4I.js",
+    "file": "assets/_items/epub/ItemEpub-DzWP_U0U.js",
     "name": "ItemEpub",
     "src": "src/_items/epub/ItemEpub.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ],
     "dynamicImports": [
       "src/utils/image.ts"
     ]
   },
   "src/_items/game/ItemGameBall.ts": {
-    "file": "assets/_items/game/ItemGameBall-WM8nAZ_r.js",
+    "file": "assets/_items/game/ItemGameBall-DGjrOsPC.js",
     "name": "ItemGameBall",
     "src": "src/_items/game/ItemGameBall.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/_items/game/ItemGameCube.ts": {
-    "file": "assets/_items/game/ItemGameCube-B9utxiiL.js",
+    "file": "assets/_items/game/ItemGameCube-2m27GRg_.js",
     "name": "ItemGameCube",
     "src": "src/_items/game/ItemGameCube.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/_items/image/ItemImage.ts": {
-    "file": "assets/_items/image/ItemImage-b29Urn9J.js",
+    "file": "assets/_items/image/ItemImage-DwEaqf0r.js",
     "name": "ItemImage",
     "src": "src/_items/image/ItemImage.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ],
     "dynamicImports": [
       "src/utils/image.ts"
     ]
   },
   "src/_items/image/modulation-targets.ts": {
-    "file": "assets/_items/image/modulation-targets-CnrIHOZB.js",
+    "file": "assets/_items/image/modulation-targets-DzQhHNUQ.js",
     "name": "modulation-targets",
     "src": "src/_items/image/modulation-targets.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/_items/pdf/ItemPdfEmbed.ts": {
-    "file": "assets/_items/pdf/ItemPdfEmbed-BgoRnbxy.js",
+    "file": "assets/_items/pdf/ItemPdfEmbed-Bu_aVqDz.js",
     "name": "ItemPdfEmbed",
     "src": "src/_items/pdf/ItemPdfEmbed.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_App-BD0x3eY0.js"
+      "_App-ClV1s5Dz.js"
     ],
     "dynamicImports": [
       "node_modules/@embedpdf/pdfium/dist/index.browser.js",
@@ -307,12 +307,12 @@
     ]
   },
   "src/_items/pdf/PdfSettings.vue": {
-    "file": "assets/_items/pdf/PdfSettings-BsYSN59H.js",
+    "file": "assets/_items/pdf/PdfSettings-DaZr03pf.js",
     "name": "PdfSettings",
     "src": "src/_items/pdf/PdfSettings.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
@@ -323,23 +323,23 @@
     "isDynamicEntry": true
   },
   "src/_items/shulte/ItemGameShulte.ts": {
-    "file": "assets/_items/shulte/ItemGameShulte-C1W8DZKT.js",
+    "file": "assets/_items/shulte/ItemGameShulte-d6eW3inQ.js",
     "name": "ItemGameShulte",
     "src": "src/_items/shulte/ItemGameShulte.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/_items/shulte/ShultePanel.vue": {
-    "file": "assets/_items/shulte/ShultePanel-ClTN3fEw.js",
+    "file": "assets/_items/shulte/ShultePanel-DTia0o1z.js",
     "name": "ShultePanel",
     "src": "src/_items/shulte/ShultePanel.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
-      "_al-setting-range-CcW6MBV-.js",
+      "_App-ClV1s5Dz.js",
+      "_al-setting-range-ezXRdUVA.js",
       "index.html",
       "src/_items/shulte/ItemGameShulte.ts"
     ]
@@ -351,33 +351,33 @@
     "isDynamicEntry": true
   },
   "src/_items/shulte/modulation-targets.ts": {
-    "file": "assets/_items/shulte/modulation-targets-4Yv0YKvw.js",
+    "file": "assets/_items/shulte/modulation-targets-C8xF425R.js",
     "name": "modulation-targets",
     "src": "src/_items/shulte/modulation-targets.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "src/_items/shulte/ItemGameShulte.ts",
       "index.html"
     ]
   },
   "src/components/al-gap-settings.vue": {
-    "file": "assets/components/al-gap-settings-Bm1xlWLg.js",
+    "file": "assets/components/al-gap-settings-BpFJxA2n.js",
     "name": "al-gap-settings",
     "src": "src/components/al-gap-settings.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/components/al-width-settings.vue": {
-    "file": "assets/components/al-width-settings-CNrr1tEJ.js",
+    "file": "assets/components/al-width-settings-syA0B5rz.js",
     "name": "al-width-settings",
     "src": "src/components/al-width-settings.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
@@ -481,60 +481,60 @@
     "isDynamicEntry": true
   },
   "src/modules/modulation/ModulationCurve.vue": {
-    "file": "assets/modules/modulation/ModulationCurve-CdOhmjdJ.js",
+    "file": "assets/modules/modulation/ModulationCurve-BE2c0Svl.js",
     "name": "ModulationCurve",
     "src": "src/modules/modulation/ModulationCurve.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html",
-      "_ModulationPanel-BDznsODE.js",
-      "_ModulationCurve-eMDxEJGF.js",
-      "_al-setting-range-CcW6MBV-.js",
-      "_shared-link-B-1yAjzb.js"
+      "_ModulationPanel-DY54skn3.js",
+      "_ModulationCurve-D991zyW4.js",
+      "_al-setting-range-ezXRdUVA.js",
+      "_shared-link-iZpcCHew.js"
     ]
   },
   "src/modules/modulation/ModulationTargets.vue": {
-    "file": "assets/modules/modulation/ModulationTargets-CbiEP9lG.js",
+    "file": "assets/modules/modulation/ModulationTargets-m7zFwSLa.js",
     "name": "ModulationTargets",
     "src": "src/modules/modulation/ModulationTargets.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html",
-      "_al-setting-range-CcW6MBV-.js"
+      "_al-setting-range-ezXRdUVA.js"
     ]
   },
   "src/modules/modulation/_modulation-targets.ts": {
-    "file": "assets/modules/modulation/_modulation-targets-D98kqo0E.js",
+    "file": "assets/modules/modulation/_modulation-targets-DbtUxDtN.js",
     "name": "_modulation-targets",
     "src": "src/modules/modulation/_modulation-targets.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/modules/modulation/items/EditDialog.vue": {
-    "file": "assets/modules/modulation/items/EditDialog-CS73oWG0.js",
+    "file": "assets/modules/modulation/items/EditDialog-Cg53cYZ4.js",
     "name": "EditDialog",
     "src": "src/modules/modulation/items/EditDialog.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/modules/modulation/items/ListDialog.vue": {
-    "file": "assets/modules/modulation/items/ListDialog-D-XWg8_e.js",
+    "file": "assets/modules/modulation/items/ListDialog-BSbagv6U.js",
     "name": "ListDialog",
     "src": "src/modules/modulation/items/ListDialog.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html",
       "src/modules/modulation/items/EditDialog.vue",
-      "_ModulationCurve-eMDxEJGF.js"
+      "_ModulationCurve-D991zyW4.js"
     ]
   },
   "src/modules/modulation/items/lang.ru.ts": {
@@ -550,39 +550,39 @@
     "isDynamicEntry": true
   },
   "src/modules/modulation/migrations/v1.ts": {
-    "file": "assets/modules/modulation/migrations/v1-QRT0iRMd.js",
+    "file": "assets/modules/modulation/migrations/v1-PvcCQHq2.js",
     "name": "v1",
     "src": "src/modules/modulation/migrations/v1.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/modules/training/TimelineDialog.vue": {
-    "file": "assets/modules/training/TimelineDialog-BOwJQlip.js",
+    "file": "assets/modules/training/TimelineDialog-CP8Pqr2W.js",
     "name": "TimelineDialog",
     "src": "src/modules/training/TimelineDialog.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html",
       "src/modules/modulation/items/ListDialog.vue",
-      "_al-setting-range-CcW6MBV-.js",
-      "_ListMenu-NsHRUnCl.js",
+      "_al-setting-range-ezXRdUVA.js",
+      "_ListMenu-DXmSWLqT.js",
       "src/modules/modulation/items/EditDialog.vue",
-      "_ModulationCurve-eMDxEJGF.js"
+      "_ModulationCurve-D991zyW4.js"
     ]
   },
   "src/modules/training/TrainingPanel.vue": {
-    "file": "assets/modules/training/TrainingPanel-DPA6G3AL.js",
+    "file": "assets/modules/training/TrainingPanel-B2zjxeLO.js",
     "name": "TrainingPanel",
     "src": "src/modules/training/TrainingPanel.vue",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_App-BD0x3eY0.js",
-      "_TimelinePreview-D9b6oB6D.js"
+      "_App-ClV1s5Dz.js",
+      "_TimelinePreview-DliLrFGv.js"
     ],
     "dynamicImports": [
       "src/modules/training/TimelineDialog.vue",
@@ -592,31 +592,31 @@
     ]
   },
   "src/modules/training/items/EditDialog.vue": {
-    "file": "assets/modules/training/items/EditDialog-BtW2jCrb.js",
+    "file": "assets/modules/training/items/EditDialog-Dluej22z.js",
     "name": "EditDialog",
     "src": "src/modules/training/items/EditDialog.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_EditDialog.vue_vue_type_script_setup_true_lang-Bfjaii4m.js",
+      "_EditDialog.vue_vue_type_script_setup_true_lang-DiA3Hp2D.js",
       "src/modules/modulation/items/EditDialog.vue",
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/modules/training/items/ListDialog.vue": {
-    "file": "assets/modules/training/items/ListDialog-CvDZdy4c.js",
+    "file": "assets/modules/training/items/ListDialog-Bx3LJP-v.js",
     "name": "ListDialog",
     "src": "src/modules/training/items/ListDialog.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html",
       "src/modules/modulation/items/ListDialog.vue",
-      "_ListMenu-NsHRUnCl.js",
-      "_EditDialog.vue_vue_type_script_setup_true_lang-Bfjaii4m.js",
-      "_TimelinePreview-D9b6oB6D.js",
+      "_ListMenu-DXmSWLqT.js",
+      "_EditDialog.vue_vue_type_script_setup_true_lang-DiA3Hp2D.js",
+      "_TimelinePreview-DliLrFGv.js",
       "src/modules/modulation/items/EditDialog.vue",
-      "_ModulationCurve-eMDxEJGF.js"
+      "_ModulationCurve-D991zyW4.js"
     ]
   },
   "src/modules/training/items/lang.ru.ts": {
@@ -639,22 +639,22 @@
     "isDynamicEntry": true
   },
   "src/utils/keep-awake.ts": {
-    "file": "assets/utils/keep-awake-hYsXeIYw.js",
+    "file": "assets/utils/keep-awake-DqVKUFCd.js",
     "name": "keep-awake",
     "src": "src/utils/keep-awake.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
   "src/utils/swipes.ts": {
-    "file": "assets/utils/swipes-CGoNhxvj.js",
+    "file": "assets/utils/swipes-BPfcDv7S.js",
     "name": "swipes",
     "src": "src/utils/swipes.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_App-BD0x3eY0.js",
+      "_App-ClV1s5Dz.js",
       "index.html"
     ]
   },
