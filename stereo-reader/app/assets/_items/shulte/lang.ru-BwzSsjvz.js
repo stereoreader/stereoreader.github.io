@@ -1,1 +1,0 @@
-const e={"Cell border":"Граница ячеек","No border":"Без границы","Shulte settings":"Настройки таблицы","Shuffle numbers":"Перестроить таблицу","Grid size":"Размер таблицы","Table size":"Размер таблицы",Shape:"Форма","Radial scale":"Рад. масштаб","Radial depth":"Рад. глубина"};export{e as default};

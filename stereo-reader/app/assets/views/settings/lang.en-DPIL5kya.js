@@ -1,1 +1,0 @@
-const e={"physical-geometry.warning":"For accurate physical size and angle calculations, keep browser zoom at 100% and do not pinch-zoom the page. Browser zoom changes the CSS-pixel-to-physical-pixel ratio and makes millimeter / arcminute values unreliable. Use the app’s own font-size controls instead of browser zoom.","Panel max height":"Panel max height"};export{e as default};

@@ -1,1 +1,0 @@
-const a={Loading:"Загрузка",Name:"Название",Color:"Цвет",Save:"Сохранить",Cancel:"Отмена",Modulations:"Модуляции",Modulator:"Модулятор","Select modulations to manage":"Выбрать модуляции для управления"};export{a as default};
