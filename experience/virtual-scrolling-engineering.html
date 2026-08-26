@@ -1,0 +1,239 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Virtual Scrolling Engineering: Three Production Cases</title><link rel="stylesheet" href="/_nuxt/style.DgfDD1Gf.css" crossorigin><link rel="icon" type="image/svg+xml" href="logo.svg"><meta name="description" content="Three virtual scrolling systems built for different constraints - variable-height AngularJS tables, editable Vue 3 data grids, and large-document rendering in Stereo Reader."><meta property="og:title" content="Virtual Scrolling Engineering: Three Production Cases"><meta property="og:description" content="Virtual scrolling has been a recurring engineering problem throughout my frontend work. These three cases show different approaches to variable-height tables, editable enterprise grids, tree selectors, and large-document layout."><meta property="og:image" content="/_nuxt/cover.BoE8QZYc.webp"></head><body><div id="__nuxt"><div><!--[--><header data-v-2e462a04><a href="/" class=""><svg id="animated-text" viewbox="0 0 574.592 138" xmlns="http://www.w3.org/2000/svg" style="height:100%;display:none;" data-v-761a07cc><defs data-v-761a07cc><linearGradient id="stripe-gradient" gradientUnits="userSpaceOnUse" spreadMethod="repeat" x1="0" y1="0" x2="0" y2="2" gradientTransform="translate(0 0)" data-v-761a07cc><stop offset="0" stop-color="white" data-v-761a07cc></stop><stop offset=".5" stop-color="white" data-v-761a07cc></stop><stop offset=".5" stop-color="black" data-v-761a07cc></stop><stop offset="1" stop-color="black" data-v-761a07cc></stop></linearGradient><mask id="stripe-mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="-100" y="-100" width="1200" height="400" style="mask-type:luminance;" data-v-761a07cc><rect x="-100" y="-100" width="1200" height="400" fill="url(#stripe-gradient)" data-v-761a07cc></rect></mask><linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%" data-v-761a07cc><stop offset="0%" stop-color="#44aa44" stop-opacity=".7" data-v-761a07cc></stop><stop offset="100%" stop-color="#003355" data-v-761a07cc></stop></linearGradient><filter id="dot-distort-glow" x="-500%" y="-500%" width="1000%" height="1000%" color-interpolation-filters="sRGB" data-v-761a07cc><feTurbulence id="dot-turbulence" type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="turbulence" data-v-761a07cc></feTurbulence><feDisplacementMap id="displacement" in="SourceGraphic" in2="turbulence" scale="7.5" xChannelSelector="R" yChannelSelector="G" result="distorted" data-v-761a07cc></feDisplacementMap><feGaussianBlur in="distorted" stdDeviation="10" result="blur" data-v-761a07cc></feGaussianBlur><feMerge data-v-761a07cc><feMergeNode in="blur" data-v-761a07cc></feMergeNode><feMergeNode id="blur-source" in="SourceGraphic" data-v-761a07cc></feMergeNode></feMerge></filter></defs><g class="fill" fill="url(#gradient)" stroke="none" fill-rule="evenodd" data-v-761a07cc><!--[--><path opacity="0" d="M60.8 128L49.408 128L44.544 105.344L19.584 105.344L14.592 128L3.2 128L24.832 38.4L39.552 38.4L60.8 128ZM42.496 95.744L32 46.848L21.632 95.744L42.496 95.744Z" style="" data-v-761a07cc></path><path opacity="0" d="M122.56 128L82.88 128L82.88 38.4L94.016 38.4L94.016 118.272L122.56 118.272L122.56 128Z" style="" data-v-761a07cc></path><path opacity="0" d="M185.344 128L143.36 128L143.36 38.4L185.344 38.4L185.344 47.744L154.496 47.744L154.496 77.056L182.144 77.056L182.144 86.4L154.496 86.4L154.496 118.656L185.344 118.656L185.344 128Z" style="" data-v-761a07cc></path><path opacity="0" d="M260.16 128L247.616 128L227.648 87.296L223.04 94.976L223.04 128L211.904 128L211.904 38.4L223.04 38.4L223.04 77.056L246.72 38.4L258.88 38.4L234.56 77.568L260.16 128Z" style="" data-v-761a07cc></path><path opacity="0" d="" style="display:none;" data-v-761a07cc></path><path opacity="0" d="M363.84 128L324.16 128L324.16 38.4L335.296 38.4L335.296 118.272L363.84 118.272L363.84 128Z" style="" data-v-761a07cc></path><path opacity="0" d="M434.56 128L423.168 128L418.304 105.344L393.344 105.344L388.352 128L376.96 128L398.592 38.4L413.312 38.4L434.56 128ZM416.256 95.744L405.76 46.848L395.392 95.744L416.256 95.744Z" style="" data-v-761a07cc></path><path opacity="0" d="M502.72 107.776Q502.72 118.784 497.664 123.392Q492.608 128 480.96 128L480.96 128L456.64 128L456.64 38.4L479.424 38.4Q490.816 38.4 496.128 43.008Q501.44 47.616 501.44 58.368L501.44 58.368L501.44 65.664Q501.44 75.52 494.4 80.512L494.4 80.512Q502.72 85.12 502.72 96.256L502.72 96.256L502.72 107.776ZM490.304 57.216Q490.304 52.352 488.064 50.176Q485.824 48 480.96 48L480.96 48L467.776 48L467.776 76.288L480.96 76.288Q484.928 76.288 487.616 73.728Q490.304 71.168 490.304 66.944L490.304 66.944L490.304 57.216ZM491.584 95.104Q491.584 90.88 489.024 88.384Q486.464 85.888 482.24 85.888L482.24 85.888L467.776 85.888L467.776 118.4L482.112 118.4Q486.976 118.4 489.28 116.16Q491.584 113.92 491.584 109.056L491.584 109.056L491.584 95.104Z" style="" data-v-761a07cc></path><path opacity="0" d="M567.552 106.24Q567.552 117.12 561.6 122.56Q555.648 128 544.512 128L544.512 128L527.616 128L527.616 118.272L545.792 118.272Q550.528 118.272 553.472 115.456Q556.416 112.64 556.416 108.672L556.416 108.672L556.416 95.36Q556.416 91.52 554.432 89.152Q552.448 86.784 548.48 86.784L548.48 86.784L545.92 86.784Q536.448 86.784 530.944 81.216Q525.44 75.648 525.44 65.024L525.44 65.024L525.44 60.16Q525.44 49.28 531.392 43.84Q537.344 38.4 548.48 38.4L548.48 38.4L565.504 38.4L565.504 48.128L547.2 48.128Q542.464 48.128 539.52 50.944Q536.576 53.76 536.576 57.728L536.576 57.728L536.576 67.456Q536.576 71.424 539.136 74.048Q541.696 76.672 545.792 76.672L545.792 76.672L548.352 76.672Q557.44 76.672 562.496 81.92Q567.552 87.168 567.552 97.792L567.552 97.792L567.552 106.24Z" style="" data-v-761a07cc></path><!--]--></g><g class="stroke" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-v-761a07cc><!--[--><!--[--><!--[--><path id="stroke-0-0" d="M60.8 128L49.408 128L44.544 105.344L19.584 105.344L14.592 128L3.2 128L24.832 38.4L39.552 38.4L60.8 128Z" data-v-761a07cc></path><path id="stroke-0-1" d="M42.496 95.744L32 46.848L21.632 95.744L42.496 95.744Z" data-v-761a07cc></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-1-0" d="M122.56 128L82.88 128L82.88 38.4L94.016 38.4L94.016 118.272L122.56 118.272L122.56 128Z" data-v-761a07cc></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-2-0" d="M185.344 128L143.36 128L143.36 38.4L185.344 38.4L185.344 47.744L154.496 47.744L154.496 77.056L182.144 77.056L182.144 86.4L154.496 86.4L154.496 118.656L185.344 118.656L185.344 128Z" data-v-761a07cc></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-3-0" d="M260.16 128L247.616 128L227.648 87.296L223.04 94.976L223.04 128L211.904 128L211.904 38.4L223.04 38.4L223.04 77.056L246.72 38.4L258.88 38.4L234.56 77.568L260.16 128Z" data-v-761a07cc></path><!--]--><!--]--><!--[--><!--[--><!--]--><!--]--><!--[--><!--[--><path id="stroke-5-0" d="M363.84 128L324.16 128L324.16 38.4L335.296 38.4L335.296 118.272L363.84 118.272L363.84 128Z" data-v-761a07cc></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-6-0" d="M434.56 128L423.168 128L418.304 105.344L393.344 105.344L388.352 128L376.96 128L398.592 38.4L413.312 38.4L434.56 128Z" data-v-761a07cc></path><path id="stroke-6-1" d="M416.256 95.744L405.76 46.848L395.392 95.744L416.256 95.744Z" data-v-761a07cc></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-7-0" d="M502.72 107.776Q502.72 118.784 497.664 123.392Q492.608 128 480.96 128L480.96 128L456.64 128L456.64 38.4L479.424 38.4Q490.816 38.4 496.128 43.008Q501.44 47.616 501.44 58.368L501.44 58.368L501.44 65.664Q501.44 75.52 494.4 80.512L494.4 80.512Q502.72 85.12 502.72 96.256L502.72 96.256L502.72 107.776Z" data-v-761a07cc></path><path id="stroke-7-1" d="M490.304 57.216Q490.304 52.352 488.064 50.176Q485.824 48 480.96 48L480.96 48L467.776 48L467.776 76.288L480.96 76.288Q484.928 76.288 487.616 73.728Q490.304 71.168 490.304 66.944L490.304 66.944L490.304 57.216Z" data-v-761a07cc></path><path id="stroke-7-2" d="M491.584 95.104Q491.584 90.88 489.024 88.384Q486.464 85.888 482.24 85.888L482.24 85.888L467.776 85.888L467.776 118.4L482.112 118.4Q486.976 118.4 489.28 116.16Q491.584 113.92 491.584 109.056L491.584 109.056L491.584 95.104Z" data-v-761a07cc></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-8-0" d="M567.552 106.24Q567.552 117.12 561.6 122.56Q555.648 128 544.512 128L544.512 128L527.616 128L527.616 118.272L545.792 118.272Q550.528 118.272 553.472 115.456Q556.416 112.64 556.416 108.672L556.416 108.672L556.416 95.36Q556.416 91.52 554.432 89.152Q552.448 86.784 548.48 86.784L548.48 86.784L545.92 86.784Q536.448 86.784 530.944 81.216Q525.44 75.648 525.44 65.024L525.44 65.024L525.44 60.16Q525.44 49.28 531.392 43.84Q537.344 38.4 548.48 38.4L548.48 38.4L565.504 38.4L565.504 48.128L547.2 48.128Q542.464 48.128 539.52 50.944Q536.576 53.76 536.576 57.728L536.576 57.728L536.576 67.456Q536.576 71.424 539.136 74.048Q541.696 76.672 545.792 76.672L545.792 76.672L548.352 76.672Q557.44 76.672 562.496 81.92Q567.552 87.168 567.552 97.792L567.552 97.792L567.552 106.24Z" data-v-761a07cc></path><!--]--><!--]--><!--]--></g><g class="glowing-dots" data-v-761a07cc><!--[--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><!--]--><!--]--><!--[--><!--[--><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-761a07cc></circle><!--]--><!--]--><!--]--></g></svg></a></header><main data-v-2e462a04><!--[--><div class="article" data-v-64d3d2f0><img src="/_nuxt/cover.BoE8QZYc.webp" class="article-cover" data-v-64d3d2f0><div class="article-experience" data-v-64d3d2f0><!--[--><div class="wrapper" style="--v78020718:0;--b9bf6372:0;--v1dd7bc12:0;--v51fba883:750ms cubic-bezier(.34, 1.56, .64, 1);" data-v-e314e2af><a href="/experience/senior-frontend-develop-at-luqon" class="card" data-glowing-blob-parent data-v-e314e2af><div class="blob-layer" data-v-e314e2af><div class="blob-background" aria-hidden="true" data-v-e314e2af data-v-e915364c><div class="surface" data-v-e915364c><div class="blob" data-v-e915364c></div></div></div></div><img class="thumb" src="/_nuxt/cover.gIW4jzB_.webp" alt="Enterprise Resource Management SPA" data-v-e314e2af><div class="body" data-v-e314e2af><h3 class="title" data-v-e314e2af>Enterprise Resource Management SPA</h3><p class="description" data-v-e314e2af><!--[-->Built complex SPA interfaces, scalable frontend architecture with stores and reactive model classes, custom UI components including virtual tables and forms, and AI-agent-assisted delivery with E2E verification.<!--]--></p></div><div class="hover-border" data-v-e314e2af></div><div class="hover-border-blur" style="--angle:0deg;" data-v-e314e2af></div></a></div><div class="wrapper" style="--v78020718:0;--b9bf6372:0;--v1dd7bc12:0;--v51fba883:750ms cubic-bezier(.34, 1.56, .64, 1);" data-v-e314e2af><a href="/experience/senior-frontend-develop-at-hotels-ru" class="card" data-glowing-blob-parent data-v-e314e2af><div class="blob-layer" data-v-e314e2af><div class="blob-background" aria-hidden="true" data-v-e314e2af data-v-e915364c><div class="surface" data-v-e915364c><div class="blob" data-v-e915364c></div></div></div></div><img class="thumb" src="/_nuxt/cover.CCsFhWvG.webp" alt="Hotel and Train Ticket Booking SPA" data-v-e314e2af><div class="body" data-v-e314e2af><h3 class="title" data-v-e314e2af>Hotel and Train Ticket Booking SPA</h3><p class="description" data-v-e314e2af><!--[-->Vue 3 / TypeScript / Vite SPA for hotel and train ticket reservations, with custom Vite plugins, interactive maps, dynamic SVG train-seat layouts, client-side filtering, complex booking state, and a reusable form validation framework.<!--]--></p></div><div class="hover-border" data-v-e314e2af></div><div class="hover-border-blur" style="--angle:0deg;" data-v-e314e2af></div></a></div><!--]--></div><span data-v-64d3d2f0><h1>Virtual Scrolling Engineering: Three Production Cases</h1>
+<p>Virtual scrolling has been a recurring area of my frontend work for many years.</p>
+<p>It first appeared as a performance problem: how do you display tens of thousands of records when rendering the complete DOM is prohibitively expensive? Later, it became an architectural primitive that I could reuse for editable tables, selectors, tree structures, and other large data sets. In Stereo Reader, the same underlying idea evolved further into a document-layout engine capable of working with large books, text lines, PDF pages, and other content.</p>
+<p>These systems all use virtual scrolling, but their constraints are substantially different.</p>
+<p>The first case required variable row heights that had to be calculated as quickly as possible. The second shifted the complexity toward editing, component composition, selectors, and tree structures. The third moved beyond conventional tables entirely and made virtualization part of a large-document rendering and layout system.</p>
+<h2>Dignio Prevent: Variable-Height Virtual Tables</h2>
+<p>My first substantial virtual scrolling implementation was developed at Dignio.</p>
+<p>One of the first questions I was asked after joining the company was whether I could optimize its tables. The application was built with AngularJS, and some APIs returned complete datasets without backend pagination. Rendering every record immediately meant creating a large AngularJS-controlled DOM tree, which became increasingly expensive as the number of records grew.</p>
+<p>Backend pagination was not available as a general solution, so the frontend had to be able to work efficiently with the complete dataset.</p>
+<p>The solution was a custom virtual table.</p>
+<p>Only the rows required for the visible viewport were mounted into the main DOM, while the scrolling geometry represented the full dataset. From the user&#39;s perspective, the table had to behave as if every row had been rendered normally.</p>
+<p>The difficult part was that row height was not known in advance.</p>
+<p>Cells could contain different types of content, including text and HTML-based representations, and their resulting heights affected the height of the entire row. To reproduce the geometry of a fully rendered table, the virtual scrolling engine therefore needed to determine the layout of potentially thousands or tens of thousands of cells without paying the cost of inserting all of them into the live DOM.</p>
+<p>A significant part of the work became an optimization problem around cell measurement.</p>
+<p>For text cells, the layout code could calculate text dimensions and line wrapping in JavaScript instead of constructing every corresponding DOM node merely to ask the browser for its height. Character widths, available cell width, wrapping rules, and cached measurements were used to determine the resulting geometry as efficiently as possible.</p>
+<p>Computed data was aggressively cached because many cells shared the same formatting and because recalculating unchanged layout during every table operation would have defeated much of the benefit of virtualization.</p>
+<p>This made the implementation different from the relatively simple fixed-row-height virtual lists commonly used in application interfaces. The system first had to establish enough information about the complete table geometry to know where every row belonged, while rendering only a small fraction of those rows.</p>
+<p>The table gradually became much more than a scrolling optimization.</p>
+<p>It eventually supported functionality such as:</p>
+<ul>
+<li>column sorting;</li>
+<li>column reordering;</li>
+<li>configurable columns;</li>
+<li>adding and removing visible columns;</li>
+<li>filtering;</li>
+<li>different cell renderers;</li>
+<li>variable row heights;</li>
+<li>large dynamically changing datasets.</li>
+</ul>
+<p>Filtering was integrated with Crossfilter, which was already part of the application and provided efficient client-side filtering over the loaded data.</p>
+<p>Most of the table engine itself was implemented in plain JavaScript rather than making its internal algorithms dependent on AngularJS. AngularJS acted primarily as the integration layer around it.</p>
+<p>This distinction was important for performance. The expensive data processing, layout calculations, caching, and virtualization logic could remain outside AngularJS&#39;s normal rendering machinery, while an AngularJS directive exposed the table to the rest of the application.</p>
+<p>The internal architecture also became increasingly modular.</p>
+<p>Table capabilities were organized as optional features that could attach behavior through hooks into different lifecycle stages of the table. A feature could, for example, extend column-header behavior without requiring the core table implementation to contain every possible variation.</p>
+<p>This resulted in a feature-oriented architecture built around lifecycle hooks and events rather than one increasingly large table class containing all behavior.</p>
+<p>Over time, the table became one of the central UI components of Dignio Prevent. Patient lists, tasks, events, activity data, and other major areas of the application depended on it.</p>
+<p>Some datasets were particularly demanding because the backend returned very large collections as a single response. In such cases virtualization did not merely make scrolling smoother; it was what made displaying the dataset practical in the browser at all.</p>
+<p>This project established several ideas that I would reuse later:</p>
+<p><strong>virtualization is only one part of the problem; understanding and predicting layout can be equally important.</strong></p>
+<h2>Luqon BOOST: Virtual Tables as UI Infrastructure</h2>
+<p>Years later, I encountered the same general problem in BOOST at Luqon, but the requirements were different.</p>
+<p>BOOST is a large Vue 3 and TypeScript enterprise application. Instead of continuing to depend on a third-party data table, I implemented a custom table as part of the application&#39;s internal UI framework.</p>
+<p>This time I could design the system around modern Vue 3 reactivity and TypeScript from the beginning.</p>
+<p>For the primary virtualized use cases, row height was known in advance. This eliminated much of the expensive geometry discovery required by the Dignio implementation. Calculating the total scrollable height and mapping a scroll position to visible rows was therefore considerably simpler.</p>
+<p>The engineering complexity moved elsewhere.</p>
+<p>The BOOST table was designed not only for displaying data but also for editing it.</p>
+<p>Cells could contain normal values, custom renderers, input components, selectors, and other Vue components supplied through the table&#39;s rendering abstractions and slots. The table therefore became part data grid, part form infrastructure.</p>
+<p>It supported functionality including:</p>
+<ul>
+<li>virtual scrolling;</li>
+<li>editable cells;</li>
+<li>custom cell components;</li>
+<li>typed cell representations;</li>
+<li>keyboard interaction;</li>
+<li>dirty, saved, and error states;</li>
+<li>row insertion and deletion;</li>
+<li>row movement;</li>
+<li>selection and batch operations;</li>
+<li>sorting;</li>
+<li>configurable columns;</li>
+<li>search highlighting;</li>
+<li>readonly and editable modes.</li>
+</ul>
+<p>Virtualization therefore had to coexist with persistent application state, editing state, focus management, component lifecycles, and navigation between cells.</p>
+<p>An important development was that the virtual table did not remain an isolated component.</p>
+<p>It became the foundation for a hierarchy of higher-level components.</p>
+<p>For example, autocomplete functionality was reused inside select controls. Select functionality was extended into table-based selectors capable of displaying several columns. These selectors could then use the same virtual table engine internally.</p>
+<p>As a result, virtualization was no longer limited to full-page data grids.</p>
+<p>A selector containing thousands or even tens of thousands of records could remain inexpensive to render because opening the dropdown did not require Vue to mount thousands of option components. The complete collection could exist in memory while only the currently visible portion was represented by UI components.</p>
+<p>The same architecture was extended to hierarchical data.</p>
+<p>I implemented a tree-table layer in which the table itself continued to consume a flat sequence of visible rows, while a tree data source maintained the underlying hierarchical structure.</p>
+<p>Expanding or collapsing a node changed the flattened visible representation supplied to the table. The virtual scrolling layer therefore did not need special knowledge of the entire tree hierarchy: it continued to work with the same linear row model.</p>
+<p>The table provided the UI necessary to display and manipulate expandable parent nodes, while the tree layer controlled which descendants belonged in the current flattened view.</p>
+<p>This separation allowed the same tree-table functionality to be reused in selectors as well.</p>
+<p>The resulting component hierarchy included related forms of:</p>
+<p><code>autocomplete → select → table select → tree table / tree select</code></p>
+<p>rather than implementing each of these controls independently.</p>
+<p>Large selectors, hierarchical selectors, normal data tables, and editable enterprise grids could therefore reuse the same underlying infrastructure.</p>
+<p>Client-side filtering again played an important role. BOOST uses a Crossfilter-based filtering system for large locally available datasets, allowing users to filter and search records without requiring a backend request for every interaction.</p>
+<p>In this project, virtual scrolling became more than a performance technique.</p>
+<p>It became a reusable <strong>UI infrastructure layer</strong>.</p>
+<p>The table could be embedded into pages, forms, selectors, and hierarchical components, while the rest of the application reused the same rendering, navigation, filtering, and data abstractions.</p>
+<h2>Stereo Reader: Virtual Scrolling as a Document Layout Engine</h2>
+<p>The third case comes from my personal project, Stereo Reader.</p>
+<p>Here the problem is no longer a conventional data table.</p>
+<p>Stereo Reader needs to display books, and books can contain very large amounts of text. Rendering an entire novel as one large DOM structure is unnecessary and increasingly expensive as document size grows.</p>
+<p>More importantly, Stereo Reader allows the user to change parameters such as text width and font size while reading.</p>
+<p>Changing one of these values changes line wrapping throughout the document.</p>
+<p>The application therefore needs to answer two separate questions efficiently:</p>
+<ol>
+<li>Which content should currently be rendered?</li>
+<li>Where does the current reading position move after the entire document layout changes?</li>
+</ol>
+<p>This made virtual scrolling a natural part of the architecture.</p>
+<p>Only the lines around the current viewport need to be rendered. At the same time, the engine maintains a logical representation of the complete document so that the scrollbar and reading position correspond to the full book.</p>
+<p>The challenging part is layout calculation.</p>
+<p>When the width or typography changes, line boundaries across potentially megabytes of text may change. The application therefore needs to determine the new line structure extremely quickly.</p>
+<p>In some respects this brought me back to the Dignio problem.</p>
+<p>There I needed to determine the dimensions of thousands of text cells without rendering an entire table. In Stereo Reader, the same class of optimization appears at document scale: calculate where text wraps and where lines begin and end without constructing the entire book in the DOM first.</p>
+<p>The implementation has gone through several generations.</p>
+<p>This was not an algorithm written once and considered finished. Each iteration reduced the amount of work required to determine line boundaries and improved the speed of complete book relayout.</p>
+<p>The virtual model is organized around paragraphs and resulting visual lines. The renderer then works with the small subset of those lines required for the current viewport.</p>
+<p>This also makes changing the reading layout fundamentally different from rerendering a normal static document.</p>
+<p>The engine knows the reader&#39;s logical position in the text. After a new layout is calculated, it can map that logical position into the new sequence of visual lines and keep the relevant content inside the viewport.</p>
+<p>Virtual scrolling therefore participates directly in preserving reading position.</p>
+<p>I also experimented with moving parts of the layout calculation to Rust compiled to WebAssembly.</p>
+<p>The experiment was useful, but it demonstrated an important limitation of applying WASM to this particular architecture.</p>
+<p>Moving an isolated function to Rust does not automatically make the complete operation faster. If large strings and layout data repeatedly cross the JavaScript/WASM boundary, the integration overhead becomes significant.</p>
+<p>To gain the full benefit, a much larger part of the document engine - including its text and internal data structures - would need to live inside WebAssembly memory.</p>
+<p>That would turn a targeted optimization into a substantially different architecture.</p>
+<p>For the current implementation, the trade-off did not justify that migration, so the main engine remains in JavaScript. The Rust/WASM version remains a performance experiment rather than the production architecture.</p>
+<p>The same virtualization model has also turned out to be useful beyond plain text.</p>
+<p>For PDF documents, a page can participate in the virtual document similarly to a large visual row. Only the required pages need to be actively rendered around the current viewport.</p>
+<p>The engine can likewise be extended to other multimedia or custom document elements. From the virtualization layer&#39;s perspective, the important part is not whether an item is a text line, PDF page, image, or another component, but where it belongs in the logical document and how much space it occupies.</p>
+<p>This makes the system increasingly similar to a specialized document renderer rather than a conventional virtual list.</p>
+<p>There is still room for further optimization.</p>
+<p>One planned direction is a two-stage layout strategy.</p>
+<p>The first stage would calculate only enough of the new layout around the current reading position to update the viewport immediately. A second stage could then calculate the rest of the book.</p>
+<p>Another possible optimization is dividing the document into independent sections and processing them concurrently in separate workers where the layout algorithm permits it.</p>
+<p>Those are future improvements rather than features of the current implementation, but the architecture is moving in that direction: progressively decoupling document layout, logical reading position, and visible rendering.</p>
+<h2>The Common Pattern</h2>
+<p>These three projects all contain virtual scrolling, but they solve different engineering problems.</p>
+<p>At <strong>Dignio</strong>, the primary challenge was unknown row height. The system needed to determine the geometry of huge tables while avoiding the cost of fully rendering them.</p>
+<p>At <strong>Luqon</strong>, row geometry became simpler, while interaction became much more complex. Virtualization had to work with editable cells, Vue components, selectors, tree structures, keyboard navigation, filtering, and reusable enterprise UI infrastructure.</p>
+<p>In <strong>Stereo Reader</strong>, the problem moved beyond tables entirely. Virtualization became part of a document layout system where changing typography can invalidate the line structure of an entire book and the reader still needs to remain at the same logical position.</p>
+<p>The recurring skill is therefore not simply implementing a virtual list.</p>
+<p>It is designing systems that separate <strong>data size, logical layout, and actual rendered UI</strong>, and then minimizing the amount of work required when one of those layers changes.</p>
+<p>Across these projects I have worked with:</p>
+<ul>
+<li>fixed and variable item heights;</li>
+<li>text measurement and line wrapping;</li>
+<li>layout caching;</li>
+<li>viewport-to-data mapping;</li>
+<li>editable virtualized components;</li>
+<li>hierarchical data flattened into virtual views;</li>
+<li>virtualized dropdowns and selectors;</li>
+<li>client-side filtering over large datasets;</li>
+<li>large-document relayout;</li>
+<li>preservation of logical position across layout changes;</li>
+<li>PDF and multimedia virtualization;</li>
+<li>experiments with WebAssembly and alternative layout architectures.</li>
+</ul>
+<p>After using virtual scrolling in several substantially different systems, I consider it one of the areas of frontend engineering where I have particularly deep practical experience.</p>
+<p>The implementations changed because the constraints changed. The underlying objective remained the same: <strong>keep the amount of rendered and recomputed work proportional to what the user actually needs to see, rather than to the total amount of data available.</strong></p>
+</span></div><!--]--></main><!--]--></div></div><div id="teleports"></div><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"811a143c-c7ef-4bfe-88f7-e9c9532b53a0",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">[["ShallowReactive",1],{"prerenderedAt":2,"data":3,"state":5,"once":14,"_errors":15,"serverRendered":17,"path":18},1787755333431,["ShallowReactive",4],{},["Reactive",6],{"$ssite-config":7},{"_priority":8,"env":11,"name":12,"url":13},{"env":9,"url":10,"name":10},-15,-3,"production","Alek Labs","https:\u002F\u002Faleklabs.dev",["Set"],["ShallowReactive",16],{},true,"\u002Fexperience\u002Fvirtual-scrolling-engineering"]</script><script>
+(() => {
+    const moduleScriptTags = ["\u003cscript type=\"module\" src=\"/_nuxt/DtOrA4js.js\" crossorigin>\u003c/script>"];
+    const supportsLcp = 'PerformanceObserver' in window
+        && Array.isArray(PerformanceObserver.supportedEntryTypes)
+        && PerformanceObserver.supportedEntryTypes.includes('largest-contentful-paint');
+
+    let started = false;
+    let pageLoaded = document.readyState === 'complete';
+    let largestLcp = null;
+    let settleTimer = 0;
+    let lcpObserver = null;
+
+    const fallbackTimer = window.setTimeout(startNuxt, 3000);
+
+    window.addEventListener('pointerdown', startNuxt, {once: true, capture: true});
+    window.addEventListener('keydown', startNuxt, {once: true, capture: true});
+
+    if (!supportsLcp) {
+        startNuxt();
+        return;
+    }
+
+    try {
+        lcpObserver = new PerformanceObserver(entryList => {
+            for (const entry of entryList.getEntries()) {
+                if (!largestLcp || entry.size >= largestLcp.size) largestLcp = entry;
+            }
+
+            scheduleAfterLargestLcp();
+        });
+
+        lcpObserver.observe({type: 'largest-contentful-paint', buffered: true});
+    } catch {
+        startNuxt();
+        return;
+    }
+
+    if (pageLoaded) {
+        scheduleAfterLargestLcp();
+    } else {
+        window.addEventListener('load', handleLoad, {once: true});
+    }
+
+    function handleLoad() {
+        pageLoaded = true;
+        scheduleAfterLargestLcp();
+    }
+
+    function scheduleAfterLargestLcp() {
+        if (started || !pageLoaded || !largestLcp) return;
+
+        window.clearTimeout(settleTimer);
+
+        settleTimer = window.setTimeout(() => {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(startNuxt);
+            });
+        }, 100);
+    }
+
+    function startNuxt() {
+        if (started) return;
+
+        started = true;
+
+        window.clearTimeout(fallbackTimer);
+        window.clearTimeout(settleTimer);
+        window.removeEventListener('pointerdown', startNuxt, true);
+        window.removeEventListener('keydown', startNuxt, true);
+        window.removeEventListener('load', handleLoad);
+
+        if (lcpObserver) lcpObserver.disconnect();
+
+        for (const tagHtml of moduleScriptTags) {
+            const template = document.createElement('template');
+
+            template.innerHTML = tagHtml;
+
+            const source = template.content.querySelector('script');
+
+            if (!source) continue;
+
+            const script = document.createElement('script');
+
+            for (const attribute of source.attributes) {
+                script.setAttribute(attribute.name, attribute.value);
+            }
+
+            script.textContent = source.textContent;
+            document.head.append(script);
+        }
+    }
+})();
+</script></body></html>
