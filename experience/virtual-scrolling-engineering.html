@@ -38,7 +38,7 @@
 <p>This project established several ideas that I would reuse later:</p>
 <p><strong>virtualization is only one part of the problem; understanding and predicting layout can be equally important.</strong></p>
 <h2>Luqon BOOST: Virtual Tables as UI Infrastructure</h2>
-<p>Years later, I encountered the same general problem in BOOST at Luqon, but the requirements were different.</p>
+<p>Years later, I encountered the same general problem in <a href="/experience/senior-frontend-develop-at-luqon">BOOST at Luqon</a>, but the requirements were different.</p>
 <p>BOOST is a large Vue 3 and TypeScript enterprise application. Instead of continuing to depend on a third-party data table, I implemented a custom table as part of the application&#39;s internal UI framework.</p>
 <p>This time I could design the system around modern Vue 3 reactivity and TypeScript from the beginning.</p>
 <p>For the primary virtualized use cases, row height was known in advance. This eliminated much of the expensive geometry discovery required by the Dignio implementation. Calculating the total scrollable height and mapping a scroll position to visible rows was therefore considerably simpler.</p>
@@ -81,7 +81,7 @@
 <p>It became a reusable <strong>UI infrastructure layer</strong>.</p>
 <p>The table could be embedded into pages, forms, selectors, and hierarchical components, while the rest of the application reused the same rendering, navigation, filtering, and data abstractions.</p>
 <h2>Stereo Reader: Virtual Scrolling as a Document Layout Engine</h2>
-<p>The third case comes from my personal project, Stereo Reader.</p>
+<p>The third case comes from my personal project, <a href="/stereo-reader">Stereo Reader</a>.</p>
 <p>Here the problem is no longer a conventional data table.</p>
 <p>Stereo Reader needs to display books, and books can contain very large amounts of text. Rendering an entire novel as one large DOM structure is unnecessary and increasingly expensive as document size grows.</p>
 <p>More importantly, Stereo Reader allows the user to change parameters such as text width and font size while reading.</p>
@@ -142,9 +142,9 @@
 </ul>
 <p>After using virtual scrolling in several substantially different systems, I consider it one of the areas of frontend engineering where I have particularly deep practical experience.</p>
 <p>The implementations changed because the constraints changed. The underlying objective remained the same: <strong>keep the amount of rendered and recomputed work proportional to what the user actually needs to see, rather than to the total amount of data available.</strong></p>
-</span></div><!--]--></main><!--]--></div></div><div id="teleports"></div><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"811a143c-c7ef-4bfe-88f7-e9c9532b53a0",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">[["ShallowReactive",1],{"prerenderedAt":2,"data":3,"state":5,"once":14,"_errors":15,"serverRendered":17,"path":18},1787755333431,["ShallowReactive",4],{},["Reactive",6],{"$ssite-config":7},{"_priority":8,"env":11,"name":12,"url":13},{"env":9,"url":10,"name":10},-15,-3,"production","Alek Labs","https:\u002F\u002Faleklabs.dev",["Set"],["ShallowReactive",16],{},true,"\u002Fexperience\u002Fvirtual-scrolling-engineering"]</script><script>
+</span></div><!--]--></main><!--]--></div></div><div id="teleports"></div><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"e004b8d0-dd91-463e-a122-b5592ad14732",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">[["ShallowReactive",1],{"prerenderedAt":2,"data":3,"state":5,"once":14,"_errors":15,"serverRendered":17,"path":18},1787755876644,["ShallowReactive",4],{},["Reactive",6],{"$ssite-config":7},{"_priority":8,"env":11,"name":12,"url":13},{"env":9,"url":10,"name":10},-15,-3,"production","Alek Labs","https:\u002F\u002Faleklabs.dev",["Set"],["ShallowReactive",16],{},true,"\u002Fexperience\u002Fvirtual-scrolling-engineering"]</script><script>
 (() => {
-    const moduleScriptTags = ["\u003cscript type=\"module\" src=\"/_nuxt/DtOrA4js.js\" crossorigin>\u003c/script>"];
+    const moduleScriptTags = ["\u003cscript type=\"module\" src=\"/_nuxt/Cf7qNDlG.js\" crossorigin>\u003c/script>"];
     const supportsLcp = 'PerformanceObserver' in window
         && Array.isArray(PerformanceObserver.supportedEntryTypes)
         && PerformanceObserver.supportedEntryTypes.includes('largest-contentful-paint');
