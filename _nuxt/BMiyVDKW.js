@@ -1,4 +1,4 @@
-import"#entry";import{t as e}from"./DRtBMuYi.js";import{n as t}from"./DegBrM7r.js";var n=``+new URL(`cover.gIW4jzB_.webp`,import.meta.url).href,r=``+new URL(`cover.CCsFhWvG.webp`,import.meta.url).href,i=``+new URL(`cover.BoE8QZYc.webp`,import.meta.url).href,a=`---\r
+import{s as e}from"#entry";import{t}from"./DRtBMuYi.js";import{n}from"./DegBrM7r.js";var r=``+new URL(`cover.gIW4jzB_.webp`,import.meta.url).href,i=``+new URL(`cover.CCsFhWvG.webp`,import.meta.url).href,a=``+new URL(`cover.BoE8QZYc.webp`,import.meta.url).href,o=`---\r
 slug: senior-frontend-develop-at-luqon\r
 seoDescription: Built complex SPA interfaces, scalable frontend architecture with stores and reactive model classes, custom\r
             UI components including virtual tables and forms, and AI-agent-assisted delivery with E2E verification.\r
@@ -183,7 +183,7 @@ For HR or non-technical reviewers, the project demonstrates senior frontend owne
 ## Technologies\r
 \r
 Vue 3, TypeScript, Vite, Vue Router, Vue I18n, IndexedDB, Web Workers, MQTT over WebSocket, Axios, crossfilter2, SCSS, custom component framework, custom domain model layer, virtual scrolling, editable data grids, strict TypeScript, monorepo workspace architecture.\r
-`,o=`---\r
+`,s=`---\r
 slug: senior-frontend-develop-at-hotels-ru\r
 seoDescription: Vue 3 / TypeScript / Vite SPA for hotel and train ticket reservations, with custom Vite plugins, interactive maps, dynamic SVG train-seat layouts, client-side filtering, complex booking state, and a reusable form validation framework.\r
 description: Vue 3 / TypeScript / Vite SPA for hotel and train ticket reservations, with custom Vite plugins, interactive maps, dynamic SVG train-seat layouts, client-side filtering, complex booking state, and a reusable form validation framework.\r
@@ -468,7 +468,7 @@ Vue 3, TypeScript, Vite, Vue Router, Composition API, SCSS, Yandex Maps JavaScri
 The application demonstrates frontend engineering beyond screen implementation. It required custom build-time tooling, runtime abstractions, complex state management, graphical interaction, client-side data filtering, reusable form infrastructure, and integration with external supplier APIs.\r
 \r
 The strongest technical value is that the application solves complex operator workflows through custom frontend infrastructure: Vite plugins for developer productivity, client-side filtering for responsive result exploration, dynamic SVG compilation for train-seat selection, Yandex Maps for hotel exploration, and a reusable validation/form system for high-density booking forms.\r
-`,s=`---\r
+`,c=`---\r
 slug: virtual-scrolling-engineering\r
 seoDescription: Three virtual scrolling systems built for different constraints - variable-height AngularJS tables, editable Vue 3 data grids, and large-document rendering in Stereo Reader.\r
 description: Virtual scrolling has been a recurring engineering problem throughout my frontend work. These three cases show different approaches to variable-height tables, editable enterprise grids, tree selectors, and large-document layout.\r
@@ -715,5 +715,5 @@ Across these projects I have worked with:\r
 After using virtual scrolling in several substantially different systems, I consider it one of the areas of frontend engineering where I have particularly deep practical experience.\r
 \r
 The implementations changed because the constraints changed. The underlying objective remained the same: **keep the amount of rendered and recomputed work proportional to what the user actually needs to see, rather than to the total amount of data available.**\r
-`,c=Object.assign({"../content/experience/boost/cover.png":n,"../content/experience/hotels/cover.png":r,"../content/experience/scrolling/cover.png":i}),l=Object.entries(Object.assign({"../content/experience/boost/index.md":a,"../content/experience/hotels/index.md":o,"../content/experience/scrolling/index.md":s})).map(([n,r])=>{let i=r.replace(/^\uFEFF/u,``).replace(/\r\n?/g,`
-`),a=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(i);if(typeof a?.[1]!=`string`||typeof a?.[2]!=`string`)throw Error(`No meta for`+n);let o=e(a[1]);o.data=a[2],o.title=l(r),o.date=new Date(o.date),o.readOn??=[];let s=c[Object.keys(c).find(e=>e.includes(n.replace(`index.md`,``)))??``];if(!s)throw Error(`No cover image for `+o.title);return o.coverUrl=s,o;function l(e){let n=t(e);for(let e of n)if(e.type===`heading`&&e.depth===1)return e.text.trim();return null}}).sort((e,t)=>e.order===void 0?t.order===void 0?0:1:t.order===void 0?-1:e.order-t.order);export{l as t};
+`,l=e({articles:()=>d}),u=Object.assign({"../content/experience/boost/cover.png":r,"../content/experience/hotels/cover.png":i,"../content/experience/scrolling/cover.png":a}),d=Object.entries(Object.assign({"../content/experience/boost/index.md":o,"../content/experience/hotels/index.md":s,"../content/experience/scrolling/index.md":c})).map(([e,r])=>{let i=r.replace(/^\uFEFF/u,``).replace(/\r\n?/g,`
+`),a=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(i);if(typeof a?.[1]!=`string`||typeof a?.[2]!=`string`)throw Error(`No meta for`+e);let o=t(a[1]);o.data=a[2],o.title=c(r),o.date=new Date(o.date),o.readOn??=[];let s=u[Object.keys(u).find(t=>t.includes(e.replace(`index.md`,``)))??``];if(!s)throw Error(`No cover image for `+o.title);return o.coverUrl=s,o;function c(e){let t=n(e);for(let e of t)if(e.type===`heading`&&e.depth===1)return e.text.trim();return null}}).sort((e,t)=>e.order===void 0?t.order===void 0?0:1:t.order===void 0?-1:e.order-t.order);export{l as n,d as t};

@@ -1,4 +1,4 @@
-import"#entry";import{t as e}from"./DRtBMuYi.js";import{n as t}from"./DegBrM7r.js";var n=``+new URL(`cover.CbGmTKpN.webp`,import.meta.url).href,r=``+new URL(`cover.D7EDmnD9.webp`,import.meta.url).href,i=``+new URL(`cover.DrB9i5VT.webp`,import.meta.url).href,a=`---\r
+import{s as e}from"#entry";import{t}from"./DRtBMuYi.js";import{n}from"./DegBrM7r.js";var r=``+new URL(`cover.CbGmTKpN.webp`,import.meta.url).href,i=``+new URL(`cover.D7EDmnD9.webp`,import.meta.url).href,a=``+new URL(`cover.DrB9i5VT.webp`,import.meta.url).href,o=`---\r
 date: 2026-07-06\r
 slug: hard-object-references\r
 readOn: \r
@@ -608,7 +608,7 @@ Or shorter:\r
 \r
 > References are not change signals. They are stable addresses.\r
 \r
-`,o=`---\r
+`,s=`---\r
 date: 2026-05-16\r
 slug: stop-turning-the-mobile-web-into-a-second-class-platform\r
 readOn: \r
@@ -973,7 +973,7 @@ It becomes stronger only if people continue using it.\r
 What do you think?\r
 \r
 Are mobile apps genuinely superior for most modern products, or are we underinvesting in the mobile web ecosystem?\r
-`,s=`---\r
+`,c=`---\r
 date: 2026-05-18\r
 slug: why-every-frontend-project-should-have-its-own-ui-layer\r
 readOn: \r
@@ -1475,5 +1475,5 @@ That language becomes one of the most valuable assets in the entire frontend arc
 ---\r
 \r
 What additional advantages or disadvantages have you seen with internal UI layers and wrapper-based component systems?\r
-`,c=Object.assign({"../content/articles/hard-objects/cover.png":n,"../content/articles/mobile-web/cover.webp":r,"../content/articles/ui-layer/cover.webp":i}),l=Object.entries(Object.assign({"../content/articles/hard-objects/index.md":a,"../content/articles/mobile-web/index.md":o,"../content/articles/ui-layer/index.md":s})).map(([n,r])=>{let i=r.replace(/^\uFEFF/u,``).replace(/\r\n?/g,`
-`),a=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(i);if(typeof a?.[1]!=`string`||typeof a?.[2]!=`string`)throw Error(`No meta for`+n);let o=e(a[1]);o.data=a[2],o.title=l(r),o.date=new Date(o.date),o.readOn??=[];let s=c[Object.keys(c).find(e=>e.includes(n.replace(`index.md`,``)))??``];if(!s)throw Error(`No cover image for `+o.title);return o.coverUrl=s,o;function l(e){let n=t(e);for(let e of n)if(e.type===`heading`&&e.depth===1)return e.text.trim();return null}}).sort((e,t)=>e.order===void 0?t.order===void 0?0:1:t.order===void 0?-1:e.order-t.order);export{l as t};
+`,l=e({articles:()=>d}),u=Object.assign({"../content/articles/hard-objects/cover.png":r,"../content/articles/mobile-web/cover.webp":i,"../content/articles/ui-layer/cover.webp":a}),d=Object.entries(Object.assign({"../content/articles/hard-objects/index.md":o,"../content/articles/mobile-web/index.md":s,"../content/articles/ui-layer/index.md":c})).map(([e,r])=>{let i=r.replace(/^\uFEFF/u,``).replace(/\r\n?/g,`
+`),a=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(i);if(typeof a?.[1]!=`string`||typeof a?.[2]!=`string`)throw Error(`No meta for`+e);let o=t(a[1]);o.data=a[2],o.title=c(r),o.date=new Date(o.date),o.readOn??=[];let s=u[Object.keys(u).find(t=>t.includes(e.replace(`index.md`,``)))??``];if(!s)throw Error(`No cover image for `+o.title);return o.coverUrl=s,o;function c(e){let t=n(e);for(let e of t)if(e.type===`heading`&&e.depth===1)return e.text.trim();return null}}).sort((e,t)=>e.order===void 0?t.order===void 0?0:1:t.order===void 0?-1:e.order-t.order);export{l as n,d as t};
