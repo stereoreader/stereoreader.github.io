@@ -1,0 +1,1 @@
+import"#entry";var e=``+new URL(`cover.BgC1Jbt2.png`,import.meta.url).href;export{e as t};
