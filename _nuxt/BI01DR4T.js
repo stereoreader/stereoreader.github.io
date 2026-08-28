@@ -1,0 +1,1 @@
+import"#entry";var e=``+new URL(`cover.B3kDDH6a.webp`,import.meta.url).href;export{e as t};
