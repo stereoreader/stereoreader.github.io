@@ -1,95 +1,81 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script type="importmap">{"imports":{"#entry":"/_nuxt/bWOaKoxr.js"}}</script><link rel="stylesheet" href="/_nuxt/style.BQqzUI9H.css" crossorigin></head><body><div id="__nuxt"></div><div id="teleports"></div><script>window.__NUXT_SITE_CONFIG__=(function(a){return {_priority:{env:-15,url:a,name:a},env:"production",name:"Alek Labs",url:"https:\u002F\u002Faleklabs.dev"}}(-3))</script><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"1ba477ed-7dae-4c84-bba2-9e9d74b045cf",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="false" id="__NUXT_DATA__">[{"prerenderedAt":1,"serverRendered":2},1787870994740,false]</script><script>
-(() => {
-    const moduleScriptTags = ["\u003cscript type=\"module\" src=\"/_nuxt/bWOaKoxr.js\" crossorigin>\u003c/script>"];
-    const supportsLcp = 'PerformanceObserver' in window
-        && Array.isArray(PerformanceObserver.supportedEntryTypes)
-        && PerformanceObserver.supportedEntryTypes.includes('largest-contentful-paint');
-
-    let started = false;
-    let pageLoaded = document.readyState === 'complete';
-    let largestLcp = null;
-    let settleTimer = 0;
-    let lcpObserver = null;
-
-    const fallbackTimer = window.setTimeout(startNuxt, 3000);
-
-    window.addEventListener('pointerdown', startNuxt, {once: true, capture: true});
-    window.addEventListener('keydown', startNuxt, {once: true, capture: true});
-
-    if (!supportsLcp) {
-        startNuxt();
-        return;
-    }
-
-    try {
-        lcpObserver = new PerformanceObserver(entryList => {
-            for (const entry of entryList.getEntries()) {
-                if (!largestLcp || entry.size >= largestLcp.size) largestLcp = entry;
-            }
-
-            scheduleAfterLargestLcp();
-        });
-
-        lcpObserver.observe({type: 'largest-contentful-paint', buffered: true});
-    } catch {
-        startNuxt();
-        return;
-    }
-
-    if (pageLoaded) {
-        scheduleAfterLargestLcp();
-    } else {
-        window.addEventListener('load', handleLoad, {once: true});
-    }
-
-    function handleLoad() {
-        pageLoaded = true;
-        scheduleAfterLargestLcp();
-    }
-
-    function scheduleAfterLargestLcp() {
-        if (started || !pageLoaded || !largestLcp) return;
-
-        window.clearTimeout(settleTimer);
-
-        settleTimer = window.setTimeout(() => {
-            requestAnimationFrame(() => {
-                requestAnimationFrame(startNuxt);
-            });
-        }, 100);
-    }
-
-    function startNuxt() {
-        if (started) return;
-
-        started = true;
-
-        window.clearTimeout(fallbackTimer);
-        window.clearTimeout(settleTimer);
-        window.removeEventListener('pointerdown', startNuxt, true);
-        window.removeEventListener('keydown', startNuxt, true);
-        window.removeEventListener('load', handleLoad);
-
-        if (lcpObserver) lcpObserver.disconnect();
-
-        for (const tagHtml of moduleScriptTags) {
-            const template = document.createElement('template');
-
-            template.innerHTML = tagHtml;
-
-            const source = template.content.querySelector('script');
-
-            if (!source) continue;
-
-            const script = document.createElement('script');
-
-            for (const attribute of source.attributes) {
-                script.setAttribute(attribute.name, attribute.value);
-            }
-
-            script.textContent = source.textContent;
-            document.head.append(script);
-        }
-    }
-})();
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script type="importmap">{"imports":{"#entry":"/_nuxt/CaW5hGXa.js"}}</script><link rel="stylesheet" href="/_nuxt/style.IdAEFhyr.css" crossorigin></head><body><div id="__nuxt"></div><div id="teleports"></div><script>window.__NUXT_SITE_CONFIG__=(function(a){return {_priority:{env:-15,url:a,name:a},env:"production",name:"Alek Labs",url:"https:\u002F\u002Faleklabs.dev"}}(-3))</script><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"6a1ab887-9644-414d-8f25-d24c72d23c75",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="false" id="__NUXT_DATA__">[{"prerenderedAt":1,"serverRendered":2},1787916946636,false]</script><script>/// <reference lib="dom" />
+performance.mark("nuxt loader started");
+const moduleScriptTags = ["\u003cscript type=\"module\" src=\"/_nuxt/CaW5hGXa.js\" crossorigin>\u003c/script>"];
+const supportsLcp = "PerformanceObserver" in window && Array.isArray(PerformanceObserver.supportedEntryTypes) && PerformanceObserver.supportedEntryTypes.includes("largest-contentful-paint");
+let started = false;
+let pageLoaded = document.readyState === "complete";
+let largestLcp = null;
+let settleTimer = 0;
+let lcpObserver = null;
+const fallbackTimer = window.setTimeout(startNuxt, 3e3);
+window.addEventListener("pointerdown", startNuxt, {
+	once: true,
+	capture: true
+});
+window.addEventListener("keydown", startNuxt, {
+	once: true,
+	capture: true
+});
+if (!supportsLcp) {
+	startNuxt();
+} else {
+	try {
+		lcpObserver = new PerformanceObserver((entryList) => {
+			for (const entry of entryList.getEntries()) {
+				const lcpEntry = entry;
+				if (!largestLcp || lcpEntry.size >= largestLcp.size) largestLcp = lcpEntry;
+			}
+			scheduleAfterLargestLcp();
+		});
+		lcpObserver.observe({
+			type: "largest-contentful-paint",
+			buffered: true
+		});
+	} catch {
+		startNuxt();
+	}
+	if (!started) {
+		if (pageLoaded) {
+			scheduleAfterLargestLcp();
+		} else {
+			window.addEventListener("load", handleLoad, { once: true });
+		}
+	}
+}
+function handleLoad() {
+	pageLoaded = true;
+	scheduleAfterLargestLcp();
+}
+function scheduleAfterLargestLcp() {
+	if (started || !pageLoaded || !largestLcp) return;
+	window.clearTimeout(settleTimer);
+	settleTimer = window.setTimeout(() => {
+		requestAnimationFrame(() => {
+			requestAnimationFrame(startNuxt);
+		});
+	}, 100);
+}
+function startNuxt() {
+	if (started) return;
+	performance.mark("nuxt loading started");
+	started = true;
+	window.clearTimeout(fallbackTimer);
+	window.clearTimeout(settleTimer);
+	window.removeEventListener("pointerdown", startNuxt, true);
+	window.removeEventListener("keydown", startNuxt, true);
+	window.removeEventListener("load", handleLoad);
+	if (lcpObserver) lcpObserver.disconnect();
+	for (const tagHtml of moduleScriptTags) {
+		const template = document.createElement("template");
+		template.innerHTML = tagHtml;
+		const source = template.content.querySelector("script");
+		if (!source) continue;
+		const script = document.createElement("script");
+		for (const attribute of source.attributes) {
+			script.setAttribute(attribute.name, attribute.value);
+		}
+		script.textContent = source.textContent;
+		document.head.append(script);
+	}
+}
 </script></body></html>
