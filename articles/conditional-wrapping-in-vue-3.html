@@ -1,0 +1,406 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Conditional Wrapping in Vue 3: Three Approaches</title><script type="importmap">{"imports":{"#entry":"/_nuxt/MA9LVw8Q.js"}}</script><link rel="stylesheet" href="/_nuxt/style.Bj7jj9vx.css" crossorigin><link rel="icon" type="image/svg+xml" href="logo.svg"><meta name="description" content="Explore three approaches to conditional wrapping in Vue 3, from a simple wrapper prop to advanced VNode manipulation with nested wrappers."><meta property="og:title" content="Conditional Wrapping in Vue 3: Three Approaches"><meta property="og:description" content="I explore three ways to build a conditional wrapper component in Vue 3: passing the wrapper as a prop, defining it directly in the default slot, and using a dedicated wrapper slot for arbitrary nesting. The advanced version includes both the original cloneVNode and ShapeFlags implementation and a more future-proof alternative based only on Vue's public VNode API."><meta property="og:image" content="/_nuxt/cover.WwhsogJd.webp"></head><body><div id="__nuxt"><div><!--[--><header data-v-2e462a04><a href="/" class=""><svg id="animated-text" viewbox="0 0 574.592 138" xmlns="http://www.w3.org/2000/svg" style="height:100%;display:none;" data-v-a27501ae><defs data-v-a27501ae><linearGradient id="stripe-gradient" gradientUnits="userSpaceOnUse" spreadMethod="repeat" x1="0" y1="0" x2="0" y2="2" gradientTransform="translate(0 0)" data-v-a27501ae><stop offset="0" stop-color="white" data-v-a27501ae></stop><stop offset=".5" stop-color="white" data-v-a27501ae></stop><stop offset=".5" stop-color="black" data-v-a27501ae></stop><stop offset="1" stop-color="black" data-v-a27501ae></stop></linearGradient><mask id="stripe-mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="-100" y="-100" width="1200" height="400" style="mask-type:luminance;" data-v-a27501ae><rect x="-100" y="-100" width="1200" height="400" fill="url(#stripe-gradient)" data-v-a27501ae></rect></mask><linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%" data-v-a27501ae><stop offset="0%" stop-color="#44aa44" stop-opacity=".7" data-v-a27501ae></stop><stop offset="100%" stop-color="#003355" data-v-a27501ae></stop></linearGradient><filter id="dot-distort-glow" x="-500%" y="-500%" width="1000%" height="1000%" color-interpolation-filters="sRGB" data-v-a27501ae><feTurbulence id="dot-turbulence" type="turbulence" baseFrequency="0.05" numOctaves="2" seed="1" result="turbulence" data-v-a27501ae></feTurbulence><feDisplacementMap id="displacement" in="SourceGraphic" in2="turbulence" scale="7.5" xChannelSelector="R" yChannelSelector="G" result="distorted" data-v-a27501ae></feDisplacementMap><feGaussianBlur in="distorted" stdDeviation="10" result="blur" data-v-a27501ae></feGaussianBlur><feMerge data-v-a27501ae><feMergeNode in="blur" data-v-a27501ae></feMergeNode><feMergeNode id="blur-source" in="SourceGraphic" data-v-a27501ae></feMergeNode></feMerge></filter></defs><g class="fill" fill="url(#gradient)" stroke="none" fill-rule="evenodd" data-v-a27501ae><!--[--><path opacity="0" d="M60.8 128L49.408 128L44.544 105.344L19.584 105.344L14.592 128L3.2 128L24.832 38.4L39.552 38.4L60.8 128ZM42.496 95.744L32 46.848L21.632 95.744L42.496 95.744Z" style="" data-v-a27501ae></path><path opacity="0" d="M122.56 128L82.88 128L82.88 38.4L94.016 38.4L94.016 118.272L122.56 118.272L122.56 128Z" style="" data-v-a27501ae></path><path opacity="0" d="M185.344 128L143.36 128L143.36 38.4L185.344 38.4L185.344 47.744L154.496 47.744L154.496 77.056L182.144 77.056L182.144 86.4L154.496 86.4L154.496 118.656L185.344 118.656L185.344 128Z" style="" data-v-a27501ae></path><path opacity="0" d="M260.16 128L247.616 128L227.648 87.296L223.04 94.976L223.04 128L211.904 128L211.904 38.4L223.04 38.4L223.04 77.056L246.72 38.4L258.88 38.4L234.56 77.568L260.16 128Z" style="" data-v-a27501ae></path><path opacity="0" d="" style="display:none;" data-v-a27501ae></path><path opacity="0" d="M363.84 128L324.16 128L324.16 38.4L335.296 38.4L335.296 118.272L363.84 118.272L363.84 128Z" style="" data-v-a27501ae></path><path opacity="0" d="M434.56 128L423.168 128L418.304 105.344L393.344 105.344L388.352 128L376.96 128L398.592 38.4L413.312 38.4L434.56 128ZM416.256 95.744L405.76 46.848L395.392 95.744L416.256 95.744Z" style="" data-v-a27501ae></path><path opacity="0" d="M502.72 107.776Q502.72 118.784 497.664 123.392Q492.608 128 480.96 128L480.96 128L456.64 128L456.64 38.4L479.424 38.4Q490.816 38.4 496.128 43.008Q501.44 47.616 501.44 58.368L501.44 58.368L501.44 65.664Q501.44 75.52 494.4 80.512L494.4 80.512Q502.72 85.12 502.72 96.256L502.72 96.256L502.72 107.776ZM490.304 57.216Q490.304 52.352 488.064 50.176Q485.824 48 480.96 48L480.96 48L467.776 48L467.776 76.288L480.96 76.288Q484.928 76.288 487.616 73.728Q490.304 71.168 490.304 66.944L490.304 66.944L490.304 57.216ZM491.584 95.104Q491.584 90.88 489.024 88.384Q486.464 85.888 482.24 85.888L482.24 85.888L467.776 85.888L467.776 118.4L482.112 118.4Q486.976 118.4 489.28 116.16Q491.584 113.92 491.584 109.056L491.584 109.056L491.584 95.104Z" style="" data-v-a27501ae></path><path opacity="0" d="M567.552 106.24Q567.552 117.12 561.6 122.56Q555.648 128 544.512 128L544.512 128L527.616 128L527.616 118.272L545.792 118.272Q550.528 118.272 553.472 115.456Q556.416 112.64 556.416 108.672L556.416 108.672L556.416 95.36Q556.416 91.52 554.432 89.152Q552.448 86.784 548.48 86.784L548.48 86.784L545.92 86.784Q536.448 86.784 530.944 81.216Q525.44 75.648 525.44 65.024L525.44 65.024L525.44 60.16Q525.44 49.28 531.392 43.84Q537.344 38.4 548.48 38.4L548.48 38.4L565.504 38.4L565.504 48.128L547.2 48.128Q542.464 48.128 539.52 50.944Q536.576 53.76 536.576 57.728L536.576 57.728L536.576 67.456Q536.576 71.424 539.136 74.048Q541.696 76.672 545.792 76.672L545.792 76.672L548.352 76.672Q557.44 76.672 562.496 81.92Q567.552 87.168 567.552 97.792L567.552 97.792L567.552 106.24Z" style="" data-v-a27501ae></path><!--]--></g><g class="stroke" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-v-a27501ae><!--[--><!--[--><!--[--><path id="stroke-0-0" d="M60.8 128L49.408 128L44.544 105.344L19.584 105.344L14.592 128L3.2 128L24.832 38.4L39.552 38.4L60.8 128Z" data-v-a27501ae></path><path id="stroke-0-1" d="M42.496 95.744L32 46.848L21.632 95.744L42.496 95.744Z" data-v-a27501ae></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-1-0" d="M122.56 128L82.88 128L82.88 38.4L94.016 38.4L94.016 118.272L122.56 118.272L122.56 128Z" data-v-a27501ae></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-2-0" d="M185.344 128L143.36 128L143.36 38.4L185.344 38.4L185.344 47.744L154.496 47.744L154.496 77.056L182.144 77.056L182.144 86.4L154.496 86.4L154.496 118.656L185.344 118.656L185.344 128Z" data-v-a27501ae></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-3-0" d="M260.16 128L247.616 128L227.648 87.296L223.04 94.976L223.04 128L211.904 128L211.904 38.4L223.04 38.4L223.04 77.056L246.72 38.4L258.88 38.4L234.56 77.568L260.16 128Z" data-v-a27501ae></path><!--]--><!--]--><!--[--><!--[--><!--]--><!--]--><!--[--><!--[--><path id="stroke-5-0" d="M363.84 128L324.16 128L324.16 38.4L335.296 38.4L335.296 118.272L363.84 118.272L363.84 128Z" data-v-a27501ae></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-6-0" d="M434.56 128L423.168 128L418.304 105.344L393.344 105.344L388.352 128L376.96 128L398.592 38.4L413.312 38.4L434.56 128Z" data-v-a27501ae></path><path id="stroke-6-1" d="M416.256 95.744L405.76 46.848L395.392 95.744L416.256 95.744Z" data-v-a27501ae></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-7-0" d="M502.72 107.776Q502.72 118.784 497.664 123.392Q492.608 128 480.96 128L480.96 128L456.64 128L456.64 38.4L479.424 38.4Q490.816 38.4 496.128 43.008Q501.44 47.616 501.44 58.368L501.44 58.368L501.44 65.664Q501.44 75.52 494.4 80.512L494.4 80.512Q502.72 85.12 502.72 96.256L502.72 96.256L502.72 107.776Z" data-v-a27501ae></path><path id="stroke-7-1" d="M490.304 57.216Q490.304 52.352 488.064 50.176Q485.824 48 480.96 48L480.96 48L467.776 48L467.776 76.288L480.96 76.288Q484.928 76.288 487.616 73.728Q490.304 71.168 490.304 66.944L490.304 66.944L490.304 57.216Z" data-v-a27501ae></path><path id="stroke-7-2" d="M491.584 95.104Q491.584 90.88 489.024 88.384Q486.464 85.888 482.24 85.888L482.24 85.888L467.776 85.888L467.776 118.4L482.112 118.4Q486.976 118.4 489.28 116.16Q491.584 113.92 491.584 109.056L491.584 109.056L491.584 95.104Z" data-v-a27501ae></path><!--]--><!--]--><!--[--><!--[--><path id="stroke-8-0" d="M567.552 106.24Q567.552 117.12 561.6 122.56Q555.648 128 544.512 128L544.512 128L527.616 128L527.616 118.272L545.792 118.272Q550.528 118.272 553.472 115.456Q556.416 112.64 556.416 108.672L556.416 108.672L556.416 95.36Q556.416 91.52 554.432 89.152Q552.448 86.784 548.48 86.784L548.48 86.784L545.92 86.784Q536.448 86.784 530.944 81.216Q525.44 75.648 525.44 65.024L525.44 65.024L525.44 60.16Q525.44 49.28 531.392 43.84Q537.344 38.4 548.48 38.4L548.48 38.4L565.504 38.4L565.504 48.128L547.2 48.128Q542.464 48.128 539.52 50.944Q536.576 53.76 536.576 57.728L536.576 57.728L536.576 67.456Q536.576 71.424 539.136 74.048Q541.696 76.672 545.792 76.672L545.792 76.672L548.352 76.672Q557.44 76.672 562.496 81.92Q567.552 87.168 567.552 97.792L567.552 97.792L567.552 106.24Z" data-v-a27501ae></path><!--]--><!--]--><!--]--></g><g class="glowing-dots" data-v-a27501ae><!--[--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><!--]--><!--]--><!--[--><!--[--><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><!--]--><!--]--><!--[--><!--[--><circle r="2.5" fill="white" visibility="hidden" data-v-a27501ae></circle><!--]--><!--]--><!--]--></g></svg></a></header><main data-v-2e462a04><!--[--><!--[--><!----><div class="article" data-v-48dabec2><img src="/_nuxt/cover.WwhsogJd.webp" class="article-cover" data-v-48dabec2><div class="status" data-v-48dabec2><span class="date" data-v-48dabec2>September 1, 2026</span><span class="words" data-v-48dabec2>1166 words ~ 6 minutes</span></div><span data-v-48dabec2><h1>Conditional Wrapping in Vue 3: Three Approaches</h1>
+<p>Sometimes we need to conditionally wrap part of a Vue template in an additional element or component.</p>
+<p>The obvious solution is <code>v-if</code>:</p>
+<pre><code class="language-vue">&lt;div v-if=&quot;isWrapped&quot; class=&quot;wrapper&quot;&gt;
+    &lt;!-- some big chunk of markup --&gt;
+&lt;/div&gt;
+
+&lt;template v-else&gt;
+    &lt;!-- the same big chunk of markup --&gt;
+&lt;/template&gt;
+</code></pre>
+<p>It works, but now the content is duplicated.</p>
+<p>Let&#39;s explore three ways to implement a reusable conditional wrapper in Vue 3 without that duplication.</p>
+<p>We&#39;ll call our component <code>&lt;Wrap&gt;</code> and the element or component that actually surrounds the content the <strong>wrapper</strong>.</p>
+<p>Since <code>Wrap</code> itself does not need component state, all three implementations can be functional components.</p>
+<h2>1. Pass the wrapper as a prop</h2>
+<p>The simplest option is to pass the wrapper element or component as a prop.</p>
+<h3><code>Wrap.ts</code></h3>
+<pre><code class="language-ts">import { createVNode, type Component, type FunctionalComponent, type VNode } from &#39;vue&#39;;
+
+type WrapProps = {
+    wrapper?: string | Component | false;
+};
+
+type WrapSlots = {
+    default: () =&gt; VNode[];
+};
+
+const Wrap: FunctionalComponent&lt;WrapProps, {}, WrapSlots&gt; = ({wrapper}, {attrs, slots}) =&gt; {
+    const content = slots.default();
+    return wrapper ? createVNode(wrapper, attrs, content) : content;
+};
+
+Wrap.props = [&#39;wrapper&#39;];
+
+export default Wrap;
+</code></pre>
+<p>Usage:</p>
+<pre><code class="language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import { ref } from &#39;vue&#39;;
+import Wrap from &#39;./Wrap.ts&#39;;
+
+const isWrapped = ref(true);
+&lt;/script&gt;
+
+&lt;template&gt;
+    &lt;Wrap :wrapper=&quot;isWrapped &amp;&amp; &#39;div&#39;&quot; class=&quot;wrapper&quot;&gt;
+        &lt;p&gt;I&#39;m conditionally wrapped.&lt;/p&gt;
+    &lt;/Wrap&gt;
+&lt;/template&gt;
+</code></pre>
+<p><a href="https://play.vuejs.org/#eNptU8FunDAQ/ZUplQIrEVZNe4gIS1pVqtRLValVewg5sOBFKMa27CHNivLvHZtZsonKAXnmzcx7zwNT9MmY7HEUUR4VrrG9QXACRwOyVt2uitBVUVmpfjDaIkxgxQFmOFg9QExt8c2K/ba1YSDb+iBD5+FKNVo5hN75pBEt7PyUBO0oNoQX24W39KUFisHIGgVFQE+xHxG1go+N7JsH0nM+5c0akMafuuukgD8hYYvt0hiGhkFBXs7wi0EXFxC3/WNcRdDI2jkCuSxYB34KU36NByAzbY+9VrWUR6Zrs2JrToqD99L7OvNCocOj9MeMh8O0NOy1bYXN4co8gdOyb+Hth6v99fX7mwU3ddv2qsvhHVVwbqht16tL1GZNz+EmmSNKI94A7XXdXWMFqfn1TbciBTwaAZ81YUoo5PjLqJrF22skdL3efKUC5qm+W20c7YRNscfbHBxaUg9/n7nofKilE170yyE/pMazIa041KPEHJIN7MpFwt392rZ8Vr4v/5/wYpWVwjSnzwQlMSQTKyRgqhEtFTkPzoGKBSwM9EYve7dUZCwr2fAyLP0vVp0sw+35PSecTYFJeNgG8tNx9RM2Zvge72LujO8DKJ7CEpk7mKF8NP8D7ORMEg==">See it on Vue SFC Playground</a></p>
+<p>This is the most straightforward and probably the most idiomatic option.</p>
+<p>The component either creates a wrapper VNode and puts the default slot inside it or returns the default slot directly.</p>
+<p>It also works with Vue components:</p>
+<pre><code class="language-vue">&lt;Wrap :wrapper=&quot;isWrapped &amp;&amp; SomeComponent&quot;&gt;
+    ...
+&lt;/Wrap&gt;
+</code></pre>
+<p>For simple cases, this is usually sufficient.</p>
+<p>The limitation becomes visible when the wrapper itself is more complex.</p>
+<p>For example, if we want several nested wrapper elements, defining them somewhere outside the actual template and passing them through a prop quickly becomes less convenient.</p>
+<p>So let&#39;s see whether we can keep the wrapper markup directly where it is used.</p>
+<h2>2. Put the wrapper directly in the default slot</h2>
+<p>Instead of passing the wrapper through a prop, we can write it directly in the template:</p>
+<pre><code class="language-vue">&lt;Wrap :is-wrapped=&quot;isWrapped&quot;&gt;
+    &lt;div class=&quot;wrapper&quot;&gt;
+        &lt;p&gt;I&#39;m conditionally wrapped.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/Wrap&gt;
+</code></pre>
+<p>When wrapping is enabled, we return the slot normally.</p>
+<p>When it is disabled, we discard the first VNode level and return its children instead.</p>
+<h3><code>Wrap.ts</code></h3>
+<pre><code class="language-ts">import { type FunctionalComponent, type VNode } from &#39;vue&#39;;
+
+type WrapProps = {
+    isWrapped?: boolean;
+};
+
+type WrapSlots = {
+    default: () =&gt; VNode[];
+};
+
+const Wrap: FunctionalComponent&lt;WrapProps, {}, WrapSlots&gt; = ({isWrapped = false}, {slots}) =&gt; {
+    const wrapper = slots.default();
+    return isWrapped ? wrapper : wrapper.flatMap(vnode =&gt; Array.isArray(vnode.children) ? vnode.children : []);
+};
+
+Wrap.props = {
+    isWrapped: Boolean
+};
+
+export default Wrap;
+</code></pre>
+<p><a href="https://play.vuejs.org/#eNp1U02P0zAQ/StDOLSVuolYOKyyaZYFCYkDCAkEh+0e3NgJFo5t2U7ZKsp/3/FHQ4ogl8Qzb957M+OM2b3W+XFgWZlVtjFcO7DMDRoEkd1unzm7z+q95L1WxsEIhrUwQWtUDyssW93OuR+G6JTIC3/InfXpvWyUtA649UHNKOw8y9qZgW0wXxVRt/bQyrFeC+IYngCf6jA4pyS8bQRvfqGfJcuL+YAev6muEwx+h4CpilgYSANRsFdyexURdMkVWoT0VJQfoRHEWoQkugtAAOn646oH7Ixyx5UkQpySNs2rQi/5CiQ8txMGU/umF43i0bqT8J95EoQxFhyUocyUcK2fwCrBKbx8c324uXl9G/OaUMplV8IrRKRYT0zH5ZVTeg5PYcxJI9tmaT249Hmx7qQZfBhkE9t5rzAhmXTbmPn+WVH29+b3MuQ82xejtMWdJN/zaO9K7EEJRqS3cVnzVSi3qKGsJYNwJaw3sKuj4sPjXBZvka8r/+Wzml1sYZy2fwRqVFiPy3vTEmEZQkbr81NQSx6iyHkJOwiIPDlbb9KEDf4hRi5u9N1cUp6/8ha3+4no9VH6yaHEvTHklHMb3jGcNz+5oIbJDVJcRpDp4XEzdx82pv8z5BLexRmf0ewpbDX5DrPAeDY9A1ITVx4=">See it on Vue SFC Playground</a></p>
+<p>The template API is arguably nicer because the actual wrapper stays in the markup.</p>
+<p>But there are trade-offs.</p>
+<p>Vue still creates the wrapper VNode every time, including when we immediately discard it.</p>
+<p>The implementation also only understands a one-level wrapper. It assumes that the VNodes returned by the default slot represent the wrapper and that their children are the content we want to expose.</p>
+<p>So this is less idiomatic than the first solution and more dependent on the VNode structure generated by the template compiler.</p>
+<p>Still, it is an interesting option if keeping the wrapper directly in the markup improves DX enough to justify the additional assumptions.</p>
+<p>For arbitrary nesting, however, we need something more flexible.</p>
+<h2>3. Use a dedicated wrapper slot</h2>
+<p>Now let&#39;s separate the wrapper and the wrapped content into two slots:</p>
+<pre><code class="language-vue">&lt;Wrap :is-wrapped=&quot;isWrapped&quot;&gt;
+    &lt;template #wrapper&gt;
+        &lt;div class=&quot;wrapper&quot;&gt;
+            &lt;div class=&quot;inner-wrapper&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/template&gt;
+
+    &lt;p&gt;I&#39;m conditionally wrapped.&lt;/p&gt;
+&lt;/Wrap&gt;
+</code></pre>
+<p>The default slot contains our actual content.</p>
+<p>The <code>wrapper</code> slot contains an arbitrarily nested wrapper tree.</p>
+<p>The task is then:</p>
+<ol>
+<li>Build the VNode tree produced by the wrapper slot.</li>
+<li>Find its leaf VNodes.</li>
+<li>Inject the default-slot content into those leaves.</li>
+</ol>
+<p>There are two ways to implement this.</p>
+<h3>3A. Clone VNodes and modify <code>shapeFlag</code></h3>
+<p>This is the original approach.</p>
+<p>It goes deeper into Vue&#39;s VNode representation by cloning the wrapper VNodes and modifying their internal <code>shapeFlag</code>.</p>
+<h3><code>Wrap.ts</code></h3>
+<pre><code class="language-ts">import { ShapeFlags } from &#39;@vue/shared&#39;;
+import { cloneVNode, isVNode, type FunctionalComponent, type VNode } from &#39;vue&#39;;
+
+type WrapProps = {
+    isWrapped?: boolean;
+};
+
+type WrapSlots = {
+    default: () =&gt; VNode[];
+    wrapper: () =&gt; VNode[];
+};
+
+const Wrap: FunctionalComponent&lt;WrapProps, {}, WrapSlots&gt; = ({isWrapped = false}, {slots}) =&gt; {
+    if (!isWrapped) return slots.default();
+
+    const wrapper = slots.wrapper().map(vnode =&gt; cloneVNode(vnode));
+
+    findLeaves(wrapper, vnode =&gt; {
+        vnode.shapeFlag = ShapeFlags.ARRAY_CHILDREN | ShapeFlags.ELEMENT;
+        vnode.children = [...slots.default()];
+    });
+
+    return wrapper;
+
+    function findLeaves(vnodes: VNode[], callback: (vnode: VNode) =&gt; void): void {
+        for (const vnode of vnodes) {
+            const children = Array.isArray(vnode.children) ? vnode.children.filter(isVNode) : [];
+            children.length ? findLeaves(children, callback) : callback(vnode);
+        }
+    }
+};
+
+Wrap.props = {
+    isWrapped: Boolean
+};
+
+export default Wrap;
+</code></pre>
+<p><a href="https://play.vuejs.org/#eNp1U2FP2zAQ/Su38IFEKqkGQ2JpWugYaEgMTYA2TXSa3MRpLVzbst2OKst/n+M4idtBvsS+O7+7d/euDKZCxJs1DpIgVZkkQoPCei2AIrYYzwKtZsFkxshKcKmhBIkLqKCQfAWH5tnhqPP9kEg4RzysL7FWtXvGMs6UBqJqo8A5jGuUUMs1jow/HTZ5J3VoqvFKUKSxuYH50vlaa87gIqMkezb1+Cjvuoup8ZEvFhTDH2uQ6bB5aEEtkC0vIeqoich9LEsR3NeVAAcOzHPagJxsIKNIKYPhQnYQXg0kjGF51IenQ+PdR96zpUOvHZ5ZTG4OV2DamhNNOEOUbh3xPE6Hou2dncKk7vAOTKr0ltbH2FUDZfNgzmWOZQLH4gUUpySHgw/H87Ozk1HjFyjPCVsk8N5EONsKyQVhR5qLzlzVSeIdvq9lyJFamjEenJx++HiK30hRWX24eoNB4HRl1Nop8mGJBL6maKE6YV4YZQ7VEkmcewItzSw4w9/veI4HRo7uoLcCw/WaZU0rL7mJZphp57FR+5KfMeurq/kmuVBGjI5hp6nzxLDlFCNW09h980C59t7kuEBrqhMIIxhPmoxPv1xHXAf/d1bebtWgyWsk0q7EAZTVoM8+MenD0t+mAlGFTUipan9ls7WkCgj7ZYvM+uq1ZGADY1d9GI1ajTY1taMfuzh3D6N4hUS4YXVbTYp+Jo0t6nEKwvJbjDZYhe7xALp3Zb8P1harVgcmY6+JeHp/P/35+/LLze3n+6s7+Ov7rm6vvl7dPY72obIlobnEzCA9xXG8x7OdTNVX6hriquwJuIH4TGwGlbSDHEBm1neOsmczYetzLtv/DSd5lNifT7jgEsKmy00/eNEcVOSH9bPwCE2lRNuYKPsPd/lGcL7XgbggVJuhuW2JIIFOmV2KNpZittBLg+HRbZ09zxqjPbuRe4CV622rb7vw4o0dS+BTs2JtNH6xm+5GZdVu7EH1D/H/RtY=">See the <code>cloneVNode</code> + <code>ShapeFlags</code> version on Vue SFC Playground</a></p>
+<p>The important part is:</p>
+<pre><code class="language-ts">vnode.shapeFlag = ShapeFlags.ARRAY_CHILDREN | ShapeFlags.ELEMENT;
+vnode.children = [...slots.default()];
+</code></pre>
+<p><code>shapeFlag</code> tells Vue what kind of VNode it is dealing with and how its children should be interpreted.</p>
+<p>By explicitly marking our leaf as an element with array children, we can inject the default-slot VNodes directly.</p>
+<p>The resulting template API is flexible:</p>
+<pre><code class="language-vue">&lt;template #wrapper&gt;
+    &lt;section&gt;
+        &lt;div class=&quot;outer&quot;&gt;
+            &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;/template&gt;
+</code></pre>
+<p>There is no special representation of the nested wrapper structure. It remains normal Vue template markup.</p>
+<p>The disadvantage is that this implementation depends on Vue internals.</p>
+<p><code>ShapeFlags</code> comes from <code>@vue/shared</code>, rather than the public <code>vue</code> package API, and we modify <code>VNode.shapeFlag</code> ourselves.</p>
+<p>That does not make the approach invalid. It is compact and gives us direct control over the VNode tree. It is also useful for understanding how Vue represents and processes VNodes internally.</p>
+<p>But if this code is expected to survive framework changes over a long period, relying on fewer internal implementation details can be preferable.</p>
+<h3>3B. Recreate VNodes using the public API</h3>
+<p>An alternative is to avoid modifying <code>shapeFlag</code> completely.</p>
+<p>Instead, we recursively recreate the wrapper tree with <code>createVNode()</code> and let Vue determine the correct internal flags.</p>
+<h3><code>Wrap.ts</code></h3>
+<pre><code class="language-ts">import { createVNode, isVNode, type FunctionalComponent, type VNode } from &#39;vue&#39;;
+
+type WrapProps = {
+    isWrapped?: boolean;
+};
+
+type WrapSlots = {
+    default: () =&gt; VNode[];
+    wrapper: () =&gt; VNode[];
+};
+
+const Wrap: FunctionalComponent&lt;WrapProps, {}, WrapSlots&gt; = ({isWrapped = false}, {slots}) =&gt; {
+    const content = slots.default();
+
+    if (!isWrapped) return content;
+
+    return slots.wrapper().map(vnode =&gt; injectIntoLeaves(vnode));
+
+    function injectIntoLeaves(vnode: VNode): VNode {
+        const children = Array.isArray(vnode.children) ? vnode.children : [];
+        const childVNodes = children.filter(isVNode);
+
+        if (!childVNodes.length) {
+            const injectedChildren = typeof vnode.type === &#39;string&#39; ? content : {default: () =&gt; content};
+            return createVNode(vnode.type, vnode.props, injectedChildren);
+        }
+
+        return createVNode(
+            vnode.type,
+            vnode.props,
+            children.map(child =&gt; isVNode(child) ? injectIntoLeaves(child) : child)
+        );
+    }
+};
+
+Wrap.props = {
+    isWrapped: Boolean
+};
+
+export default Wrap;
+</code></pre>
+<p><a href="https://play.vuejs.org/#eNp1VMtu2zAQ/JWtcrAEODKaB5DKstM0QIEARVCgRXuoe1AkymFLkwRJuzEE/XuXDz3sOD7Y1u5yZnY5qya6kzLdbUmURbkuFZUGNDFbCazg68UqMnoVLVecbqRQBhpQpIYWaiU2MMFjk3mf+6kKGRLpzD6kRtv0ipeCawNU26AkFSwsSmzUliSYz2eed2lLc0M2khWG4BPgJ3/aGiM4fCwZLf+injHKu/4BNX4X6zUj8M8FVD7zBx2oA3LyMqrPfUU1xnItQvj0EuAsgI2SrqCiOyhZoTVihJIDhJOFlHOizofyfIbZY+SjWD4bjWMUlsuHyQZwrBU1VPCCsX1ovErzmexm525haSd8AJNrs2f2bxrUQOMPPAlVEZXBhXwBLRit4Ozq4unm5nLu87KoKsrXGbzHihDbFGpN+bkRsg+3liQ96PcUQ1XoZ7zGs8vrqw/X5A2K1vkj6I2mUfAVurV3ZKkIdvbjUVRkiiYLf8xeEvi85aUf0L3Ack64CRlXdWzkFXc5y/FVCanRYkF375TbDHsQjBTcijs8840JMzpTkbrYMpNBnMBi6Rl//Q59hrm8TrajjbGg2akm8l7iFJp2OrAvkT5uxjtSF0wTLGm0zbeOLQj0JPhtEBJLXUUaZMfJvLMcrSEeVi3B5TVbxbuDfVkIe5TQX5ykm0LGO26njcyU/yGleeBGfCHFjmifSQauOjT7RmXmJ5WE366TUTfPlFWKcGznTqlin1Ltfv3xtEsncAuHEcigv5wjOEdlL7arTWvKDDYXzDao76c1OpcywtfmORlrHQh8m6S6H3RbP4k6yHPmWiwWMNFG4WJMUHh3Yxk0Rx4LmXZ+SNVd2LAo8YA+DUzS2+lYUDLCasd9ngA9ZB1RnEp4vqOZdAO2pnEPzjR+zD5gb+6VN0Im8wDJANqpb7vFcu8P+cZyZ/DJ73ZXTV7cOyZM2a0ZxqP2PyyvXSw=">See the public-API version on Vue SFC Playground</a></p>
+<p>The template-side API remains exactly the same.</p>
+<p>The difference is entirely in how the wrapper tree is constructed.</p>
+<p>This version has one architectural advantage: it relies on Vue&#39;s public VNode construction API instead of explicitly manipulating internal renderer flags.</p>
+<p>That makes it potentially more future-proof if Vue&#39;s internal VNode representation changes.</p>
+<p>The trade-off is that it reconstructs the nested VNode tree rather than cloning the existing wrapper tree and modifying only its leaves.</p>
+<p>For a sufficiently complex wrapper tree, this can mean some additional VNode allocations and processing.</p>
+<p>In practice, a conditional wrapper usually contains only a few nodes, so the difference is unlikely to be measurable. But it is still a real trade-off rather than a strictly better implementation.</p>
+<p>So the two versions represent slightly different priorities:</p>
+<ul>
+<li><code>cloneVNode</code> + <code>ShapeFlags</code>: compact and direct, but coupled to Vue internals;</li>
+<li><code>createVNode</code>: uses the public API and may be more future-proof, with a small potential performance cost from reconstructing the wrapper tree.</li>
+</ul>
+<h2>A limitation of the nested-wrapper approach</h2>
+<p>Both implementations operate on the VNode tree produced by the <code>wrapper</code> slot.</p>
+<p>This works particularly well for a wrapper <strong>chain</strong>:</p>
+<pre><code class="language-vue">&lt;template #wrapper&gt;
+    &lt;section&gt;
+        &lt;div&gt;
+            &lt;article&gt;&lt;/article&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;/template&gt;
+</code></pre>
+<p>There is one logical leaf, and the content is inserted there.</p>
+<p>If the wrapper structure branches into several leaves:</p>
+<pre><code class="language-vue">&lt;template #wrapper&gt;
+    &lt;div&gt;
+        &lt;section&gt;&lt;/section&gt;
+        &lt;aside&gt;&lt;/aside&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<p>the algorithm finds both leaves and injects the content into both of them.</p>
+<p>That means the default-slot content will be duplicated.</p>
+<p>This is not necessarily wrong, but it is important to understand the semantics. These implementations are primarily designed for nested wrapper chains rather than arbitrary branching layouts.</p>
+<p>Components introduce another boundary.</p>
+<p>A component VNode describes which component should be rendered, but it does not expose the final VNode tree that the component itself will eventually produce.</p>
+<p>The public-API implementation can provide our content to a component leaf through its default slot, but neither implementation can recursively inspect and modify the component&#39;s internal rendered tree from the parent.</p>
+<h2>Which approach should you use?</h2>
+<p>There is no universally best conditional wrapper.</p>
+<p>The approaches optimize for different things.</p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Template DX</th>
+<th>Implementation</th>
+<th>Nested wrappers</th>
+<th>Vue internals</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Wrapper prop</td>
+<td>Good</td>
+<td>Simple</td>
+<td>Through another component</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Default-slot wrapper</td>
+<td>Very good</td>
+<td>Simple VNode manipulation</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Wrapper slot + <code>ShapeFlags</code></td>
+<td>Very good</td>
+<td>Advanced</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Wrapper slot + <code>createVNode</code></td>
+<td>Very good</td>
+<td>Advanced</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<p>For ordinary application code, I would start with the first version:</p>
+<pre><code class="language-vue">&lt;Wrap :wrapper=&quot;condition &amp;&amp; &#39;div&#39;&quot;&gt;
+    ...
+&lt;/Wrap&gt;
+</code></pre>
+<p>It is small, predictable, supports both native elements and components, and stays close to Vue&#39;s normal component API.</p>
+<p>The second version is useful when keeping the wrapper directly in the template provides better DX and only one wrapper level is required.</p>
+<p>The third approach becomes useful when the wrapper markup should remain declarative while supporting arbitrary nesting.</p>
+<p>Within that third approach, there is another choice.</p>
+<p>If compactness and direct VNode manipulation are important, the <code>cloneVNode</code> + <code>ShapeFlags</code> implementation is elegant.</p>
+<p>If minimizing dependence on Vue internals is more important, reconstructing the wrapper tree through <code>createVNode()</code> is a reasonable alternative, with a small potential performance cost for the typical wrapper sizes involved.</p>
+<p>A conditional wrapper is a small component, but it provides a useful view into how Vue templates become VNodes and how different component APIs move complexity between the template, the component implementation, and Vue&#39;s rendering layer.</p>
+</span></div><div class="article-list" data-v-48dabec2><!--[--><div class="wrapper" style="--v6b8bfc12:0;--bf743a2e:0;--v67eab034:0;--b6108db6:750ms cubic-bezier(.34, 1.56, .64, 1);" data-v-7cba040b><a href="/articles/hard-object-references" class="card" data-glowing-blob-parent data-v-7cba040b><div class="blob-layer" data-v-7cba040b><div class="blob-background" aria-hidden="true" data-v-7cba040b data-v-e915364c><div class="surface" data-v-e915364c><div class="blob" data-v-e915364c></div></div></div></div><img class="thumb" src="/_nuxt/cover.CbGmTKpN.webp" alt="Hard Object References: Stable Object References for Mutable Application State" data-v-7cba040b><div class="body" data-v-7cba040b><h3 class="title" data-v-7cba040b>Hard Object References: Stable Object References for Mutable Application State</h3><div class="description" data-v-7cba040b><!--[-->I explain Hard Object References as a practical rule for mutable application state: use stable object and array references, avoid rebinding and nested reference replacement, and copy data into existing objects instead. This approach helps reduce stale aliases, obsolete references, and hard-to-debug state bugs in complex TypeScript and frontend applications.<!--]--></div></div><div class="hover-border" data-v-7cba040b></div><div class="hover-border-blur" style="--angle:0deg;" data-v-7cba040b></div></a></div><div class="wrapper" style="--v6b8bfc12:0;--bf743a2e:0;--v67eab034:0;--b6108db6:750ms cubic-bezier(.34, 1.56, .64, 1);" data-v-7cba040b><a href="/articles/why-every-frontend-project-should-have-its-own-ui-layer" class="card" data-glowing-blob-parent data-v-7cba040b><div class="blob-layer" data-v-7cba040b><div class="blob-background" aria-hidden="true" data-v-7cba040b data-v-e915364c><div class="surface" data-v-e915364c><div class="blob" data-v-e915364c></div></div></div></div><img class="thumb" src="/_nuxt/cover.DrB9i5VT.webp" alt="Why Every Frontend Project Should Have Its Own UI Layer" data-v-7cba040b><div class="body" data-v-7cba040b><h3 class="title" data-v-7cba040b>Why Every Frontend Project Should Have Its Own UI Layer</h3><div class="description" data-v-7cba040b><!--[-->I argue that frontend projects should own an internal UI layer instead of scattering third-party components across product code. Wrappers create stable contracts, centralize accessibility, theming, defaults, localization, and vendor quirks, reduce migration risk, and make UI architecture product-owned.<!--]--></div></div><div class="hover-border" data-v-7cba040b></div><div class="hover-border-blur" style="--angle:0deg;" data-v-7cba040b></div></a></div><div class="wrapper" style="--v6b8bfc12:0;--bf743a2e:0;--v67eab034:0;--b6108db6:750ms cubic-bezier(.34, 1.56, .64, 1);" data-v-7cba040b><a href="/articles/stop-turning-the-mobile-web-into-a-second-class-platform" class="card" data-glowing-blob-parent data-v-7cba040b><div class="blob-layer" data-v-7cba040b><div class="blob-background" aria-hidden="true" data-v-7cba040b data-v-e915364c><div class="surface" data-v-e915364c><div class="blob" data-v-e915364c></div></div></div></div><img class="thumb" src="/_nuxt/cover.D7EDmnD9.webp" alt="Stop Turning the Mobile Web Into a Second-Class Platform" data-v-7cba040b><div class="body" data-v-7cba040b><h3 class="title" data-v-7cba040b>Stop Turning the Mobile Web Into a Second-Class Platform</h3><div class="description" data-v-7cba040b><!--[-->I argue that app-first strategies are weakening the mobile web by forcing web-shaped products into closed containers. Browsers provide tabs, links, bookmarks, extensions, interoperability, and user control. Developers should support PWAs and better mobile browser capabilities to preserve open software.<!--]--></div></div><div class="hover-border" data-v-7cba040b></div><div class="hover-border-blur" style="--angle:0deg;" data-v-7cba040b></div></a></div><!--]--></div><!--]--><!--]--></main><!--]--></div></div><div id="teleports"></div><script>window.__NUXT_SITE_CONFIG__=(function(a){return {_priority:{env:-15,url:a,name:a},env:"production",name:"Alek Labs",url:"https:\u002F\u002Faleklabs.dev"}}(-3))</script><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"d314526c-cf87-4f6f-ac24-20b45ccf067b",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">[["ShallowReactive",1],{"prerenderedAt":2,"data":3,"state":48,"once":57,"_errors":58,"serverRendered":60,"path":61},1788257185549,["ShallowReactive",4],{"article:conditional-wrapping-in-vue-3":5,"home":14},{"date":6,"slug":7,"seoDescription":8,"description":9,"data":10,"title":11,"readOn":12,"coverUrl":13},["Date","2026-09-01T00:00:00.000Z"],"conditional-wrapping-in-vue-3","Explore three approaches to conditional wrapping in Vue 3, from a simple wrapper prop to advanced VNode manipulation with nested wrappers.","I explore three ways to build a conditional wrapper component in Vue 3: passing the wrapper as a prop, defining it directly in the default slot, and using a dedicated wrapper slot for arbitrary nesting. The advanced version includes both the original cloneVNode and ShapeFlags implementation and a more future-proof alternative based only on Vue's public VNode API.","# Conditional Wrapping in Vue 3: Three Approaches\n\nSometimes we need to conditionally wrap part of a Vue template in an additional element or component.\n\nThe obvious solution is `v-if`:\n\n```vue\n\u003Cdiv v-if=\"isWrapped\" class=\"wrapper\">\n    \u003C!-- some big chunk of markup -->\n\u003C\u002Fdiv>\n\n\u003Ctemplate v-else>\n    \u003C!-- the same big chunk of markup -->\n\u003C\u002Ftemplate>\n```\n\nIt works, but now the content is duplicated.\n\nLet's explore three ways to implement a reusable conditional wrapper in Vue 3 without that duplication.\n\nWe'll call our component `\u003CWrap>` and the element or component that actually surrounds the content the **wrapper**.\n\nSince `Wrap` itself does not need component state, all three implementations can be functional components.\n\n## 1. Pass the wrapper as a prop\n\nThe simplest option is to pass the wrapper element or component as a prop.\n\n### `Wrap.ts`\n\n```ts\nimport { createVNode, type Component, type FunctionalComponent, type VNode } from 'vue';\n\ntype WrapProps = {\n    wrapper?: string | Component | false;\n};\n\ntype WrapSlots = {\n    default: () => VNode[];\n};\n\nconst Wrap: FunctionalComponent\u003CWrapProps, {}, WrapSlots> = ({wrapper}, {attrs, slots}) => {\n    const content = slots.default();\n    return wrapper ? createVNode(wrapper, attrs, content) : content;\n};\n\nWrap.props = ['wrapper'];\n\nexport default Wrap;\n```\n\nUsage:\n\n```vue\n\u003Cscript setup lang=\"ts\">\nimport { ref } from 'vue';\nimport Wrap from '.\u002FWrap.ts';\n\nconst isWrapped = ref(true);\n\u003C\u002Fscript>\n\n\u003Ctemplate>\n    \u003CWrap :wrapper=\"isWrapped && 'div'\" class=\"wrapper\">\n        \u003Cp>I'm conditionally wrapped.\u003C\u002Fp>\n    \u003C\u002FWrap>\n\u003C\u002Ftemplate>\n```\n\n[See it on Vue SFC Playground](https:\u002F\u002Fplay.vuejs.org\u002F#eNptU8FunDAQ\u002FZUplQIrEVZNe4gIS1pVqtRLValVewg5sOBFKMa27CHNivLvHZtZsonKAXnmzcx7zwNT9MmY7HEUUR4VrrG9QXACRwOyVt2uitBVUVmpfjDaIkxgxQFmOFg9QExt8c2K\u002Fba1YSDb+iBD5+FKNVo5hN75pBEt7PyUBO0oNoQX24W39KUFisHIGgVFQE+xHxG1go+N7JsH0nM+5c0akMafuuukgD8hYYvt0hiGhkFBXs7wi0EXFxC3\u002FWNcRdDI2jkCuSxYB34KU36NByAzbY+9VrWUR6Zrs2JrToqD99L7OvNCocOj9MeMh8O0NOy1bYXN4co8gdOyb+Hth6v99fX7mwU3ddv2qsvhHVVwbqht16tL1GZNz+EmmSNKI94A7XXdXWMFqfn1TbciBTwaAZ81YUoo5PjLqJrF22skdL3efKUC5qm+W20c7YRNscfbHBxaUg9\u002Fn7nofKilE170yyE\u002FpMazIa041KPEHJIN7MpFwt392rZ8Vr4v\u002F5\u002FwYpWVwjSnzwQlMSQTKyRgqhEtFTkPzoGKBSwM9EYve7dUZCwr2fAyLP0vVp0sw+35PSecTYFJeNgG8tNx9RM2Zvge72LujO8DKJ7CEpk7mKF8NP8D7ORMEg==)\n\nThis is the most straightforward and probably the most idiomatic option.\n\nThe component either creates a wrapper VNode and puts the default slot inside it or returns the default slot directly.\n\nIt also works with Vue components:\n\n```vue\n\u003CWrap :wrapper=\"isWrapped && SomeComponent\">\n    ...\n\u003C\u002FWrap>\n```\n\nFor simple cases, this is usually sufficient.\n\nThe limitation becomes visible when the wrapper itself is more complex.\n\nFor example, if we want several nested wrapper elements, defining them somewhere outside the actual template and passing them through a prop quickly becomes less convenient.\n\nSo let's see whether we can keep the wrapper markup directly where it is used.\n\n## 2. Put the wrapper directly in the default slot\n\nInstead of passing the wrapper through a prop, we can write it directly in the template:\n\n```vue\n\u003CWrap :is-wrapped=\"isWrapped\">\n    \u003Cdiv class=\"wrapper\">\n        \u003Cp>I'm conditionally wrapped.\u003C\u002Fp>\n    \u003C\u002Fdiv>\n\u003C\u002FWrap>\n```\n\nWhen wrapping is enabled, we return the slot normally.\n\nWhen it is disabled, we discard the first VNode level and return its children instead.\n\n### `Wrap.ts`\n\n```ts\nimport { type FunctionalComponent, type VNode } from 'vue';\n\ntype WrapProps = {\n    isWrapped?: boolean;\n};\n\ntype WrapSlots = {\n    default: () => VNode[];\n};\n\nconst Wrap: FunctionalComponent\u003CWrapProps, {}, WrapSlots> = ({isWrapped = false}, {slots}) => {\n    const wrapper = slots.default();\n    return isWrapped ? wrapper : wrapper.flatMap(vnode => Array.isArray(vnode.children) ? vnode.children : []);\n};\n\nWrap.props = {\n    isWrapped: Boolean\n};\n\nexport default Wrap;\n```\n\n[See it on Vue SFC Playground](https:\u002F\u002Fplay.vuejs.org\u002F#eNp1U02P0zAQ\u002FStDOLSVuolYOKyyaZYFCYkDCAkEh+0e3NgJFo5t2U7ZKsp\u002F3\u002FFHQ4ogl8Qzb957M+OM2b3W+XFgWZlVtjFcO7DMDRoEkd1unzm7z+q95L1WxsEIhrUwQWtUDyssW93OuR+G6JTIC3\u002FInfXpvWyUtA649UHNKOw8y9qZgW0wXxVRt\u002FbQyrFeC+IYngCf6jA4pyS8bQRvfqGfJcuL+YAev6muEwx+h4CpilgYSANRsFdyexURdMkVWoT0VJQfoRHEWoQkugtAAOn646oH7Ixyx5UkQpySNs2rQi\u002F5CiQ8txMGU\u002FumF43i0bqT8J95EoQxFhyUocyUcK2fwCrBKbx8c324uXl9G\u002FOaUMplV8IrRKRYT0zH5ZVTeg5PYcxJI9tmaT249Hmx7qQZfBhkE9t5rzAhmXTbmPn+WVH29+b3MuQ82xejtMWdJN\u002FzaO9K7EEJRqS3cVnzVSi3qKGsJYNwJaw3sKuj4sPjXBZvka8r\u002F+Wzml1sYZy2fwRqVFiPy3vTEmEZQkbr81NQSx6iyHkJOwiIPDlbb9KEDf4hRi5u9N1cUp6\u002F8ha3+4no9VH6yaHEvTHklHMb3jGcNz+5oIbJDVJcRpDp4XEzdx82pv8z5BLexRmf0ewpbDX5DrPAeDY9A1ITVx4=)\n\nThe template API is arguably nicer because the actual wrapper stays in the markup.\n\nBut there are trade-offs.\n\nVue still creates the wrapper VNode every time, including when we immediately discard it.\n\nThe implementation also only understands a one-level wrapper. It assumes that the VNodes returned by the default slot represent the wrapper and that their children are the content we want to expose.\n\nSo this is less idiomatic than the first solution and more dependent on the VNode structure generated by the template compiler.\n\nStill, it is an interesting option if keeping the wrapper directly in the markup improves DX enough to justify the additional assumptions.\n\nFor arbitrary nesting, however, we need something more flexible.\n\n## 3. Use a dedicated wrapper slot\n\nNow let's separate the wrapper and the wrapped content into two slots:\n\n```vue\n\u003CWrap :is-wrapped=\"isWrapped\">\n    \u003Ctemplate #wrapper>\n        \u003Cdiv class=\"wrapper\">\n            \u003Cdiv class=\"inner-wrapper\">\u003C\u002Fdiv>\n        \u003C\u002Fdiv>\n    \u003C\u002Ftemplate>\n\n    \u003Cp>I'm conditionally wrapped.\u003C\u002Fp>\n\u003C\u002FWrap>\n```\n\nThe default slot contains our actual content.\n\nThe `wrapper` slot contains an arbitrarily nested wrapper tree.\n\nThe task is then:\n\n1. Build the VNode tree produced by the wrapper slot.\n2. Find its leaf VNodes.\n3. Inject the default-slot content into those leaves.\n\nThere are two ways to implement this.\n\n### 3A. Clone VNodes and modify `shapeFlag`\n\nThis is the original approach.\n\nIt goes deeper into Vue's VNode representation by cloning the wrapper VNodes and modifying their internal `shapeFlag`.\n\n### `Wrap.ts`\n\n```ts\nimport { ShapeFlags } from '@vue\u002Fshared';\nimport { cloneVNode, isVNode, type FunctionalComponent, type VNode } from 'vue';\n\ntype WrapProps = {\n    isWrapped?: boolean;\n};\n\ntype WrapSlots = {\n    default: () => VNode[];\n    wrapper: () => VNode[];\n};\n\nconst Wrap: FunctionalComponent\u003CWrapProps, {}, WrapSlots> = ({isWrapped = false}, {slots}) => {\n    if (!isWrapped) return slots.default();\n\n    const wrapper = slots.wrapper().map(vnode => cloneVNode(vnode));\n\n    findLeaves(wrapper, vnode => {\n        vnode.shapeFlag = ShapeFlags.ARRAY_CHILDREN | ShapeFlags.ELEMENT;\n        vnode.children = [...slots.default()];\n    });\n\n    return wrapper;\n\n    function findLeaves(vnodes: VNode[], callback: (vnode: VNode) => void): void {\n        for (const vnode of vnodes) {\n            const children = Array.isArray(vnode.children) ? vnode.children.filter(isVNode) : [];\n            children.length ? findLeaves(children, callback) : callback(vnode);\n        }\n    }\n};\n\nWrap.props = {\n    isWrapped: Boolean\n};\n\nexport default Wrap;\n```\n\n[See the `cloneVNode` + `ShapeFlags` version on Vue SFC Playground](https:\u002F\u002Fplay.vuejs.org\u002F#eNp1U2FP2zAQ\u002FSu38IFEKqkGQ2JpWugYaEgMTYA2TXSa3MRpLVzbst2OKst\u002Fn+M4idtBvsS+O7+7d\u002FeuDKZCxJs1DpIgVZkkQoPCei2AIrYYzwKtZsFkxshKcKmhBIkLqKCQfAWH5tnhqPP9kEg4RzysL7FWtXvGMs6UBqJqo8A5jGuUUMs1jow\u002FHTZ5J3VoqvFKUKSxuYH50vlaa87gIqMkezb1+Cjvuoup8ZEvFhTDH2uQ6bB5aEEtkC0vIeqoich9LEsR3NeVAAcOzHPagJxsIKNIKYPhQnYQXg0kjGF51IenQ+PdR96zpUOvHZ5ZTG4OV2DamhNNOEOUbh3xPE6Hou2dncKk7vAOTKr0ltbH2FUDZfNgzmWOZQLH4gUUpySHgw\u002FH87Ozk1HjFyjPCVsk8N5EONsKyQVhR5qLzlzVSeIdvq9lyJFamjEenJx++HiK30hRWX24eoNB4HRl1Nop8mGJBL6maKE6YV4YZQ7VEkmcewItzSw4w9\u002FveI4HRo7uoLcCw\u002FWaZU0rL7mJZphp57FR+5KfMeurq\u002FkmuVBGjI5hp6nzxLDlFCNW09h980C59t7kuEBrqhMIIxhPmoxPv1xHXAf\u002Fd1bebtWgyWsk0q7EAZTVoM8+MenD0t+mAlGFTUipan9ls7WkCgj7ZYvM+uq1ZGADY1d9GI1ajTY1taMfuzh3D6N4hUS4YXVbTYp+Jo0t6nEKwvJbjDZYhe7xALp3Zb8P1harVgcmY6+JeHp\u002FP\u002F35+\u002FLLze3n+6s7+Ov7rm6vvl7dPY72obIlobnEzCA9xXG8x7OdTNVX6hriquwJuIH4TGwGlbSDHEBm1neOsmczYetzLtv\u002FDSd5lNifT7jgEsKmy00\u002FeNEcVOSH9bPwCE2lRNuYKPsPd\u002FlGcL7XgbggVJuhuW2JIIFOmV2KNpZittBLg+HRbZ09zxqjPbuRe4CV622rb7vw4o0dS+BTs2JtNH6xm+5GZdVu7EH1D\u002FH\u002FRtY=)\n\nThe important part is:\n\n```ts\nvnode.shapeFlag = ShapeFlags.ARRAY_CHILDREN | ShapeFlags.ELEMENT;\nvnode.children = [...slots.default()];\n```\n\n`shapeFlag` tells Vue what kind of VNode it is dealing with and how its children should be interpreted.\n\nBy explicitly marking our leaf as an element with array children, we can inject the default-slot VNodes directly.\n\nThe resulting template API is flexible:\n\n```vue\n\u003Ctemplate #wrapper>\n    \u003Csection>\n        \u003Cdiv class=\"outer\">\n            \u003Cdiv class=\"inner\">\u003C\u002Fdiv>\n        \u003C\u002Fdiv>\n    \u003C\u002Fsection>\n\u003C\u002Ftemplate>\n```\n\nThere is no special representation of the nested wrapper structure. It remains normal Vue template markup.\n\nThe disadvantage is that this implementation depends on Vue internals.\n\n`ShapeFlags` comes from `@vue\u002Fshared`, rather than the public `vue` package API, and we modify `VNode.shapeFlag` ourselves.\n\nThat does not make the approach invalid. It is compact and gives us direct control over the VNode tree. It is also useful for understanding how Vue represents and processes VNodes internally.\n\nBut if this code is expected to survive framework changes over a long period, relying on fewer internal implementation details can be preferable.\n\n### 3B. Recreate VNodes using the public API\n\nAn alternative is to avoid modifying `shapeFlag` completely.\n\nInstead, we recursively recreate the wrapper tree with `createVNode()` and let Vue determine the correct internal flags.\n\n### `Wrap.ts`\n\n```ts\nimport { createVNode, isVNode, type FunctionalComponent, type VNode } from 'vue';\n\ntype WrapProps = {\n    isWrapped?: boolean;\n};\n\ntype WrapSlots = {\n    default: () => VNode[];\n    wrapper: () => VNode[];\n};\n\nconst Wrap: FunctionalComponent\u003CWrapProps, {}, WrapSlots> = ({isWrapped = false}, {slots}) => {\n    const content = slots.default();\n\n    if (!isWrapped) return content;\n\n    return slots.wrapper().map(vnode => injectIntoLeaves(vnode));\n\n    function injectIntoLeaves(vnode: VNode): VNode {\n        const children = Array.isArray(vnode.children) ? vnode.children : [];\n        const childVNodes = children.filter(isVNode);\n\n        if (!childVNodes.length) {\n            const injectedChildren = typeof vnode.type === 'string' ? content : {default: () => content};\n            return createVNode(vnode.type, vnode.props, injectedChildren);\n        }\n\n        return createVNode(\n            vnode.type,\n            vnode.props,\n            children.map(child => isVNode(child) ? injectIntoLeaves(child) : child)\n        );\n    }\n};\n\nWrap.props = {\n    isWrapped: Boolean\n};\n\nexport default Wrap;\n```\n\n[See the public-API version on Vue SFC Playground](https:\u002F\u002Fplay.vuejs.org\u002F#eNp1VMtu2zAQ\u002FJWtcrAEODKaB5DKstM0QIEARVCgRXuoe1AkymFLkwRJuzEE\u002FXuXDz3sOD7Y1u5yZnY5qya6kzLdbUmURbkuFZUGNDFbCazg68UqMnoVLVecbqRQBhpQpIYWaiU2MMFjk3mf+6kKGRLpzD6kRtv0ipeCawNU26AkFSwsSmzUliSYz2eed2lLc0M2khWG4BPgJ3\u002FaGiM4fCwZLf+injHKu\u002F4BNX4X6zUj8M8FVD7zBx2oA3LyMqrPfUU1xnItQvj0EuAsgI2SrqCiOyhZoTVihJIDhJOFlHOizofyfIbZY+SjWD4bjWMUlsuHyQZwrBU1VPCCsX1ovErzmexm525haSd8AJNrs2f2bxrUQOMPPAlVEZXBhXwBLRit4Ozq4unm5nLu87KoKsrXGbzHihDbFGpN+bkRsg+3liQ96PcUQ1XoZ7zGs8vrqw\u002FX5A2K1vkj6I2mUfAVurV3ZKkIdvbjUVRkiiYLf8xeEvi85aUf0L3Ack64CRlXdWzkFXc5y\u002FFVCanRYkF375TbDHsQjBTcijs8840JMzpTkbrYMpNBnMBi6Rl\u002F\u002FQ59hrm8TrajjbGg2akm8l7iFJp2OrAvkT5uxjtSF0wTLGm0zbeOLQj0JPhtEBJLXUUaZMfJvLMcrSEeVi3B5TVbxbuDfVkIe5TQX5ykm0LGO26njcyU\u002FyGleeBGfCHFjmifSQauOjT7RmXmJ5WE366TUTfPlFWKcGznTqlin1Ltfv3xtEsncAuHEcigv5wjOEdlL7arTWvKDDYXzDao76c1OpcywtfmORlrHQh8m6S6H3RbP4k6yHPmWiwWMNFG4WJMUHh3Yxk0Rx4LmXZ+SNVd2LAo8YA+DUzS2+lYUDLCasd9ngA9ZB1RnEp4vqOZdAO2pnEPzjR+zD5gb+6VN0Im8wDJANqpb7vFcu8P+cZyZ\u002FDJ73ZXTV7cOyZM2a0ZxqP2PyyvXSw=)\n\nThe template-side API remains exactly the same.\n\nThe difference is entirely in how the wrapper tree is constructed.\n\nThis version has one architectural advantage: it relies on Vue's public VNode construction API instead of explicitly manipulating internal renderer flags.\n\nThat makes it potentially more future-proof if Vue's internal VNode representation changes.\n\nThe trade-off is that it reconstructs the nested VNode tree rather than cloning the existing wrapper tree and modifying only its leaves.\n\nFor a sufficiently complex wrapper tree, this can mean some additional VNode allocations and processing.\n\nIn practice, a conditional wrapper usually contains only a few nodes, so the difference is unlikely to be measurable. But it is still a real trade-off rather than a strictly better implementation.\n\nSo the two versions represent slightly different priorities:\n\n* `cloneVNode` + `ShapeFlags`: compact and direct, but coupled to Vue internals;\n* `createVNode`: uses the public API and may be more future-proof, with a small potential performance cost from reconstructing the wrapper tree.\n\n## A limitation of the nested-wrapper approach\n\nBoth implementations operate on the VNode tree produced by the `wrapper` slot.\n\nThis works particularly well for a wrapper **chain**:\n\n```vue\n\u003Ctemplate #wrapper>\n    \u003Csection>\n        \u003Cdiv>\n            \u003Carticle>\u003C\u002Farticle>\n        \u003C\u002Fdiv>\n    \u003C\u002Fsection>\n\u003C\u002Ftemplate>\n```\n\nThere is one logical leaf, and the content is inserted there.\n\nIf the wrapper structure branches into several leaves:\n\n```vue\n\u003Ctemplate #wrapper>\n    \u003Cdiv>\n        \u003Csection>\u003C\u002Fsection>\n        \u003Caside>\u003C\u002Faside>\n    \u003C\u002Fdiv>\n\u003C\u002Ftemplate>\n```\n\nthe algorithm finds both leaves and injects the content into both of them.\n\nThat means the default-slot content will be duplicated.\n\nThis is not necessarily wrong, but it is important to understand the semantics. These implementations are primarily designed for nested wrapper chains rather than arbitrary branching layouts.\n\nComponents introduce another boundary.\n\nA component VNode describes which component should be rendered, but it does not expose the final VNode tree that the component itself will eventually produce.\n\nThe public-API implementation can provide our content to a component leaf through its default slot, but neither implementation can recursively inspect and modify the component's internal rendered tree from the parent.\n\n## Which approach should you use?\n\nThere is no universally best conditional wrapper.\n\nThe approaches optimize for different things.\n\n| Approach                     | Template DX | Implementation            | Nested wrappers           | Vue internals |\n| ---------------------------- | ----------- | ------------------------- | ------------------------- | ------------- |\n| Wrapper prop                 | Good        | Simple                    | Through another component | No            |\n| Default-slot wrapper         | Very good   | Simple VNode manipulation | No                        | No            |\n| Wrapper slot + `ShapeFlags`  | Very good   | Advanced                  | Yes                       | Yes           |\n| Wrapper slot + `createVNode` | Very good   | Advanced                  | Yes                       | No            |\n\nFor ordinary application code, I would start with the first version:\n\n```vue\n\u003CWrap :wrapper=\"condition && 'div'\">\n    ...\n\u003C\u002FWrap>\n```\n\nIt is small, predictable, supports both native elements and components, and stays close to Vue's normal component API.\n\nThe second version is useful when keeping the wrapper directly in the template provides better DX and only one wrapper level is required.\n\nThe third approach becomes useful when the wrapper markup should remain declarative while supporting arbitrary nesting.\n\nWithin that third approach, there is another choice.\n\nIf compactness and direct VNode manipulation are important, the `cloneVNode` + `ShapeFlags` implementation is elegant.\n\nIf minimizing dependence on Vue internals is more important, reconstructing the wrapper tree through `createVNode()` is a reasonable alternative, with a small potential performance cost for the typical wrapper sizes involved.\n\nA conditional wrapper is a small component, but it provides a useful view into how Vue templates become VNodes and how different component APIs move complexity between the template, the component implementation, and Vue's rendering layer.\n","Conditional Wrapping in Vue 3: Three Approaches",[],"\u002F_nuxt\u002Fcover.WwhsogJd.webp",{"articles":15,"experience":32},[16,17,22,27],{"slug":7,"description":9,"coverUrl":13,"title":11},{"slug":18,"description":19,"coverUrl":20,"title":21},"hard-object-references","I explain Hard Object References as a practical rule for mutable application state: use stable object and array references, avoid rebinding and nested reference replacement, and copy data into existing objects instead. This approach helps reduce stale aliases, obsolete references, and hard-to-debug state bugs in complex TypeScript and frontend applications.","\u002F_nuxt\u002Fcover.CbGmTKpN.webp","Hard Object References: Stable Object References for Mutable Application State",{"slug":23,"description":24,"coverUrl":25,"title":26},"why-every-frontend-project-should-have-its-own-ui-layer","I argue that frontend projects should own an internal UI layer instead of scattering third-party components across product code. Wrappers create stable contracts, centralize accessibility, theming, defaults, localization, and vendor quirks, reduce migration risk, and make UI architecture product-owned.","\u002F_nuxt\u002Fcover.DrB9i5VT.webp","Why Every Frontend Project Should Have Its Own UI Layer",{"slug":28,"description":29,"coverUrl":30,"title":31},"stop-turning-the-mobile-web-into-a-second-class-platform","I argue that app-first strategies are weakening the mobile web by forcing web-shaped products into closed containers. Browsers provide tabs, links, bookmarks, extensions, interoperability, and user control. Developers should support PWAs and better mobile browser capabilities to preserve open software.","\u002F_nuxt\u002Fcover.D7EDmnD9.webp","Stop Turning the Mobile Web Into a Second-Class Platform",[33,38,43],{"slug":34,"description":35,"coverUrl":36,"title":37},"virtual-scrolling-engineering","Virtual scrolling has been a recurring engineering problem throughout my frontend work. These three cases show different approaches to variable-height tables, editable enterprise grids, tree selectors, and large-document layout.","\u002F_nuxt\u002Fcover.BoE8QZYc.webp","Virtual Scrolling Engineering: Three Production Cases",{"slug":39,"description":40,"coverUrl":41,"title":42},"senior-frontend-develop-at-luqon","Built complex SPA interfaces, scalable frontend architecture with stores and reactive model classes, custom UI components including virtual tables and forms, and AI-agent-assisted delivery with E2E verification.","\u002F_nuxt\u002Fcover.gIW4jzB_.webp","Enterprise Resource Management SPA",{"slug":44,"description":45,"coverUrl":46,"title":47},"senior-frontend-develop-at-hotels-ru","Vue 3 \u002F TypeScript \u002F Vite SPA for hotel and train ticket reservations, with custom Vite plugins, interactive maps, dynamic SVG train-seat layouts, client-side filtering, complex booking state, and a reusable form validation framework.","\u002F_nuxt\u002Fcover.CCsFhWvG.webp","Hotel and Train Ticket Booking SPA",["Reactive",49],{"$ssite-config":50},{"_priority":51,"env":54,"name":55,"url":56},{"env":52,"url":53,"name":53},-15,-3,"production","Alek Labs","https:\u002F\u002Faleklabs.dev",["Set"],["ShallowReactive",59],{"article:conditional-wrapping-in-vue-3":-1,"home":-1},true,"\u002Farticles\u002Fconditional-wrapping-in-vue-3"]</script><script>/// <reference lib="dom" />
+performance.mark("nuxt loader started");
+const moduleScriptTags = ["\u003cscript type=\"module\" src=\"/_nuxt/MA9LVw8Q.js\" crossorigin>\u003c/script>"];
+const supportsLcp = "PerformanceObserver" in window && Array.isArray(PerformanceObserver.supportedEntryTypes) && PerformanceObserver.supportedEntryTypes.includes("largest-contentful-paint");
+let started = false;
+let pageLoaded = document.readyState === "complete";
+let largestLcp = null;
+let settleTimer = 0;
+let lcpObserver = null;
+const fallbackTimer = window.setTimeout(startNuxt, 3e3);
+window.addEventListener("pointerdown", startNuxt, {
+	once: true,
+	capture: true
+});
+window.addEventListener("keydown", startNuxt, {
+	once: true,
+	capture: true
+});
+if (!supportsLcp) {
+	startNuxt();
+} else {
+	try {
+		lcpObserver = new PerformanceObserver((entryList) => {
+			for (const entry of entryList.getEntries()) {
+				const lcpEntry = entry;
+				if (!largestLcp || lcpEntry.size >= largestLcp.size) largestLcp = lcpEntry;
+			}
+			scheduleAfterLargestLcp();
+		});
+		lcpObserver.observe({
+			type: "largest-contentful-paint",
+			buffered: true
+		});
+	} catch {
+		startNuxt();
+	}
+	if (!started) {
+		if (pageLoaded) {
+			scheduleAfterLargestLcp();
+		} else {
+			window.addEventListener("load", handleLoad, { once: true });
+		}
+	}
+}
+function handleLoad() {
+	pageLoaded = true;
+	scheduleAfterLargestLcp();
+}
+function scheduleAfterLargestLcp() {
+	if (started || !pageLoaded || !largestLcp) return;
+	window.clearTimeout(settleTimer);
+	settleTimer = window.setTimeout(() => {
+		requestAnimationFrame(() => {
+			requestAnimationFrame(startNuxt);
+		});
+	}, 100);
+}
+function startNuxt() {
+	if (started) return;
+	performance.mark("nuxt loading started");
+	started = true;
+	window.clearTimeout(fallbackTimer);
+	window.clearTimeout(settleTimer);
+	window.removeEventListener("pointerdown", startNuxt, true);
+	window.removeEventListener("keydown", startNuxt, true);
+	window.removeEventListener("load", handleLoad);
+	if (lcpObserver) lcpObserver.disconnect();
+	for (const tagHtml of moduleScriptTags) {
+		const template = document.createElement("template");
+		template.innerHTML = tagHtml;
+		const source = template.content.querySelector("script");
+		if (!source) continue;
+		const script = document.createElement("script");
+		for (const attribute of source.attributes) {
+			script.setAttribute(attribute.name, attribute.value);
+		}
+		script.textContent = source.textContent;
+		document.head.append(script);
+	}
+}
+</script></body></html>
