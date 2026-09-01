@@ -1,4 +1,4 @@
-import{s as e}from"#entry";import{n as t}from"./C3tXVaVg.js";import{t as n}from"./DRtBMuYi.js";var r=``+new URL(`cover.CbGmTKpN.webp`,import.meta.url).href,i=``+new URL(`cover.D7EDmnD9.webp`,import.meta.url).href,a=``+new URL(`cover.DrB9i5VT.webp`,import.meta.url).href,o=``+new URL(`cover.WwhsogJd.webp`,import.meta.url).href,s=`---\r
+import{s as e}from"#entry";import{r as t}from"./akYhi9Vu.js";import{t as n}from"./DRtBMuYi.js";var r=``+new URL(`cover.CbGmTKpN.webp`,import.meta.url).href,i=``+new URL(`cover.D7EDmnD9.webp`,import.meta.url).href,a=``+new URL(`cover.DrB9i5VT.webp`,import.meta.url).href,o=``+new URL(`cover.WwhsogJd.webp`,import.meta.url).href,s=`---\r
 date: 2026-07-06\r
 slug: hard-object-references\r
 readOn: \r
