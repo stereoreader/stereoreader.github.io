@@ -1,4 +1,4 @@
-import{s as e}from"#entry";import{n as t}from"./C3tXVaVg.js";import{t as n}from"./DRtBMuYi.js";var r=``+new URL(`cover.CbGmTKpN.webp`,import.meta.url).href,i=``+new URL(`cover.D7EDmnD9.webp`,import.meta.url).href,a=``+new URL(`cover.DrB9i5VT.webp`,import.meta.url).href,o=`---\r
+import{s as e}from"#entry";import{n as t}from"./C3tXVaVg.js";import{t as n}from"./DRtBMuYi.js";var r=``+new URL(`cover.CbGmTKpN.webp`,import.meta.url).href,i=``+new URL(`cover.D7EDmnD9.webp`,import.meta.url).href,a=``+new URL(`cover.DrB9i5VT.webp`,import.meta.url).href,o=``+new URL(`cover.WwhsogJd.webp`,import.meta.url).href,s=`---\r
 date: 2026-07-06\r
 slug: hard-object-references\r
 readOn: \r
@@ -608,7 +608,7 @@ Or shorter:\r
 \r
 > References are not change signals. They are stable addresses.\r
 \r
-`,s=`---\r
+`,c=`---\r
 date: 2026-05-16\r
 slug: stop-turning-the-mobile-web-into-a-second-class-platform\r
 readOn: \r
@@ -973,7 +973,7 @@ It becomes stronger only if people continue using it.\r
 What do you think?\r
 \r
 Are mobile apps genuinely superior for most modern products, or are we underinvesting in the mobile web ecosystem?\r
-`,c=`---\r
+`,l=`---\r
 date: 2026-05-18\r
 slug: why-every-frontend-project-should-have-its-own-ui-layer\r
 readOn: \r
@@ -1475,5 +1475,416 @@ That language becomes one of the most valuable assets in the entire frontend arc
 ---\r
 \r
 What additional advantages or disadvantages have you seen with internal UI layers and wrapper-based component systems?\r
-`,l=e({articles:()=>d}),u=Object.assign({"../content/articles/hard-objects/cover.png":r,"../content/articles/mobile-web/cover.webp":i,"../content/articles/ui-layer/cover.webp":a}),d=Object.entries(Object.assign({"../content/articles/hard-objects/index.md":o,"../content/articles/mobile-web/index.md":s,"../content/articles/ui-layer/index.md":c})).map(([e,r])=>{let i=r.replace(/^\uFEFF/u,``).replace(/\r\n?/g,`
-`),a=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(i);if(typeof a?.[1]!=`string`||typeof a?.[2]!=`string`)throw Error(`No meta for`+e);let o=n(a[1]);o.data=a[2],o.title=c(r),o.date=new Date(o.date),o.readOn??=[];let s=u[Object.keys(u).find(t=>t.includes(e.replace(`index.md`,``)))??``];if(!s)throw Error(`No cover image for `+o.title);return o.coverUrl=s,o;function c(e){let n=t(e);for(let e of n)if(e.type===`heading`&&e.depth===1)return e.text.trim();return null}}).sort((e,t)=>e.order===void 0?t.order===void 0?0:1:t.order===void 0?-1:e.order-t.order);export{l as n,d as t};
+`,u=`---\r
+date: 2026-09-01\r
+slug: conditional-wrapping-in-vue-3-three-approaches\r
+seoDescription: Explore three approaches to conditional wrapping in Vue 3, from a simple wrapper prop to advanced VNode manipulation with nested wrappers.\r
+description: "I explore three ways to build a conditional wrapper component in Vue 3: passing the wrapper as a prop, defining it directly in the default slot, and using a dedicated wrapper slot for arbitrary nesting. The advanced version includes both the original cloneVNode and ShapeFlags implementation and a more future-proof alternative based only on Vue's public VNode API."\r
+---\r
+# Conditional Wrapping in Vue 3: Three Approaches\r
+\r
+Sometimes we need to conditionally wrap part of a Vue template in an additional element or component.\r
+\r
+The obvious solution is \`v-if\`:\r
+\r
+\`\`\`vue\r
+<div v-if="isWrapped" class="wrapper">\r
+    <!-- some big chunk of markup -->\r
+</div>\r
+\r
+<template v-else>\r
+    <!-- the same big chunk of markup -->\r
+</template>\r
+\`\`\`\r
+\r
+It works, but now the content is duplicated.\r
+\r
+Let's explore three ways to implement a reusable conditional wrapper in Vue 3 without that duplication.\r
+\r
+We'll call our component \`<Wrap>\` and the element or component that actually surrounds the content the **wrapper**.\r
+\r
+Since \`Wrap\` itself does not need component state, all three implementations can be functional components.\r
+\r
+## 1. Pass the wrapper as a prop\r
+\r
+The simplest option is to pass the wrapper element or component as a prop.\r
+\r
+### \`Wrap.ts\`\r
+\r
+\`\`\`ts\r
+import { createVNode, type Component, type FunctionalComponent, type VNode } from 'vue';\r
+\r
+type WrapProps = {\r
+    wrapper?: string | Component | false;\r
+};\r
+\r
+type WrapSlots = {\r
+    default: () => VNode[];\r
+};\r
+\r
+const Wrap: FunctionalComponent<WrapProps, {}, WrapSlots> = ({wrapper}, {attrs, slots}) => {\r
+    const content = slots.default();\r
+    return wrapper ? createVNode(wrapper, attrs, content) : content;\r
+};\r
+\r
+Wrap.props = ['wrapper'];\r
+\r
+export default Wrap;\r
+\`\`\`\r
+\r
+Usage:\r
+\r
+\`\`\`vue\r
+<script setup lang="ts">\r
+import { ref } from 'vue';\r
+import Wrap from './Wrap.ts';\r
+\r
+const isWrapped = ref(true);\r
+<\/script>\r
+\r
+<template>\r
+    <Wrap :wrapper="isWrapped && 'div'" class="wrapper">\r
+        <p>I'm conditionally wrapped.</p>\r
+    </Wrap>\r
+</template>\r
+\`\`\`\r
+\r
+[See it on Vue SFC Playground](https://play.vuejs.org/#eNptU8FunDAQ/ZUplQIrEVZNe4gIS1pVqtRLValVewg5sOBFKMa27CHNivLvHZtZsonKAXnmzcx7zwNT9MmY7HEUUR4VrrG9QXACRwOyVt2uitBVUVmpfjDaIkxgxQFmOFg9QExt8c2K/ba1YSDb+iBD5+FKNVo5hN75pBEt7PyUBO0oNoQX24W39KUFisHIGgVFQE+xHxG1go+N7JsH0nM+5c0akMafuuukgD8hYYvt0hiGhkFBXs7wi0EXFxC3/WNcRdDI2jkCuSxYB34KU36NByAzbY+9VrWUR6Zrs2JrToqD99L7OvNCocOj9MeMh8O0NOy1bYXN4co8gdOyb+Hth6v99fX7mwU3ddv2qsvhHVVwbqht16tL1GZNz+EmmSNKI94A7XXdXWMFqfn1TbciBTwaAZ81YUoo5PjLqJrF22skdL3efKUC5qm+W20c7YRNscfbHBxaUg9/n7nofKilE170yyE/pMazIa041KPEHJIN7MpFwt392rZ8Vr4v/5/wYpWVwjSnzwQlMSQTKyRgqhEtFTkPzoGKBSwM9EYve7dUZCwr2fAyLP0vVp0sw+35PSecTYFJeNgG8tNx9RM2Zvge72LujO8DKJ7CEpk7mKF8NP8D7ORMEg==)\r
+\r
+This is the most straightforward and probably the most idiomatic option.\r
+\r
+The component either creates a wrapper VNode and puts the default slot inside it or returns the default slot directly.\r
+\r
+It also works with Vue components:\r
+\r
+\`\`\`vue\r
+<Wrap :wrapper="isWrapped && SomeComponent">\r
+    ...\r
+</Wrap>\r
+\`\`\`\r
+\r
+For simple cases, this is usually sufficient.\r
+\r
+The limitation becomes visible when the wrapper itself is more complex.\r
+\r
+For example, if we want several nested wrapper elements, defining them somewhere outside the actual template and passing them through a prop quickly becomes less convenient.\r
+\r
+So let's see whether we can keep the wrapper markup directly where it is used.\r
+\r
+## 2. Put the wrapper directly in the default slot\r
+\r
+Instead of passing the wrapper through a prop, we can write it directly in the template:\r
+\r
+\`\`\`vue\r
+<Wrap :is-wrapped="isWrapped">\r
+    <div class="wrapper">\r
+        <p>I'm conditionally wrapped.</p>\r
+    </div>\r
+</Wrap>\r
+\`\`\`\r
+\r
+When wrapping is enabled, we return the slot normally.\r
+\r
+When it is disabled, we discard the first VNode level and return its children instead.\r
+\r
+### \`Wrap.ts\`\r
+\r
+\`\`\`ts\r
+import { type FunctionalComponent, type VNode } from 'vue';\r
+\r
+type WrapProps = {\r
+    isWrapped?: boolean;\r
+};\r
+\r
+type WrapSlots = {\r
+    default: () => VNode[];\r
+};\r
+\r
+const Wrap: FunctionalComponent<WrapProps, {}, WrapSlots> = ({isWrapped = false}, {slots}) => {\r
+    const wrapper = slots.default();\r
+    return isWrapped ? wrapper : wrapper.flatMap(vnode => Array.isArray(vnode.children) ? vnode.children : []);\r
+};\r
+\r
+Wrap.props = {\r
+    isWrapped: Boolean\r
+};\r
+\r
+export default Wrap;\r
+\`\`\`\r
+\r
+[See it on Vue SFC Playground](https://play.vuejs.org/#eNp1U02P0zAQ/StDOLSVuolYOKyyaZYFCYkDCAkEh+0e3NgJFo5t2U7ZKsp/3/FHQ4ogl8Qzb957M+OM2b3W+XFgWZlVtjFcO7DMDRoEkd1unzm7z+q95L1WxsEIhrUwQWtUDyssW93OuR+G6JTIC3/InfXpvWyUtA649UHNKOw8y9qZgW0wXxVRt/bQyrFeC+IYngCf6jA4pyS8bQRvfqGfJcuL+YAev6muEwx+h4CpilgYSANRsFdyexURdMkVWoT0VJQfoRHEWoQkugtAAOn646oH7Ixyx5UkQpySNs2rQi/5CiQ8txMGU/umF43i0bqT8J95EoQxFhyUocyUcK2fwCrBKbx8c324uXl9G/OaUMplV8IrRKRYT0zH5ZVTeg5PYcxJI9tmaT249Hmx7qQZfBhkE9t5rzAhmXTbmPn+WVH29+b3MuQ82xejtMWdJN/zaO9K7EEJRqS3cVnzVSi3qKGsJYNwJaw3sKuj4sPjXBZvka8r/+Wzml1sYZy2fwRqVFiPy3vTEmEZQkbr81NQSx6iyHkJOwiIPDlbb9KEDf4hRi5u9N1cUp6/8ha3+4no9VH6yaHEvTHklHMb3jGcNz+5oIbJDVJcRpDp4XEzdx82pv8z5BLexRmf0ewpbDX5DrPAeDY9A1ITVx4=)\r
+\r
+The template API is arguably nicer because the actual wrapper stays in the markup.\r
+\r
+But there are trade-offs.\r
+\r
+Vue still creates the wrapper VNode every time, including when we immediately discard it.\r
+\r
+The implementation also only understands a one-level wrapper. It assumes that the VNodes returned by the default slot represent the wrapper and that their children are the content we want to expose.\r
+\r
+So this is less idiomatic than the first solution and more dependent on the VNode structure generated by the template compiler.\r
+\r
+Still, it is an interesting option if keeping the wrapper directly in the markup improves DX enough to justify the additional assumptions.\r
+\r
+For arbitrary nesting, however, we need something more flexible.\r
+\r
+## 3. Use a dedicated wrapper slot\r
+\r
+Now let's separate the wrapper and the wrapped content into two slots:\r
+\r
+\`\`\`vue\r
+<Wrap :is-wrapped="isWrapped">\r
+    <template #wrapper>\r
+        <div class="wrapper">\r
+            <div class="inner-wrapper"></div>\r
+        </div>\r
+    </template>\r
+\r
+    <p>I'm conditionally wrapped.</p>\r
+</Wrap>\r
+\`\`\`\r
+\r
+The default slot contains our actual content.\r
+\r
+The \`wrapper\` slot contains an arbitrarily nested wrapper tree.\r
+\r
+The task is then:\r
+\r
+1. Build the VNode tree produced by the wrapper slot.\r
+2. Find its leaf VNodes.\r
+3. Inject the default-slot content into those leaves.\r
+\r
+There are two ways to implement this.\r
+\r
+### 3A. Clone VNodes and modify \`shapeFlag\`\r
+\r
+This is the original approach.\r
+\r
+It goes deeper into Vue's VNode representation by cloning the wrapper VNodes and modifying their internal \`shapeFlag\`.\r
+\r
+### \`Wrap.ts\`\r
+\r
+\`\`\`ts\r
+import { ShapeFlags } from '@vue/shared';\r
+import { cloneVNode, isVNode, type FunctionalComponent, type VNode } from 'vue';\r
+\r
+type WrapProps = {\r
+    isWrapped?: boolean;\r
+};\r
+\r
+type WrapSlots = {\r
+    default: () => VNode[];\r
+    wrapper: () => VNode[];\r
+};\r
+\r
+const Wrap: FunctionalComponent<WrapProps, {}, WrapSlots> = ({isWrapped = false}, {slots}) => {\r
+    if (!isWrapped) return slots.default();\r
+\r
+    const wrapper = slots.wrapper().map(vnode => cloneVNode(vnode));\r
+\r
+    findLeaves(wrapper, vnode => {\r
+        vnode.shapeFlag = ShapeFlags.ARRAY_CHILDREN | ShapeFlags.ELEMENT;\r
+        vnode.children = [...slots.default()];\r
+    });\r
+\r
+    return wrapper;\r
+\r
+    function findLeaves(vnodes: VNode[], callback: (vnode: VNode) => void): void {\r
+        for (const vnode of vnodes) {\r
+            const children = Array.isArray(vnode.children) ? vnode.children.filter(isVNode) : [];\r
+            children.length ? findLeaves(children, callback) : callback(vnode);\r
+        }\r
+    }\r
+};\r
+\r
+Wrap.props = {\r
+    isWrapped: Boolean\r
+};\r
+\r
+export default Wrap;\r
+\`\`\`\r
+\r
+[See the \`cloneVNode\` + \`ShapeFlags\` version on Vue SFC Playground](https://play.vuejs.org/#eNp1U2FP2zAQ/Su38IFEKqkGQ2JpWugYaEgMTYA2TXSa3MRpLVzbst2OKst/n+M4idtBvsS+O7+7d/euDKZCxJs1DpIgVZkkQoPCei2AIrYYzwKtZsFkxshKcKmhBIkLqKCQfAWH5tnhqPP9kEg4RzysL7FWtXvGMs6UBqJqo8A5jGuUUMs1jow/HTZ5J3VoqvFKUKSxuYH50vlaa87gIqMkezb1+Cjvuoup8ZEvFhTDH2uQ6bB5aEEtkC0vIeqoich9LEsR3NeVAAcOzHPagJxsIKNIKYPhQnYQXg0kjGF51IenQ+PdR96zpUOvHZ5ZTG4OV2DamhNNOEOUbh3xPE6Hou2dncKk7vAOTKr0ltbH2FUDZfNgzmWOZQLH4gUUpySHgw/H87Ozk1HjFyjPCVsk8N5EONsKyQVhR5qLzlzVSeIdvq9lyJFamjEenJx++HiK30hRWX24eoNB4HRl1Nop8mGJBL6maKE6YV4YZQ7VEkmcewItzSw4w9/veI4HRo7uoLcCw/WaZU0rL7mJZphp57FR+5KfMeurq/kmuVBGjI5hp6nzxLDlFCNW09h980C59t7kuEBrqhMIIxhPmoxPv1xHXAf/d1bebtWgyWsk0q7EAZTVoM8+MenD0t+mAlGFTUipan9ls7WkCgj7ZYvM+uq1ZGADY1d9GI1ajTY1taMfuzh3D6N4hUS4YXVbTYp+Jo0t6nEKwvJbjDZYhe7xALp3Zb8P1harVgcmY6+JeHp/P/35+/LLze3n+6s7+Ov7rm6vvl7dPY72obIlobnEzCA9xXG8x7OdTNVX6hriquwJuIH4TGwGlbSDHEBm1neOsmczYetzLtv/DSd5lNifT7jgEsKmy00/eNEcVOSH9bPwCE2lRNuYKPsPd/lGcL7XgbggVJuhuW2JIIFOmV2KNpZittBLg+HRbZ09zxqjPbuRe4CV622rb7vw4o0dS+BTs2JtNH6xm+5GZdVu7EH1D/H/RtY=)\r
+\r
+The important part is:\r
+\r
+\`\`\`ts\r
+vnode.shapeFlag = ShapeFlags.ARRAY_CHILDREN | ShapeFlags.ELEMENT;\r
+vnode.children = [...slots.default()];\r
+\`\`\`\r
+\r
+\`shapeFlag\` tells Vue what kind of VNode it is dealing with and how its children should be interpreted.\r
+\r
+By explicitly marking our leaf as an element with array children, we can inject the default-slot VNodes directly.\r
+\r
+The resulting template API is flexible:\r
+\r
+\`\`\`vue\r
+<template #wrapper>\r
+    <section>\r
+        <div class="outer">\r
+            <div class="inner"></div>\r
+        </div>\r
+    </section>\r
+</template>\r
+\`\`\`\r
+\r
+There is no special representation of the nested wrapper structure. It remains normal Vue template markup.\r
+\r
+The disadvantage is that this implementation depends on Vue internals.\r
+\r
+\`ShapeFlags\` comes from \`@vue/shared\`, rather than the public \`vue\` package API, and we modify \`VNode.shapeFlag\` ourselves.\r
+\r
+That does not make the approach invalid. It is compact and gives us direct control over the VNode tree. It is also useful for understanding how Vue represents and processes VNodes internally.\r
+\r
+But if this code is expected to survive framework changes over a long period, relying on fewer internal implementation details can be preferable.\r
+\r
+### 3B. Recreate VNodes using the public API\r
+\r
+An alternative is to avoid modifying \`shapeFlag\` completely.\r
+\r
+Instead, we recursively recreate the wrapper tree with \`createVNode()\` and let Vue determine the correct internal flags.\r
+\r
+### \`Wrap.ts\`\r
+\r
+\`\`\`ts\r
+import { createVNode, isVNode, type FunctionalComponent, type VNode } from 'vue';\r
+\r
+type WrapProps = {\r
+    isWrapped?: boolean;\r
+};\r
+\r
+type WrapSlots = {\r
+    default: () => VNode[];\r
+    wrapper: () => VNode[];\r
+};\r
+\r
+const Wrap: FunctionalComponent<WrapProps, {}, WrapSlots> = ({isWrapped = false}, {slots}) => {\r
+    const content = slots.default();\r
+\r
+    if (!isWrapped) return content;\r
+\r
+    return slots.wrapper().map(vnode => injectIntoLeaves(vnode));\r
+\r
+    function injectIntoLeaves(vnode: VNode): VNode {\r
+        const children = Array.isArray(vnode.children) ? vnode.children : [];\r
+        const childVNodes = children.filter(isVNode);\r
+\r
+        if (!childVNodes.length) {\r
+            const injectedChildren = typeof vnode.type === 'string' ? content : {default: () => content};\r
+            return createVNode(vnode.type, vnode.props, injectedChildren);\r
+        }\r
+\r
+        return createVNode(\r
+            vnode.type,\r
+            vnode.props,\r
+            children.map(child => isVNode(child) ? injectIntoLeaves(child) : child)\r
+        );\r
+    }\r
+};\r
+\r
+Wrap.props = {\r
+    isWrapped: Boolean\r
+};\r
+\r
+export default Wrap;\r
+\`\`\`\r
+\r
+[See the public-API version on Vue SFC Playground](https://play.vuejs.org/#eNp1VMtu2zAQ/JWtcrAEODKaB5DKstM0QIEARVCgRXuoe1AkymFLkwRJuzEE/XuXDz3sOD7Y1u5yZnY5qya6kzLdbUmURbkuFZUGNDFbCazg68UqMnoVLVecbqRQBhpQpIYWaiU2MMFjk3mf+6kKGRLpzD6kRtv0ipeCawNU26AkFSwsSmzUliSYz2eed2lLc0M2khWG4BPgJ3/aGiM4fCwZLf+injHKu/4BNX4X6zUj8M8FVD7zBx2oA3LyMqrPfUU1xnItQvj0EuAsgI2SrqCiOyhZoTVihJIDhJOFlHOizofyfIbZY+SjWD4bjWMUlsuHyQZwrBU1VPCCsX1ovErzmexm525haSd8AJNrs2f2bxrUQOMPPAlVEZXBhXwBLRit4Ozq4unm5nLu87KoKsrXGbzHihDbFGpN+bkRsg+3liQ96PcUQ1XoZ7zGs8vrqw/X5A2K1vkj6I2mUfAVurV3ZKkIdvbjUVRkiiYLf8xeEvi85aUf0L3Ack64CRlXdWzkFXc5y/FVCanRYkF375TbDHsQjBTcijs8840JMzpTkbrYMpNBnMBi6Rl//Q59hrm8TrajjbGg2akm8l7iFJp2OrAvkT5uxjtSF0wTLGm0zbeOLQj0JPhtEBJLXUUaZMfJvLMcrSEeVi3B5TVbxbuDfVkIe5TQX5ykm0LGO26njcyU/yGleeBGfCHFjmifSQauOjT7RmXmJ5WE366TUTfPlFWKcGznTqlin1Ltfv3xtEsncAuHEcigv5wjOEdlL7arTWvKDDYXzDao76c1OpcywtfmORlrHQh8m6S6H3RbP4k6yHPmWiwWMNFG4WJMUHh3Yxk0Rx4LmXZ+SNVd2LAo8YA+DUzS2+lYUDLCasd9ngA9ZB1RnEp4vqOZdAO2pnEPzjR+zD5gb+6VN0Im8wDJANqpb7vFcu8P+cZyZ/DJ73ZXTV7cOyZM2a0ZxqP2PyyvXSw=)\r
+\r
+The template-side API remains exactly the same.\r
+\r
+The difference is entirely in how the wrapper tree is constructed.\r
+\r
+This version has one architectural advantage: it relies on Vue's public VNode construction API instead of explicitly manipulating internal renderer flags.\r
+\r
+That makes it potentially more future-proof if Vue's internal VNode representation changes.\r
+\r
+The trade-off is that it reconstructs the nested VNode tree rather than cloning the existing wrapper tree and modifying only its leaves.\r
+\r
+For a sufficiently complex wrapper tree, this can mean some additional VNode allocations and processing.\r
+\r
+In practice, a conditional wrapper usually contains only a few nodes, so the difference is unlikely to be measurable. But it is still a real trade-off rather than a strictly better implementation.\r
+\r
+So the two versions represent slightly different priorities:\r
+\r
+* \`cloneVNode\` + \`ShapeFlags\`: compact and direct, but coupled to Vue internals;\r
+* \`createVNode\`: uses the public API and may be more future-proof, with a small potential performance cost from reconstructing the wrapper tree.\r
+\r
+## A limitation of the nested-wrapper approach\r
+\r
+Both implementations operate on the VNode tree produced by the \`wrapper\` slot.\r
+\r
+This works particularly well for a wrapper **chain**:\r
+\r
+\`\`\`vue\r
+<template #wrapper>\r
+    <section>\r
+        <div>\r
+            <article></article>\r
+        </div>\r
+    </section>\r
+</template>\r
+\`\`\`\r
+\r
+There is one logical leaf, and the content is inserted there.\r
+\r
+If the wrapper structure branches into several leaves:\r
+\r
+\`\`\`vue\r
+<template #wrapper>\r
+    <div>\r
+        <section></section>\r
+        <aside></aside>\r
+    </div>\r
+</template>\r
+\`\`\`\r
+\r
+the algorithm finds both leaves and injects the content into both of them.\r
+\r
+That means the default-slot content will be duplicated.\r
+\r
+This is not necessarily wrong, but it is important to understand the semantics. These implementations are primarily designed for nested wrapper chains rather than arbitrary branching layouts.\r
+\r
+Components introduce another boundary.\r
+\r
+A component VNode describes which component should be rendered, but it does not expose the final VNode tree that the component itself will eventually produce.\r
+\r
+The public-API implementation can provide our content to a component leaf through its default slot, but neither implementation can recursively inspect and modify the component's internal rendered tree from the parent.\r
+\r
+## Which approach should you use?\r
+\r
+There is no universally best conditional wrapper.\r
+\r
+The approaches optimize for different things.\r
+\r
+| Approach                     | Template DX | Implementation            | Nested wrappers           | Vue internals |\r
+| ---------------------------- | ----------- | ------------------------- | ------------------------- | ------------- |\r
+| Wrapper prop                 | Good        | Simple                    | Through another component | No            |\r
+| Default-slot wrapper         | Very good   | Simple VNode manipulation | No                        | No            |\r
+| Wrapper slot + \`ShapeFlags\`  | Very good   | Advanced                  | Yes                       | Yes           |\r
+| Wrapper slot + \`createVNode\` | Very good   | Advanced                  | Yes                       | No            |\r
+\r
+For ordinary application code, I would start with the first version:\r
+\r
+\`\`\`vue\r
+<Wrap :wrapper="condition && 'div'">\r
+    ...\r
+</Wrap>\r
+\`\`\`\r
+\r
+It is small, predictable, supports both native elements and components, and stays close to Vue's normal component API.\r
+\r
+The second version is useful when keeping the wrapper directly in the template provides better DX and only one wrapper level is required.\r
+\r
+The third approach becomes useful when the wrapper markup should remain declarative while supporting arbitrary nesting.\r
+\r
+Within that third approach, there is another choice.\r
+\r
+If compactness and direct VNode manipulation are important, the \`cloneVNode\` + \`ShapeFlags\` implementation is elegant.\r
+\r
+If minimizing dependence on Vue internals is more important, reconstructing the wrapper tree through \`createVNode()\` is a reasonable alternative, with a small potential performance cost for the typical wrapper sizes involved.\r
+\r
+A conditional wrapper is a small component, but it provides a useful view into how Vue templates become VNodes and how different component APIs move complexity between the template, the component implementation, and Vue's rendering layer.\r
+`,d=e({articles:()=>p}),f=Object.assign({"../content/articles/hard-objects/cover.png":r,"../content/articles/mobile-web/cover.webp":i,"../content/articles/ui-layer/cover.webp":a,"../content/articles/vue-wrapper/cover.png":o}),p=Object.entries(Object.assign({"../content/articles/hard-objects/index.md":s,"../content/articles/mobile-web/index.md":c,"../content/articles/ui-layer/index.md":l,"../content/articles/vue-wrapper/index.md":u})).map(([e,r])=>{let i=r.replace(/^\uFEFF/u,``).replace(/\r\n?/g,`
+`),a=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(i);if(typeof a?.[1]!=`string`||typeof a?.[2]!=`string`)throw Error(`No meta for`+e);let o=n(a[1]);o.data=a[2],o.title=c(r),o.date=new Date(o.date),o.readOn??=[];let s=f[Object.keys(f).find(t=>t.includes(e.replace(`index.md`,``)))??``];if(!s)throw Error(`No cover image for `+o.title);return o.coverUrl=s,o;function c(e){let n=t(e);for(let e of n)if(e.type===`heading`&&e.depth===1)return e.text.trim();return null}}).sort((e,t)=>t.date.getTime()-e.date.getTime());export{d as n,p as t};
