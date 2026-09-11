@@ -1,0 +1,1 @@
+const t={Application:"Приложение","Show help tips":"Показывать подсказки","Clear hidden tips":"Очистить скрытые подсказки","Next tip":"Следующая подсказка","Hide tip":"Скрыть подсказку","Don't show tips":"Не показывать подсказки"};export{t as default};

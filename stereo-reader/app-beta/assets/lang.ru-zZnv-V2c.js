@@ -1,0 +1,1 @@
+const e={"Vertical gap between pages in % of page height":"Вертикальный зазор между страницами в % от высоты страницы","PDF settings":"Настройки PDF","Crop page margins":"Обрезать поля страницы","Invert page colors":"Инвертировать цвета страницы"};export{e as default};
