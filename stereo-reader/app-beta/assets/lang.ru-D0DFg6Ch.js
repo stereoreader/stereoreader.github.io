@@ -1,0 +1,1 @@
+const p={Application:"Приложение","App / Language":"Приложение / Язык","This will reload the app":"Приложение будет перезагружено","Show help tips":"Показывать подсказки","Clear hidden tips":"Очистить скрытые подсказки","Next tip":"Следующая подсказка","Hide tip":"Скрыть подсказку","Don't show tips":"Не показывать подсказки"};export{p as default};
