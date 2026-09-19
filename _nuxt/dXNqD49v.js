@@ -1,8 +1,8 @@
-import{D as e,E as t,F as n,Kt as r,L as i,P as a,T as o,dt as s,et as c,ft as l,k as u,ot as d,pt as f,rt as p,vt as m,wt as h,y as g,yt as _}from"./B498Pdn7.js";import{i as v}from"./m2o5_J0S.js";import{i as ee,p as y}from"./BlzH-r8D.js";import{r as te}from"./FJJ_VChM.js";import{t as ne}from"./SCnPoOoJ.js";import{a as re,c as b,i as ie,o as x,r as S}from"#entry";import{t as C}from"./BDNMzG2s.js";import{t as ae}from"./BGe6q4wY.js";import{t as w}from"./Bc6QphOV.js";import{t as oe}from"./CRSw9Qej.js";import{t as se}from"./DRtBMuYi.js";import{n as ce,t as le}from"./D38L49IJ.js";var T=x((e=>{e.getAttrs=function(e,t,n){let r=/[^\t\n\f />"'=]/,i=[],a=``,o=``,s=!0,l=!1;for(let u=t+n.leftDelimiter.length;u<e.length;u++){if(!l&&e.slice(u,u+n.rightDelimiter.length)===n.rightDelimiter){a!==``&&i.push([a,o]);break}let t=e.charAt(u);if(t===`=`&&s){s=!1;continue}if(t===`.`&&a===``){e.charAt(u+1)===`.`?(a=`css-module`,u+=1):a=`class`,s=!1;continue}if(t===`#`&&a===``){a=`id`,s=!1;continue}if(c(e,u)&&o===``&&!l){l=!0;continue}if(c(e,u)&&l){l=!1;continue}if(t===` `&&!l){if(a===``)continue;i.push([a,o]),a=``,o=``,s=!0;continue}if(!(s&&t.search(r)===-1)){if(s){a+=t;continue}o+=t}}let u=n.allowedAttributes&&n.allowedAttributes.length,d=n.allowedAttributeValues&&n.allowedAttributeValues.length;if(u||d){let e=n.allowedAttributes,t=n.allowedAttributeValues;return i.filter(function(n){let r=n[0],i=n[1],a=!u,o=!d;function s(e){return i===e||e instanceof RegExp&&e.test(i)}function c(e){return r===e||e instanceof RegExp&&e.test(r)}return u&&(a=e.some(c)),d&&(o=t.some(s)),a&&o})}return i},e.addAttrs=function(e,t){for(let n=0,r=e.length;n<r;++n){let r=e[n][0];r===`class`?t.attrJoin(`class`,e[n][1]):r===`css-module`?t.attrJoin(`css-module`,e[n][1]):t.attrSet(r,e[n][1])}return t},e.hasDelimiters=function(e,t){if(!e)throw Error('Parameter `where` not passed. Should be "start", "end" or "only".');return function(n){let r=t.leftDelimiter.length+1+t.rightDelimiter.length;if(!n||typeof n!=`string`||n.length<r)return!1;function i(e){let n=e.charAt(t.leftDelimiter.length)===`.`,i=e.charAt(t.leftDelimiter.length)===`#`;return n||i?e.length>=r+1:e.length>=r}let a,c,l,u,d=r-t.rightDelimiter.length;switch(e){case`start`:l=n.slice(0,t.leftDelimiter.length),a=l===t.leftDelimiter?0:-1,c=a===-1?-1:o(n,d,t),u=n.charAt(c+t.rightDelimiter.length),u&&t.rightDelimiter.indexOf(u)!==-1&&(c=-1);break;case`end`:a=s(n,t),c=a===-1?-1:o(n,a+d,t),c=c===n.length-t.rightDelimiter.length?c:-1;break;case`only`:l=n.slice(0,t.leftDelimiter.length),a=l===t.leftDelimiter?0:-1,l=n.slice(n.length-t.rightDelimiter.length),c=l===t.rightDelimiter?n.length-t.rightDelimiter.length:-1;break;default:throw Error(`Unexpected case ${e}, expected 'start', 'end' or 'only'`)}return a!==-1&&c!==-1&&i(n.substring(a,c+t.rightDelimiter.length))}},e.removeDelimiter=function(e,t){let n=s(e,t);if(n===-1||o(e,n+t.leftDelimiter.length,t)!==e.length-t.rightDelimiter.length)return e;let r=e.slice(0,n);return/[ \n]$/.test(r)?r.slice(0,-1):r};function t(e){return e.replace(/[-/\\^$*+?.()|[\]{}]/g,`\\$&`)}e.escapeRegExp=t,e.getMatchingOpeningToken=function(e,t){if(e[t].type===`softbreak`)return!1;if(e[t].nesting===0)return e[t];let n=e[t].level,r=e[t].type.replace(`_close`,`_open`);for(;t>=0;--t)if(e[t].type===r&&e[t].level===n)return e[t];return!1};var n=/[&<>"]/,r=/[&<>"]/g,i={"&":`&amp;`,"<":`&lt;`,">":`&gt;`,'"':`&quot;`};function a(e){return i[e]}e.escapeHtml=function(e){return n.test(e)?e.replace(r,a):e};function o(e,t,n){let r=!1;for(let i=t;i<e.length;i++){if(c(e,i)){r=!r;continue}if(!r&&e.slice(i,i+n.rightDelimiter.length)===n.rightDelimiter)return i}return-1}function s(e,t){let n=-1,r=!1;for(let i=0;i<e.length;i++){if(c(e,i)){r=!r;continue}!r&&e.slice(i,i+t.leftDelimiter.length)===t.leftDelimiter&&(n=i)}return n}e.findLeftDelimiter=s;function c(e,t){if(e.charAt(t)!==`"`)return!1;let n=0;for(let r=t-1;r>=0&&e.charAt(r)===`\\`;r--)n++;return n%2==0}})),E=x(((e,t)=>{var n=T();t.exports=e=>{let t=RegExp(`^ {0,3}[-*_]{3,} ?`+n.escapeRegExp(e.leftDelimiter)+`[^`+n.escapeRegExp(e.rightDelimiter)+`]`);return[{name:`fenced code blocks`,tests:[{shift:0,block:!0,info:n.hasDelimiters(`end`,e)}],transform:(t,r)=>{let i=t[r],a=n.findLeftDelimiter(i.info,e),o=n.getAttrs(i.info,a,e);n.addAttrs(o,i),i.info=n.removeDelimiter(i.info,e)}},{name:`inline nesting 0`,tests:[{shift:0,type:`inline`,children:[{shift:-1,type:e=>e===`image`||e===`code_inline`},{shift:0,type:`text`,content:n.hasDelimiters(`start`,e)}]}],transform:(t,r,i)=>{let a=t[r].children[i],o=a.content.indexOf(e.rightDelimiter),s=t[r].children[i-1],c=n.getAttrs(a.content,0,e);n.addAttrs(c,s),a.content.length===o+e.rightDelimiter.length?t[r].children.splice(i,1):a.content=a.content.slice(o+e.rightDelimiter.length)}},{name:`tables`,tests:[{shift:0,type:`table_close`},{shift:1,type:`paragraph_open`},{shift:2,type:`inline`,content:n.hasDelimiters(`only`,e)}],transform:(t,r)=>{let i=t[r+2],a=n.getMatchingOpeningToken(t,r),o=n.getAttrs(i.content,0,e);n.addAttrs(o,a),t.splice(r+1,3)}},{name:`tables thead metadata`,tests:[{shift:0,type:`tr_close`},{shift:1,type:`thead_close`},{shift:2,type:`tbody_open`}],transform:(e,t)=>{let r=n.getMatchingOpeningToken(e,t),i=e[t-1],a=0,o=t;for(;--o;){if(e[o]===r){e[o-1].meta=Object.assign({},e[o+2].meta,{colsnum:a});break}a+=(e[o].level===i.level&&e[o].type===i.type)>>0}e[t+2].meta=Object.assign({},e[t+2].meta,{colsnum:a})}},{name:`tables tbody calculate`,tests:[{shift:0,type:`tbody_close`,hidden:!1}],transform:(e,t)=>{let n=t-2;for(;n>0&&e[--n].type!==`tbody_open`;);let r=(e[n].meta&&e[n].meta.colsnum)>>0;if(r<2)return;let i=e[t].level+2;for(let o=n;o<t;o++){if(e[o].level>i)continue;let s=e[o],c=s.hidden?0:s.attrGet(`rowspan`)>>0,l=s.hidden?0:s.attrGet(`colspan`)>>0;if(c>1){let t=r-(l>0?l:1);for(let n=o,r=c;r>1;n++)e[n].type==`tr_open`&&(e[n].meta=Object.assign({},e[n].meta),e[n].meta&&e[n].meta.colsnum&&--t,e[n].meta.colsnum=t,r--)}if(s.type==`tr_open`&&s.meta&&s.meta.colsnum){let n=s.meta.colsnum;for(let r=o,i=0;r<t;r++){if(e[r].type==`td_open`)i+=1;else if(e[r].type==`tr_close`)break;i>n&&(e[r].hidden||a(e[r]))}}if(l>1){let i=[],c=o+3,u=r;for(let t=o;t>n;t--)if(e[t].type==`tr_open`){u=e[t].meta&&e[t].meta.colsnum||u;break}else e[t].type===`td_open`&&i.unshift(t);for(let n=o+2;n<t;n++)if(e[n].type==`tr_close`){c=n;break}else e[n].type==`td_open`&&i.push(n);let d=i.indexOf(o),f=u-d;f=f>l?l:f,l>f&&s.attrSet(`colspan`,f+``);for(let t=i.slice(u+1-r-f)[0];t<c;t++)e[t].hidden||a(e[t])}}}},{name:`inline attributes`,tests:[{shift:0,type:`inline`,children:[{shift:-1,nesting:-1},{shift:0,type:`text`,content:n.hasDelimiters(`start`,e)}]}],transform:(t,r,i)=>{let a=t[r].children[i],o=a.content,s=n.getAttrs(o,0,e),c=n.getMatchingOpeningToken(t[r].children,i-1);n.addAttrs(s,c),a.content=o.slice(o.indexOf(e.rightDelimiter)+e.rightDelimiter.length)}},{name:`list softbreak`,tests:[{shift:-2,type:`list_item_open`},{shift:0,type:`inline`,children:[{position:-2,type:`softbreak`},{position:-1,type:`text`,content:n.hasDelimiters(`only`,e)}]}],transform:(t,r,i)=>{let a=t[r].children[i].content,o=n.getAttrs(a,0,e),s=r-2;for(;t[s-1]&&t[s-1].type!==`ordered_list_open`&&t[s-1].type!==`bullet_list_open`;)s--;n.addAttrs(o,t[s-1]),t[r].children=t[r].children.slice(0,-2)}},{name:`list double softbreak`,tests:[{shift:0,type:e=>e===`bullet_list_close`||e===`ordered_list_close`},{shift:1,type:`paragraph_open`},{shift:2,type:`inline`,content:n.hasDelimiters(`only`,e),children:e=>e.length===1},{shift:3,type:`paragraph_close`}],transform:(t,r)=>{let i=t[r+2].content,a=n.getAttrs(i,0,e),o=n.getMatchingOpeningToken(t,r);n.addAttrs(a,o),t.splice(r+1,3)}},{name:`list item end`,tests:[{shift:-2,type:`list_item_open`},{shift:0,type:`inline`,children:[{position:-1,type:`text`,content:n.hasDelimiters(`end`,e)}]}],transform:(t,i,a)=>{let o=t[i].children[a],s=o.content,c=n.getAttrs(s,n.findLeftDelimiter(s,e),e);n.addAttrs(c,t[i-2]);let l=s.slice(0,n.findLeftDelimiter(s,e));o.content=r(l)===` `?l.slice(0,-1):l}},{name:`
-{.a} softbreak then curly in start`,tests:[{shift:0,type:`inline`,children:[{position:-2,type:`softbreak`},{position:-1,type:`text`,content:n.hasDelimiters(`only`,e)}]}],transform:(t,r,i)=>{let a=t[r].children[i],o=n.getAttrs(a.content,0,e),s=r+1;for(;t[s+1]&&t[s+1].nesting===-1;)s++;let c=n.getMatchingOpeningToken(t,s);n.addAttrs(o,c),t[r].children=t[r].children.slice(0,-2)}},{name:`horizontal rule`,tests:[{shift:0,type:`paragraph_open`},{shift:1,type:`inline`,children:e=>e.length===1,content:e=>e.match(t)!==null},{shift:2,type:`paragraph_close`}],transform:(t,r)=>{let i=t[r];i.type=`hr`,i.tag=`hr`,i.nesting=0;let a=t[r+1].content,o=a.lastIndexOf(e.leftDelimiter),s=n.getAttrs(a,o,e);n.addAttrs(s,i),i.markup=a,t.splice(r+1,2)}},{name:`end of block`,tests:[{shift:0,type:`inline`,children:t=>i(t,e)!==null}],transform:(t,a)=>{let o=i(t[a].children,e);if(!o)return;let s=o.content,c=n.getAttrs(s,n.findLeftDelimiter(s,e),e),l=a+1;do if(t[l]&&t[l].nesting===-1)break;while(l++<t.length);let u=n.getMatchingOpeningToken(t,l);n.addAttrs(c,u);let d=s.slice(0,n.findLeftDelimiter(s,e));o.content=r(d)===` `?d.slice(0,-1):d}}]};function r(e){return e.slice(-1)[0]}function i(e,t){let r=0;for(let i=e.length-1;i>=0;i--){let a=e[i];if(a.type===`code_inline`||a.type===`math_inline`)return null;if(a.nesting===-1){r++;continue}if(a.nesting===1){if(r--,r<0)return null;continue}if(!(r>0)&&a.type===`text`&&a.content.trim()!==``)return n.hasDelimiters(`end`,t)(a.content)?a:null}return null}function a(e){e.hidden=!0,e.children&&e.children.forEach(e=>(e.content=``,a(e),void 0))}})),D=b(x(((e,t)=>{var n=E(),r={leftDelimiter:`{`,rightDelimiter:`}`,allowedAttributes:[],allowedAttributeValues:[]};t.exports=function(e,t){let a=Object.assign({},r);a=Object.assign(a,t);let o=n(a);function s(e){let t=e.tokens;for(let e=0;e<t.length;e++)for(let n=0;n<o.length;n++){let r=o[n],a=null;if(r.tests.every(n=>{let r=i(t,e,n);return r.j!==null&&(a=r.j),r.match}))try{r.transform(t,e,a),(r.name===`inline attributes`||r.name===`inline nesting 0`)&&n--}catch(e){console.error(`markdown-it-attrs: Error in pattern '${r.name}': ${e.message}`),console.error(e.stack)}}}e.core.ruler.before(`linkify`,`curly_attributes`,s)};function i(e,t,n){let r={match:!1,j:null},l=n.shift===void 0?n.position:t+n.shift;if(n.shift!==void 0&&l<0)return r;let u=s(e,l);if(u===void 0)return r;for(let e of Object.keys(n))if(e!==`shift`&&e!==`position`){if(u[e]===void 0)return r;if(e===`children`&&a(n.children)){if(u.children.length===0)return r;let e,t=n.children,a=u.children;if(t.every(e=>e.position!==void 0)){if(e=t.every(e=>i(a,e.position,e).match),e){let e=c(t).position;r.j=e>=0?e:a.length+e}}else for(let n=0;n<a.length;n++)if(e=t.every(e=>i(a,n,e).match),e){r.j=n;break}if(e===!1)return r;continue}switch(typeof n[e]){case`boolean`:case`number`:case`string`:if(u[e]!==n[e])return r;break;case`function`:if(!n[e](u[e]))return r;break;case`object`:if(o(n[e])){if(n[e].every(t=>t(u[e]))===!1)return r;break}default:throw Error(`Unknown type of pattern test (key: ${e}). Test should be of type boolean, number, string, function or array of functions.`)}}return r.match=!0,r}function a(e){return Array.isArray(e)&&e.length&&e.every(e=>typeof e==`object`)}function o(e){return Array.isArray(e)&&e.length&&e.every(e=>typeof e==`function`)}function s(e,t){return t>=0?e[t]:e[e.length+t]}function c(e){return e.slice(-1)[0]||{}}}))(),1),O=[`innerHTML`],k=new w({html:!1,linkify:!0,typographer:!0}).use(D.default,{allowedAttributes:[`class`,`id`,`target`]}),A=k.renderer.rules.link_open??function(e,t,n,r,i){return i.renderToken(e,t,n)};k.renderer.rules.link_open=function(e,t,n,r,i){let a=e[t];return a?(a.attrGet(`target`)===null&&a.attrSet(`target`,`_blank`),a.attrGet(`rel`)===null&&a.attrGet(`target`)===`_blank`&&a.attrSet(`rel`,`noopener noreferrer`),A(e,t,n,r,i)):``};var ue=Object.assign(i({__name:`al-markdown`,props:{src:{}},setup(e){let t=k.render(e.src);return(e,n)=>(c(),u(`div`,{class:`markdown`,innerHTML:h(t)},null,8,O))}}),{__name:`AlMarkdown`}),de=`---\r
+import{D as e,E as t,F as n,Kt as r,L as i,O as a,P as o,Q as s,T as c,dt as l,et as u,ft as d,k as f,ot as ee,pt as te,rt as p,vt as m,wt as h,y as g,yt as _}from"./B498Pdn7.js";import{i as ne,s as re}from"./m2o5_J0S.js";import{i as ie,p as v}from"./BlzH-r8D.js";import{r as ae}from"./FJJ_VChM.js";import{t as oe}from"./SCnPoOoJ.js";import{a as se,c as y,i as ce,o as b,r as x}from"#entry";import{t as S}from"./BDNMzG2s.js";import{t as le}from"./BGe6q4wY.js";import{t as C}from"./Bc6QphOV.js";import{t as ue}from"./CRSw9Qej.js";import{t as de}from"./DRtBMuYi.js";import{n as fe,t as pe}from"./D38L49IJ.js";var w=b((e=>{e.getAttrs=function(e,t,n){let r=/[^\t\n\f />"'=]/,i=[],a=``,o=``,s=!0,l=!1;for(let u=t+n.leftDelimiter.length;u<e.length;u++){if(!l&&e.slice(u,u+n.rightDelimiter.length)===n.rightDelimiter){a!==``&&i.push([a,o]);break}let t=e.charAt(u);if(t===`=`&&s){s=!1;continue}if(t===`.`&&a===``){e.charAt(u+1)===`.`?(a=`css-module`,u+=1):a=`class`,s=!1;continue}if(t===`#`&&a===``){a=`id`,s=!1;continue}if(c(e,u)&&o===``&&!l){l=!0;continue}if(c(e,u)&&l){l=!1;continue}if(t===` `&&!l){if(a===``)continue;i.push([a,o]),a=``,o=``,s=!0;continue}if(!(s&&t.search(r)===-1)){if(s){a+=t;continue}o+=t}}let u=n.allowedAttributes&&n.allowedAttributes.length,d=n.allowedAttributeValues&&n.allowedAttributeValues.length;if(u||d){let e=n.allowedAttributes,t=n.allowedAttributeValues;return i.filter(function(n){let r=n[0],i=n[1],a=!u,o=!d;function s(e){return i===e||e instanceof RegExp&&e.test(i)}function c(e){return r===e||e instanceof RegExp&&e.test(r)}return u&&(a=e.some(c)),d&&(o=t.some(s)),a&&o})}return i},e.addAttrs=function(e,t){for(let n=0,r=e.length;n<r;++n){let r=e[n][0];r===`class`?t.attrJoin(`class`,e[n][1]):r===`css-module`?t.attrJoin(`css-module`,e[n][1]):t.attrSet(r,e[n][1])}return t},e.hasDelimiters=function(e,t){if(!e)throw Error('Parameter `where` not passed. Should be "start", "end" or "only".');return function(n){let r=t.leftDelimiter.length+1+t.rightDelimiter.length;if(!n||typeof n!=`string`||n.length<r)return!1;function i(e){let n=e.charAt(t.leftDelimiter.length)===`.`,i=e.charAt(t.leftDelimiter.length)===`#`;return n||i?e.length>=r+1:e.length>=r}let a,c,l,u,d=r-t.rightDelimiter.length;switch(e){case`start`:l=n.slice(0,t.leftDelimiter.length),a=l===t.leftDelimiter?0:-1,c=a===-1?-1:o(n,d,t),u=n.charAt(c+t.rightDelimiter.length),u&&t.rightDelimiter.indexOf(u)!==-1&&(c=-1);break;case`end`:a=s(n,t),c=a===-1?-1:o(n,a+d,t),c=c===n.length-t.rightDelimiter.length?c:-1;break;case`only`:l=n.slice(0,t.leftDelimiter.length),a=l===t.leftDelimiter?0:-1,l=n.slice(n.length-t.rightDelimiter.length),c=l===t.rightDelimiter?n.length-t.rightDelimiter.length:-1;break;default:throw Error(`Unexpected case ${e}, expected 'start', 'end' or 'only'`)}return a!==-1&&c!==-1&&i(n.substring(a,c+t.rightDelimiter.length))}},e.removeDelimiter=function(e,t){let n=s(e,t);if(n===-1||o(e,n+t.leftDelimiter.length,t)!==e.length-t.rightDelimiter.length)return e;let r=e.slice(0,n);return/[ \n]$/.test(r)?r.slice(0,-1):r};function t(e){return e.replace(/[-/\\^$*+?.()|[\]{}]/g,`\\$&`)}e.escapeRegExp=t,e.getMatchingOpeningToken=function(e,t){if(e[t].type===`softbreak`)return!1;if(e[t].nesting===0)return e[t];let n=e[t].level,r=e[t].type.replace(`_close`,`_open`);for(;t>=0;--t)if(e[t].type===r&&e[t].level===n)return e[t];return!1};var n=/[&<>"]/,r=/[&<>"]/g,i={"&":`&amp;`,"<":`&lt;`,">":`&gt;`,'"':`&quot;`};function a(e){return i[e]}e.escapeHtml=function(e){return n.test(e)?e.replace(r,a):e};function o(e,t,n){let r=!1;for(let i=t;i<e.length;i++){if(c(e,i)){r=!r;continue}if(!r&&e.slice(i,i+n.rightDelimiter.length)===n.rightDelimiter)return i}return-1}function s(e,t){let n=-1,r=!1;for(let i=0;i<e.length;i++){if(c(e,i)){r=!r;continue}!r&&e.slice(i,i+t.leftDelimiter.length)===t.leftDelimiter&&(n=i)}return n}e.findLeftDelimiter=s;function c(e,t){if(e.charAt(t)!==`"`)return!1;let n=0;for(let r=t-1;r>=0&&e.charAt(r)===`\\`;r--)n++;return n%2==0}})),T=b(((e,t)=>{var n=w();t.exports=e=>{let t=RegExp(`^ {0,3}[-*_]{3,} ?`+n.escapeRegExp(e.leftDelimiter)+`[^`+n.escapeRegExp(e.rightDelimiter)+`]`);return[{name:`fenced code blocks`,tests:[{shift:0,block:!0,info:n.hasDelimiters(`end`,e)}],transform:(t,r)=>{let i=t[r],a=n.findLeftDelimiter(i.info,e),o=n.getAttrs(i.info,a,e);n.addAttrs(o,i),i.info=n.removeDelimiter(i.info,e)}},{name:`inline nesting 0`,tests:[{shift:0,type:`inline`,children:[{shift:-1,type:e=>e===`image`||e===`code_inline`},{shift:0,type:`text`,content:n.hasDelimiters(`start`,e)}]}],transform:(t,r,i)=>{let a=t[r].children[i],o=a.content.indexOf(e.rightDelimiter),s=t[r].children[i-1],c=n.getAttrs(a.content,0,e);n.addAttrs(c,s),a.content.length===o+e.rightDelimiter.length?t[r].children.splice(i,1):a.content=a.content.slice(o+e.rightDelimiter.length)}},{name:`tables`,tests:[{shift:0,type:`table_close`},{shift:1,type:`paragraph_open`},{shift:2,type:`inline`,content:n.hasDelimiters(`only`,e)}],transform:(t,r)=>{let i=t[r+2],a=n.getMatchingOpeningToken(t,r),o=n.getAttrs(i.content,0,e);n.addAttrs(o,a),t.splice(r+1,3)}},{name:`tables thead metadata`,tests:[{shift:0,type:`tr_close`},{shift:1,type:`thead_close`},{shift:2,type:`tbody_open`}],transform:(e,t)=>{let r=n.getMatchingOpeningToken(e,t),i=e[t-1],a=0,o=t;for(;--o;){if(e[o]===r){e[o-1].meta=Object.assign({},e[o+2].meta,{colsnum:a});break}a+=(e[o].level===i.level&&e[o].type===i.type)>>0}e[t+2].meta=Object.assign({},e[t+2].meta,{colsnum:a})}},{name:`tables tbody calculate`,tests:[{shift:0,type:`tbody_close`,hidden:!1}],transform:(e,t)=>{let n=t-2;for(;n>0&&e[--n].type!==`tbody_open`;);let r=(e[n].meta&&e[n].meta.colsnum)>>0;if(r<2)return;let i=e[t].level+2;for(let o=n;o<t;o++){if(e[o].level>i)continue;let s=e[o],c=s.hidden?0:s.attrGet(`rowspan`)>>0,l=s.hidden?0:s.attrGet(`colspan`)>>0;if(c>1){let t=r-(l>0?l:1);for(let n=o,r=c;r>1;n++)e[n].type==`tr_open`&&(e[n].meta=Object.assign({},e[n].meta),e[n].meta&&e[n].meta.colsnum&&--t,e[n].meta.colsnum=t,r--)}if(s.type==`tr_open`&&s.meta&&s.meta.colsnum){let n=s.meta.colsnum;for(let r=o,i=0;r<t;r++){if(e[r].type==`td_open`)i+=1;else if(e[r].type==`tr_close`)break;i>n&&(e[r].hidden||a(e[r]))}}if(l>1){let i=[],c=o+3,u=r;for(let t=o;t>n;t--)if(e[t].type==`tr_open`){u=e[t].meta&&e[t].meta.colsnum||u;break}else e[t].type===`td_open`&&i.unshift(t);for(let n=o+2;n<t;n++)if(e[n].type==`tr_close`){c=n;break}else e[n].type==`td_open`&&i.push(n);let d=i.indexOf(o),f=u-d;f=f>l?l:f,l>f&&s.attrSet(`colspan`,f+``);for(let t=i.slice(u+1-r-f)[0];t<c;t++)e[t].hidden||a(e[t])}}}},{name:`inline attributes`,tests:[{shift:0,type:`inline`,children:[{shift:-1,nesting:-1},{shift:0,type:`text`,content:n.hasDelimiters(`start`,e)}]}],transform:(t,r,i)=>{let a=t[r].children[i],o=a.content,s=n.getAttrs(o,0,e),c=n.getMatchingOpeningToken(t[r].children,i-1);n.addAttrs(s,c),a.content=o.slice(o.indexOf(e.rightDelimiter)+e.rightDelimiter.length)}},{name:`list softbreak`,tests:[{shift:-2,type:`list_item_open`},{shift:0,type:`inline`,children:[{position:-2,type:`softbreak`},{position:-1,type:`text`,content:n.hasDelimiters(`only`,e)}]}],transform:(t,r,i)=>{let a=t[r].children[i].content,o=n.getAttrs(a,0,e),s=r-2;for(;t[s-1]&&t[s-1].type!==`ordered_list_open`&&t[s-1].type!==`bullet_list_open`;)s--;n.addAttrs(o,t[s-1]),t[r].children=t[r].children.slice(0,-2)}},{name:`list double softbreak`,tests:[{shift:0,type:e=>e===`bullet_list_close`||e===`ordered_list_close`},{shift:1,type:`paragraph_open`},{shift:2,type:`inline`,content:n.hasDelimiters(`only`,e),children:e=>e.length===1},{shift:3,type:`paragraph_close`}],transform:(t,r)=>{let i=t[r+2].content,a=n.getAttrs(i,0,e),o=n.getMatchingOpeningToken(t,r);n.addAttrs(a,o),t.splice(r+1,3)}},{name:`list item end`,tests:[{shift:-2,type:`list_item_open`},{shift:0,type:`inline`,children:[{position:-1,type:`text`,content:n.hasDelimiters(`end`,e)}]}],transform:(t,i,a)=>{let o=t[i].children[a],s=o.content,c=n.getAttrs(s,n.findLeftDelimiter(s,e),e);n.addAttrs(c,t[i-2]);let l=s.slice(0,n.findLeftDelimiter(s,e));o.content=r(l)===` `?l.slice(0,-1):l}},{name:`
+{.a} softbreak then curly in start`,tests:[{shift:0,type:`inline`,children:[{position:-2,type:`softbreak`},{position:-1,type:`text`,content:n.hasDelimiters(`only`,e)}]}],transform:(t,r,i)=>{let a=t[r].children[i],o=n.getAttrs(a.content,0,e),s=r+1;for(;t[s+1]&&t[s+1].nesting===-1;)s++;let c=n.getMatchingOpeningToken(t,s);n.addAttrs(o,c),t[r].children=t[r].children.slice(0,-2)}},{name:`horizontal rule`,tests:[{shift:0,type:`paragraph_open`},{shift:1,type:`inline`,children:e=>e.length===1,content:e=>e.match(t)!==null},{shift:2,type:`paragraph_close`}],transform:(t,r)=>{let i=t[r];i.type=`hr`,i.tag=`hr`,i.nesting=0;let a=t[r+1].content,o=a.lastIndexOf(e.leftDelimiter),s=n.getAttrs(a,o,e);n.addAttrs(s,i),i.markup=a,t.splice(r+1,2)}},{name:`end of block`,tests:[{shift:0,type:`inline`,children:t=>i(t,e)!==null}],transform:(t,a)=>{let o=i(t[a].children,e);if(!o)return;let s=o.content,c=n.getAttrs(s,n.findLeftDelimiter(s,e),e),l=a+1;do if(t[l]&&t[l].nesting===-1)break;while(l++<t.length);let u=n.getMatchingOpeningToken(t,l);n.addAttrs(c,u);let d=s.slice(0,n.findLeftDelimiter(s,e));o.content=r(d)===` `?d.slice(0,-1):d}}]};function r(e){return e.slice(-1)[0]}function i(e,t){let r=0;for(let i=e.length-1;i>=0;i--){let a=e[i];if(a.type===`code_inline`||a.type===`math_inline`)return null;if(a.nesting===-1){r++;continue}if(a.nesting===1){if(r--,r<0)return null;continue}if(!(r>0)&&a.type===`text`&&a.content.trim()!==``)return n.hasDelimiters(`end`,t)(a.content)?a:null}return null}function a(e){e.hidden=!0,e.children&&e.children.forEach(e=>(e.content=``,a(e),void 0))}})),E=y(b(((e,t)=>{var n=T(),r={leftDelimiter:`{`,rightDelimiter:`}`,allowedAttributes:[],allowedAttributeValues:[]};t.exports=function(e,t){let a=Object.assign({},r);a=Object.assign(a,t);let o=n(a);function s(e){let t=e.tokens;for(let e=0;e<t.length;e++)for(let n=0;n<o.length;n++){let r=o[n],a=null;if(r.tests.every(n=>{let r=i(t,e,n);return r.j!==null&&(a=r.j),r.match}))try{r.transform(t,e,a),(r.name===`inline attributes`||r.name===`inline nesting 0`)&&n--}catch(e){console.error(`markdown-it-attrs: Error in pattern '${r.name}': ${e.message}`),console.error(e.stack)}}}e.core.ruler.before(`linkify`,`curly_attributes`,s)};function i(e,t,n){let r={match:!1,j:null},l=n.shift===void 0?n.position:t+n.shift;if(n.shift!==void 0&&l<0)return r;let u=s(e,l);if(u===void 0)return r;for(let e of Object.keys(n))if(e!==`shift`&&e!==`position`){if(u[e]===void 0)return r;if(e===`children`&&a(n.children)){if(u.children.length===0)return r;let e,t=n.children,a=u.children;if(t.every(e=>e.position!==void 0)){if(e=t.every(e=>i(a,e.position,e).match),e){let e=c(t).position;r.j=e>=0?e:a.length+e}}else for(let n=0;n<a.length;n++)if(e=t.every(e=>i(a,n,e).match),e){r.j=n;break}if(e===!1)return r;continue}switch(typeof n[e]){case`boolean`:case`number`:case`string`:if(u[e]!==n[e])return r;break;case`function`:if(!n[e](u[e]))return r;break;case`object`:if(o(n[e])){if(n[e].every(t=>t(u[e]))===!1)return r;break}default:throw Error(`Unknown type of pattern test (key: ${e}). Test should be of type boolean, number, string, function or array of functions.`)}}return r.match=!0,r}function a(e){return Array.isArray(e)&&e.length&&e.every(e=>typeof e==`object`)}function o(e){return Array.isArray(e)&&e.length&&e.every(e=>typeof e==`function`)}function s(e,t){return t>=0?e[t]:e[e.length+t]}function c(e){return e.slice(-1)[0]||{}}}))(),1),D=[`innerHTML`],O=new C({html:!1,linkify:!0,typographer:!0}).use(E.default,{allowedAttributes:[`class`,`id`,`target`]}),k=O.renderer.rules.link_open??function(e,t,n,r,i){return i.renderToken(e,t,n)};O.renderer.rules.link_open=function(e,t,n,r,i){let a=e[t];return a?(a.attrGet(`target`)===null&&a.attrSet(`target`,`_blank`),a.attrGet(`rel`)===null&&a.attrGet(`target`)===`_blank`&&a.attrSet(`rel`,`noopener noreferrer`),k(e,t,n,r,i)):``};var me=Object.assign(i({__name:`al-markdown`,props:{src:{}},setup(e){let t=O.render(e.src);return(e,n)=>(u(),f(`div`,{class:`markdown`,innerHTML:h(t)},null,8,D))}}),{__name:`AlMarkdown`}),he=`---\r
 description: Train or relax your eyes with Stereo Reader while reading books and documents in stereo or mono mode. Supports text, PDF, EPUB, FB2, images, stereo pairs, voice commands, mouse control, and timers.\r
 ---\r
-`,fe=`## Application\r
+`,ge=`## Application\r
 \r
 To make this method practical, I started developing **Stereo Reader** — an application designed to facilitate reading in parallel-view stereo mode.\r
 \r
@@ -22,7 +22,7 @@ Before using Stereo Reader, it is useful to first understand parallel-view stere
 \r
 A good starting point is to practice with ordinary stereoscopic image pairs first, then move to Stereo Reader after the basic parallel-view fusion skill becomes familiar. Stereo image galleries such as [Hidden 3D](https://hidden-3d.com/) or [Stereoscopy.com](https://www.stereoscopy.com/) provide examples available in both parallel-view and cross-view formats. \r
 \r
-[Open Stereo Reader and try it](https://stereo.aleklabs.dev/#try)`,pe=`## Why the Bates Method Was Not Enough\r
+[Open Stereo Reader and try it](https://stereo.aleklabs.dev/#try)`,_e=`## Why the Bates Method Was Not Enough\r
 \r
 The Bates method did not fully fail. In my opinion, its main limitation was that it emphasized relaxation too much, while the more important mechanism may be eye-muscle stretching and active training.\r
 \r
@@ -50,19 +50,19 @@ So, in my view, the Bates method has limited applicability. It may help some peo
 \r
 For me, stereo reading and exotropic training produced much stronger results than Bates-style relaxation. It also produced positive feedback from other users. For that reason, I chose to focus on Stereo Reader and parallel-view training as the main practical direction.\r
 \r
-People who want to study the Bates method can still do so. It may have therapeutic value for some users. But in my opinion, its limitations should be recognized: relaxation alone is often not enough. In more difficult cases, real training may be required.`,me=`## Cross view\r
+People who want to study the Bates method can still do so. It may have therapeutic value for some users. But in my opinion, its limitations should be recognized: relaxation alone is often not enough. In more difficult cases, real training may be required.`,ve=`## Cross view\r
 \r
-Cross view is the opposite way of viewing stereo images: instead of looking with parallel visual axes, the eyes converge so that the lines of sight cross at a point between the eyes and the screen, allowing the left eye to view the right image and the right eye to view the left image. Because this mode deliberately increases convergence and keeps the visual system working in a stronger near-oriented configuration, it may be relevant for presbyopia and other difficulties with near focusing. Stereo Reader can also be used for cross-view training, including convergence practice and presbyopia-oriented visual exercises, using the same adjustable reading and fusion techniques.`,he=`## Read your favorite books\r
+Cross view is the opposite way of viewing stereo images: instead of looking with parallel visual axes, the eyes converge so that the lines of sight cross at a point between the eyes and the screen, allowing the left eye to view the right image and the right eye to view the left image. Because this mode deliberately increases convergence and keeps the visual system working in a stronger near-oriented configuration, it may be relevant for presbyopia and other difficulties with near focusing. Stereo Reader can also be used for cross-view training, including convergence practice and presbyopia-oriented visual exercises, using the same adjustable reading and fusion techniques.`,ye=`## Read your favorite books\r
 \r
-You can read text, PDF, EPUB, FB2 files in stereo or mono mode`,ge=`## Relax your eyes\r
+You can read text, PDF, EPUB, FB2 files in stereo or mono mode`,be=`## Relax your eyes\r
 \r
-You can read books or view images with comfortable settings to relax your eyes with parallel view`,j=`## Train your eyes\r
+You can read books or view images with comfortable settings to relax your eyes with parallel view`,A=`## Train your eyes\r
 \r
 You can train your vision to improve focus and clarity by reading with more challenging settings (smaller\r
-            font size, wider gap between columns, longer distance)`,M=`**Your Files Stay on Your Device**\r
+            font size, wider gap between columns, longer distance)`,j=`**Your Files Stay on Your Device**\r
 \r
 Files added to Stereo Reader are stored locally in your browser. They are not uploaded to a server or transmitted over the network, so your documents remain private on your device.\r
-`,N=`## My Goals\r
+`,M=`## My Goals\r
 \r
 ### 🚩 Personal goal\r
 \r
@@ -94,7 +94,7 @@ A key part of this mission is to challenge the pessimism around eye-muscle train
 \r
 I am especially interested in developing this method as a practical, measurable, user-driven approach. The goal is not to make abstract claims, but to create exercises, tools, and protocols that people can test in their own visual experience and report their results.\r
 \r
-In addition, regular eye-muscle activity may have broader functional benefits. Like other muscles, the extraocular muscles may benefit from training, coordination work, and controlled loading. Improving eye-muscle fitness may also support better local circulation and a healthier functional state of the visual system. This is one of the reasons I consider this direction worth exploring further.`,P=`## How to Join the Project\r
+In addition, regular eye-muscle activity may have broader functional benefits. Like other muscles, the extraocular muscles may benefit from training, coordination work, and controlled loading. Improving eye-muscle fitness may also support better local circulation and a healthier functional state of the visual system. This is one of the reasons I consider this direction worth exploring further.`,N=`## How to Join the Project\r
 \r
 Stereo Reader is currently in the early adoption phase for a wider audience. The method, the application, and the community are still developing, so feedback from real users is especially valuable.\r
 \r
@@ -105,10 +105,10 @@ You can join the project in several ways:\r
 * [Ask me any question on Telegram](https://t.me/alexoran)\r
 * [Send me an email](mailto:aleklabs.dev@gmail.com?subject=Stereo%20Reader) with the subject **Stereo Reader** if you want to subscribe to future project updates.\r
 * [Join the Telegram channel](https://t.me/stereoreader) and ask questions or share your experience.\r
-* [Subscribe to the YouTube channel](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) for future tutorials, explanations, and learning videos.`,F=`---
+* [Subscribe to the YouTube channel](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) for future tutorials, explanations, and learning videos.`,xe=`---
 description: Treine ou relaxe os olhos com o Stereo Reader enquanto lê livros e documentos no modo estéreo ou mono. Compatível com texto, PDF, EPUB, FB2, imagens, pares estéreo, comandos de voz, mouse e temporizadores.
 ---
-`,I=`## Aplicativo
+`,Se=`## Aplicativo
 
 Para tornar este método prático, comecei a desenvolver o **Stereo Reader** — um aplicativo pensado para facilitar a leitura no modo estéreo com visão paralela.
 
@@ -129,7 +129,7 @@ Antes de usar o Stereo Reader, é útil entender primeiro a estereoscopia em vis
 Um bom ponto de partida é praticar primeiro com pares de imagens estereoscópicas ordinárias e depois passar ao Stereo Reader quando a habilidade básica de fusão em visão paralela se tornar familiar. Galerias de imagens estéreo como [Hidden 3D](https://hidden-3d.com/) ou [Stereoscopy.com](https://www.stereoscopy.com/) oferecem exemplos em formato de visão paralela e de visão cruzada.
 
 [Abrir o Stereo Reader e experimentá-lo](https://stereo.aleklabs.dev/#try)
-`,L=`## Por que o método Bates não foi suficiente
+`,Ce=`## Por que o método Bates não foi suficiente
 
 O método Bates não fracassou por completo. Na minha opinião, sua principal limitação foi enfatizar demais o relaxamento, enquanto o mecanismo mais importante pode ser o alongamento dos músculos oculares e o treino ativo.
 
@@ -158,23 +158,23 @@ Então, na minha opinião, o método Bates tem aplicabilidade limitada. Pode aju
 Para mim, a leitura estéreo e o treino exotrópico produziram resultados bem mais fortes do que o relaxamento no estilo Bates. Também produziram feedback positivo de outros usuários. Por essa razão, escolhi me concentrar no Stereo Reader e no treino em visão paralela como direção prática principal.
 
 Quem quiser estudar o método Bates ainda pode fazê-lo. Ele pode ter valor terapêutico para alguns usuários. Mas, na minha opinião, é preciso reconhecer seus limites: o relaxamento sozinho muitas vezes não basta. Nos casos mais difíceis, pode ser necessário um treino de verdade.
-`,_e=`## Visão cruzada
+`,we=`## Visão cruzada
 
 A visão cruzada é o modo oposto de ver imagens estéreo: em vez de olhar com eixos visuais paralelos, os olhos convergem de modo que as linhas de visão se cruzem em um ponto entre os olhos e a tela, permitindo que o olho esquerdo veja a imagem direita e o olho direito veja a imagem esquerda. Como esse modo aumenta deliberadamente a convergência e mantém o sistema visual trabalhando em uma configuração mais orientada para perto, ele pode ser relevante para a presbiopia e outras dificuldades de foco de perto. O Stereo Reader também pode ser usado para treino em visão cruzada, incluindo prática de convergência e exercícios visuais orientados à presbiopia, com as mesmas técnicas ajustáveis de leitura e fusão.
-`,ve=`## Leia seus livros favoritos
+`,Te=`## Leia seus livros favoritos
 
 Você pode ler arquivos de texto, PDF, EPUB, FB2 no modo estéreo ou mono
-`,ye=`## Relaxe os olhos
+`,Ee=`## Relaxe os olhos
 
 Você pode ler livros ou ver imagens com ajustes confortáveis para relaxar os olhos em visão paralela
-`,be=`## Treine os olhos
+`,De=`## Treine os olhos
 
 Você pode treinar a visão para melhorar o foco e a clareza lendo com ajustes mais exigentes (tamanho de
             fonte menor, maior espaço entre colunas, maior distância)
-`,xe=`**Seus arquivos permanecem no seu dispositivo**
+`,Oe=`**Seus arquivos permanecem no seu dispositivo**
 
 Os arquivos adicionados ao Stereo Reader são armazenados localmente no seu navegador. Eles não são enviados a um servidor nem transmitidos pela rede, então seus documentos permanecem privados no seu dispositivo.
-`,Se=`## Meus objetivos
+`,ke=`## Meus objetivos
 
 ### 🚩 Objetivo pessoal
 
@@ -207,7 +207,7 @@ Uma parte central desta missão é questionar o pessimismo em torno do treino do
 Interessa-me especialmente desenvolver este método como uma abordagem prática, mensurável e guiada pelos usuários. O objetivo não é fazer afirmações abstratas, e sim criar exercícios, ferramentas e protocolos que as pessoas possam testar na própria experiência visual e dos quais possam informar resultados.
 
 Além disso, a atividade regular dos músculos oculares pode ter benefícios funcionais mais amplos. Como outros músculos, os extraoculares podem se beneficiar do treino, do trabalho de coordenação e de uma carga controlada. Melhorar sua condição também pode apoiar uma melhor circulação local e um estado funcional mais saudável do sistema visual. Esta é uma das razões pelas quais considero que essa direção merece continuar sendo explorada.
-`,Ce=`## Como participar do projeto
+`,Ae=`## Como participar do projeto
 
 O Stereo Reader está atualmente em uma fase inicial de adoção para um público mais amplo. O método, o aplicativo e a comunidade ainda estão se desenvolvendo, então o feedback de usuários reais é especialmente valioso.
 
@@ -219,7 +219,7 @@ Você pode participar do projeto de várias formas:
 * [Envie-me um e-mail](mailto:aleklabs.dev@gmail.com?subject=Stereo%20Reader) com o assunto **Stereo Reader** se quiser se inscrever para futuras atualizações do projeto.
 * [Entre no canal do Telegram](https://t.me/stereoreader) e faça perguntas ou compartilhe sua experiência.
 * [Inscreva-se no canal do YouTube](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) para futuros tutoriais, explicações e vídeos de aprendizado.
-`,we=`A visão paralela é uma forma de olhar duas imagens lado a lado de modo que cada olho veja a sua. O cérebro então as combina em uma só imagem, muitas vezes com uma clara sensação de profundidade.
+`,je=`A visão paralela é uma forma de olhar duas imagens lado a lado de modo que cada olho veja a sua. O cérebro então as combina em uma só imagem, muitas vezes com uma clara sensação de profundidade.
 
 Ela é usada habitualmente para ver imagens estéreo e imagens 3D sem óculos especiais. No começo pode parecer estranho, mas depois que você aprende a técnica, manter a posição de visão paralela fica bem mais fácil.
 
@@ -230,7 +230,7 @@ de formas de usar a visão.
 
 Ela não se limita a olhar imagens 3D: a mesma técnica básica também pode ser usada para tarefas visuais mais longas e mais ativas.
 {.bigger}
-`,Te=`## Meus resultados
+`,Me=`## Meus resultados
 
 Estes são meus resultados na leitura habitual de texto, em modo não estéreo, porque a leitura estéreo reduz a capacidade de focar. Isso não significa que eu veja o texto com nitidez total: é preciso certo esforço. No entanto, o progresso descrito aqui corresponde claramente à minha experiência visual cotidiana.
 
@@ -246,7 +246,7 @@ Estes são meus resultados na leitura habitual de texto, em modo não estéreo, 
 Como resultado prático, pude deixar os óculos para as atividades cotidianas. Isso inclui assistir televisão e filmes, ir ao cinema, ir a lojas, fazer compras, caminhar do lado de fora e, em essência, todas as tarefas diárias normais. Também consigo dirigir sem óculos de dia. A única situação em que ainda uso óculos é a direção noturna.
 
 Levando em conta as experiências de outros usuários, atualmente estou firmemente convencido de que os exercícios dos músculos oculares podem ser uma ferramenta eficaz para melhorar a nitidez visual funcional.
-`,Ee=`# Do alongamento dos músculos oculares à leitura estéreo: meu roteiro da nitidez visual funcional
+`,Ne=`# Do alongamento dos músculos oculares à leitura estéreo: meu roteiro da nitidez visual funcional
 
 ## Limite das fontes
 
@@ -367,14 +367,14 @@ O mesmo período também contém a métrica prática mais importante. Relatei le
 O vídeo de demonstração “Reading in Stereo” mostra o método na sua forma madura: leitura estéreo lenta perto do limiar, alternância entre mono e estéreo, uso de ajustes do olhar e ciclos de descanso, e a aceitação de que a leitura de qualidade de treino é mais lenta do que a leitura confortável ordinária. O ponto não é a velocidade de leitura. O ponto é forçar o reconhecimento enquanto os olhos permanecem na configuração paralela/exotrópica treinada ([Reading in Stereo](https://www.youtube.com/watch?v=CEmD58CjTfk), 2026-05-22).
 
 O roteiro termina com o vídeo retrospectivo final: relatei melhorar a visão em mais de cinco vezes ao longo de oito meses. Na lógica de toda a cronologia, esse resultado não veio de um exercício isolado. Veio de uma sequência: sensibilidade muscular inicial, alongamento mecânico, extrusão de bruços, leitura limiar, descoberta da leitura estéreo, carga exotrópica controlada, ovos e pares estéreo auxiliares, e então um protocolo maduro baseado no Stereo Reader. A afirmação final permanece um resultado funcional pessoal: ao longo deste período, o método passou da teoria e da sensação para uma nitidez visual funcional mensurável, terminando com a melhoria relatada de mais de 5x ([Improved My Vision 5x in 8 Months](https://www.youtube.com/watch?v=nY7qshQWmT0), 2026-05-27).
-`,De=`O Stereo Reader permite manter uma posição dos olhos em visão paralela enquanto você lê texto normal. Cada olho acompanha a sua própria cópia do texto, e o cérebro combina as duas em uma vista legível.
+`,Pe=`O Stereo Reader permite manter uma posição dos olhos em visão paralela enquanto você lê texto normal. Cada olho acompanha a sua própria cópia do texto, e o cérebro combina as duas em uma vista legível.
 
 Durante a leitura de perto habitual, os dois olhos permanecem voltados para dentro por longos períodos. Isso mantém os **músculos oculares internos** — os retos mediais — trabalhando quase o tempo todo e dá aos olhos muito pouca prática de se mover na outra direção. Com o tempo, esse hábito de forte convergência pode reduzir a capacidade de divergir e contribuir para um desfoque temporário de longe depois do trabalho de perto. Na abordagem do Stereo Reader, repetir esse padrão por anos também pode contribuir para problemas mais persistentes de foco à distância.
 
 A leitura em visão paralela muda esse equilíbrio. Ela reduz a carga constante sobre os músculos internos e dá mais trabalho aos músculos que levam os olhos para fora. Usada com regularidade, pode servir tanto de prevenção contra hábitos visuais de muita convergência quanto de treino pensado para melhorar a visão funcional de longe em pessoas com miopia.
 
 A ideia principal é simples: continue lendo conteúdo útil ou agradável, mas dê aos seus olhos um tipo diferente de trabalho enquanto faz isso.
-`,Oe=`## Treine todos os movimentos oculares
+`,Fe=`## Treine todos os movimentos oculares
 
 O Stereo Reader começou como um leitor em visão paralela pensado para treinar a divergência e o foco voluntário. Desde então, evoluiu para um ambiente de treino visual bem mais completo, com exercícios programáveis para uma faixa mais ampla de movimentos oculares e de trabalho dos músculos extraoculares.
 
@@ -410,19 +410,19 @@ Para o efeito de treino mais forte, recomendo fazer as sessões do Stereo Reader
 Essa posição parece facilitar uma divergência mais profunda. Na prática, o objetivo é aumentar a **separação estéreo confortável** — a distância entre as duas imagens que ainda pode ser fundida sem esforço excessivo. Nos meus próprios experimentos, e em relatos de outros usuários, a separação confortável máxima nessa posição pode aumentar de forma substancial, em alguns casos se aproximando do **dobro da amplitude** alcançável em uma posição ereta convencional.
 
 Dentro do modelo mecânico do Stereo Reader, isso proporciona um alongamento mais forte da configuração muscular dominada pela convergência e permite uma maior amplitude de movimento para fora. O importante não é empurrar com força, e sim **manter a fusão com os olhos relaxados e deixar a amplitude aumentar de forma gradual**.
-`,ke=`## Minha história
+`,Ie=`## Minha história
 
 Sendo míope (-4,5 d), em 2023 comecei a fazer exercícios oculares simples de 5–10 minutos antes de dormir. Desde então, minha visão melhorou em um grau que considerei digno de compartilhar, então criei um canal no YouTube em russo para contar minha experiência. Nessa época, pelos exercícios regulares, eu já tinha adquirido uma boa sensibilidade aos músculos oculares: conseguia sentir quais músculos se contraem e se relaxam, porque tinha estudado em detalhe a [anatomia dos músculos extraoculares](https://en.wikipedia.org/wiki/Extraocular_muscles). Isso me permitiu formar uma visão precisa do que causa a miopia. É uma continuação lógica do [método Bates](https://en.wikipedia.org/wiki/Bates_method).
 
 Independentemente do consenso dominante de que essa abordagem é falsa, a ideia principal — de que o foco grosso é feito pelos músculos extraoculares e o foco final pelo cristalino, e de que treinar esses músculos pode melhorar a visão — permitiu a muitas pessoas que compartilharam sua experiência comigo melhorar a nitidez visual funcional.
 
 Minha experiência sugeria que a miopia ocorre pelo encurtamento dos [músculos retos](https://en.wikipedia.org/wiki/Extraocular_muscles), especialmente os mediais (internos, perto do nariz), que fazem os olhos convergirem para o foco de perto. Em julho de 2025 comecei a leitura estéreo — ler texto em duas colunas em visão paralela —, na qual os olhos divergem até a exotropia, um estado em que se afastam além do alinhamento paralelo. Também constatei que meu público míope tem muito pouca capacidade de divergir e de alcançar uma exotropia significativa, enquanto pessoas sem miopia têm uma forte capacidade de exotropia. Desde então, a exotropia e a leitura estéreo se tornaram minhas principais ferramentas para treinar os olhos. A leitura sozinha é usada em muitos sistemas de melhoria visual, inclusive o de Bates.
-`,Ae=`# STEREO READER
+`,Le=`# STEREO READER
 
 Leitor em visão paralela e treinador ocular
 
 [Abrir o aplicativo](https://stereo.aleklabs.dev/)
-`,je=`## Aviso e precauções de segurança
+`,Re=`## Aviso e precauções de segurança
 
 Não faço afirmações médicas neste site. O método descrito aqui não é apresentado como um tratamento médico, um conselho médico nem uma forma garantida de curar uma condição diagnosticada. Meu foco é
 
@@ -442,10 +442,10 @@ Há diferentes níveis de intensidade. Uma abordagem leve, com pouca carga e uma
 Exercícios esporádicos dificilmente produzirão resultados substanciais. O método depende da constância: treino regular, atenção aos hábitos visuais e adaptação gradual. Ao mesmo tempo, mesmo uma prática moderada e cuidadosa pode ser útil para estabilizar a nitidez visual funcional, reduzir uma deterioração adicional ou produzir melhorias menores. O objetivo não é ignorar a realidade médica, e sim treinar a capacidade funcional do sistema visual de um modo que melhore a qualidade de vida.
 
 Prossiga com cuidado, evite a dor, respeite o tempo de recuperação e trate isto como um treino físico sério do sistema visual, não como uma cura médica rápida.
-`,Me=`---
+`,ze=`---
 description: Trainieren oder entspannen Sie Ihre Augen mit Stereo Reader, während Sie Bücher und Dokumente im Stereo- oder Monomodus lesen. Unterstützt Text, PDF, EPUB, FB2, Bilder, Stereopaare, Sprachbefehle, Maussteuerung und Timer.
 ---
-`,Ne=`## Anwendung
+`,Be=`## Anwendung
 
 Um diese Methode praktisch zu machen, habe ich begonnen, **Stereo Reader** zu entwickeln — eine Anwendung, die das Lesen im Parallelblick-Stereomodus erleichtern soll.
 
@@ -466,7 +466,7 @@ Vor der Nutzung von Stereo Reader ist es sinnvoll, zuerst Parallelblick-Stereosk
 Ein guter Einstieg ist, zuerst mit gewöhnlichen stereoskopischen Bildpaaren zu üben und erst zu Stereo Reader zu wechseln, wenn die grundlegende Parallelblick-Fusion vertraut ist. Stereobild-Galerien wie [Hidden 3D](https://hidden-3d.com/) oder [Stereoscopy.com](https://www.stereoscopy.com/) bieten Beispiele im Parallelblick- und im Kreuzblick-Format.
 
 [Stereo Reader öffnen und ausprobieren](https://stereo.aleklabs.dev/#try)
-`,Pe=`## Warum die Bates-Methode nicht ausreichte
+`,Ve=`## Warum die Bates-Methode nicht ausreichte
 
 Die Bates-Methode ist nicht vollständig gescheitert. Ihrer Haupteinschränkung nach meiner Meinung lag darin, dass sie Entspannung zu stark betonte, während der wichtigere Mechanismus die Dehnung der Augenmuskeln und aktives Training sein kann.
 
@@ -495,23 +495,23 @@ Nach meiner Ansicht hat die Bates-Methode deshalb begrenzte Anwendbarkeit. Sie k
 Für mich brachten Stereolesen und Exotropie-Training deutlich stärkere Ergebnisse als Bates-artige Entspannung. Es gab auch positives Feedback von anderen Nutzern. Deshalb habe ich mich entschieden, Stereo Reader und Parallelblick-Training als praktische Hauptrichtung zu verfolgen.
 
 Menschen, die die Bates-Methode studieren wollen, können das weiter tun. Sie kann für manche Nutzer therapeutischen Wert haben. Aber nach meiner Meinung sollten ihre Grenzen anerkannt werden: Entspannung allein reicht oft nicht. In schwierigeren Fällen kann echtes Training nötig sein.
-`,Fe=`## Kreuzblick
+`,He=`## Kreuzblick
 
 Kreuzblick ist die entgegengesetzte Art, Stereobilder zu betrachten: statt mit parallelen Sehachsen zu schauen, konvergieren die Augen so, dass sich die Blicklinien in einem Punkt zwischen den Augen und dem Bildschirm kreuzen, sodass das linke Auge das rechte Bild und das rechte Auge das linke Bild sieht. Weil dieser Modus die Konvergenz bewusst verstärkt und das visuelle System in einer stärker nahorientierten Konfiguration arbeiten lässt, kann er für Presbyopie und andere Schwierigkeiten mit der Nahfokussierung relevant sein. Stereo Reader kann auch für das Training im Kreuzblick verwendet werden, einschließlich Konvergenzübungen und visuell auf Presbyopie ausgerichteter Übungen, mit denselben einstellbaren Lese- und Fusionstechniken.
-`,Ie=`## Lesen Sie Ihre Lieblingsbücher
+`,Ue=`## Lesen Sie Ihre Lieblingsbücher
 
 Sie können Text-, PDF-, EPUB- und FB2-Dateien im Stereo- oder Monomodus lesen
-`,Le=`## Entspannen Sie Ihre Augen
+`,We=`## Entspannen Sie Ihre Augen
 
 Sie können Bücher lesen oder Bilder betrachten, mit komfortablen Einstellungen, um die Augen im Parallelblick zu entspannen
-`,Re=`## Trainieren Sie Ihre Augen
+`,Ge=`## Trainieren Sie Ihre Augen
 
 Sie können das Sehen für Fokus und Klarheit trainieren, indem Sie mit anspruchsvolleren Einstellungen lesen (kleinere
             Schrift, größerer Abstand zwischen den Spalten, größere Distanz)
-`,ze=`**Ihre Dateien bleiben auf Ihrem Gerät**
+`,Ke=`**Ihre Dateien bleiben auf Ihrem Gerät**
 
 Dateien, die Sie zu Stereo Reader hinzufügen, werden lokal in Ihrem Browser gespeichert. Sie werden nicht auf einen Server hochgeladen und nicht über das Netzwerk übertragen, sodass Ihre Dokumente privat auf Ihrem Gerät bleiben.
-`,Be=`## Meine Ziele
+`,qe=`## Meine Ziele
 
 ### 🚩 Persönliches Ziel
 
@@ -544,7 +544,7 @@ Ein wichtiger Teil dieser Mission ist, den Pessimismus rund um Augenmuskeltraini
 Mich interessiert besonders, diese Methode als praktischen, messbaren, nutzergetriebenen Ansatz zu entwickeln. Das Ziel sind keine abstrakten Behauptungen, sondern Übungen, Werkzeuge und Protokolle, die Menschen in ihrer eigenen Seherfahrung testen und über die sie berichten können.
 
 Außerdem kann regelmäßige Augenmuskelaktivität breitere funktionelle Vorteile haben. Wie andere Muskeln können die äußeren Augenmuskeln von Training, Koordinationsarbeit und kontrollierter Belastung profitieren. Eine bessere Fitness der Augenmuskeln kann auch eine bessere lokale Durchblutung und einen gesünderen funktionellen Zustand des visuellen Systems unterstützen. Das ist einer der Gründe, warum ich diese Richtung für weiter erforschenswert halte.
-`,Ve=`## Wie Sie sich dem Projekt anschließen können
+`,Je=`## Wie Sie sich dem Projekt anschließen können
 
 Stereo Reader befindet sich derzeit in einer frühen Phase der Verbreitung für ein weiteres Publikum. Methode, Anwendung und Community entwickeln sich noch, deshalb ist Feedback von realen Nutzern besonders wertvoll.
 
@@ -556,7 +556,7 @@ Sie können sich dem Projekt auf mehrere Weisen anschließen:
 * [Schicken Sie mir eine E-Mail](mailto:aleklabs.dev@gmail.com?subject=Stereo%20Reader) mit dem Betreff **Stereo Reader**, wenn Sie künftige Projekt-Updates abonnieren möchten.
 * [Treten Sie dem Telegram-Kanal bei](https://t.me/stereoreader) und stellen Sie Fragen oder teilen Sie Ihre Erfahrung.
 * [Abonnieren Sie den YouTube-Kanal](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) für künftige Tutorials, Erklärungen und Lernvideos.
-`,He=`Parallelblick ist eine Art, zwei nebeneinanderliegende Bilder so zu betrachten, dass jedes Auge sein eigenes Bild sieht. Das Gehirn fügt sie dann zu einem einzigen Bild zusammen, oft mit einem klaren Tiefeneindruck.
+`,Ye=`Parallelblick ist eine Art, zwei nebeneinanderliegende Bilder so zu betrachten, dass jedes Auge sein eigenes Bild sieht. Das Gehirn fügt sie dann zu einem einzigen Bild zusammen, oft mit einem klaren Tiefeneindruck.
 
 Er wird häufig genutzt, um Stereobilder und 3D-Bilder ohne spezielle Brille zu betrachten. Am Anfang kann sich das ungewohnt anfühlen, aber sobald die Technik sitzt, wird das Halten der Parallelblick-Position deutlich leichter.
 
@@ -567,7 +567,7 @@ von Möglichkeiten, das Sehen zu nutzen.
 
 Er ist nicht auf das Betrachten von 3D-Bildern beschränkt – dieselbe Grundtechnik lässt sich auch für längere und aktivere Sehaufgaben nutzen.
 {.bigger}
-`,Ue=`## Meine Ergebnisse
+`,Xe=`## Meine Ergebnisse
 
 Hier sind meine Ergebnisse beim gewöhnlichen Textlesen, im Nicht-Stereo-Modus, weil Stereolesen die Fähigkeit zum Fokussieren verringert. Das heißt nicht, dass ich den Text völlig klar sehe — etwas Anstrengung ist nötig. Der hier beschriebene Fortschritt entspricht jedoch klar meiner alltäglichen Seherfahrung.
 
@@ -583,7 +583,7 @@ Hier sind meine Ergebnisse beim gewöhnlichen Textlesen, im Nicht-Stereo-Modus, 
 Als praktisches Ergebnis konnte ich die Brille für alltägliche Aktivitäten ablegen. Dazu gehören Fernsehen und Filme, Kino, Einkaufen, Spaziergänge und im Wesentlichen alle normalen täglichen Aufgaben. Tagsüber kann ich auch ohne Brille fahren. Die einzige Situation, in der ich noch eine Brille nutze, ist das Fahren bei Nacht.
 
 Angesichts der Erfahrungen anderer Nutzer bin ich derzeit fest überzeugt, dass Augenmuskelübungen ein funktionierendes Werkzeug zur Verbesserung der funktionellen Sehschärfe sein können.
-`,We=`# Von der Augenmuskeldehnung zum Stereolesen: mein Fahrplan der funktionellen Sehschärfe
+`,Ze=`# Von der Augenmuskeldehnung zum Stereolesen: mein Fahrplan der funktionellen Sehschärfe
 
 ## Quellengrenze
 
@@ -704,14 +704,14 @@ Dieselbe Phase enthält auch die wichtigste praktische Metrik. Ich berichtete, 3
 Das Demonstrationsvideo „Reading in Stereo“ zeigt die Methode in reifer Form: langsames Stereolesen nahe der Schwelle, Wechsel zwischen Mono und Stereo, Blickanpassungen und Erholungszyklen, und die Annahme, dass Trainingslesen langsamer ist als gewöhnliches komfortables Lesen. Der Punkt ist nicht Lesegeschwindigkeit. Der Punkt ist, Erkennung zu erzwingen, während die Augen in der trainierten Parallel-/Exotropie-Konfiguration bleiben ([Reading in Stereo](https://www.youtube.com/watch?v=CEmD58CjTfk), 2026-05-22).
 
 Der Fahrplan endet mit dem letzten Rückblick-Video: ich berichtete, das Sehen in acht Monaten um mehr als das Fünffache verbessert zu haben. In der Logik der ganzen Chronologie kam dieses Ergebnis nicht von einer isolierten Übung. Es kam aus einer Sequenz: frühe Muskelsensibilität, mechanische Dehnung, Herausdrücken in Bauchlage, Schwellenlesen, Entdeckung des Stereolesens, kontrollierte exotrope Belastung, hilfreiche Eier und Stereopaare, und dann ein reifes Stereo-Reader-basiertes Protokoll. Die abschließende Aussage bleibt ein persönliches funktionelles Ergebnis: in diesem Zeitraum bewegte sich die Methode von Theorie und Empfindung zu messbarer funktioneller Sehschärfe und endete mit der berichteten >5x-Verbesserung ([Improved My Vision 5x in 8 Months](https://www.youtube.com/watch?v=nY7qshQWmT0), 2026-05-27).
-`,Ge=`Stereo Reader lässt Sie eine Parallelblick-Augenposition halten, während Sie normalen Text lesen. Jedes Auge folgt seiner eigenen Textkopie, und das Gehirn verbindet beide zu einer lesbaren Ansicht.
+`,Qe=`Stereo Reader lässt Sie eine Parallelblick-Augenposition halten, während Sie normalen Text lesen. Jedes Auge folgt seiner eigenen Textkopie, und das Gehirn verbindet beide zu einer lesbaren Ansicht.
 
 Beim gewöhnlichen Lesen in der Nähe bleiben beide Augen lange nach innen gedreht. Dadurch arbeiten die **inneren Augenmuskeln** – die medialen geraden Muskeln – fast ständig und die Augen üben kaum die Bewegung in die andere Richtung. Mit der Zeit kann diese konvergenzlastige Gewohnheit die Fähigkeit zur Divergenz verringern und nach Naharbeit vorübergehend unscharfes Sehen in die Ferne begünstigen. Im Ansatz von Stereo Reader kann das jahrelange Wiederholen dieses Musters auch zu hartnäckigeren Problemen bei der Fernfokussierung beitragen.
 
 Das Lesen im Parallelblick verändert dieses Gleichgewicht. Es verringert die ständige Last auf den inneren Augenmuskeln und gibt den nach außen arbeitenden Muskeln mehr Arbeit. Regelmäßig genutzt, kann es sowohl als Vorbeugung gegen konvergenzlastige Sehgewohnheiten dienen als auch als Training, das die funktionelle Fernsicht bei Menschen mit Kurzsichtigkeit verbessern soll.
 
 Die Grundidee ist einfach: Lesen Sie weiter nützliche oder angenehme Inhalte, geben Sie den Augen dabei aber eine andere Art von Arbeit.
-`,Ke=`## Trainieren Sie alle Augenbewegungen
+`,$e=`## Trainieren Sie alle Augenbewegungen
 
 Stereo Reader begann als Parallelblick-Reader, der Divergenz und willkürliches Fokussieren trainieren sollte. Seitdem hat er sich zu einer deutlich umfassenderen visuellen Trainingsumgebung entwickelt, mit programmierbaren Übungen für ein breiteres Spektrum von Augenbewegungen und Arbeit der äußeren Augenmuskeln.
 
@@ -747,19 +747,19 @@ Für den stärksten Trainingseffekt empfehle ich Stereo-Reader-Sitzungen **in Ba
 Diese Position scheint tiefere Divergenz zu erleichtern. In der Praxis geht es darum, den **komfortablen Stereoabstand** zu vergrößern – die Distanz zwischen den beiden Bildern, die noch ohne übermäßigen Aufwand fusioniert werden kann. In meinen eigenen Versuchen und in Berichten anderer Nutzer kann der maximale komfortable Abstand in dieser Position deutlich zunehmen, in manchen Fällen fast auf **das Doppelte** des Bereichs in aufrechter Position.
 
 Im mechanischen Modell hinter Stereo Reader ergibt das eine stärkere Dehnung der konvergenzdominierten Augenmuskelkonfiguration und einen größeren Bewegungsbereich nach außen. Wichtig ist nicht, hart zu drücken, sondern **die Fusion mit entspannten Augen zu halten und den Bereich allmählich wachsen zu lassen**.
-`,qe=`## Meine Geschichte
+`,et=`## Meine Geschichte
 
 Als Kurzsichtiger (-4,5 d) begann ich 2023 mit einfachen Augenübungen von 5–10 Minuten vor dem Einschlafen. Seitdem hat sich mein Sehen in einem Maße verbessert, das ich für mitteilenswert hielt, und ich habe einen russischsprachigen YouTube-Kanal eröffnet, um meine Erfahrung zu teilen. Durch regelmäßige Übungen hatte ich damals bereits eine ziemlich gute Sensibilität für die Augenmuskeln: ich konnte spüren, welche Muskeln sich zusammenziehen und entspannen, weil ich die [Anatomie der Augenmuskeln](https://en.wikipedia.org/wiki/Extraocular_muscles) genau gelernt hatte. Das erlaubte mir, eine eigene präzise Sicht darauf zu entwickeln, was Kurzsichtigkeit verursacht. Das ist eine logische Fortsetzung der [Bates-Methode](https://en.wikipedia.org/wiki/Bates_method).
 
 Unabhängig vom vorherrschenden Konsens, dass dieser Ansatz falsch sei, hat die Kernidee — dass grobes Fokussieren von den äußeren Augenmuskeln und das feine Fokussieren von der Linse geleistet wird und dass das Training dieser Muskeln das Sehen verbessern kann — vielen Menschen, die ihre Erfahrungen mit mir geteilt haben, geholfen, ihre funktionelle Sehschärfe zu verbessern.
 
 Meine Erfahrung deutete darauf hin, dass Kurzsichtigkeit durch eine Verkürzung der [geraden Augenmuskeln](https://en.wikipedia.org/wiki/Extraocular_muscles) entsteht, besonders der medialen (inneren, nasennahen), die die Augen für das Nahsehen konvergieren. Im Juli 2025 begann ich mit Stereolesen — dem Lesen von Text in zwei Spalten im Parallelblick —, wobei die Augen bis zur Exotropie divergieren, einem Zustand, in dem sie über die parallele Ausrichtung hinaus auseinandergehen. Ich stellte außerdem fest, dass mein kurzsichtige Publikum sehr schlecht divergieren und eine nennenswerte Exotropie erreichen kann, während Menschen ohne Kurzsichtigkeit eine starke Exotropie-Fähigkeit haben. Seitdem sind Exotropie und Stereolesen meine wichtigsten Werkzeuge zum Training der Augen. Das Lesen allein wird in vielen Systemen zur Sehverbesserung genutzt, einschließlich Bates’.
-`,Je=`# STEREO READER
+`,tt=`# STEREO READER
 
 Parallelblick-Reader und Augentrainer
 
 [Anwendung öffnen](https://stereo.aleklabs.dev/)
-`,Ye=`## Hinweis und Sicherheitsvorkehrungen
+`,nt=`## Hinweis und Sicherheitsvorkehrungen
 
 Ich mache auf dieser Website keine medizinischen Aussagen. Die hier beschriebene Methode wird nicht als medizinische Behandlung, medizinischer Rat oder als garantierter Weg zur Heilung einer diagnostizierten Erkrankung dargestellt. Mein Fokus ist
 
@@ -779,10 +779,10 @@ Es gibt unterschiedliche Intensitätsstufen. Ein leichter Ansatz mit geringer Be
 Sporadische Übungen werden wahrscheinlich keine wesentlichen Ergebnisse bringen. Die Methode hängt von Beständigkeit ab: regelmäßigem Training, Aufmerksamkeit für Sehgewohnheiten und schrittweiser Anpassung. Gleichzeitig kann auch maßvolles, vorsichtiges Üben nützlich sein, um die funktionelle Sehschärfe zu stabilisieren, weiterer Verschlechterung entgegenzuwirken oder kleinere Verbesserungen zu erzielen. Das Ziel ist nicht, die medizinische Realität zu ignorieren, sondern die funktionelle Kapazität des visuellen Systems so zu trainieren, dass die Lebensqualität steigt.
 
 Gehen Sie vorsichtig vor, vermeiden Sie Schmerz, respektieren Sie Erholungszeit und behandeln Sie dies als ernsthaftes körperliches Training für das visuelle System, nicht als schnelle medizinische Heilung.
-`,Xe=`---
+`,rt=`---
 description: Entrena o relaja los ojos con Stereo Reader mientras lees libros y documentos en modo estéreo o mono. Admite texto, PDF, EPUB, FB2, imágenes, pares estéreo, comandos de voz, ratón y temporizadores.
 ---
-`,Ze=`## Aplicación
+`,it=`## Aplicación
 
 Para hacer práctico este método, empecé a desarrollar **Stereo Reader** — una aplicación diseñada para facilitar la lectura en modo estéreo con visión paralela.
 
@@ -803,7 +803,7 @@ Antes de usar Stereo Reader, es útil entender primero la estereoscopía en visi
 Un buen punto de partida es practicar primero con pares de imágenes estereoscópicas ordinarias y luego pasar a Stereo Reader cuando la habilidad básica de fusión en visión paralela se vuelva familiar. Galerías de imágenes estéreo como [Hidden 3D](https://hidden-3d.com/) o [Stereoscopy.com](https://www.stereoscopy.com/) ofrecen ejemplos en formato de visión paralela y de visión cruzada.
 
 [Abrir Stereo Reader y probarlo](https://stereo.aleklabs.dev/#try)
-`,Qe=`## Por qué el método Bates no fue suficiente
+`,at=`## Por qué el método Bates no fue suficiente
 
 El método Bates no fracasó por completo. En mi opinión, su principal limitación fue enfatizar demasiado la relajación, mientras que el mecanismo más importante puede ser el estiramiento de los músculos oculares y el entrenamiento activo.
 
@@ -832,23 +832,23 @@ Así que, en mi opinión, el método Bates tiene una aplicabilidad limitada. Pue
 Para mí, la lectura estéreo y el entrenamiento exotrópico produjeron resultados mucho más fuertes que la relajación al estilo Bates. También produjeron feedback positivo de otros usuarios. Por esa razón, elegí centrarme en Stereo Reader y en el entrenamiento en visión paralela como dirección práctica principal.
 
 Quienes quieran estudiar el método Bates pueden seguir haciéndolo. Puede tener valor terapéutico para algunos usuarios. Pero, en mi opinión, hay que reconocer sus límites: la relajación sola a menudo no basta. En los casos más difíciles puede hacer falta un entrenamiento real.
-`,$e=`## Visión cruzada
+`,ot=`## Visión cruzada
 
 La visión cruzada es la forma opuesta de ver imágenes estéreo: en lugar de mirar con ejes visuales paralelos, los ojos convergen de modo que las líneas de mirada se cruzan en un punto entre los ojos y la pantalla, permitiendo que el ojo izquierdo vea la imagen derecha y el ojo derecho vea la imagen izquierda. Como este modo aumenta deliberadamente la convergencia y mantiene el sistema visual trabajando en una configuración más orientada a la cercanía, puede ser relevante para la presbicia y otras dificultades de enfoque de cerca. Stereo Reader también se puede usar para el entrenamiento en visión cruzada, incluida la práctica de convergencia y ejercicios visuales orientados a la presbicia, con las mismas técnicas ajustables de lectura y fusión.
-`,et=`## Lee tus libros favoritos
+`,st=`## Lee tus libros favoritos
 
 Puedes leer archivos de texto, PDF, EPUB, FB2 en modo estéreo o mono
-`,tt=`## Relaja los ojos
+`,ct=`## Relaja los ojos
 
 Puedes leer libros o ver imágenes con ajustes cómodos para relajar los ojos en visión paralela
-`,nt=`## Entrena los ojos
+`,lt=`## Entrena los ojos
 
 Puedes entrenar la visión para mejorar el enfoque y la claridad leyendo con ajustes más exigentes (tamaño de
             fuente más pequeño, mayor espacio entre columnas, mayor distancia)
-`,rt=`**Tus archivos se quedan en tu dispositivo**
+`,ut=`**Tus archivos se quedan en tu dispositivo**
 
 Los archivos añadidos a Stereo Reader se almacenan localmente en tu navegador. No se suben a un servidor ni se transmiten por la red, así que tus documentos permanecen privados en tu dispositivo.
-`,it=`## Mis objetivos
+`,dt=`## Mis objetivos
 
 ### 🚩 Objetivo personal
 
@@ -881,7 +881,7 @@ Una parte clave de esta misión es cuestionar el pesimismo en torno al entrenami
 Me interesa especialmente desarrollar este método como un enfoque práctico, medible y guiado por los usuarios. El objetivo no es hacer afirmaciones abstractas, sino crear ejercicios, herramientas y protocolos que las personas puedan probar en su propia experiencia visual y de los que puedan informar resultados.
 
 Además, la actividad regular de los músculos oculares puede tener beneficios funcionales más amplios. Como otros músculos, los extraoculares pueden beneficiarse del entrenamiento, del trabajo de coordinación y de una carga controlada. Mejorar su condición también puede apoyar una mejor circulación local y un estado funcional más sano del sistema visual. Esta es una de las razones por las que considero que esta dirección merece seguirse explorando.
-`,at=`## Cómo unirte al proyecto
+`,ft=`## Cómo unirte al proyecto
 
 Stereo Reader está actualmente en una fase temprana de adopción para un público más amplio. El método, la aplicación y la comunidad siguen desarrollándose, así que el feedback de usuarios reales es especialmente valioso.
 
@@ -893,7 +893,7 @@ Puedes unirte al proyecto de varias formas:
 * [Envíame un correo](mailto:aleklabs.dev@gmail.com?subject=Stereo%20Reader) con el asunto **Stereo Reader** si quieres suscribirte a futuras actualizaciones del proyecto.
 * [Únete al canal de Telegram](https://t.me/stereoreader) y haz preguntas o comparte tu experiencia.
 * [Suscríbete al canal de YouTube](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) para futuros tutoriales, explicaciones y vídeos de aprendizaje.
-`,ot=`La visión paralela es una forma de mirar dos imágenes una al lado de la otra de modo que cada ojo vea la suya. El cerebro las combina entonces en una sola imagen, a menudo con una clara sensación de profundidad.
+`,pt=`La visión paralela es una forma de mirar dos imágenes una al lado de la otra de modo que cada ojo vea la suya. El cerebro las combina entonces en una sola imagen, a menudo con una clara sensación de profundidad.
 
 Se usa habitualmente para ver imágenes estéreo e imágenes 3D sin gafas especiales. Al principio puede resultar extraño, pero una vez aprendida la técnica, mantener la posición de visión paralela se vuelve mucho más fácil.
 
@@ -904,7 +904,7 @@ de formas de usar la visión.
 
 No se limita a mirar imágenes 3D: la misma técnica básica también puede usarse para tareas visuales más largas y más activas.
 {.bigger}
-`,st=`## Mis resultados
+`,mt=`## Mis resultados
 
 Estos son mis resultados en la lectura habitual de texto, en modo no estéreo, porque la lectura estéreo reduce la capacidad de enfocar. Eso no significa que vea el texto con total nitidez: hace falta cierto esfuerzo. Sin embargo, el progreso descrito aquí corresponde claramente a mi experiencia visual cotidiana.
 
@@ -920,7 +920,7 @@ Estos son mis resultados en la lectura habitual de texto, en modo no estéreo, p
 Como resultado práctico, pude dejar las gafas para las actividades cotidianas. Eso incluye ver televisión y películas, ir al cine, ir a tiendas, comprar, caminar fuera y, en esencia, todas las tareas diarias normales. También puedo conducir sin gafas de día. La única situación en la que aún uso gafas es la conducción nocturna.
 
 Teniendo en cuenta las experiencias de otros usuarios, actualmente estoy firmemente convencido de que los ejercicios de los músculos oculares pueden ser una herramienta eficaz para mejorar la nitidez visual funcional.
-`,ct=`# Del estiramiento de los músculos oculares a la lectura estéreo: mi hoja de ruta de la nitidez visual funcional
+`,ht=`# Del estiramiento de los músculos oculares a la lectura estéreo: mi hoja de ruta de la nitidez visual funcional
 
 ## Límite de fuentes
 
@@ -1041,14 +1041,14 @@ El mismo periodo también contiene la métrica práctica más importante. Inform
 El vídeo de demostración «Reading in Stereo» muestra el método en su forma madura: lectura estéreo lenta cerca del umbral, cambio entre mono y estéreo, ajustes de la mirada y ciclos de descanso, y la aceptación de que una lectura de calidad de entrenamiento es más lenta que la lectura cómoda ordinaria. El punto no es la velocidad de lectura. El punto es forzar el reconocimiento mientras los ojos permanecen en la configuración paralela/exotrópica entrenada ([Reading in Stereo](https://www.youtube.com/watch?v=CEmD58CjTfk), 2026-05-22).
 
 La hoja de ruta termina con el último vídeo retrospectivo: informé de haber mejorado la visión más de cinco veces en ocho meses. En la lógica de toda la cronología, ese resultado no vino de un ejercicio aislado. Vino de una secuencia: sensibilidad muscular temprana, estiramiento mecánico, extrusión boca abajo, lectura umbral, descubrimiento de la lectura estéreo, carga exotrópica controlada, huevos y pares estéreo auxiliares, y luego un protocolo maduro basado en Stereo Reader. La afirmación final sigue siendo un resultado funcional personal: en este periodo, el método pasó de la teoría y la sensación a una nitidez visual funcional medible, terminando con la mejora reportada de más de 5x ([Improved My Vision 5x in 8 Months](https://www.youtube.com/watch?v=nY7qshQWmT0), 2026-05-27).
-`,lt=`Stereo Reader te permite mantener una posición de los ojos en visión paralela mientras lees texto normal. Cada ojo sigue su propia copia del texto y el cerebro las combina en una vista legible.
+`,gt=`Stereo Reader te permite mantener una posición de los ojos en visión paralela mientras lees texto normal. Cada ojo sigue su propia copia del texto y el cerebro las combina en una vista legible.
 
 Durante la lectura cercana habitual, ambos ojos permanecen mucho tiempo vueltos hacia dentro. Eso mantiene los **músculos oculares internos** — los rectos mediales — trabajando casi constantemente y da a los ojos muy poca práctica de moverse en la otra dirección. Con el tiempo, este hábito de fuerte convergencia puede reducir la capacidad de divergir y contribuir a un desenfoque temporal de lejos después del trabajo de cerca. En el enfoque de Stereo Reader, repetir este patrón durante años también puede contribuir a problemas más persistentes de enfoque a distancia.
 
 La lectura en visión paralela cambia ese equilibrio. Reduce la carga constante sobre los músculos internos y da más trabajo a los músculos que llevan los ojos hacia fuera. Usada con regularidad, puede servir tanto de prevención frente a hábitos visuales de mucha convergencia como de entrenamiento pensado para mejorar la visión funcional de lejos en personas con miopía.
 
 La idea principal es simple: sigue leyendo contenido útil o agradable, pero da a tus ojos un tipo distinto de trabajo mientras lo haces.
-`,ut=`## Entrena todos los movimientos oculares
+`,_t=`## Entrena todos los movimientos oculares
 
 Stereo Reader empezó como un lector en visión paralela diseñado para entrenar la divergencia y el enfoque voluntario. Desde entonces ha evolucionado hasta un entorno de entrenamiento visual mucho más completo, con ejercicios programables para un rango más amplio de movimientos oculares y de trabajo de los músculos extraoculares.
 
@@ -1084,19 +1084,19 @@ Para el efecto de entrenamiento más fuerte, recomiendo hacer las sesiones de St
 Esta posición parece facilitar una divergencia más profunda. En la práctica, el objetivo es aumentar la **separación estéreo cómoda** — la distancia entre las dos imágenes que aún puede fusionarse sin un esfuerzo excesivo. En mis propios experimentos, y en informes de otros usuarios, la separación cómoda máxima en esta posición puede aumentar de forma sustancial, en algunos casos acercándose al **doble del rango** alcanzable en una posición erguida convencional.
 
 Dentro del modelo mecánico de Stereo Reader, esto proporciona un estiramiento más fuerte de la configuración muscular dominada por la convergencia y permite un mayor rango de movimiento hacia fuera. Lo importante no es empujar con fuerza, sino **mantener la fusión con los ojos relajados y dejar que el rango aumente de forma gradual**.
-`,dt=`## Mi historia
+`,vt=`## Mi historia
 
 Siendo miope (-4,5 d), en 2023 empecé a hacer ejercicios oculares simples de 5–10 minutos antes de dormirme. Desde entonces mi visión mejoró en un grado que consideré digno de compartir, así que creé un canal de YouTube en ruso para contar mi experiencia. Para entonces, por los ejercicios regulares, había adquirido una sensibilidad bastante buena a los músculos oculares: podía sentir qué músculos se contraen y se relajan, porque había estudiado en detalle la [anatomía de los músculos extraoculares](https://en.wikipedia.org/wiki/Extraocular_muscles). Eso me permitió formarme una visión precisa de qué causa la miopía. Es una continuación lógica del [método Bates](https://en.wikipedia.org/wiki/Bates_method).
 
 Con independencia del consenso dominante de que este enfoque es falso, la idea principal — que el enfoque grueso lo hacen los músculos extraoculares y el enfoque final el cristalino, y que entrenar esos músculos puede mejorar la visión — ha permitido a muchas personas que compartieron su experiencia conmigo mejorar su nitidez visual funcional.
 
 Mi experiencia sugería que la miopía ocurre por el acortamiento de los [músculos rectos](https://en.wikipedia.org/wiki/Extraocular_muscles), especialmente los mediales (internos, cerca de la nariz), que hacen converger los ojos para el enfoque de cerca. En julio de 2025 empecé la lectura estéreo — leer texto en dos columnas en visión paralela —, en la que los ojos divergen hasta la exotropía, un estado en el que se apartan más allá de la alineación paralela. También comprobé que mi público miope tiene muy poca capacidad de divergir y de alcanzar una exotropía significativa, mientras que las personas sin miopía tienen una fuerte capacidad de exotropía. Desde entonces, la exotropía y la lectura estéreo se han convertido en mis principales herramientas para entrenar los ojos. La sola lectura se usa en muchos sistemas de mejora visual, incluido el de Bates.
-`,ft=`# STEREO READER
+`,yt=`# STEREO READER
 
 Lector en visión paralela y entrenador visual
 
 [Abrir la aplicación](https://stereo.aleklabs.dev/)
-`,pt=`## Aviso y precauciones de seguridad
+`,bt=`## Aviso y precauciones de seguridad
 
 No hago afirmaciones médicas en este sitio. El método descrito aquí no se presenta como un tratamiento médico, un consejo médico ni una forma garantizada de curar una afección diagnosticada. Mi foco es
 
@@ -1116,10 +1116,10 @@ Hay distintos niveles de intensidad. Un enfoque ligero, con poca carga y una evi
 Los ejercicios esporádicos difícilmente producirán resultados sustanciales. El método depende de la constancia: entrenamiento regular, atención a los hábitos visuales y adaptación gradual. Al mismo tiempo, incluso una práctica moderada y cuidadosa puede ser útil para estabilizar la nitidez visual funcional, reducir un deterioro adicional o producir mejoras más pequeñas. El objetivo no es ignorar la realidad médica, sino entrenar la capacidad funcional del sistema visual de un modo que mejore la calidad de vida.
 
 Procede con cuidado, evita el dolor, respeta el tiempo de recuperación y trata esto como un entrenamiento físico serio del sistema visual, no como una cura médica rápida.
-`,mt=`---
+`,xt=`---
 description: Entraînez ou détendez vos yeux avec Stereo Reader tout en lisant des livres et des documents en mode stéréo ou mono. Prend en charge le texte, PDF, EPUB, FB2, les images, les stéréopaires, les commandes vocales, la souris et les minuteries.
 ---
-`,ht=`## Application
+`,St=`## Application
 
 Pour rendre cette méthode pratique, j’ai commencé à développer **Stereo Reader** — une application conçue pour faciliter la lecture en mode stéréo en vision parallèle.
 
@@ -1140,7 +1140,7 @@ Avant d’utiliser Stereo Reader, il est utile de comprendre d’abord la stér�
 Un bon point de départ est de s’exercer d’abord avec des paires d’images stéréoscopiques ordinaires, puis de passer à Stereo Reader une fois le geste de fusion en vision parallèle devenu familier. Des galeries comme [Hidden 3D](https://hidden-3d.com/) ou [Stereoscopy.com](https://www.stereoscopy.com/) proposent des exemples en vision parallèle et en vision croisée.
 
 [Ouvrir Stereo Reader et l’essayer](https://stereo.aleklabs.dev/#try)
-`,gt=`## Pourquoi la méthode Bates n’a pas suffi
+`,Ct=`## Pourquoi la méthode Bates n’a pas suffi
 
 La méthode Bates n’a pas entièrement échoué. Selon moi, sa principale limite est d’avoir trop insisté sur la relaxation, alors que le mécanisme le plus important peut être l’étirement des muscles oculaires et l’entraînement actif.
 
@@ -1169,23 +1169,23 @@ Selon moi, la méthode Bates a donc une applicabilité limitée. Elle peut aider
 Pour moi, la lecture stéréo et l’entraînement exotropique ont produit des résultats bien plus forts que la relaxation de type Bates. Ils ont aussi produit des retours positifs d’autres utilisateurs. C’est pourquoi j’ai choisi de me concentrer sur Stereo Reader et l’entraînement en vision parallèle comme direction pratique principale.
 
 Les personnes qui veulent étudier la méthode Bates peuvent encore le faire. Elle peut avoir une valeur thérapeutique pour certains utilisateurs. Mais selon moi, ses limites doivent être reconnues : la relaxation seule ne suffit souvent pas. Dans les cas plus difficiles, un véritable entraînement peut être nécessaire.
-`,_t=`## Vision croisée
+`,wt=`## Vision croisée
 
 La vision croisée est la façon inverse de regarder des images stéréo : au lieu de regarder avec des axes visuels parallèles, les yeux convergent de sorte que les lignes de visée se croisent en un point entre les yeux et l’écran, ce qui permet à l’œil gauche de voir l’image de droite et à l’œil droit de voir l’image de gauche. Parce que ce mode augmente volontairement la convergence et maintient le système visuel dans une configuration plus orientée vers le près, il peut être pertinent pour la presbytie et d’autres difficultés de mise au point de près. Stereo Reader peut aussi servir à l’entraînement en vision croisée, y compris la pratique de la convergence et des exercices visuels orientés vers la presbytie, avec les mêmes techniques réglables de lecture et de fusion.
-`,vt=`## Lisez vos livres préférés
+`,Tt=`## Lisez vos livres préférés
 
 Vous pouvez lire des fichiers texte, PDF, EPUB, FB2 en mode stéréo ou mono
-`,yt=`## Détendez vos yeux
+`,Et=`## Détendez vos yeux
 
 Vous pouvez lire des livres ou regarder des images avec des réglages confortables pour détendre les yeux en vision parallèle
-`,bt=`## Entraînez vos yeux
+`,Dt=`## Entraînez vos yeux
 
 Vous pouvez entraîner votre vision pour améliorer le focus et la clarté en lisant avec des réglages plus exigeants (plus petite
             police, plus grand écart entre les colonnes, plus grande distance)
-`,xt=`**Vos fichiers restent sur votre appareil**
+`,Ot=`**Vos fichiers restent sur votre appareil**
 
 Les fichiers ajoutés à Stereo Reader sont stockés localement dans votre navigateur. Ils ne sont pas envoyés vers un serveur ni transmis sur le réseau, vos documents restent donc privés sur votre appareil.
-`,St=`## Mes objectifs
+`,kt=`## Mes objectifs
 
 ### 🚩 Objectif personnel
 
@@ -1218,7 +1218,7 @@ Une part importante de cette mission est de contester le pessimisme autour de l�
 Je suis particulièrement intéressé à développer cette méthode comme une approche pratique, mesurable et menée par les utilisateurs. Le but n’est pas de faire des affirmations abstraites, mais de créer des exercices, des outils et des protocoles que les gens peuvent tester dans leur propre expérience visuelle et dont ils peuvent rapporter les résultats.
 
 En outre, une activité régulière des muscles oculaires peut avoir des bénéfices fonctionnels plus larges. Comme d’autres muscles, les muscles extraoculaires peuvent bénéficier de l’entraînement, du travail de coordination et d’une charge contrôlée. Améliorer leur condition peut aussi soutenir une meilleure circulation locale et un état fonctionnel plus sain du système visuel. C’est une des raisons pour lesquelles je considère cette direction digne d’être explorée plus loin.
-`,Ct=`## Comment rejoindre le projet
+`,At=`## Comment rejoindre le projet
 
 Stereo Reader est actuellement en phase d’adoption précoce pour un public plus large. La méthode, l’application et la communauté se développent encore, donc les retours d’utilisateurs réels sont particulièrement précieux.
 
@@ -1230,7 +1230,7 @@ Vous pouvez rejoindre le projet de plusieurs façons :
 * [Envoyez-moi un e-mail](mailto:aleklabs.dev@gmail.com?subject=Stereo%20Reader) avec l’objet **Stereo Reader** si vous voulez vous abonner aux futures mises à jour du projet.
 * [Rejoignez le canal Telegram](https://t.me/stereoreader) et posez des questions ou partagez votre expérience.
 * [Abonnez-vous à la chaîne YouTube](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) pour de futurs tutoriels, explications et vidéos d’apprentissage.
-`,wt=`La vision parallèle consiste à regarder deux images côte à côte de façon que chaque œil voie la sienne. Le cerveau les fusionne ensuite en une seule image, souvent avec une sensation nette de profondeur.
+`,jt=`La vision parallèle consiste à regarder deux images côte à côte de façon que chaque œil voie la sienne. Le cerveau les fusionne ensuite en une seule image, souvent avec une sensation nette de profondeur.
 
 Elle est couramment utilisée pour voir des images stéréo et des images 3D sans lunettes spéciales. Au début, cela peut sembler inhabituel, mais une fois la technique apprise, tenir la position de vision parallèle devient beaucoup plus facile.
 
@@ -1241,7 +1241,7 @@ de façons d’utiliser votre vision.
 
 Elle ne se limite pas à regarder des images 3D : la même technique de base peut aussi servir à des tâches visuelles plus longues et plus actives.
 {.bigger}
-`,Tt=`## Mes résultats
+`,Mt=`## Mes résultats
 
 Voici mes résultats en lecture de texte habituelle, hors mode stéréo, car la lecture stéréo réduit la capacité à mettre au point. Cela ne signifie pas que je vois le texte parfaitement net : un effort est nécessaire. Le progrès décrit ici correspond cependant clairement à mon expérience visuelle quotidienne.
 
@@ -1257,7 +1257,7 @@ Voici mes résultats en lecture de texte habituelle, hors mode stéréo, car la 
 Résultat pratique : j’ai pu arrêter les lunettes pour les activités quotidiennes. Cela inclut la télévision et les films, le cinéma, les magasins, les courses, les promenades, et essentiellement toutes les tâches normales du quotidien. Je peux aussi conduire sans lunettes de jour. La seule situation où je porte encore des lunettes est la conduite de nuit.
 
 Compte tenu des expériences d’autres utilisateurs, je suis aujourd’hui fortement convaincu que les exercices des muscles oculaires peuvent être un outil efficace pour améliorer la netteté visuelle fonctionnelle.
-`,Et=`# De l’étirement des muscles oculaires à la lecture stéréo : ma feuille de route de la netteté visuelle fonctionnelle
+`,Nt=`# De l’étirement des muscles oculaires à la lecture stéréo : ma feuille de route de la netteté visuelle fonctionnelle
 
 ## Frontière des sources
 
@@ -1378,14 +1378,14 @@ La même période contient aussi la métrique pratique la plus importante. J’a
 La vidéo de démonstration « Reading in Stereo » montre la méthode sous sa forme mature : lecture stéréo lente près du seuil, bascule entre mono et stéréo, ajustements du regard et cycles de repos, et acceptation que la lecture de qualité d’entraînement est plus lente qu’une lecture confortable ordinaire. Le point n’est pas la vitesse de lecture. Le point est de forcer la reconnaissance pendant que les yeux restent dans la configuration parallèle/exotropique entraînée ([Reading in Stereo](https://www.youtube.com/watch?v=CEmD58CjTfk), 2026-05-22).
 
 La feuille de route se termine par la dernière vidéo rétrospective : j’ai rapporté améliorer la vision de plus de cinq fois en huit mois. Dans la logique de toute la chronologie, ce résultat n’est pas venu d’un exercice isolé. Il est venu d’une séquence : sensibilité musculaire précoce, étirement mécanique, extrusion face vers le bas, lecture au seuil, découverte de la lecture stéréo, charge exotropique contrôlée, œufs et stéréopaires auxiliaires, puis un protocole mature basé sur Stereo Reader. L’affirmation finale reste un résultat fonctionnel personnel : sur cette période, la méthode est passée de la théorie et de la sensation à une netteté visuelle fonctionnelle mesurable, se terminant par l’amélioration rapportée de plus de 5x ([Improved My Vision 5x in 8 Months](https://www.youtube.com/watch?v=nY7qshQWmT0), 2026-05-27).
-`,Dt=`Stereo Reader vous permet de garder une position des yeux en vision parallèle tout en lisant du texte normal. Chaque œil suit sa propre copie du texte, et le cerveau les combine en une vue lisible.
+`,Pt=`Stereo Reader vous permet de garder une position des yeux en vision parallèle tout en lisant du texte normal. Chaque œil suit sa propre copie du texte, et le cerveau les combine en une vue lisible.
 
 Pendant la lecture habituelle de près, les deux yeux restent longtemps tournés vers l’intérieur. Cela maintient les **muscles oculaires internes** — les droits médiaux — presque constamment au travail et donne très peu d’entraînement au mouvement inverse. Avec le temps, cette habitude de forte convergence peut réduire la capacité à diverger et contribuer à un flou temporaire au loin après le travail de près. Dans l’approche de Stereo Reader, répéter ce schéma pendant des années peut aussi contribuer à des problèmes plus persistants de mise au point au loin.
 
 La lecture en vision parallèle change cet équilibre. Elle réduit la charge constante sur les muscles internes et donne plus de travail aux muscles qui portent le regard vers l’extérieur. Utilisée régulièrement, elle peut servir à la fois de prévention contre les habitudes visuelles trop convergentes et d’entraînement destiné à améliorer la vision fonctionnelle de loin chez les personnes myopes.
 
 L’idée principale est simple : continuez à lire un contenu utile ou agréable, mais donnez à vos yeux un autre type de travail pendant que vous le faites.
-`,Ot=`## Entraînez tous les mouvements des yeux
+`,Ft=`## Entraînez tous les mouvements des yeux
 
 Stereo Reader a commencé comme un lecteur en vision parallèle conçu pour entraîner la divergence et la mise au point volontaire. Depuis, il est devenu un environnement d’entraînement visuel beaucoup plus complet, avec des exercices programmables pour un plus large éventail de mouvements oculaires et de travail des muscles extraoculaires.
 
@@ -1421,19 +1421,19 @@ Pour l’effet d’entraînement le plus fort, je recommande de faire les séanc
 Cette position semble faciliter une divergence plus profonde. En pratique, le but est d’augmenter la **séparation stéréo confortable** — la distance entre les deux images qui peut encore être fusionnée sans effort excessif. Dans mes expériences, et d’après d’autres utilisateurs, la séparation confortable maximale dans cette position peut augmenter nettement, parfois jusqu’à **près du double** de l’amplitude obtenue en position verticale habituelle.
 
 Dans le modèle mécanique de Stereo Reader, cela étire plus fortement la configuration musculaire dominée par la convergence et permet une plus grande amplitude vers l’extérieur. L’important n’est pas de pousser fort, mais de **maintenir la fusion avec des yeux détendus et de laisser l’amplitude augmenter progressivement**.
-`,kt=`## Mon histoire
+`,It=`## Mon histoire
 
 Étant myope (-4,5 d), j’ai commencé en 2023 de simples exercices oculaires de 5 à 10 minutes avant de m’endormir. Depuis, ma vision s’est améliorée dans une mesure que j’ai jugée utile de partager, et j’ai créé une chaîne YouTube en russe pour raconter cette expérience. Grâce à des exercices réguliers, j’avais alors déjà une assez bonne sensibilité aux muscles oculaires : je sentais quels muscles se contractent et se relâchent, parce que j’avais étudié en détail [l’anatomie des muscles extraoculaires](https://en.wikipedia.org/wiki/Extraocular_muscles). Cela m’a permis de me faire une idée précise de ce qui cause la myopie. C’est une continuation logique de la [méthode Bates](https://en.wikipedia.org/wiki/Bates_method).
 
 Indépendamment du consensus dominant selon lequel cette approche est fausse, l’idée principale — que la mise au point grossière est faite par les muscles extraoculaires et la mise au point finale par le cristallin, et qu’entraîner ces muscles peut améliorer la vision — a permis à de nombreuses personnes qui ont partagé leur expérience avec moi d’améliorer leur netteté visuelle fonctionnelle.
 
 Mon expérience suggérait que la myopie vient d’un raccourcissement des [muscles droits](https://en.wikipedia.org/wiki/Extraocular_muscles), surtout les médiaux (internes, près du nez), qui font converger les yeux pour la vision de près. En juillet 2025, j’ai commencé la lecture stéréo — lire du texte en deux colonnes en vision parallèle — où les yeux divergent jusqu’à l’exotropie, un état dans lequel ils s’écartent au-delà de l’alignement parallèle. J’ai aussi constaté que mon public myope a une très faible capacité à diverger et à atteindre une exotropie notable, alors que les personnes sans myopie ont une forte capacité d’exotropie. Depuis, l’exotropie et la lecture stéréo sont devenus mes principaux outils d’entraînement des yeux. La lecture seule est utilisée dans de nombreux systèmes d’amélioration visuelle, y compris celui de Bates.
-`,At=`# STEREO READER
+`,Lt=`# STEREO READER
 
 Lecteur en vision parallèle et entraîneur visuel
 
 [Ouvrir l'application](https://stereo.aleklabs.dev/)
-`,jt=`## Avertissement et précautions de sécurité
+`,Rt=`## Avertissement et précautions de sécurité
 
 Je ne fais aucune affirmation médicale sur ce site. La méthode décrite ici n’est pas présentée comme un traitement médical, un avis médical, ni un moyen garanti de guérir une affection diagnostiquée. Mon focus est
 
@@ -1453,10 +1453,10 @@ Il existe différents niveaux d’intensité. Une approche légère, avec peu de
 Des exercices sporadiques ont peu de chances de produire des résultats substantiels. La méthode dépend de la régularité : entraînement fréquent, attention aux habitudes visuelles et adaptation progressive. En même temps, une pratique modérée et prudente peut encore servir à stabiliser la netteté visuelle fonctionnelle, à limiter une détérioration supplémentaire ou à obtenir de plus petites améliorations. Le but n’est pas d’ignorer la réalité médicale, mais d’entraîner la capacité fonctionnelle du système visuel de façon à améliorer la qualité de vie.
 
 Avancez avec prudence, évitez la douleur, respectez le temps de récupération, et traitez cela comme un entraînement physique sérieux du système visuel plutôt que comme une guérison médicale rapide.
-`,Mt=`---
+`,zt=`---
 description: אמנו או הרפו את העיניים עם Stereo Reader תוך קריאה של ספרים ומסמכים במצב סטריאו או מונו. תומך בטקסט, PDF, EPUB, FB2, תמונות, זוגות סטריאו, פקודות קול, עכבר וטיימרים.
 ---
-`,Nt=`## היישום
+`,Bt=`## היישום
 
 כדי להפוך את השיטה למעשית, התחלתי לפתח את **Stereo Reader** — יישום שנועד להקל על קריאה במצב סטריאו במבט מקביל.
 
@@ -1477,7 +1477,7 @@ Stereo Reader תומך גם בפקודות קול ובשליטה בעכבר, מ�
 נקודת התחלה טובה היא להתאמן קודם עם זוגות תמונות סטריאוסקופיות רגילות, ואז לעבור ל־Stereo Reader אחרי שמיומנות המיזוג הבסיסית במבט מקביל נעשית מוכרת. גלריות כמו [Hidden 3D](https://hidden-3d.com/) או [Stereoscopy.com](https://www.stereoscopy.com/) מספקות דוגמאות זמינות הן במבט מקביל והן במבט מוצלב.
 
 [פתיחת Stereo Reader וניסיון](https://stereo.aleklabs.dev/#try)
-`,Pt=`## למה שיטת בייטס לא הספיקה
+`,Vt=`## למה שיטת בייטס לא הספיקה
 
 שיטת בייטס לא נכשלה לגמרי. לדעתי, המגבלה העיקרית שלה הייתה שהדגישה הרפיה יותר מדי, בעוד שהמנגנון החשוב יותר עשוי להיות מתיחת שרירי עיניים ואימון פעיל.
 
@@ -1506,22 +1506,22 @@ Stereo Reader תומך גם בפקודות קול ובשליטה בעכבר, מ�
 בשבילי, קריאה סטריאופונית ואימון אקזוטרופי הפיקו תוצאות חזקות בהרבה מהרפיה בסגנון בייטס. הם גם הפיקו משוב חיובי ממשתמשים אחרים. לכן בחרתי להתמקד ב־Stereo Reader ובאימון במבט מקביל ככיוון המעשי העיקרי.
 
 אנשים שרוצים ללמוד את שיטת בייטס עדיין יכולים לעשות זאת. ייתכן שיש לה ערך טיפולי לחלק מהמשתמשים. אבל לדעתי צריך להכיר במגבלותיה: הרפיה לבדה לעיתים קרובות אינה מספיקה. במקרים קשים יותר, נדרש אימון אמיתי.
-`,Ft=`## מבט מוצלב
+`,Ht=`## מבט מוצלב
 
 מבט מוצלב הוא הדרך ההפוכה לצפייה בתמונות סטריאו: במקום להסתכל עם צירי ראייה מקבילים, העיניים מתכנסות כך שקווי הראייה מצטלבים בנקודה בין העיניים למסך, וכך העין השמאלית רואה את התמונה הימנית והעין הימנית רואה את התמונה השמאלית. מכיוון שהמצב הזה מגביר במכוון את הקונברגנציה ומשאיר את מערכת הראייה בעבודה בתצורה חזקה יותר המוכוונת לקרוב, הוא עשוי להיות רלוונטי לפרסביופיה ולקשיים אחרים במיקוד לקרוב. אפשר להשתמש ב-Stereo Reader גם לאימון במבט מוצלב, כולל תרגול קונברגנציה ותרגילי ראייה המוכוונים לפרסביופיה, באותן טכניקות קריאה ומיזוג הניתנות לכוונון.
-`,It=`## קראו את הספרים האהובים עליכם
+`,Ut=`## קראו את הספרים האהובים עליכם
 
 אפשר לקרוא קובצי טקסט, PDF, EPUB ו־FB2 במצב סטריאו או מונו
-`,Lt=`## הרפו את העיניים
+`,Wt=`## הרפו את העיניים
 
 אפשר לקרוא ספרים או לצפות בתמונות עם הגדרות נוחות כדי להרפות את העיניים במבט מקביל
-`,Rt=`## אמנו את העיניים
+`,Gt=`## אמנו את העיניים
 
 אפשר לאמן את הראייה לשיפור מיקוד ובהירות באמצעות קריאה בהגדרות מאתגרות יותר (גודל גופן קטן יותר, מרווח רחב יותר בין העמודות, מרחק גדול יותר)
-`,zt=`**הקבצים שלך נשארים במכשיר שלך**
+`,Kt=`**הקבצים שלך נשארים במכשיר שלך**
 
 קבצים שנוספים ל-Stereo Reader נשמרים באופן מקומי בדפדפן שלך. הם לא מועלים לשרת ולא מועברים ברשת, כך שהמסמכים שלך נשארים פרטיים במכשיר שלך.
-`,Bt=`## היעדים שלי
+`,qt=`## היעדים שלי
 
 ### 🚩 יעד אישי
 
@@ -1554,7 +1554,7 @@ Stereo Reader תומך גם בפקודות קול ובשליטה בעכבר, מ�
 אני מתעניין במיוחד בפיתוח השיטה כגישה מעשית, מדידה ומונעת־משתמשים. המטרה אינה להשמיע טענות מופשטות, אלא ליצור תרגילים, כלים ופרוטוקולים שאנשים יכולים לבדוק בחוויית הראייה שלהם ולדווח על התוצאות.
 
 בנוסף, פעילות קבועה של שרירי העיניים עשויה להיות בעלת תועלות תפקודיות רחבות יותר. כמו שרירים אחרים, השרירים החוץ־עיניים עשויים להרוויח מאימון, מעבודת תיאום ומעומס מבוקר. שיפור כושר שרירי העיניים עשוי גם לתמוך במחזור מקומי טוב יותר ובמצב תפקודי בריא יותר של מערכת הראייה. זו אחת הסיבות שאני רואה בכיוון הזה משהו ששווה להמשיך לחקור.
-`,Vt=`## איך להצטרף לפרויקט
+`,Jt=`## איך להצטרף לפרויקט
 
 Stereo Reader נמצא כרגע בשלב אימוץ מוקדם לקהל רחב יותר. השיטה, היישום והקהילה עדיין מתפתחים, ולכן משוב ממשתמשים אמיתיים חשוב במיוחד.
 
@@ -1566,7 +1566,7 @@ Stereo Reader נמצא כרגע בשלב אימוץ מוקדם לקהל רחב �
 * [שלחו לי אימייל](mailto:aleklabs.dev@gmail.com?subject=Stereo%20Reader) עם הנושא **Stereo Reader** אם אתם רוצים להירשם לעדכוני הפרויקט בעתיד.
 * [הצטרפו לערוץ הטלגרם](https://t.me/stereoreader) ושאלו שאלות או שתפו את הניסיון שלכם.
 * [הירשמו לערוץ היוטיוב](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) למדריכים, הסברים וסרטוני לימוד עתידיים.
-`,Ht=`מבט מקביל הוא דרך להסתכל על שתי תמונות זו לצד זו כך שכל עין רואה את התמונה שלה. המוח משלב אותן אחר כך לתמונה אחת, לעיתים עם תחושת עומק ברורה.
+`,Yt=`מבט מקביל הוא דרך להסתכל על שתי תמונות זו לצד זו כך שכל עין רואה את התמונה שלה. המוח משלב אותן אחר כך לתמונה אחת, לעיתים עם תחושת עומק ברורה.
 
 השיטה נפוצה לצפייה בתמונות סטריאו ובתמונות תלת־ממד בלי משקפיים מיוחדים. בהתחלה זה יכול להרגיש מוזר, אבל אחרי שלומדים את הטכניקה, שמירה על מצב המבט המקביל נעשית קלה בהרבה.
 
@@ -1577,7 +1577,7 @@ Stereo Reader נמצא כרגע בשלב אימוץ מוקדם לקהל רחב �
 
 הוא אינו מוגבל לצפייה בתמונות תלת־ממד — אותה טכניקה בסיסית יכולה לשמש גם למשימות ראייה ארוכות ופעילות יותר.
 {.bigger}
-`,Ut=`## התוצאות שלי
+`,Xt=`## התוצאות שלי
 
 הנה התוצאות שלי בקריאת טקסט רגילה, לא במצב סטריאו, כי קריאה בסטריאו מפחיתה את יכולת המיקוד. זה לא אומר שאני רואה את הטקסט בבהירות מלאה; נדרש מאמץ. עם זאת, ההתקדמות המתוארת כאן תואמת בבירור את חוויית הראייה היומיומית שלי.
 
@@ -1593,7 +1593,7 @@ Stereo Reader נמצא כרגע בשלב אימוץ מוקדם לקהל רחב �
 כתוצאה מעשית הצלחתי להפסיק להשתמש במשקפיים לפעילויות יומיומיות. זה כולל צפייה בטלוויזיה ובסרטים, יציאה לקולנוע, ביקור בחנויות, קניות, הליכה בחוץ, וביצוע כמעט כל המשימות היומיומיות הרגילות. אני יכול גם לנהוג בלי משקפיים בתנאי יום. המצב היחיד שבו אני עדיין משתמש במשקפיים הוא נהיגה בלילה.
 
 לאור ניסיונם של משתמשים אחרים, אני משוכנע כיום בחוזקה שתרגילי שרירי עיניים יכולים להיות כלי עובד לשיפור חדות ראייה תפקודית.
-`,Wt=`# ממתיחת שרירי העיניים לקריאה סטריאופונית: מפת הדרכים שלי לחדות ראייה תפקודית
+`,Zt=`# ממתיחת שרירי העיניים לקריאה סטריאופונית: מפת הדרכים שלי לחדות ראייה תפקודית
 
 ## גבול המקורות
 
@@ -1714,14 +1714,14 @@ Stereo Reader נמצא כרגע בשלב אימוץ מוקדם לקהל רחב �
 סרטון ההדגמה «Reading in Stereo» מראה את השיטה בצורתה הבשלה: קריאה סטריאופונית איטית ליד הסף, מעבר בין מונו לסטריאו, שימוש בכוונוני מבט ובמחזורי מנוחה, וקבלה שקריאה באיכות אימון איטית יותר מקריאה נוחה רגילה. הנקודה אינה מהירות קריאה. הנקודה היא לאלץ זיהוי בזמן שהעיניים נשארות בתצורה המקבילה/האקזוטרופית המאומנת ([Reading in Stereo](https://www.youtube.com/watch?v=CEmD58CjTfk), 2026-05-22).
 
 מפת הדרכים מסתיימת בסרטון הרטרוספקטיבי האחרון: דיווחתי על שיפור ראייה ביותר מפי חמישה בשמונה חודשים. בלוגיקה של כל הכרונולוגיה, התוצאה הזאת לא הגיעה מתרגיל מבודד אחד. היא הגיעה מרצף: רגישות שרירים מוקדמת, מתיחה מכנית, הוצאה על הבטן, קריאה בסף, גילוי הקריאה הסטריאופונית, עומס אקזוטרופי מבוקר, ביצים וזוגות סטריאו כעזר, ואז פרוטוקול בשל מבוסס Stereo Reader. הטענה הסופית נשארת תוצאה תפקודית אישית: בתקופה הזאת השיטה עברה מתיאוריה ותחושה לחדות ראייה תפקודית מדידה, והסתיימה בשיפור המדווח של יותר מ־5x ([Improved My Vision 5x in 8 Months](https://www.youtube.com/watch?v=nY7qshQWmT0), 2026-05-27).
-`,Gt=`Stereo Reader מאפשר לשמור על מצב עיניים של מבט מקביל תוך קריאת טקסט רגיל. כל עין עוקבת אחרי העותק שלה של הטקסט, והמוח משלב את השניים לתצוגה קריאה אחת.
+`,Qt=`Stereo Reader מאפשר לשמור על מצב עיניים של מבט מקביל תוך קריאת טקסט רגיל. כל עין עוקבת אחרי העותק שלה של הטקסט, והמוח משלב את השניים לתצוגה קריאה אחת.
 
 בקריאה רגילה מקרוב, שתי העיניים נשארות מופנות פנימה לפרקי זמן ארוכים. זה משאיר את **שרירי העיניים הפנימיים** — השרירים הישרים התיכונים — בעבודה כמעט מתמדת, ונותן לעיניים מעט מאוד תרגול בכיוון ההפוך. עם הזמן, ההרגל הזה של קונברגנציה כבדה יכול להפחית את יכולת הדיברגנציה ולתרום לטשטוש זמני למרחק אחרי עבודה מקרוב. בגישה של Stereo Reader, חזרה על הדפוס הזה במשך שנים עשויה גם לתרום לבעיות מתמשכות יותר של מיקוד למרחק.
 
 קריאה במבט מקביל משנה את האיזון הזה. היא מפחיתה את העומס המתמיד על שרירי העיניים הפנימיים ונותנת יותר עבודה לשרירים שמזיזים את המבט החוצה. בשימוש קבוע היא יכולה לשמש גם כמניעה מול הרגלי ראייה כבדי־קונברגנציה וגם כאימון שנועד לשפר ראייה תפקודית למרחק אצל אנשים עם קוצר ראייה.
 
 הרעיון המרכזי פשוט: להמשיך לקרוא תוכן שימושי או מהנה, אבל לתת לעיניים סוג אחר של עבודה תוך כדי.
-`,Kt=`## אמנו את כל תנועות העיניים
+`,$t=`## אמנו את כל תנועות העיניים
 
 Stereo Reader התחיל כקורא במבט מקביל שנועד לאמן דיברגנציה ומיקוד רצוני. מאז הוא התפתח לסביבת אימון ראייה מקיפה הרבה יותר, עם תרגילים הניתנים לתכנות למגוון רחב יותר של תנועות עיניים ועבודה של השרירים החוץ־עיניים.
 
@@ -1757,19 +1757,19 @@ Stereo Reader התחיל כקורא במבט מקביל שנועד לאמן די
 התנוחה הזאת נראית כמקלה על דיברגנציה עמוקה יותר. בפועל, המטרה היא להגדיל את **ההפרדה הסטריאופונית הנוחה** — המרחק בין שתי התמונות שעדיין אפשר למזג בלי מאמץ מוגזם. בניסויים שלי, ובדיווחים של משתמשים אחרים, ההפרדה הנוחה המרבית בתנוחה הזאת יכולה לגדול משמעותית, ולעיתים להתקרב ל**כפליים הטווח** שמושג בתנוחה זקופה רגילה.
 
 במודל המכני שמאחורי Stereo Reader, זה נותן מתיחה חזקה יותר של תצורת שרירי העיניים הנשלטת על ידי קונברגנציה, ומאפשר טווח תנועה גדול יותר החוצה. החלק החשוב הוא לא לדחוף חזק, אלא **לשמור על מיזוג עם עיניים רפויות ולתת לטווח לגדול בהדרגה**.
-`,qt=`## הסיפור שלי
+`,en=`## הסיפור שלי
 
 בהיותי קצר ראייה (‎-4.5d), ב־2023 התחלתי לעשות תרגילי עיניים פשוטים למשך 5–10 דקות לפני השינה. מאז הראייה שלי השתפרה במידה שחשבתי שכדאי לשתף, ולכן פתחתי ערוץ יוטיוב ברוסית כדי לספר על הניסיון. עד אז, בזכות תרגול קבוע, רכשתי רגישות טובה למדי לשרירי העיניים, כך שיכולתי להרגיש אילו שרירים מתכווצים ונרפים, אחרי שלמדתי לעומק את [אנטומיית שרירי העיניים](https://en.wikipedia.org/wiki/Extraocular_muscles). זה אפשר לי לפתח מבט מדויק משלי על מה שגורם לקוצר ראייה. זוהי המשך לוגי של [שיטת בייטס](https://en.wikipedia.org/wiki/Bates_method).
 
 בלי קשר לקונצנזוס המיינסטרימי שלפיו זה שגוי, הרעיון המרכזי — שמיקוד גס נעשה על ידי השרירים החוץ־עיניים ומיקוד סופי על ידי עדשת העין, ולכן אימון השרירים האלה יכול לשפר ראייה — אפשר לרבים ששיתפו איתי את הניסיון שלהם לשפר את חדות הראייה התפקודית.
 
 הניסיון שלי הציע שקוצר ראייה קורה בגלל קיצור של [השרירים הישרים](https://en.wikipedia.org/wiki/Extraocular_muscles) של העין, במיוחד התיכונים (הפנימיים, ליד האף), שמקרבים את העיניים למיקוד מקרוב. ביולי 2025 התחלתי קריאה סטריאופונית — קריאת טקסט בשתי עמודות במבט מקביל — שבה העיניים מתרחקות עד לאקזוטרופיה, מצב שבו הן מתרחקות מעבר ליישור מקביל. גם גיליתי שלקהל שלי עם קוצר ראייה יש יכולת חלשה מאוד לדיברגנציה ולהשגת אקזוטרופיה משמעותית, בעוד שלאנשים בלי קוצר ראייה יש יכולת אקזוטרופיה חזקה. מאז, אקזוטרופיה וקריאה סטריאופונית הפכו לכלים העיקריים שלי לאימון העיניים. קריאה בלבד משמשת במערכות רבות לשיפור ראייה, כולל זו של בייטס.
-`,Jt=`# STEREO READER
+`,tn=`# STEREO READER
 
 קורא במבט מקביל ומאמן עיניים
 
 [פתיחת היישום](https://stereo.aleklabs.dev/)
-`,Yt=`## כתב ויתור ואמצעי זהירות
+`,nn=`## כתב ויתור ואמצעי זהירות
 
 אני לא מציג טענות רפואיות באתר הזה. השיטה המתוארת כאן אינה מוצגת כטיפול רפואי, כייעוץ רפואי, או כדרך מובטחת לרפא מצב מאובחן כלשהו. המוקד שלי הוא
 
@@ -1789,10 +1789,10 @@ Stereo Reader התחיל כקורא במבט מקביל שנועד לאמן די
 תרגילים ספורדיים כנראה לא ייצרו תוצאות משמעותיות. השיטה תלויה בעקביות: אימון קבוע, תשומת לב להרגלי ראייה והסתגלות הדרגתית. באותו זמן, גם תרגול מתון וזהיר עשוי עדיין להיות שימושי לייצוב חדות ראייה תפקודית, להפחתת הידרדרות נוספת, או להשגת שיפורים קטנים יותר. המטרה אינה להתעלם מהמציאות הרפואית, אלא לאמן את הקיבולת התפקודית של מערכת הראייה באופן שמשפר את איכות החיים.
 
 התקדמו בזהירות, הימנעו מכאב, כבדו זמן התאוששות, והתייחסו לזה כאימון גופני רציני למערכת הראייה ולא כריפוי רפואי מהיר.
-`,Xt=`---
+`,rn=`---
 description: Allena o rilassa gli occhi con Stereo Reader mentre leggi libri e documenti in modalità stereo o mono. Supporta testo, PDF, EPUB, FB2, immagini, coppie stereo, comandi vocali, mouse e timer.
 ---
-`,Zt=`## Applicazione
+`,an=`## Applicazione
 
 Per rendere questo metodo pratico, ho iniziato a sviluppare **Stereo Reader** — un’applicazione pensata per facilitare la lettura in modalità stereo in visione parallela.
 
@@ -1813,7 +1813,7 @@ Prima di usare Stereo Reader è utile capire prima la stereoscopia in visione pa
 Un buon punto di partenza è esercitarsi prima con coppie di immagini stereoscopiche ordinarie, poi passare a Stereo Reader quando l’abilità di fusione in visione parallela diventa familiare. Gallerie come [Hidden 3D](https://hidden-3d.com/) o [Stereoscopy.com](https://www.stereoscopy.com/) offrono esempi in visione parallela e in visione incrociata.
 
 [Apri Stereo Reader e provalo](https://stereo.aleklabs.dev/#try)
-`,Qt=`## Perché il metodo Bates non è bastato
+`,on=`## Perché il metodo Bates non è bastato
 
 Il metodo Bates non è fallito del tutto. Secondo me il suo limite principale è di aver enfatizzato troppo il rilassamento, mentre il meccanismo più importante può essere l’allungamento dei muscoli oculari e l’allenamento attivo.
 
@@ -1842,23 +1842,23 @@ Quindi, a mio avviso, il metodo Bates ha un’applicabilità limitata. Può aiut
 Per me la lettura stereo e l’allenamento exotropico hanno prodotto risultati molto più forti del rilassamento in stile Bates. Hanno anche prodotto feedback positivi da altri utenti. Per questo ho scelto di concentrarmi su Stereo Reader e sull’allenamento in visione parallela come direzione pratica principale.
 
 Chi vuole studiare il metodo Bates può continuare a farlo. Può avere valore terapeutico per alcuni utenti. Ma secondo me i suoi limiti vanno riconosciuti: il solo rilassamento spesso non basta. Nei casi più difficili può essere necessario un vero allenamento.
-`,$t=`## Visione incrociata
+`,sn=`## Visione incrociata
 
 La visione incrociata è il modo opposto di guardare le immagini stereo: invece di guardare con assi visivi paralleli, gli occhi convergono in modo che le linee di sguardo si incrocino in un punto tra gli occhi e lo schermo, permettendo all’occhio sinistro di vedere l’immagine destra e all’occhio destro di vedere l’immagine sinistra. Poiché questo modo aumenta deliberatamente la convergenza e tiene il sistema visivo in una configurazione più orientata al vicino, può essere rilevante per la presbiopia e altre difficoltà di messa a fuoco da vicino. Stereo Reader può essere usato anche per l’allenamento in visione incrociata, inclusa la pratica della convergenza e gli esercizi visivi orientati alla presbiopia, con le stesse tecniche regolabili di lettura e fusione.
-`,en=`## Leggi i tuoi libri preferiti
+`,cn=`## Leggi i tuoi libri preferiti
 
 Puoi leggere file di testo, PDF, EPUB, FB2 in modalità stereo o mono
-`,tn=`## Rilassa gli occhi
+`,ln=`## Rilassa gli occhi
 
 Puoi leggere libri o guardare immagini con impostazioni confortevoli per rilassare gli occhi in visione parallela
-`,nn=`## Allena gli occhi
+`,un=`## Allena gli occhi
 
 Puoi allenare la vista per migliorare focus e nitidezza leggendo con impostazioni più impegnative (carattere più
             piccolo, spazio più ampio tra le colonne, distanza maggiore)
-`,rn=`**I tuoi file restano sul tuo dispositivo**
+`,dn=`**I tuoi file restano sul tuo dispositivo**
 
 I file aggiunti a Stereo Reader sono salvati in locale nel tuo browser. Non vengono caricati su un server né trasmessi in rete, quindi i tuoi documenti restano privati sul tuo dispositivo.
-`,an=`## I miei obiettivi
+`,fn=`## I miei obiettivi
 
 ### 🚩 Obiettivo personale
 
@@ -1891,7 +1891,7 @@ Una parte chiave di questa missione è mettere in discussione il pessimismo into
 Sono particolarmente interessato a sviluppare questo metodo come un approccio pratico, misurabile e guidato dagli utenti. L’obiettivo non è fare affermazioni astratte, ma creare esercizi, strumenti e protocolli che le persone possano testare nella propria esperienza visiva e di cui possano riferire i risultati.
 
 Inoltre, un’attività regolare dei muscoli oculari può avere benefici funzionali più ampi. Come altri muscoli, i muscoli extraoculari possono beneficiare di allenamento, lavoro di coordinazione e carico controllato. Migliorare la loro condizione può anche sostenere una migliore circolazione locale e uno stato funzionale più sano del sistema visivo. Questa è una delle ragioni per cui considero questa direzione degna di ulteriore esplorazione.
-`,on=`## Come unirsi al progetto
+`,pn=`## Come unirsi al progetto
 
 Stereo Reader è attualmente in una fase di adozione precoce per un pubblico più ampio. Il metodo, l’applicazione e la comunità si stanno ancora sviluppando, quindi il feedback di utenti reali è particolarmente prezioso.
 
@@ -1903,7 +1903,7 @@ Puoi unirti al progetto in diversi modi:
 * [Mandami un’email](mailto:aleklabs.dev@gmail.com?subject=Stereo%20Reader) con oggetto **Stereo Reader** se vuoi iscriverti ai futuri aggiornamenti del progetto.
 * [Unisciti al canale Telegram](https://t.me/stereoreader) e fai domande o condividi la tua esperienza.
 * [Iscriviti al canale YouTube](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) per futuri tutorial, spiegazioni e video di apprendimento.
-`,sn=`La visione parallela è un modo di guardare due immagini affiancate in modo che ogni occhio veda la propria. Il cervello le combina poi in un’unica immagine, spesso con una chiara sensazione di profondità.
+`,mn=`La visione parallela è un modo di guardare due immagini affiancate in modo che ogni occhio veda la propria. Il cervello le combina poi in un’unica immagine, spesso con una chiara sensazione di profondità.
 
 Si usa comunemente per vedere immagini stereo e immagini 3D senza occhiali speciali. All’inizio può sembrare insolito, ma una volta imparata la tecnica tenere la posizione di visione parallela diventa molto più facile.
 
@@ -1914,7 +1914,7 @@ di modi per usare la vista.
 
 Non si limita a guardare immagini 3D: la stessa tecnica di base può servire anche per compiti visivi più lunghi e più attivi.
 {.bigger}
-`,cn=`## I miei risultati
+`,hn=`## I miei risultati
 
 Ecco i miei risultati nella lettura di testo usuale, in modalità non stereo, perché la lettura stereo riduce la capacità di mettere a fuoco. Questo non significa che veda il testo in modo nitidissimo: serve un po’ di sforzo. Tuttavia il progresso descritto qui corrisponde chiaramente alla mia esperienza visiva quotidiana.
 
@@ -1930,7 +1930,7 @@ Ecco i miei risultati nella lettura di testo usuale, in modalità non stereo, pe
 Risultato pratico: ho potuto smettere gli occhiali per le attività quotidiane. Questo include TV e film, cinema, negozi, spesa, passeggiate e sostanzialmente tutti i compiti normali del giorno. Posso anche guidare senza occhiali di giorno. L’unica situazione in cui uso ancora gli occhiali è la guida notturna.
 
 Date le esperienze di altri utenti, oggi sono fortemente convinto che gli esercizi per i muscoli oculari possano essere uno strumento efficace per migliorare la nitidezza visiva funzionale.
-`,ln=`# Dallo stretching dei muscoli oculari alla lettura stereo: la mia roadmap della nitidezza visiva funzionale
+`,gn=`# Dallo stretching dei muscoli oculari alla lettura stereo: la mia roadmap della nitidezza visiva funzionale
 
 ## Confine delle fonti
 
@@ -2051,14 +2051,14 @@ Lo stesso periodo contiene anche la metrica pratica più importante. Ho riferito
 Il video dimostrativo «Reading in Stereo» mostra il metodo nella forma matura: lettura stereo lenta vicino alla soglia, passaggio tra mono e stereo, aggiustamenti dello sguardo e cicli di riposo, e l’accettazione che una lettura di qualità da allenamento è più lenta della lettura confortevole ordinaria. Il punto non è la velocità di lettura. Il punto è forzare il riconoscimento mentre gli occhi restano nella configurazione parallela/exotropica allenata ([Reading in Stereo](https://www.youtube.com/watch?v=CEmD58CjTfk), 2026-05-22).
 
 La roadmap termina con l’ultimo video retrospettivo: ho riferito di aver migliorato la vista di più di cinque volte in otto mesi. Nella logica dell’intera cronologia quel risultato non è venuto da un esercizio isolato. È venuto da una sequenza: sensibilità muscolare precoce, stretching meccanico, estrusione a pancia in giù, lettura di soglia, scoperta della lettura stereo, carico exotropico controllato, uova e coppie stereo ausiliarie, e poi un protocollo maturo basato su Stereo Reader. L’affermazione finale resta un risultato funzionale personale: in questo periodo il metodo è passato da teoria e sensazione a nitidezza visiva funzionale misurabile, concludendo con il miglioramento riportato di oltre 5x ([Improved My Vision 5x in 8 Months](https://www.youtube.com/watch?v=nY7qshQWmT0), 2026-05-27).
-`,un=`Stereo Reader ti permette di mantenere una posizione degli occhi in visione parallela mentre leggi testo normale. Ogni occhio segue la propria copia del testo e il cervello le unisce in una vista leggibile.
+`,_n=`Stereo Reader ti permette di mantenere una posizione degli occhi in visione parallela mentre leggi testo normale. Ogni occhio segue la propria copia del testo e il cervello le unisce in una vista leggibile.
 
 Durante la lettura ravvicinata ordinaria entrambi gli occhi restano a lungo ruotati verso l’interno. Questo fa lavorare quasi sempre i **muscoli oculari interni** — i retti mediali — e dà agli occhi pochissima pratica nel muoversi nell’altra direzione. Nel tempo questa abitudine a una forte convergenza può ridurre la capacità di divergere e contribuire a una transitoria sfocatura da lontano dopo il lavoro da vicino. Nell’approccio di Stereo Reader, ripetere questo schema per anni può anche contribuire a problemi più persistenti di messa a fuoco da lontano.
 
 La lettura in visione parallela cambia questo equilibrio. Riduce il carico costante sui muscoli interni e dà più lavoro ai muscoli che portano gli occhi verso l’esterno. Usata con regolarità, può servire sia come prevenzione contro le abitudini visive troppo convergenti, sia come allenamento pensato per migliorare la visione funzionale da lontano nelle persone con miopia.
 
 L’idea principale è semplice: continua a leggere contenuti utili o piacevoli, ma dai agli occhi un tipo diverso di lavoro mentre lo fai.
-`,dn=`## Allena tutti i movimenti degli occhi
+`,vn=`## Allena tutti i movimenti degli occhi
 
 Stereo Reader è nato come lettore in visione parallela pensato per allenare la divergenza e la messa a fuoco volontaria. Da allora è diventato un ambiente di allenamento visivo molto più completo, con esercizi programmabili per una gamma più ampia di movimenti oculari e di lavoro dei muscoli extraoculari.
 
@@ -2094,19 +2094,19 @@ Per l’effetto di allenamento più forte, consiglio di fare le sessioni di Ster
 Questa posizione sembra rendere più facile una divergenza più profonda. In pratica l’obiettivo è aumentare la **separazione stereo confortevole** — la distanza tra le due immagini che si può ancora fondere senza sforzo eccessivo. Nei miei esperimenti, e nei resoconti di altri utenti, la separazione confortevole massima in questa posizione può aumentare in modo sostanziale, in alcuni casi avvicinandosi **al doppio** del range ottenibile in posizione eretta convenzionale.
 
 Nel modello meccanico di Stereo Reader questo dà un allungamento più forte della configurazione muscolare dominata dalla convergenza e consente un maggiore range verso l’esterno. La parte importante non è spingere forte, ma **mantenere la fusione con occhi rilassati e lasciare che il range aumenti gradualmente**.
-`,fn=`## La mia storia
+`,yn=`## La mia storia
 
 Essendo miope (-4,5 d), nel 2023 ho iniziato semplici esercizi per gli occhi di 5–10 minuti prima di addormentarmi. Da allora la vista è migliorata in misura che ho ritenuto utile condividere, così ho creato un canale YouTube in russo per raccontare l’esperienza. Grazie a esercizi regolari avevo già una buona sensibilità ai muscoli oculari: sentivo quali muscoli si contraggono e si rilassano, perché avevo studiato in dettaglio [l’anatomia dei muscoli extraoculari](https://en.wikipedia.org/wiki/Extraocular_muscles). Questo mi ha permesso di formulare una visione precisa di ciò che causa la miopia. È una continuazione logica del [metodo Bates](https://en.wikipedia.org/wiki/Bates_method).
 
 Indipendentemente dal consenso dominante secondo cui questo approccio è falso, l’idea principale — che la messa a fuoco grossolana è fatta dai muscoli extraoculari e quella finale dal cristallino, e che allenare quei muscoli può migliorare la vista — ha permesso a molte persone che hanno condiviso con me la loro esperienza di migliorare la nitidezza visiva funzionale.
 
 La mia esperienza suggeriva che la miopia avviene per accorciamento dei [muscoli retti](https://en.wikipedia.org/wiki/Extraocular_muscles), soprattutto quelli mediali (interni, vicini al naso), che fanno convergere gli occhi per la messa a fuoco da vicino. Nel luglio 2025 ho iniziato la lettura stereo — leggere testo in due colonne in visione parallela — in cui gli occhi divergono fino all’exotropia, uno stato in cui si allontanano oltre l’allineamento parallelo. Ho anche constatato che il mio pubblico miope ha una capacità molto scarsa di divergere e di raggiungere un’exotropia significativa, mentre le persone senza miopia hanno una forte capacità exotropica. Da allora exotropia e lettura stereo sono diventati i miei strumenti principali per allenare gli occhi. La sola lettura è usata in molti sistemi di miglioramento visivo, incluso quello di Bates.
-`,pn=`# STEREO READER
+`,bn=`# STEREO READER
 
 Lettore in visione parallela e trainer per gli occhi
 
 [Apri l'applicazione](https://stereo.aleklabs.dev/)
-`,mn=`## Avvertenza e precauzioni di sicurezza
+`,xn=`## Avvertenza e precauzioni di sicurezza
 
 Non faccio affermazioni mediche su questo sito. Il metodo descritto qui non è presentato come trattamento medico, consiglio medico o modo garantito di curare una condizione diagnosticata. Il mio focus è
 
@@ -2126,10 +2126,10 @@ Ci sono diversi livelli di intensità. Un approccio leggero, con poco carico e a
 Esercizi sporadici hanno poche probabilità di produrre risultati sostanziali. Il metodo dipende dalla costanza: allenamento regolare, attenzione alle abitudini visive e adattamento graduale. Allo stesso tempo anche una pratica moderata e attenta può essere utile per stabilizzare la nitidezza visiva funzionale, ridurre un ulteriore deterioramento o produrre miglioramenti più piccoli. L’obiettivo non è ignorare la realtà medica, ma allenare la capacità funzionale del sistema visivo in modo da migliorare la qualità della vita.
 
 Procedi con cautela, evita il dolore, rispetta i tempi di recupero e tratta questo come un serio allenamento fisico del sistema visivo, non come una rapida cura medica.
-`,hn=`---
+`,Sn=`---
 description: Тренируйте или расслабляйте глаза со Стерео Чтение, читая книги и документы в стерео- или моно-режиме. Поддерживает текст, PDF, EPUB, FB2, изображения, стереопары, голосовые команды, мышь и таймеры.
 ---
-`,gn=`## Приложение
+`,Cn=`## Приложение
 
 Чтобы сделать этот метод практичным, я начал развивать **Stereo Reader** — приложение, созданное для чтения в стерео-режиме параллельного просмотра.
 
@@ -2150,7 +2150,7 @@ Stereo Reader также поддерживает голосовые коман�
 Хороший старт — сначала потренироваться на обычных стереопарах изображений, а затем перейти к Stereo Reader, когда базовый навык слияния в параллельном режиме станет привычным. Галереи стереоизображений, такие как [Hidden 3D](https://hidden-3d.com/) или [Stereoscopy.com](https://www.stereoscopy.com/), содержат примеры как в parallel-view, так и в cross-view форматах.
 
 [Открыть Stereo Reader и попробовать](https://stereo.aleklabs.dev/#try)
-`,_n=`## Почему метода Бейтса оказалось недостаточно
+`,wn=`## Почему метода Бейтса оказалось недостаточно
 
 Метод Бейтса не провалился полностью. На мой взгляд, его главное ограничение в том, что он слишком сильно делает акцент на расслаблении, тогда как более важным механизмом могут быть растяжение глазных мышц и активная тренировка.
 
@@ -2179,24 +2179,24 @@ Stereo Reader также поддерживает голосовые коман�
 Для меня стереочтение и экзотропическая тренировка дали значительно более сильные результаты, чем расслабление в стиле Бейтса. Также они дали положительную обратную связь от других пользователей. Поэтому я решил сосредоточиться на Stereo Reader и тренировке параллельного режима как на основном практическом направлении.
 
 Люди, которые хотят изучать метод Бейтса, по-прежнему могут это делать. Для некоторых пользователей он может иметь терапевтическую ценность. Но, на мой взгляд, его ограничения нужно признавать: одного расслабления часто недостаточно. В более сложных случаях может требоваться настоящая тренировка.
-`,vn=`## Перекрёстный просмотр
+`,Tn=`## Перекрёстный просмотр
 
 Перекрёстный просмотр — противоположный способ просмотра стереоизображений: вместо того чтобы смотреть с параллельными зрительными осями, глаза сходятся так, что линии взгляда пересекаются в точке между глазами и экраном, и левый глаз видит правое изображение, а правый — левое. Поскольку этот режим намеренно усиливает конвергенцию и держит зрительную систему в более выраженной конфигурации, ориентированной на близкое расстояние, он может быть полезен при пресбиопии и других трудностях с фокусировкой вблизи. Stereo Reader можно использовать и для тренировки перекрёстного просмотра, включая практику конвергенции и зрительные упражнения, ориентированные на пресбиопию, с теми же настраиваемыми техниками чтения и слияния.
-`,yn=`## Читайте любимые книги
+`,En=`## Читайте любимые книги
 
 Вы можете читать текстовые, PDF, EPUB и FB2 файлы в стерео- или моно-режиме
-`,bn=`## Расслабляйте глаза
+`,Dn=`## Расслабляйте глаза
 
 Вы можете читать книги или смотреть изображения с комфортными настройками для расслабления глаз в
 параллельном режиме
-`,xn=`## Тренируйте глаза
+`,On=`## Тренируйте глаза
 
 Вы можете тренировать зрение для улучшения фокуса и четкости с более сложными настройками (меньший
 размер шрифта, больший зазор между колонками, большая дистанция)
-`,Sn=`**Ваши файлы остаются на вашем устройстве**
+`,kn=`**Ваши файлы остаются на вашем устройстве**
 
 Файлы, добавленные в Stereo Reader, хранятся локально в браузере. Они не загружаются на сервер и не передаются по сети, поэтому ваши документы остаются приватными на вашем устройстве.
-`,Cn=`## Мои цели
+`,An=`## Мои цели
 
 ### 🚩 Личная цель
 
@@ -2229,7 +2229,7 @@ Stereo Reader также поддерживает голосовые коман�
 Мне особенно интересно развивать этот метод как практический, измеримый и ориентированный на пользователя подход. Цель не в абстрактных заявлениях, а в создании упражнений, инструментов и протоколов, которые люди могут проверять на собственном зрительном опыте и сообщать о результатах.
 
 Кроме того, регулярная работа глазных мышц может давать и более широкие функциональные преимущества. Как и другие мышцы, наружные мышцы глаза могут выигрывать от тренировки, координационной работы и контролируемой нагрузки. Улучшение их тренированности может также поддерживать лучшую локальную циркуляцию и более здоровое функциональное состояние зрительной системы. Это одна из причин, почему я считаю это направление достойным дальнейшего изучения.
-`,wn=`## Как присоединиться к проекту
+`,jn=`## Как присоединиться к проекту
 
 Stereo Reader сейчас находится на ранней стадии расширения для более широкой аудитории. Метод, приложение и сообщество все еще развиваются, поэтому обратная связь от реальных пользователей особенно ценна.
 
@@ -2241,7 +2241,7 @@ Stereo Reader сейчас находится на ранней стадии р�
 * [Отправить мне email](mailto:aleklabs.dev@gmail.com?subject=Stereo%20Reader) с темой **Stereo Reader**, если хотите подписаться на будущие обновления проекта.
 * [Присоединиться к Telegram-каналу](https://t.me/stereoreader), задавать вопросы или делиться своим опытом.
 * [Подписаться на YouTube-канал](https://www.youtube.com/@IMPROVE-VISION-STEREO-READER) для будущих туториалов, объяснений и обучающих видео.
-`,Tn=`Параллельный просмотр — это способ смотреть на два изображения рядом так, чтобы каждый глаз видел своё. Мозг затем объединяет их в одну картинку, часто с явным ощущением глубины.
+`,Mn=`Параллельный просмотр — это способ смотреть на два изображения рядом так, чтобы каждый глаз видел своё. Мозг затем объединяет их в одну картинку, часто с явным ощущением глубины.
 
 Его обычно используют для просмотра стереоизображений и 3D-картинок без специальных очков. Сначала это может казаться непривычным, но когда техника освоена, удерживать параллельный просмотр становится гораздо легче.
 
@@ -2252,7 +2252,7 @@ Stereo Reader сейчас находится на ранней стадии р�
 
 Он не ограничивается рассматриванием 3D-картинок — ту же базовую технику можно применять и для более длительных и активных зрительных задач.
 {.bigger}
-`,En=`## Мои результаты
+`,Nn=`## Мои результаты
 
 Ниже мои результаты при обычном чтении текста, в не-стерео режиме, поскольку чтение в стерео снижает способность к фокусировке. Это не означает, что я вижу текст идеально четко — некоторое усилие требуется. Однако описанный здесь прогресс явно соответствует моему повседневному зрительному опыту.
 
@@ -2268,14 +2268,14 @@ Stereo Reader сейчас находится на ранней стадии р�
 Практический результат: я смог отказаться от очков в повседневной жизни. Это включает просмотр ТВ и фильмов, походы в кино, посещение магазинов, покупки, прогулки на улице и в целом почти все обычные ежедневные задачи. Я также могу водить без очков днем. Единственная ситуация, когда я все еще использую очки, — ночное вождение.
 
 Учитывая опыт других пользователей, сейчас я твердо убежден, что упражнения для глазных мышц могут быть рабочим инструментом для улучшения функциональной остроты зрения.
-`,Dn=`Stereo Reader позволяет сохранять положение глаз для параллельного просмотра во время чтения обычного текста. Каждый глаз следит за своей копией текста, а мозг объединяет обе в одно читаемое изображение.
+`,Pn=`Stereo Reader позволяет сохранять положение глаз для параллельного просмотра во время чтения обычного текста. Каждый глаз следит за своей копией текста, а мозг объединяет обе в одно читаемое изображение.
 
 При обычном чтении вблизи оба глаза долго остаются повёрнутыми внутрь. Из‑за этого **внутренние глазные мышцы** — медиальные прямые — работают почти постоянно, и глаза почти не тренируются двигаться в другую сторону. Со временем эта привычка к сильной конвергенции может снижать способность к расхождению и давать временную размытость вдаль после работы вблизи. В подходе Stereo Reader многолетнее повторение этого паттерна может также способствовать более стойким проблемам с фокусировкой вдаль.
 
 Чтение в параллельном режиме меняет этот баланс. Оно снижает постоянную нагрузку на внутренние глазные мышцы и даёт больше работы мышцам, отвечающим за движение наружу. При регулярном использовании это может служить и профилактикой привычек с избыточной конвергенцией, и тренировкой, направленной на улучшение функционального зрения вдаль у людей с близорукостью.
 
 Главная идея проста: продолжайте читать полезный или интересный текст, но дайте глазам другой тип работы, пока вы это делаете.
-`,On=`## Тренируйте все движения глаз
+`,Fn=`## Тренируйте все движения глаз
 
 Stereo Reader начинался как читалка для параллельного просмотра, созданная для тренировки дивергенции и произвольной фокусировки. С тех пор он вырос в гораздо более полную среду тренировки глаз, с программируемыми упражнениями для более широкого диапазона движений глаз и работы наружных глазных мышц.
 
@@ -2311,18 +2311,18 @@ Stereo Reader начинался как читалка для параллель
 В этом положении более глубокая дивергенция, похоже, даётся легче. На практике цель — увеличить **комфортное стереорасстояние** — расстояние между двумя изображениями, которое ещё можно слить без чрезмерного усилия. В моих экспериментах и по отзывам других пользователей максимальное комфортное расстояние в этом положении может заметно вырасти, в некоторых случаях почти до **удвоенного диапазона** по сравнению с обычным вертикальным положением.
 
 В механической модели Stereo Reader это даёт более сильную растяжку конфигурации глазных мышц с доминированием конвергенции и позволяет больший диапазон движения наружу. Важно не давить изо всех сил, а **удерживать слияние расслабленными глазами и давать диапазону расти постепенно**.
-`,kn=`## Моя история
+`,In=`## Моя история
 
 Будучи близоруким (-4.5d), в 2023 году я начал делать простые упражнения для глаз по 5–10 минут перед сном. С тех пор мое зрение в некоторой степени улучшилось, и я решил, что этим стоит поделиться, поэтому создал русскоязычный YouTube-канал, где рассказываю о своем опыте. К тому моменту благодаря регулярным упражнениям у меня появилась довольно хорошая чувствительность глазных мышц: я мог ощущать, какие именно мышцы сокращаются и расслабляются, поскольку подробно изучил [анатомию глазных мышц](https://en.wikipedia.org/wiki/Extraocular_muscles). Это позволило мне сформировать собственное точное представление о причинах близорукости. По сути, это логичное продолжение [метода Бейтса](https://en.wikipedia.org/wiki/Bates_method).
 
 Несмотря на распространенный консенсус о том, что этот подход ложный, его основная идея — что грубая фокусировка выполняется наружными мышцами глаза, а окончательная фокусировка хрусталиком, и что тренировка этих мышц может улучшать зрение — помогла многим людям, которые делились со мной своим опытом, повысить функциональную остроту зрения.
 
 Мой опыт подсказывал, что близорукость возникает из-за укорочения [прямых глазных мышц](https://en.wikipedia.org/wiki/Extraocular_muscles), особенно медиальных (внутренних, ближе к носу), которые сводят глаза для фокусировки вблизи. В июле 2025 года я начал стереочтение — чтение текста в двух колонках в параллельном режиме, когда глаза расходятся до состояния экзотропии, то есть расходятся дальше параллельного положения. Я также обнаружил, что у моей близорукой аудитории способность к расхождению и достижению заметной экзотропии очень слабая, тогда как у людей без близорукости она выражена значительно сильнее. С тех пор экзотропия и стереочтение стали моими основными инструментами тренировки глаз. Само чтение используется во многих системах улучшения зрения, включая подход Бейтса.
-`,An=`# СТЕРЕО ЧТЕНИЕ
+`,Ln=`# СТЕРЕО ЧТЕНИЕ
 
 Улучшайте зрение читая любимые книги в стерео режиме
 
-[Открыть приложение](https://stereo.aleklabs.dev/)`,jn=`## Отказ от медицинских заявлений и меры безопасности
+[Открыть приложение](https://stereo.aleklabs.dev/)`,Rn=`## Отказ от медицинских заявлений и меры безопасности
 
 Я не делаю на этом сайте никаких медицинских заявлений. Описанный здесь метод не представлен как медицинское лечение, медицинская рекомендация или гарантированный способ вылечить какое-либо диагностированное состояние. Мой фокус — это
 
@@ -2342,7 +2342,7 @@ Stereo Reader начинался как читалка для параллель
 Эпизодические упражнения вряд ли дадут существенные результаты. Метод зависит от регулярности: системных тренировок, внимания к зрительным привычкам и постепенной адаптации. В то же время даже умеренная и аккуратная практика может быть полезной для стабилизации функциональной остроты зрения, снижения дальнейшего ухудшения или небольших улучшений. Цель не в игнорировании медицинской реальности, а в тренировке функциональных возможностей зрительной системы так, чтобы улучшать качество жизни.
 
 Действуйте аккуратно, избегайте боли, уважайте время восстановления и относитесь к этому как к серьезной физической тренировке зрительной системы, а не как к быстрому медицинскому «исцелению».
-`,Mn=`Parallel view is a way of looking at two side-by-side images so that each eye looks at its own image. Your brain then combines them into a single picture, often with a clear sense of depth.\r
+`,zn=`Parallel view is a way of looking at two side-by-side images so that each eye looks at its own image. Your brain then combines them into a single picture, often with a clear sense of depth.\r
 \r
 It is commonly used to view stereo images and 3D pictures without any special glasses. At first it can feel unusual, but once you learn the technique, holding the parallel-view position becomes much easier.\r
 \r
@@ -2352,7 +2352,7 @@ of ways to use your vision.\r
 {.statement}\r
 \r
 It is not limited to looking at 3D pictures - the same basic technique can also be used for longer and more active visual tasks.\r
-{.bigger}`,Nn=`## My Results\r
+{.bigger}`,Bn=`## My Results\r
 \r
 Here are my results in usual text reading, in non-stereo mode, since reading in stereo reduces ability to focus. This does not mean that I see the text clearly, some effort is needed. However, the progress described here clearly corresponds to my everyday visual experience.\r
 \r
@@ -2367,7 +2367,7 @@ Here are my results in usual text reading, in non-stereo mode, since reading in 
 \r
 As a practical result, I was able to stop using glasses for everyday activities. This includes watching TV and movies, going to the cinema, visiting stores, shopping, walking outside, and performing essentially all normal daily tasks. I can also drive without glasses in daytime conditions. The only situation where I still use glasses is nighttime driving.\r
 \r
-Given other users’ experiences, I am currently strongly convinced that eye muscle exercises can be a working tool for improving functional vision sharpness.`,Pn=`# From Eye-Muscle Stretching to Stereo Reading: My Roadmap of Functional Vision Sharpness\r
+Given other users’ experiences, I am currently strongly convinced that eye muscle exercises can be a working tool for improving functional vision sharpness.`,Vn=`# From Eye-Muscle Stretching to Stereo Reading: My Roadmap of Functional Vision Sharpness\r
 \r
 ## Source boundary\r
 \r
@@ -2488,7 +2488,7 @@ The same period also contains the most important practical metric. I reported re
 The demonstration video “Reading in Stereo” shows the method in its mature form: slow stereo reading near the threshold, switching between mono and stereo, using gaze adjustments and rest cycles, and accepting that training-quality reading is slower than ordinary comfortable reading. The point is not reading speed. The point is to force recognition while the eyes remain in the trained parallel/exotropic configuration ([Reading in Stereo](https://www.youtube.com/watch?v=CEmD58CjTfk), 2026-05-22).\r
 \r
 The roadmap ends with the final retrospective video: I reported improving vision by more than five times over eight months. In the logic of the whole chronology, that result did not come from one isolated exercise. It came from a sequence: early muscle sensitivity, mechanical stretching, face-down extrusion, threshold reading, discovery of stereo reading, controlled exotropic loading, auxiliary eggs and stereo pairs, and then a mature Stereo Reader-based protocol. The final claim remains a personal functional result: over this period, the method moved from theory and sensation to measurable Functional Vision Sharpness, ending with the reported >5x improvement ([Improved My Vision 5x in 8 Months](https://www.youtube.com/watch?v=nY7qshQWmT0), 2026-05-27).\r
-`,Fn=`# От растяжки глазных мышц к стерео-чтению: моя дорожная карта Функциональной Резкости Зрения\r
+`,Hn=`# От растяжки глазных мышц к стерео-чтению: моя дорожная карта Функциональной Резкости Зрения\r
 \r
 ## Граница источников\r
 \r
@@ -2609,14 +2609,14 @@ The roadmap ends with the final retrospective video: I reported improving vision
 Видео «Читаю в стерео» показывает метод в зрелой форме: медленное стерео-чтение около порога, переключение между моно и стерео, использование корректировок взгляда и циклов отдыха, принятие того, что тренировочное чтение медленнее обычного комфортного чтения. Цель не скорость чтения. Цель — заставить распознавание работать, пока глаза остаются в тренируемой параллельной/экзотропной конфигурации ([Читаю в стерео](https://www.youtube.com/watch?v=CEmD58CjTfk), 2026-05-22).\r
 \r
 Дорожная карта заканчивается последним ретроспективным видео: я сообщил об улучшении зрения более чем в пять раз за восемь месяцев. В логике всей хронологии этот результат не пришёл из одного отдельного упражнения. Он возник из последовательности: ранняя мышечная чувствительность, механическая растяжка, выдавливание лицом вниз, пороговое чтение, открытие стерео-чтения, контролируемая экзотропная нагрузка, вспомогательные яйца и стереопары, а затем зрелый протокол на базе Stereo Reader. Финальный тезис остаётся личным функциональным результатом: за этот период метод прошёл путь от теории и ощущений к измеряемой ФРЗ, завершаясь заявленным улучшением более чем в 5 раз ([Улучшил зрение в 5 раз за 8 месяцев](https://www.youtube.com/watch?v=nY7qshQWmT0), 2026-05-27).\r
-`,In=`Stereo Reader lets you keep a parallel-view eye position while reading normal text. Each eye follows its own copy of the text, and your brain combines the two into one readable view.\r
+`,Un=`Stereo Reader lets you keep a parallel-view eye position while reading normal text. Each eye follows its own copy of the text, and your brain combines the two into one readable view.\r
 \r
 During ordinary close-up reading, both eyes stay turned inward for long periods. This keeps the **inner eye muscles** - the medial rectus muscles - working almost constantly and gives the eyes very little practice moving the other way. Over time, this convergence-heavy habit can reduce the eyes' ability to diverge and may contribute to temporary distance blur after near work. Within the Stereo Reader approach, repeating this pattern for years may also contribute to more persistent problems with distance focusing.\r
 \r
 Parallel-view reading changes that balance. It reduces the constant load on the inner eye muscles and gives the outward-moving muscles more work to do. Used regularly, it can serve both as prevention against convergence-heavy visual habits and as training intended to improve functional distance vision over time in people with myopia.\r
 \r
 The main idea is simple: keep reading useful or enjoyable content, but give your eyes a different type of work while you do it.\r
-`,Ln=`## Train all eye movements\r
+`,Wn=`## Train all eye movements\r
 \r
 Stereo Reader began as a parallel-view reader designed to train divergence and voluntary focusing. Since then, it has evolved into a much more comprehensive visual eye-training environment, supporting programmable exercises across a wider range of eye movements and extraocular-muscle work.\r
 \r
@@ -2652,17 +2652,17 @@ For the strongest training effect, I recommend doing Stereo Reader sessions **ly
 This position appears to make deeper divergence easier. In practice, the goal is to increase the **comfortable stereo separation** — the distance between the two images that can still be fused without excessive effort. In my own experiments, and in reports from other users, the maximum comfortable separation in this position can increase substantially, in some cases approaching **twice the range** achievable in a conventional upright position.\r
 \r
 Within the mechanical model behind Stereo Reader, this provides a stronger stretch of the convergence-dominant eye-muscle configuration and allows a greater outward range of movement. The important part is not to push hard, but to **maintain fusion with relaxed eyes and let the range increase gradually**.\r
-`,Rn=`## My Story\r
+`,Gn=`## My Story\r
 \r
 Being myopic (-4.5d), in 2023 I started doing simple eye exercises for 5–10 minutes before falling asleep. Since then, my vision improved to some degree, which I considered worth sharing, so I created a YouTube channel in Russian to share my experience. By that time, due to regular exercises, I had acquired pretty good eye muscle sensitivity, so I could feel which eye muscles contract and relax, given that I had learned [eye muscle anatomy](https://en.wikipedia.org/wiki/Extraocular_muscles) in detail. This allowed me to develop my own precise view of what causes myopia. This is a logical continuation of the [Bates method](https://en.wikipedia.org/wiki/Bates_method).\r
 \r
 Regardless of the mainstream consensus that it is false, the main idea — that coarse focusing is done by extraocular muscles and final focusing by the eye lens and thus training those muscles can improve vision — allowed many people who shared their experiences with me to improve their functional vision sharpness.\r
 \r
-My experience suggested that myopia happens due to shortening of the eye [rectus muscles](https://en.wikipedia.org/wiki/Extraocular_muscles), especially the medial ones (internal, near the nose), which converge the eyes for near focusing. In July 2025, I began stereo reading—reading text in two columns in parallel view—where the eyes diverge to the point of exotropia, a state in which the eyes diverge beyond parallel alignment. I also found that my myopic audience has very poor ability to diverge and achieve any significant exotropia, whereas people without myopia have strong exotropia ability. Since then, exotropia and stereo reading have become my main tools for training my eyes. Reading alone is used in many vision improvement systems, including Bates’.`,zn=`# STEREO READER\r
+My experience suggested that myopia happens due to shortening of the eye [rectus muscles](https://en.wikipedia.org/wiki/Extraocular_muscles), especially the medial ones (internal, near the nose), which converge the eyes for near focusing. In July 2025, I began stereo reading—reading text in two columns in parallel view—where the eyes diverge to the point of exotropia, a state in which the eyes diverge beyond parallel alignment. I also found that my myopic audience has very poor ability to diverge and achieve any significant exotropia, whereas people without myopia have strong exotropia ability. Since then, exotropia and stereo reading have become my main tools for training my eyes. Reading alone is used in many vision improvement systems, including Bates’.`,Kn=`# STEREO READER\r
 \r
 Parallel-view reader and eye trainer\r
 \r
-[Open application](https://stereo.aleklabs.dev/)`,Bn=`## Disclaimer and Safety Precautions\r
+[Open application](https://stereo.aleklabs.dev/)`,qn=`## Disclaimer and Safety Precautions\r
 \r
 I do not make any medical claims on this website. The method described here is not presented as a medical treatment, medical advice, or a guaranteed way to cure any diagnosed condition. My focus is \r
 \r
@@ -2681,5 +2681,5 @@ There are different levels of intensity. A light approach, with low strain and c
 \r
 Sporadic exercises are unlikely to produce substantial results. The method depends on consistency: regular training, attention to visual habits, and gradual adaptation. At the same time, even moderate and careful practice may still be useful for stabilizing functional vision sharpness, reducing further deterioration, or producing smaller improvements. The goal is not to ignore medical reality, but to train the functional capacity of the visual system in a way that improves quality of life.\r
 \r
-Proceed carefully, avoid pain, respect recovery time, and treat this as serious physical training for the visual system rather than a quick medical cure.`,Vn=``+new URL(`face-down.C4slVRfM.webp`,import.meta.url).href,R={class:`title`},z=C(i({__name:`section-title`,props:{title:{}},setup(e){return(n,i)=>(c(),u(`div`,R,[t(`span`,null,r(e.title),1)]))}}),[[`__scopeId`,`data-v-80cd1f1c`]]),B=Object.assign({"./br.ts":()=>S(()=>import(`./fVLz4Li1.js`),[],import.meta.url),"./de.ts":()=>S(()=>import(`./Cv7evWrq.js`),[],import.meta.url),"./es.ts":()=>S(()=>import(`./7hrcRWaw.js`),[],import.meta.url),"./fr.ts":()=>S(()=>import(`./BDynqwVp.js`),[],import.meta.url),"./he.ts":()=>S(()=>import(`./BoAbjNYR.js`),[],import.meta.url),"./it.ts":()=>S(()=>import(`./BT2-xNEZ.js`),[],import.meta.url),"./ru.ts":()=>S(()=>import(`./DzoxHV7K.js`),[],import.meta.url)}),V=new Set([`br`,`de`,`en`,`es`,`fr`,`he`,`it`,`ru`]),H={},U=m({}),W=_(`en`);async function Hn(e){let t=e?.split(`-`)[0].toLocaleLowerCase();if((!t||!V.has(t))&&(t=`en`),W.value=t,H[t])return;let n={},r=Object.keys(B).filter(e=>e.includes(t+`.`));for(let e of r){let{default:t}=await B[e]();for(let r in t){if(r in n){console.error(`Translation key "${r}" already exists: "${n[r]}" (adding "${t[r]}" from ${e})`);continue}n[r]=t[r]}}H[t]=n}function G(e){return e.replace(/[.*+?^${}()|[\]\\]/g,`\\$&`)}var K=RegExp(`^(${[`Open`,`Close`,`Turn on`,`Turn off`,`Show`].map(G).join(`|`)})\\s+`,`i`);function q(e){if(!e)return``;let t=s(),n=t+`:`+e,r=U[n];if(r)return r;let i=H[t]??{},a=i[e.toLocaleLowerCase()];if(a||=i[e],a)return e[0].toUpperCase()===e[0]&&(a=a[0].toLocaleUpperCase()+a.slice(1)),U[n]=a,a;let o=e.match(K);if(o){let t=o[1],r=e.slice(t.length).trimStart(),i=q(t)+` `+q(r);return U[n]=i,i}return U[n]=e,e;function s(){try{let e=y().params.slug,t=(Array.isArray(e)?e:e?[e]:[]).flatMap(e=>String(e).split(`/`)).filter(Boolean)[0];return t&&t.length===2&&V.has(t)?t:`en`}catch{return W.value}}}var Un=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2014'%3e%3cpath%20fill='%23009B3A'%20d='M0%200h20v14H0z'/%3e%3cpath%20fill='%23FEDF00'%20d='M10%201.4%2018.4%207%2010%2012.6%201.6%207z'/%3e%3ccircle%20fill='%23002776'%20cx='10'%20cy='7'%20r='3.2'/%3e%3c/svg%3e`,Wn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%205%203'%3e%3cpath%20fill='%23000'%20d='M0%200h5v1H0z'/%3e%3cpath%20fill='%23D00'%20d='M0%201h5v1H0z'/%3e%3cpath%20fill='%23FFCE00'%20d='M0%202h5v1H0z'/%3e%3c/svg%3e`,Gn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2060%2030'%3e%3cclipPath%20id='a'%3e%3cpath%20d='M0%200h60v30H0z'/%3e%3c/clipPath%3e%3cpath%20fill='%23012169'%20d='M0%200h60v30H0z'/%3e%3cpath%20stroke='%23fff'%20stroke-width='6'%20d='M0%200l60%2030M60%200L0%2030'%20clip-path='url(%23a)'/%3e%3cpath%20stroke='%23C8102E'%20stroke-width='4'%20d='M0%200l60%2030M60%200L0%2030'%20clip-path='url(%23a)'/%3e%3cpath%20stroke='%23fff'%20stroke-width='10'%20d='M30%200v30M0%2015h60'/%3e%3cpath%20stroke='%23C8102E'%20stroke-width='6'%20d='M30%200v30M0%2015h60'/%3e%3c/svg%3e`,Kn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%206%204'%3e%3cpath%20fill='%23AA151B'%20d='M0%200h6v4H0z'/%3e%3cpath%20fill='%23F1BF00'%20d='M0%201h6v2H0z'/%3e%3c/svg%3e`,qn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%203%202'%3e%3cpath%20fill='%23002654'%20d='M0%200h1v2H0z'/%3e%3cpath%20fill='%23fff'%20d='M1%200h1v2H1z'/%3e%3cpath%20fill='%23ED2939'%20d='M2%200h1v2H2z'/%3e%3c/svg%3e`,Jn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2022%2016'%3e%3crect%20width='22'%20height='16'%20fill='%23fff'/%3e%3cpath%20fill='%230038b8'%20d='M0%201.5h22v2.15H0zm0%2010.85h22v2.15H0z'/%3e%3cpath%20fill='none'%20stroke='%230038b8'%20stroke-width='.8'%20d='M11%204.7l3.15%205.45H7.85zM11%2011.3L7.85%205.85h6.3z'/%3e%3c/svg%3e`,Yn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%203%202'%3e%3cpath%20fill='%23009246'%20d='M0%200h1v2H0z'/%3e%3cpath%20fill='%23fff'%20d='M1%200h1v2H1z'/%3e%3cpath%20fill='%23CE2B37'%20d='M2%200h1v2H2z'/%3e%3c/svg%3e`,Xn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%206%203'%3e%3cpath%20fill='%23fff'%20d='M0%200h6v1H0z'/%3e%3cpath%20fill='%230039A6'%20d='M0%201h6v1H0z'/%3e%3cpath%20fill='%23D52B1E'%20d='M0%202h6v1H0z'/%3e%3c/svg%3e`,Zn={class:`cover`},Qn={class:`lang-switch`,dir:`ltr`},$n=[`src`,`alt`],er=[`innerHTML`],tr={class:`story`},nr={class:`home`},rr={class:`hook`,style:{"margin-bottom":`0`}},ir={class:`preview-link`},ar={href:`https://youtu.be/ikvzroKPpgI`,target:`_blank`},or={class:`hook`,style:{"margin-top":`48px`}},sr={class:`preview-link`},J={class:`preview-link`},cr={href:`https://stereo.aleklabs.dev/#try`,target:`_blank`},lr={class:`footer`},ur={class:`roadmap`},Y=`https://stereo.aleklabs.dev/#training:H4sIAAAAAAAACu1cS28jxxH%2BL5MrLVR1vXmzN0GQwyIL28ghhg5ccbQiQj1ADtcIDP33oJuiNC9Jjixqsd4BDxJ7qrvrq6quqq5uzm%2FValnNYVY1q2ZdV%2FOqmlUfP727Xl9vqnn1F3JCiWpWNZvF1XbVrK6v%2FrrbLPLfao4AMKvqq%2BXPq8u6mmMCKC2Ly%2BvdVVPN4URn1c168d%2BPi7P%2F%2FHRT18tqjrPqZlOf15tNvXwYSe967rb1h%2BHT88V6W8%2Bqy%2Bvlbl2attX8l98K4%2FvhtnVTze8bDkje39N3Mck5CWk1qxZnZ%2FV2m7m62q3Xs2qxXOYvVYKk30F8h%2FYz%2BlxoznZi6v%2BuCg%2Br89UYFc%2FJTkg5U23rdX3WZKo71m%2Fqq%2BXq6tNPi891Nf%2FtdlYt63XdrK4%2BjYDLSA4SxIH8ikw%2F15vtXgOzatXUl3%2FfXO9uslBO99878mkpdnHWrDIHzWZXpszTvdttClPVsqfX7cXipq7mv8AMTgBAES3QI7kGaUqlNTGLGjAyhqp7aRQOQzYTCWJN%2B8YwcRNlRnUjotyIkhKAmgK4qbrmxoSuZqjskefh0hbqwiQYDuZAhZBchSESi0moSmlkN0FjYMXk6i65USKEVF0sMYhDabSUKLGShRgXNC4iDmau6OBQ%2BI7wsAAwiQjkzA2iJFRnEAZDActtlAEzBAYSOmRekF0pHJlMBDhKX1XVBKKO6ApZCugiAEAEQpjcclsCQTBlYmRjSJnhlIRJA9jcM9uFjpXJQR1UEIkzy0kdJIzCzUOkkAUkDgAnE3fJoxGmEBRLGqZAmTciRUQ3ceVA1EImoUaJwYhDqOAnJzEHcI1QizwBg5maZuUoFtNgSugECp7lYaVJ1JQZIAlrMsxNjiwozCykYZRFKaDoDBZOqI6ZCyEIQHY0Aii6EhFhSpokMUOZURwg8x3K5uF5KAUmCcgDoarloTQ5I6mmLC%2BiyE2SUCgiIQKpZ77URBKGCQUDFbPWcFbgpMUMKI9lCQIpYVI1jSJD4%2BRJyFWD8mrJTcrIREkJHBjzjOYZuGuKPG2xUc96DYZwE5LClyeGbIgKAg4pm5RzYsny16KP0qQAWYRExg6QJeFFF8isKBCWJeGRRJMRgkakIokAo7xs8h%2FBlGFHwkSkkPJqsSLCIAYKS5nCADJfwWJOamGqakX2IcqklgxYNXEZXiUsWRhqGBYDCGNSFyEzpr0ZhmO2PkEgo1QcQLjlrk4hSRyzVCOSpMy9iithoYq8SCnIwESKlUS4JnIMdKP9OooIZ4PkmlT4jmqkaaTjyPAdJuwRVruAZAhbh8KhoQh1KGgaqGNEZzGu2Z7%2BaWglMbQlesTiunZpA%2BtlHLfx3krw4Xqx4aqi4drzwQodWcZpsNgLW12X4ON%2BY8y7dFxQWcU9R2VDfyZDrzfmG2XoQdmGjjYN%2FTEN3XYB0PPuOowBSsNQwY9FlE7kYUwjEWoYyDQN412JRt24KCUa9%2BJnEWYvziIN47GNxG0aBHcsobeXBRTl9NKFPV03ryhxqp%2BAxGOJSjejsbCR3OepLKmTTxmXmDKae53Oqu3l9XVzUXJImFXLzeLX99fLnOid79brquTS33%2FcXq93Tf2vxXpXb%2B9yzdtDgj6S%2BQlDJ%2Fd72TQ5vezO8s%2BHLP4%2BX%2F2xvqkXzbv7RLdZbD7VzfZDO99t9bt7XDLbbh6b89zq0%2BKmKml1s6jmPLbt2DaLTfPhYrGtC5LV1ed603zflsSBw%2FLkfTs73gvu9Ha2z6rTaFZ9n8k%2FklZTR7Q423%2ByZUpCtkSRlByKfwPM%2F6lDOEr24jTDWauLhQkrYMpOkbJ7nUGXglMwm0syBSPJtt0iKET5c4KkAgRq7DnyiN0NgCCePCVwcQ8xbU0BvekObdhvOwFAyeEkUfYJTlQ8W2c%2B1UAdb%2ByPlr00YUD2uxyQU5s%2B7N4oZU0%2FirLbM29BLCe%2BZaVazvGexNefG6EI6qBOpr2XaGl27xF%2BN6CsxQcdq%2ByTQGjLk0m8yOlIDgH%2FFP5guI1%2BFX8wG5358%2FZidd48TA5Hn%2FxAmmffXDeLpj767PeukF5SYOBXMKrnTVeOZrp32j6O5fY1iOlLWq%2B%2FbPK7EZ81H36J%2BbyGYp81n0NJ8itxfW0fcNHTIR7bCciL8iGbyoxTmXEqM05lxqnMOJUZpzLjVGacyozfSJnxK8utW9ujs%2Bv17vLqh%2FVu88Nivbg6a%2B3T9GhZ9untbavy2L3vkJ6%2F70CYzvHja993aFMd8b4DHv22A03bkGkbMm1Dpm3ItA2ZtiHTNmTahkzbkG9kG%2FInue2Axz%2FebJ8unOUh6s2PvWOqFx4UveyU6uN6t3mYOr36CVnR6TPXPZ7ZVth0SPX0Rvotraizh6b%2BHpqe30OnBYnB17qHPuHj%2F2aA%2B9voL%2Frp30R64093HVL6RiPWUxdTRn8adLSg1b%2FWcKQbguPR6hFfpyfyFdxTnCLXk7nXsa%2Bavuh%2BlU4afEqDb%2BQM%2Ftglpyl%2F%2FP9uyR3Nmz66DXr0JEiO7ddfdt9qOuiYDjqmg47poGM66JgOOqaDjumgYzro%2BFYOOr7eNP%2Bp%2B1ZH27a1asXcrxXz87VidlkSfRW1YjhxGnnFTHr7S1dPVm97z0%2FCkoomeY7wjpgVguwu2mef%2BlSPnDcAa5eqR5s9ghYHD0hqZcj2%2F88xNRi4%2FE7Uec9kDvoBd%2BMno0MzYGQXLHsO4IGmzcP9OM%2BJ5smKdXq1ivVrFBO%2FSL26W%2BZ72x9xPlYwfsui9aDAIl%2BoXP2HPMk3fe70reYPv2MpHb9W%2BMRSiuOtpJy6nLaj%2Fd8%2B11d34mnKW%2Frab%2BzTvVofqP%2BROckomvbz3hv%2B%2Bh3SQ4cDwUMPH%2BtBrR7e65F4rAc%2F9DgQ3PcgeAbGgeChxyjwFg7qI%2BdR5C0c3EfOo8hbOLiPXEaRt3BIH7mOIk89BXZ6jCJv4dA%2BchtF3sJhfeQ2iryFw%2FrIfRR5C4f3kcco8haO6COPUeQtHDGwdhiF3gJyT9HqMwq%2BvUSgjx5xFH57kWAf%2F%2F27NvtwTg8usb3wS0N%2BXv26WjYX%2BXWeHSEd7lHF7ent%2FwBMJxXJEVQAAA%3D%3D`,X=C(i({__name:`[...slug]`,async setup(i){let m,_;v(e=>({v40169ce3:b}));let b=`url("${le}")`,x=[{id:`en`,title:`English`,flag:Gn},{id:`br`,title:`Português (Brasil)`,flag:Un},{id:`de`,title:`Deutsch`,flag:Wn},{id:`es`,title:`Español`,flag:Kn},{id:`fr`,title:`Français`,flag:qn},{id:`he`,title:`עברית`,flag:Jn},{id:`it`,title:`Italiano`,flag:Yn},{id:`ru`,title:`Русский`,flag:Xn}],S=Object.assign({"./content/_seo-meta.md":de,"./content/app.md":fe,"./content/bates.md":pe,"./content/crossview.md":me,"./content/feature1.md":he,"./content/feature2.md":ge,"./content/feature3.md":j,"./content/file-privacy.md":M,"./content/goals.md":N,"./content/join.md":P,"./content/lang/br/_seo-meta.md":F,"./content/lang/br/app.md":I,"./content/lang/br/bates.md":L,"./content/lang/br/crossview.md":_e,"./content/lang/br/feature1.md":ve,"./content/lang/br/feature2.md":ye,"./content/lang/br/feature3.md":be,"./content/lang/br/file-privacy.md":xe,"./content/lang/br/goals.md":Se,"./content/lang/br/join.md":Ce,"./content/lang/br/parallelview.md":we,"./content/lang/br/results.md":Te,"./content/lang/br/roadmap/index.md":Ee,"./content/lang/br/section1.md":De,"./content/lang/br/section2.md":Oe,"./content/lang/br/story.md":ke,"./content/lang/br/title.md":Ae,"./content/lang/br/warning.md":je,"./content/lang/de/_seo-meta.md":Me,"./content/lang/de/app.md":Ne,"./content/lang/de/bates.md":Pe,"./content/lang/de/crossview.md":Fe,"./content/lang/de/feature1.md":Ie,"./content/lang/de/feature2.md":Le,"./content/lang/de/feature3.md":Re,"./content/lang/de/file-privacy.md":ze,"./content/lang/de/goals.md":Be,"./content/lang/de/join.md":Ve,"./content/lang/de/parallelview.md":He,"./content/lang/de/results.md":Ue,"./content/lang/de/roadmap/index.md":We,"./content/lang/de/section1.md":Ge,"./content/lang/de/section2.md":Ke,"./content/lang/de/story.md":qe,"./content/lang/de/title.md":Je,"./content/lang/de/warning.md":Ye,"./content/lang/es/_seo-meta.md":Xe,"./content/lang/es/app.md":Ze,"./content/lang/es/bates.md":Qe,"./content/lang/es/crossview.md":$e,"./content/lang/es/feature1.md":et,"./content/lang/es/feature2.md":tt,"./content/lang/es/feature3.md":nt,"./content/lang/es/file-privacy.md":rt,"./content/lang/es/goals.md":it,"./content/lang/es/join.md":at,"./content/lang/es/parallelview.md":ot,"./content/lang/es/results.md":st,"./content/lang/es/roadmap/index.md":ct,"./content/lang/es/section1.md":lt,"./content/lang/es/section2.md":ut,"./content/lang/es/story.md":dt,"./content/lang/es/title.md":ft,"./content/lang/es/warning.md":pt,"./content/lang/fr/_seo-meta.md":mt,"./content/lang/fr/app.md":ht,"./content/lang/fr/bates.md":gt,"./content/lang/fr/crossview.md":_t,"./content/lang/fr/feature1.md":vt,"./content/lang/fr/feature2.md":yt,"./content/lang/fr/feature3.md":bt,"./content/lang/fr/file-privacy.md":xt,"./content/lang/fr/goals.md":St,"./content/lang/fr/join.md":Ct,"./content/lang/fr/parallelview.md":wt,"./content/lang/fr/results.md":Tt,"./content/lang/fr/roadmap/index.md":Et,"./content/lang/fr/section1.md":Dt,"./content/lang/fr/section2.md":Ot,"./content/lang/fr/story.md":kt,"./content/lang/fr/title.md":At,"./content/lang/fr/warning.md":jt,"./content/lang/he/_seo-meta.md":Mt,"./content/lang/he/app.md":Nt,"./content/lang/he/bates.md":Pt,"./content/lang/he/crossview.md":Ft,"./content/lang/he/feature1.md":It,"./content/lang/he/feature2.md":Lt,"./content/lang/he/feature3.md":Rt,"./content/lang/he/file-privacy.md":zt,"./content/lang/he/goals.md":Bt,"./content/lang/he/join.md":Vt,"./content/lang/he/parallelview.md":Ht,"./content/lang/he/results.md":Ut,"./content/lang/he/roadmap/index.md":Wt,"./content/lang/he/section1.md":Gt,"./content/lang/he/section2.md":Kt,"./content/lang/he/story.md":qt,"./content/lang/he/title.md":Jt,"./content/lang/he/warning.md":Yt,"./content/lang/it/_seo-meta.md":Xt,"./content/lang/it/app.md":Zt,"./content/lang/it/bates.md":Qt,"./content/lang/it/crossview.md":$t,"./content/lang/it/feature1.md":en,"./content/lang/it/feature2.md":tn,"./content/lang/it/feature3.md":nn,"./content/lang/it/file-privacy.md":rn,"./content/lang/it/goals.md":an,"./content/lang/it/join.md":on,"./content/lang/it/parallelview.md":sn,"./content/lang/it/results.md":cn,"./content/lang/it/roadmap/index.md":ln,"./content/lang/it/section1.md":un,"./content/lang/it/section2.md":dn,"./content/lang/it/story.md":fn,"./content/lang/it/title.md":pn,"./content/lang/it/warning.md":mn,"./content/lang/ru/_seo-meta.md":hn,"./content/lang/ru/app.md":gn,"./content/lang/ru/bates.md":_n,"./content/lang/ru/crossview.md":vn,"./content/lang/ru/feature1.md":yn,"./content/lang/ru/feature2.md":bn,"./content/lang/ru/feature3.md":xn,"./content/lang/ru/file-privacy.md":Sn,"./content/lang/ru/goals.md":Cn,"./content/lang/ru/join.md":wn,"./content/lang/ru/parallelview.md":Tn,"./content/lang/ru/results.md":En,"./content/lang/ru/section1.md":Dn,"./content/lang/ru/section2.md":On,"./content/lang/ru/story.md":kn,"./content/lang/ru/title.md":An,"./content/lang/ru/warning.md":jn,"./content/parallelview.md":Mn,"./content/results.md":Nn,"./content/roadmap/index.md":Pn,"./content/roadmap/lang/ru/index.md":Fn,"./content/section1.md":In,"./content/section2.md":Ln,"./content/story.md":Rn,"./content/title.md":zn,"./content/warning.md":Bn}),C=y(),w=(Array.isArray(C.params.slug)?C.params.slug:C.params.slug?[C.params.slug]:[]).flatMap(e=>e.split(`/`)).filter(Boolean),T=Object.keys(S),E=`en`,D=``;w[0]&&w[0].length===2&&V.has(w[0])?(E=w[0],D=w.slice(1).join(`/`)):D=w.join(`/`),[m,_]=s(()=>Hn(E)),await m,_();let O=E===`en`?``:`/${E}`;function k(e){return`/stereo-reader${e===`en`?``:`/${e}`}${D?`/${D}`:``}`}ie({title:q(`STEREO READER: Improve your vision while reading your favorite books in stereo mode`),htmlAttrs:{lang:E===`br`?`pt-BR`:E,dir:E===`he`?`rtl`:`ltr`}});function A(e){return e.replaceAll(`\\`,`/`).replace(/^\.?\//,``)}function R(...e){let t=e.map(A);return T.find(e=>{let n=A(e);return t.some(e=>n===e||n.endsWith(`/${e}`))})}function B(...e){let t=R(...e),n=t?S[t]:``;if(!n)throw ee({statusCode:404,statusMessage:`Page not found: ${e.join(` | `)}`});return n}function H(e,t=E){return t===`en`?[`./content/${e}.md`]:[`./content/lang/${t}/${e}.md`]}function U(e,t=E){return t===`en`?[`./content/${e}/index.md`]:[`./content/${e}/lang/${t}/index.md`,`./content/lang/${t}/${e}/index.md`]}function W(...e){let t={};for(let n of e)t[n]=B(...H(n));return t}let G=W(`title`,`parallelview`,`crossview`,`section1`,`section2`,`feature1`,`feature2`,`feature3`,`story`,`results`,`warning`,`app`,`goals`,`bates`,`join`,`file-privacy`),K=q(`Recommended training position`),X=G.section2.replace(`### ${K}`,`### ${K}\n\n![${q(`Face-down Stereo Reader training position`)}](${Vn}){.image-left}`),dr=G.title,fr=D?B(...U(D)):``,Z=D?fr.split(/(?=^## )/m).map(e=>e.trim()).filter(Boolean):[],Q=B(...H(`_seo-meta`)).replace(/^\uFEFF/u,``).replace(/\r\n?/g,`
-`),pr=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(Q),$=se(pr?.[1]??Q);re({description:$.description,ogDescription:$.description,ogImage:new URL(`./assets/logo.jpg`,``+import.meta.url).pathname});let mr=o(()=>{let e=oe(dr);return D&&(e=e.replaceAll(`h1`,`div`)),e});return(i,o)=>{let s=ne,m=ce,_=ue,v=d(`transition-target`);return c(),u(g,null,[t(`div`,Zn,[t(`div`,Qn,[(c(!0),u(g,null,p(x.filter(e=>e.id!==h(E)),n=>(c(),e(s,{key:n.id,to:k(n.id),title:n.title,"aria-label":n.title},{default:l(()=>[t(`img`,{src:n.flag,alt:n.title,width:`32`,height:`21`},null,8,$n)]),_:2},1032,[`to`,`title`,`aria-label`]))),128))]),f(n(m,{"image-src":h(ae)},null,8,[`image-src`]),[[v,[(i._.provides[te]||i.$route).fullPath,`cover`]]]),t(`div`,{class:`text`,innerHTML:h(mr)},null,8,er)]),t(`div`,tr,[h(D)?(c(),u(g,{key:0},[t(`div`,nr,[n(s,{to:`/stereo-reader${h(O)}`},{default:l(()=>[a(r(h(q)(`Back to Stereo Reader home`)),1)]),_:1},8,[`to`])]),t(`h1`,null,r(h(Z)[0]?.replace(`#`,``).trim()),1),(c(!0),u(g,null,p(h(Z).slice(1),(t,n)=>(c(),e(_,{class:`chapter`,key:n,src:t},null,8,[`src`]))),128))],64)):(c(),u(g,{key:1},[t(`div`,rr,r(h(q)(`What is Parallel view?`)),1),n(_,{class:`chapter`,src:h(G).parallelview,style:{"margin-top":`32px`}},null,8,[`src`]),o[2]||=t(`iframe`,{class:`video`,src:`https://www.youtube.com/embed/_HdoPnvChe0?si=Wq7je_dMPEFAiXU-`,title:`YouTube video player`,frameborder:`0`,loading:`lazy`,allow:`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share`,referrerpolicy:`strict-origin-when-cross-origin`,allowfullscreen:``},null,-1),t(`div`,ir,[t(`a`,ar,r(h(q)(`Having trouble? Try another parallel-view tutorial.`)),1)]),n(_,{class:`chapter`,src:h(G).crossview},null,8,[`src`]),t(`div`,or,r(h(q)(`What is Stereo Reader?`)),1),n(z,{title:h(q)(`Eye trainer`)},null,8,[`title`]),n(_,{class:`chapter`,src:h(X)},null,8,[`src`]),t(`iframe`,{class:`preview`,loading:`lazy`,src:Y}),t(`div`,sr,[a(r(h(q)(`Train your eye muscles with dynamic stereo modulation`)),1),o[0]||=t(`br`,null,null,-1),t(`a`,{href:Y,target:`_blank`},r(h(q)(`Open in STEREO READER`)),1)]),n(z,{title:h(q)(`Parallel-view reader`),style:{"margin-top":`64px`}},null,8,[`title`]),n(_,{class:`file-privacy`,src:h(G)[`file-privacy`]},null,8,[`src`]),n(_,{class:`chapter`,src:h(G).section1},null,8,[`src`]),o[3]||=t(`iframe`,{class:`preview`,loading:`lazy`,src:`https://stereo.aleklabs.dev/#try`},null,-1),t(`div`,J,[a(r(h(q)(`Read a book in stereo mode using parallel view`)),1),o[1]||=t(`br`,null,null,-1),t(`a`,cr,r(h(q)(`Open in STEREO READER`)),1)]),n(_,{class:`chapter`,src:h(G).story},null,8,[`src`]),n(_,{class:`chapter`,src:h(G).results},null,8,[`src`]),n(_,{class:`chapter`,src:h(G).app},null,8,[`src`]),n(_,{class:`chapter`,src:h(G).goals},null,8,[`src`]),n(_,{class:`chapter`,src:h(G).bates},null,8,[`src`]),n(_,{class:`chapter`,src:h(G).warning},null,8,[`src`]),n(_,{class:`chapter`,src:h(G).join},null,8,[`src`])],64))]),t(`div`,lr,[t(`div`,ur,[n(s,{to:`/stereo-reader${h(O)}/roadmap`,innerHTML:h(q)(`From Eye-Muscle Stretching to Stereo Reading:<br />My Roadmap of Functional Vision Sharpness`)},null,8,[`to`,`innerHTML`])])])],64)}}}),[[`__scopeId`,`data-v-f6354c2e`]]);export{X as default};
+Proceed carefully, avoid pain, respect recovery time, and treat this as serious physical training for the visual system rather than a quick medical cure.`,Jn=``+new URL(`face-down.C4slVRfM.webp`,import.meta.url).href,P={class:`title`},F=S(i({__name:`section-title`,props:{title:{}},setup(e){return(n,i)=>(u(),f(`div`,P,[t(`span`,null,r(e.title),1)]))}}),[[`__scopeId`,`data-v-80cd1f1c`]]),I=Object.assign({"./br.ts":()=>x(()=>import(`./CiogOaeD.js`),[],import.meta.url),"./de.ts":()=>x(()=>import(`./CdrtIfsO.js`),[],import.meta.url),"./es.ts":()=>x(()=>import(`./CLMrvjRN.js`),[],import.meta.url),"./fr.ts":()=>x(()=>import(`./KAQdsaZy.js`),[],import.meta.url),"./he.ts":()=>x(()=>import(`./D2ieXcfW.js`),[],import.meta.url),"./it.ts":()=>x(()=>import(`./xktdyuVZ.js`),[],import.meta.url),"./ru.ts":()=>x(()=>import(`./Bd3KqIOt.js`),[],import.meta.url)}),L=new Set([`br`,`de`,`en`,`es`,`fr`,`he`,`it`,`ru`]),R={},z=m({}),B=_(`en`);async function V(e){let t=e?.split(`-`)[0].toLocaleLowerCase();if((!t||!L.has(t))&&(t=`en`),B.value=t,R[t])return;let n={},r=Object.keys(I).filter(e=>e.includes(t+`.`));for(let e of r){let{default:t}=await I[e]();for(let r in t){if(r in n){console.error(`Translation key "${r}" already exists: "${n[r]}" (adding "${t[r]}" from ${e})`);continue}n[r]=t[r]}}R[t]=n}function H(e){return e.replace(/[.*+?^${}()|[\]\\]/g,`\\$&`)}var U=RegExp(`^(${[`Open`,`Close`,`Turn on`,`Turn off`,`Show`].map(H).join(`|`)})\\s+`,`i`);function W(e,t){if(!e)return``;let n=t??c(),r=n+`:`+e,i=z[r];if(i)return i;let a=R[n]??{},o=a[e.toLocaleLowerCase()];if(o||=a[e],o)return e[0].toUpperCase()===e[0]&&(o=o[0].toLocaleUpperCase()+o.slice(1)),z[r]=o,o;let s=e.match(U);if(s){let n=s[1],i=e.slice(n.length).trimStart(),a=W(n,t)+` `+W(i,t);return z[r]=a,a}return z[r]=e,e;function c(){try{let e=v().params.slug,t=(Array.isArray(e)?e:e?[e]:[]).flatMap(e=>String(e).split(`/`)).filter(Boolean)[0];return t&&t.length===2&&L.has(t)?t:`en`}catch{return B.value}}}var Yn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2014'%3e%3cpath%20fill='%23009B3A'%20d='M0%200h20v14H0z'/%3e%3cpath%20fill='%23FEDF00'%20d='M10%201.4%2018.4%207%2010%2012.6%201.6%207z'/%3e%3ccircle%20fill='%23002776'%20cx='10'%20cy='7'%20r='3.2'/%3e%3c/svg%3e`,Xn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%205%203'%3e%3cpath%20fill='%23000'%20d='M0%200h5v1H0z'/%3e%3cpath%20fill='%23D00'%20d='M0%201h5v1H0z'/%3e%3cpath%20fill='%23FFCE00'%20d='M0%202h5v1H0z'/%3e%3c/svg%3e`,Zn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2060%2030'%3e%3cclipPath%20id='a'%3e%3cpath%20d='M0%200h60v30H0z'/%3e%3c/clipPath%3e%3cpath%20fill='%23012169'%20d='M0%200h60v30H0z'/%3e%3cpath%20stroke='%23fff'%20stroke-width='6'%20d='M0%200l60%2030M60%200L0%2030'%20clip-path='url(%23a)'/%3e%3cpath%20stroke='%23C8102E'%20stroke-width='4'%20d='M0%200l60%2030M60%200L0%2030'%20clip-path='url(%23a)'/%3e%3cpath%20stroke='%23fff'%20stroke-width='10'%20d='M30%200v30M0%2015h60'/%3e%3cpath%20stroke='%23C8102E'%20stroke-width='6'%20d='M30%200v30M0%2015h60'/%3e%3c/svg%3e`,Qn=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%206%204'%3e%3cpath%20fill='%23AA151B'%20d='M0%200h6v4H0z'/%3e%3cpath%20fill='%23F1BF00'%20d='M0%201h6v2H0z'/%3e%3c/svg%3e`,$n=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%203%202'%3e%3cpath%20fill='%23002654'%20d='M0%200h1v2H0z'/%3e%3cpath%20fill='%23fff'%20d='M1%200h1v2H1z'/%3e%3cpath%20fill='%23ED2939'%20d='M2%200h1v2H2z'/%3e%3c/svg%3e`,er=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2022%2016'%3e%3crect%20width='22'%20height='16'%20fill='%23fff'/%3e%3cpath%20fill='%230038b8'%20d='M0%201.5h22v2.15H0zm0%2010.85h22v2.15H0z'/%3e%3cpath%20fill='none'%20stroke='%230038b8'%20stroke-width='.8'%20d='M11%204.7l3.15%205.45H7.85zM11%2011.3L7.85%205.85h6.3z'/%3e%3c/svg%3e`,tr=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%203%202'%3e%3cpath%20fill='%23009246'%20d='M0%200h1v2H0z'/%3e%3cpath%20fill='%23fff'%20d='M1%200h1v2H1z'/%3e%3cpath%20fill='%23CE2B37'%20d='M2%200h1v2H2z'/%3e%3c/svg%3e`,nr=`data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%206%203'%3e%3cpath%20fill='%23fff'%20d='M0%200h6v1H0z'/%3e%3cpath%20fill='%230039A6'%20d='M0%201h6v1H0z'/%3e%3cpath%20fill='%23D52B1E'%20d='M0%202h6v1H0z'/%3e%3c/svg%3e`,rr={class:`cover`},ir={class:`lang-switch`,dir:`ltr`},ar=[`src`,`alt`],or=[`innerHTML`],sr={key:0,class:`lang-prompt-layer`},cr=[`lang`,`dir`],lr={class:`actions`},ur={class:`story`},dr={class:`home`},fr={class:`hook`,style:{"margin-bottom":`0`}},pr={class:`preview-link`},mr={href:`https://youtu.be/ikvzroKPpgI`,target:`_blank`},hr={class:`hook`,style:{"margin-top":`48px`}},G={class:`preview-link`},gr={class:`preview-link`},_r={href:`https://stereo.aleklabs.dev/#try`,target:`_blank`},vr={class:`footer`},yr={class:`roadmap`},K=`stereo-reader-lang-prompt`,q=`https://stereo.aleklabs.dev/#training:H4sIAAAAAAAACu1cS28jxxH%2BL5MrLVR1vXmzN0GQwyIL28ghhg5ccbQiQj1ADtcIDP33oJuiNC9Jjixqsd4BDxJ7qrvrq6quqq5uzm%2FValnNYVY1q2ZdV%2FOqmlUfP727Xl9vqnn1F3JCiWpWNZvF1XbVrK6v%2FrrbLPLfao4AMKvqq%2BXPq8u6mmMCKC2Ly%2BvdVVPN4URn1c168d%2BPi7P%2F%2FHRT18tqjrPqZlOf15tNvXwYSe967rb1h%2BHT88V6W8%2Bqy%2Bvlbl2attX8l98K4%2FvhtnVTze8bDkje39N3Mck5CWk1qxZnZ%2FV2m7m62q3Xs2qxXOYvVYKk30F8h%2FYz%2BlxoznZi6v%2BuCg%2Br89UYFc%2FJTkg5U23rdX3WZKo71m%2Fqq%2BXq6tNPi891Nf%2FtdlYt63XdrK4%2BjYDLSA4SxIH8ikw%2F15vtXgOzatXUl3%2FfXO9uslBO99878mkpdnHWrDIHzWZXpszTvdttClPVsqfX7cXipq7mv8AMTgBAES3QI7kGaUqlNTGLGjAyhqp7aRQOQzYTCWJN%2B8YwcRNlRnUjotyIkhKAmgK4qbrmxoSuZqjskefh0hbqwiQYDuZAhZBchSESi0moSmlkN0FjYMXk6i65USKEVF0sMYhDabSUKLGShRgXNC4iDmau6OBQ%2BI7wsAAwiQjkzA2iJFRnEAZDActtlAEzBAYSOmRekF0pHJlMBDhKX1XVBKKO6ApZCugiAEAEQpjcclsCQTBlYmRjSJnhlIRJA9jcM9uFjpXJQR1UEIkzy0kdJIzCzUOkkAUkDgAnE3fJoxGmEBRLGqZAmTciRUQ3ceVA1EImoUaJwYhDqOAnJzEHcI1QizwBg5maZuUoFtNgSugECp7lYaVJ1JQZIAlrMsxNjiwozCykYZRFKaDoDBZOqI6ZCyEIQHY0Aii6EhFhSpokMUOZURwg8x3K5uF5KAUmCcgDoarloTQ5I6mmLC%2BiyE2SUCgiIQKpZ77URBKGCQUDFbPWcFbgpMUMKI9lCQIpYVI1jSJD4%2BRJyFWD8mrJTcrIREkJHBjzjOYZuGuKPG2xUc96DYZwE5LClyeGbIgKAg4pm5RzYsny16KP0qQAWYRExg6QJeFFF8isKBCWJeGRRJMRgkakIokAo7xs8h%2FBlGFHwkSkkPJqsSLCIAYKS5nCADJfwWJOamGqakX2IcqklgxYNXEZXiUsWRhqGBYDCGNSFyEzpr0ZhmO2PkEgo1QcQLjlrk4hSRyzVCOSpMy9iithoYq8SCnIwESKlUS4JnIMdKP9OooIZ4PkmlT4jmqkaaTjyPAdJuwRVruAZAhbh8KhoQh1KGgaqGNEZzGu2Z7%2BaWglMbQlesTiunZpA%2BtlHLfx3krw4Xqx4aqi4drzwQodWcZpsNgLW12X4ON%2BY8y7dFxQWcU9R2VDfyZDrzfmG2XoQdmGjjYN%2FTEN3XYB0PPuOowBSsNQwY9FlE7kYUwjEWoYyDQN412JRt24KCUa9%2BJnEWYvziIN47GNxG0aBHcsobeXBRTl9NKFPV03ryhxqp%2BAxGOJSjejsbCR3OepLKmTTxmXmDKae53Oqu3l9XVzUXJImFXLzeLX99fLnOid79brquTS33%2FcXq93Tf2vxXpXb%2B9yzdtDgj6S%2BQlDJ%2Fd72TQ5vezO8s%2BHLP4%2BX%2F2xvqkXzbv7RLdZbD7VzfZDO99t9bt7XDLbbh6b89zq0%2BKmKml1s6jmPLbt2DaLTfPhYrGtC5LV1ed603zflsSBw%2FLkfTs73gvu9Ha2z6rTaFZ9n8k%2FklZTR7Q423%2ByZUpCtkSRlByKfwPM%2F6lDOEr24jTDWauLhQkrYMpOkbJ7nUGXglMwm0syBSPJtt0iKET5c4KkAgRq7DnyiN0NgCCePCVwcQ8xbU0BvekObdhvOwFAyeEkUfYJTlQ8W2c%2B1UAdb%2ByPlr00YUD2uxyQU5s%2B7N4oZU0%2FirLbM29BLCe%2BZaVazvGexNefG6EI6qBOpr2XaGl27xF%2BN6CsxQcdq%2ByTQGjLk0m8yOlIDgH%2FFP5guI1%2BFX8wG5358%2FZidd48TA5Hn%2FxAmmffXDeLpj767PeukF5SYOBXMKrnTVeOZrp32j6O5fY1iOlLWq%2B%2FbPK7EZ81H36J%2BbyGYp81n0NJ8itxfW0fcNHTIR7bCciL8iGbyoxTmXEqM05lxqnMOJUZpzLjVGacyozfSJnxK8utW9ujs%2Bv17vLqh%2FVu88Nivbg6a%2B3T9GhZ9untbavy2L3vkJ6%2F70CYzvHja993aFMd8b4DHv22A03bkGkbMm1Dpm3ItA2ZtiHTNmTahkzbkG9kG%2FInue2Axz%2FebJ8unOUh6s2PvWOqFx4UveyU6uN6t3mYOr36CVnR6TPXPZ7ZVth0SPX0Rvotraizh6b%2BHpqe30OnBYnB17qHPuHj%2F2aA%2B9voL%2Frp30R64093HVL6RiPWUxdTRn8adLSg1b%2FWcKQbguPR6hFfpyfyFdxTnCLXk7nXsa%2Bavuh%2BlU4afEqDb%2BQM%2Ftglpyl%2F%2FP9uyR3Nmz66DXr0JEiO7ddfdt9qOuiYDjqmg47poGM66JgOOqaDjumgYzro%2BFYOOr7eNP%2Bp%2B1ZH27a1asXcrxXz87VidlkSfRW1YjhxGnnFTHr7S1dPVm97z0%2FCkoomeY7wjpgVguwu2mef%2BlSPnDcAa5eqR5s9ghYHD0hqZcj2%2F88xNRi4%2FE7Uec9kDvoBd%2BMno0MzYGQXLHsO4IGmzcP9OM%2BJ5smKdXq1ivVrFBO%2FSL26W%2BZ72x9xPlYwfsui9aDAIl%2BoXP2HPMk3fe70reYPv2MpHb9W%2BMRSiuOtpJy6nLaj%2Fd8%2B11d34mnKW%2Frab%2BzTvVofqP%2BROckomvbz3hv%2B%2Bh3SQ4cDwUMPH%2BtBrR7e65F4rAc%2F9DgQ3PcgeAbGgeChxyjwFg7qI%2BdR5C0c3EfOo8hbOLiPXEaRt3BIH7mOIk89BXZ6jCJv4dA%2BchtF3sJhfeQ2iryFw%2FrIfRR5C4f3kcco8haO6COPUeQtHDGwdhiF3gJyT9HqMwq%2BvUSgjx5xFH57kWAf%2F%2F27NvtwTg8usb3wS0N%2BXv26WjYX%2BXWeHSEd7lHF7ent%2FwBMJxXJEVQAAA%3D%3D`,J=S(i({__name:`[...slug]`,async setup(i){let m,y;ne(e=>({v3a294d3e:b}));let b=`url("${pe}")`,x=[{id:`en`,title:`English`,flag:Zn},{id:`br`,title:`Português (Brasil)`,flag:Yn},{id:`de`,title:`Deutsch`,flag:Xn},{id:`es`,title:`Español`,flag:Qn},{id:`fr`,title:`Français`,flag:$n},{id:`he`,title:`עברית`,flag:er},{id:`it`,title:`Italiano`,flag:tr},{id:`ru`,title:`Русский`,flag:nr}],S=Object.assign({"./content/_seo-meta.md":he,"./content/app.md":ge,"./content/bates.md":_e,"./content/crossview.md":ve,"./content/feature1.md":ye,"./content/feature2.md":be,"./content/feature3.md":A,"./content/file-privacy.md":j,"./content/goals.md":M,"./content/join.md":N,"./content/lang/br/_seo-meta.md":xe,"./content/lang/br/app.md":Se,"./content/lang/br/bates.md":Ce,"./content/lang/br/crossview.md":we,"./content/lang/br/feature1.md":Te,"./content/lang/br/feature2.md":Ee,"./content/lang/br/feature3.md":De,"./content/lang/br/file-privacy.md":Oe,"./content/lang/br/goals.md":ke,"./content/lang/br/join.md":Ae,"./content/lang/br/parallelview.md":je,"./content/lang/br/results.md":Me,"./content/lang/br/roadmap/index.md":Ne,"./content/lang/br/section1.md":Pe,"./content/lang/br/section2.md":Fe,"./content/lang/br/story.md":Ie,"./content/lang/br/title.md":Le,"./content/lang/br/warning.md":Re,"./content/lang/de/_seo-meta.md":ze,"./content/lang/de/app.md":Be,"./content/lang/de/bates.md":Ve,"./content/lang/de/crossview.md":He,"./content/lang/de/feature1.md":Ue,"./content/lang/de/feature2.md":We,"./content/lang/de/feature3.md":Ge,"./content/lang/de/file-privacy.md":Ke,"./content/lang/de/goals.md":qe,"./content/lang/de/join.md":Je,"./content/lang/de/parallelview.md":Ye,"./content/lang/de/results.md":Xe,"./content/lang/de/roadmap/index.md":Ze,"./content/lang/de/section1.md":Qe,"./content/lang/de/section2.md":$e,"./content/lang/de/story.md":et,"./content/lang/de/title.md":tt,"./content/lang/de/warning.md":nt,"./content/lang/es/_seo-meta.md":rt,"./content/lang/es/app.md":it,"./content/lang/es/bates.md":at,"./content/lang/es/crossview.md":ot,"./content/lang/es/feature1.md":st,"./content/lang/es/feature2.md":ct,"./content/lang/es/feature3.md":lt,"./content/lang/es/file-privacy.md":ut,"./content/lang/es/goals.md":dt,"./content/lang/es/join.md":ft,"./content/lang/es/parallelview.md":pt,"./content/lang/es/results.md":mt,"./content/lang/es/roadmap/index.md":ht,"./content/lang/es/section1.md":gt,"./content/lang/es/section2.md":_t,"./content/lang/es/story.md":vt,"./content/lang/es/title.md":yt,"./content/lang/es/warning.md":bt,"./content/lang/fr/_seo-meta.md":xt,"./content/lang/fr/app.md":St,"./content/lang/fr/bates.md":Ct,"./content/lang/fr/crossview.md":wt,"./content/lang/fr/feature1.md":Tt,"./content/lang/fr/feature2.md":Et,"./content/lang/fr/feature3.md":Dt,"./content/lang/fr/file-privacy.md":Ot,"./content/lang/fr/goals.md":kt,"./content/lang/fr/join.md":At,"./content/lang/fr/parallelview.md":jt,"./content/lang/fr/results.md":Mt,"./content/lang/fr/roadmap/index.md":Nt,"./content/lang/fr/section1.md":Pt,"./content/lang/fr/section2.md":Ft,"./content/lang/fr/story.md":It,"./content/lang/fr/title.md":Lt,"./content/lang/fr/warning.md":Rt,"./content/lang/he/_seo-meta.md":zt,"./content/lang/he/app.md":Bt,"./content/lang/he/bates.md":Vt,"./content/lang/he/crossview.md":Ht,"./content/lang/he/feature1.md":Ut,"./content/lang/he/feature2.md":Wt,"./content/lang/he/feature3.md":Gt,"./content/lang/he/file-privacy.md":Kt,"./content/lang/he/goals.md":qt,"./content/lang/he/join.md":Jt,"./content/lang/he/parallelview.md":Yt,"./content/lang/he/results.md":Xt,"./content/lang/he/roadmap/index.md":Zt,"./content/lang/he/section1.md":Qt,"./content/lang/he/section2.md":$t,"./content/lang/he/story.md":en,"./content/lang/he/title.md":tn,"./content/lang/he/warning.md":nn,"./content/lang/it/_seo-meta.md":rn,"./content/lang/it/app.md":an,"./content/lang/it/bates.md":on,"./content/lang/it/crossview.md":sn,"./content/lang/it/feature1.md":cn,"./content/lang/it/feature2.md":ln,"./content/lang/it/feature3.md":un,"./content/lang/it/file-privacy.md":dn,"./content/lang/it/goals.md":fn,"./content/lang/it/join.md":pn,"./content/lang/it/parallelview.md":mn,"./content/lang/it/results.md":hn,"./content/lang/it/roadmap/index.md":gn,"./content/lang/it/section1.md":_n,"./content/lang/it/section2.md":vn,"./content/lang/it/story.md":yn,"./content/lang/it/title.md":bn,"./content/lang/it/warning.md":xn,"./content/lang/ru/_seo-meta.md":Sn,"./content/lang/ru/app.md":Cn,"./content/lang/ru/bates.md":wn,"./content/lang/ru/crossview.md":Tn,"./content/lang/ru/feature1.md":En,"./content/lang/ru/feature2.md":Dn,"./content/lang/ru/feature3.md":On,"./content/lang/ru/file-privacy.md":kn,"./content/lang/ru/goals.md":An,"./content/lang/ru/join.md":jn,"./content/lang/ru/parallelview.md":Mn,"./content/lang/ru/results.md":Nn,"./content/lang/ru/section1.md":Pn,"./content/lang/ru/section2.md":Fn,"./content/lang/ru/story.md":In,"./content/lang/ru/title.md":Ln,"./content/lang/ru/warning.md":Rn,"./content/parallelview.md":zn,"./content/results.md":Bn,"./content/roadmap/index.md":Vn,"./content/roadmap/lang/ru/index.md":Hn,"./content/section1.md":Un,"./content/section2.md":Wn,"./content/story.md":Gn,"./content/title.md":Kn,"./content/warning.md":qn}),C=v(),w=(Array.isArray(C.params.slug)?C.params.slug:C.params.slug?[C.params.slug]:[]).flatMap(e=>e.split(`/`)).filter(Boolean),T=Object.keys(S),E=`en`,D=``;w[0]&&w[0].length===2&&L.has(w[0])?(E=w[0],D=w.slice(1).join(`/`)):D=w.join(`/`),[m,y]=l(()=>V(E)),await m,y();let O=E===`en`?``:`/${E}`;function k(e){return`/stereo-reader${e===`en`?``:`/${e}`}${D?`/${D}`:``}`}let P=_();s(async()=>{if(localStorage.getItem(K))return;let e=navigator.languages.length?navigator.languages:[navigator.language],t;for(let n of e){let e=n.split(`-`)[0]?.toLocaleLowerCase();if(e&&L.has(e)){t=e;break}}!t||t===E||(await V(t),P.value=t)});function I(){localStorage.setItem(K,`1`),P.value=void 0}function R(){P.value=void 0}ce({title:W(`STEREO READER: Improve your vision while reading your favorite books in stereo mode`),htmlAttrs:{lang:E,dir:E===`he`?`rtl`:`ltr`}});function z(e){return e.replaceAll(`\\`,`/`).replace(/^\.?\//,``)}function B(...e){let t=e.map(z);return T.find(e=>{let n=z(e);return t.some(e=>n===e||n.endsWith(`/${e}`))})}function H(...e){let t=B(...e),n=t?S[t]:``;if(!n)throw ie({statusCode:404,statusMessage:`Page not found: ${e.join(` | `)}`});return n}function U(e,t=E){return t===`en`?[`./content/${e}.md`]:[`./content/lang/${t}/${e}.md`]}function J(e,t=E){return t===`en`?[`./content/${e}/index.md`]:[`./content/${e}/lang/${t}/index.md`,`./content/lang/${t}/${e}/index.md`]}function br(...e){let t={};for(let n of e)t[n]=H(...U(n));return t}let Y=br(`title`,`parallelview`,`crossview`,`section1`,`section2`,`feature1`,`feature2`,`feature3`,`story`,`results`,`warning`,`app`,`goals`,`bates`,`join`,`file-privacy`),X=W(`Recommended training position`),xr=Y.section2.replace(`### ${X}`,`### ${X}\n\n![${W(`Face-down Stereo Reader training position`)}](${Jn}){.image-left}`),Sr=Y.title,Cr=D?H(...J(D)):``,Z=D?Cr.split(/(?=^## )/m).map(e=>e.trim()).filter(Boolean):[],Q=H(...U(`_seo-meta`)).replace(/^\uFEFF/u,``).replace(/\r\n?/g,`
+`),wr=/^---\n([\s\S]*?)\n---(?:\n|$)([\s\S]*)$/u.exec(Q),$=de(wr?.[1]??Q);se({description:$.description,ogDescription:$.description,ogImage:new URL(`./assets/logo.jpg`,``+import.meta.url).pathname});let Tr=c(()=>{let e=ue(Sr);return D&&(e=e.replaceAll(`h1`,`div`)),e});return(i,s)=>{let c=oe,l=fe,m=me,_=ee(`transition-target`);return u(),f(g,null,[t(`div`,rr,[t(`div`,ir,[(u(!0),f(g,null,p(x.filter(e=>e.id!==h(E)),n=>(u(),e(c,{key:n.id,to:k(n.id),title:n.title,"aria-label":n.title},{default:d(()=>[t(`img`,{src:n.flag,alt:n.title,width:`32`,height:`21`},null,8,ar)]),_:2},1032,[`to`,`title`,`aria-label`]))),128))]),te(n(l,{"image-src":h(le)},null,8,[`image-src`]),[[_,[(i._.provides[ae]||i.$route).fullPath,`cover`]]]),t(`div`,{class:`text`,innerHTML:h(Tr)},null,8,or)]),h(P)?(u(),f(`div`,sr,[t(`div`,{class:`lang-prompt-backdrop`,onClick:R}),t(`div`,{class:`lang-prompt`,lang:h(P),dir:h(P)===`he`?`rtl`:`ltr`,onClick:s[0]||=re(()=>{},[`stop`])},[t(`p`,null,r(h(W)(`This page is available in your language.`,h(P))),1),t(`div`,lr,[n(c,{to:k(h(P)),onClick:I},{default:d(()=>[o(r(h(W)(`Switch to your language`,h(P))),1)]),_:1},8,[`to`]),t(`button`,{type:`button`,onClick:I},r(h(W)(`Stay here`,h(P))),1)])],8,cr)])):a(``,!0),t(`div`,ur,[h(D)?(u(),f(g,{key:0},[t(`div`,dr,[n(c,{to:`/stereo-reader${h(O)}`},{default:d(()=>[o(r(h(W)(`Back to Stereo Reader home`)),1)]),_:1},8,[`to`])]),t(`h1`,null,r(h(Z)[0]?.replace(`#`,``).trim()),1),(u(!0),f(g,null,p(h(Z).slice(1),(t,n)=>(u(),e(m,{class:`chapter`,key:n,src:t},null,8,[`src`]))),128))],64)):(u(),f(g,{key:1},[t(`div`,fr,r(h(W)(`What is Parallel view?`)),1),n(m,{class:`chapter`,src:h(Y).parallelview,style:{"margin-top":`32px`}},null,8,[`src`]),s[3]||=t(`iframe`,{class:`video`,src:`https://www.youtube.com/embed/_HdoPnvChe0?si=Wq7je_dMPEFAiXU-`,title:`YouTube video player`,frameborder:`0`,loading:`lazy`,allow:`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share`,referrerpolicy:`strict-origin-when-cross-origin`,allowfullscreen:``},null,-1),t(`div`,pr,[t(`a`,mr,r(h(W)(`Having trouble? Try another parallel-view tutorial.`)),1)]),n(m,{class:`chapter`,src:h(Y).crossview},null,8,[`src`]),t(`div`,hr,r(h(W)(`What is Stereo Reader?`)),1),n(F,{title:h(W)(`Eye trainer`)},null,8,[`title`]),n(m,{class:`chapter`,src:h(xr)},null,8,[`src`]),t(`iframe`,{class:`preview`,loading:`lazy`,src:q}),t(`div`,G,[o(r(h(W)(`Train your eye muscles with dynamic stereo modulation`)),1),s[1]||=t(`br`,null,null,-1),t(`a`,{href:q,target:`_blank`},r(h(W)(`Open in STEREO READER`)),1)]),n(F,{title:h(W)(`Parallel-view reader`),style:{"margin-top":`64px`}},null,8,[`title`]),n(m,{class:`file-privacy`,src:h(Y)[`file-privacy`]},null,8,[`src`]),n(m,{class:`chapter`,src:h(Y).section1},null,8,[`src`]),s[4]||=t(`iframe`,{class:`preview`,loading:`lazy`,src:`https://stereo.aleklabs.dev/#try`},null,-1),t(`div`,gr,[o(r(h(W)(`Read a book in stereo mode using parallel view`)),1),s[2]||=t(`br`,null,null,-1),t(`a`,_r,r(h(W)(`Open in STEREO READER`)),1)]),n(m,{class:`chapter`,src:h(Y).story},null,8,[`src`]),n(m,{class:`chapter`,src:h(Y).results},null,8,[`src`]),n(m,{class:`chapter`,src:h(Y).app},null,8,[`src`]),n(m,{class:`chapter`,src:h(Y).goals},null,8,[`src`]),n(m,{class:`chapter`,src:h(Y).bates},null,8,[`src`]),n(m,{class:`chapter`,src:h(Y).warning},null,8,[`src`]),n(m,{class:`chapter`,src:h(Y).join},null,8,[`src`])],64))]),t(`div`,vr,[t(`div`,yr,[n(c,{to:`/stereo-reader${h(O)}/roadmap`,innerHTML:h(W)(`From Eye-Muscle Stretching to Stereo Reading:<br />My Roadmap of Functional Vision Sharpness`)},null,8,[`to`,`innerHTML`])])])],64)}}}),[[`__scopeId`,`data-v-0fd4cb4a`]]);export{J as default};
