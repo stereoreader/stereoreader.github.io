@@ -6,9 +6,6 @@
             <image:loc>https://aleklabs.dev/_nuxt/logo.CtCoFovE.webp</image:loc>
         </image:image>
         <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
-        <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/cover.B3kDDH6a.webp</image:loc>
         </image:image>
         <image:image>
@@ -62,9 +59,6 @@
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
         <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/face-down.C4slVRfM.webp</image:loc>
         </image:image>
@@ -201,17 +195,11 @@
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/br</loc>
         <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
-        <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/face-down.C4slVRfM.webp</image:loc>
         </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/de</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
         <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/face-down.C4slVRfM.webp</image:loc>
         </image:image>
@@ -219,17 +207,11 @@
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/es</loc>
         <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
-        <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/face-down.C4slVRfM.webp</image:loc>
         </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/fr</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
         <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/face-down.C4slVRfM.webp</image:loc>
         </image:image>
@@ -237,77 +219,44 @@
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/he</loc>
         <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
-        <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/face-down.C4slVRfM.webp</image:loc>
         </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/it</loc>
         <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
-        <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/face-down.C4slVRfM.webp</image:loc>
         </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/roadmap</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/ru</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
         <image:image>
             <image:loc>https://aleklabs.dev/_nuxt/face-down.C4slVRfM.webp</image:loc>
         </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/br/roadmap</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/de/roadmap</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/es/roadmap</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/fr/roadmap</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/he/roadmap</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/it/roadmap</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
     </url>
     <url>
         <loc>https://aleklabs.dev/stereobv-workshop/ru/roadmap</loc>
-        <image:image>
-            <image:loc>https://aleklabs.dev/_nuxt/logo.TRR1c6nz.webp</image:loc>
-        </image:image>
     </url>
 </urlset>
-<!-- XML Sitemap generated by @nuxtjs/sitemap v8.5.0 at 2026-10-01T16:08:26.849Z -->
+<!-- XML Sitemap generated by @nuxtjs/sitemap v8.5.0 at 2026-10-01T23:20:50.345Z -->
