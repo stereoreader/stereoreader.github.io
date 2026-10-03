@@ -1644,7 +1644,7 @@ Sometimes a component is only a structural boundary. Its children need a shared 
 \r
 These controls make that decision part of the template rather than additional JavaScript.\r
 \r
-The runtime also supports compact shortcut definitions and the browser's \`match-element\` mode for cases where element identity itself should supply the unique transition matching. Internally, the parser resolves all of these forms into the same transition definition model. utils\r
+The runtime also supports compact shortcut definitions and the browser's \`match-element\` mode for cases where element identity itself should supply the unique transition matching. Internally, the parser resolves all of these forms into the same transition definition model.\r
 \r
 ## The \`$\` Syntax Exists Only During Authoring\r
 \r
@@ -1733,7 +1733,7 @@ modulator-panel-2-motion\r
 modulator-panel-2-amount\r
 \`\`\`\r
 \r
-The runtime performs that matching centrally instead of requiring every call site to enumerate all participating elements. utils\r
+The runtime performs that matching centrally instead of requiring every call site to enumerate all participating elements.\r
 \r
 ## Keeping CSS Generic\r
 \r
@@ -1789,7 +1789,7 @@ That generated constant feeds the runtime type:\r
 type TransitionPrefix = typeof transitionNames[number] | \`\${typeof transitionNames[number]}-\${string}\`;\r
 \`\`\`\r
 \r
-As a result, creating a new transition family in a template automatically makes the name available to TypeScript autocomplete at \`startTransition()\` call sites. The same generated information also catches many naming mistakes during development. utils vite-plugin-transition-names\r
+As a result, creating a new transition family in a template automatically makes the name available to TypeScript autocomplete at \`startTransition()\` call sites. The same generated information also catches many naming mistakes during development.\r
 \r
 There is no separate registry to remember to update.\r
 \r
