@@ -1481,6 +1481,22 @@ slug: declarative-naming-layer-for-view-transition-api\r
 seoDescription: Build a declarative naming layer for the View Transition API using Vue templates, Vite transforms, TypeScript generation, and runtime orchestration.\r
 description: I describe how I built a declarative naming layer for the View Transition API to replace repetitive imperative orchestration with hierarchical transition attributes. The system uses Vue template syntax, Vite compiler transforms, generated TypeScript transition names, VS Code highlighting, and a single runtime startTransition function to manage complex multi-element View Transitions.\r
 ---\r
+For a long time, I treated interface animation as mostly decorative. It could make a product feel more polished or visually impressive, but I rarely considered it functionally important. In fact, I usually preferred to disable animations wherever possible. A dropdown did not seem to need an animation. Smooth scrolling often felt slower than an immediate jump. Waiting for UI motion to finish could feel like unnecessary latency.\r
+\r
+Working on more complex interfaces changed my view.\r
+\r
+Transitions can be a form of user feedback. When an interaction causes a substantial change in the interface, the developer already knows exactly what happened: which component disappeared, which one replaced it, which panel expanded, and where the new state came from. A user who is still learning the interface does not have that internal model.\r
+\r
+An abrupt state change can therefore be difficult to interpret. A transition can preserve visual continuity between the old and new states. When an element moves, expands, collapses, or transforms into another part of the interface, the motion gives the user additional information about the relationship between those states. It helps explain what their action changed and how the new layout relates to the previous one.\r
+\r
+That makes transitions part of UX rather than merely visual styling. They can reduce the cognitive cost of navigating an unfamiliar interface and make its behavior easier to learn.\r
+\r
+This is one of the reasons I became interested in the View Transition API. It gives the browser a native mechanism for creating complex transitions between DOM states without manually implementing every animation and coordinating the old and new layouts yourself. For me, this changed View Transitions from a visual extra into a useful part of interface architecture.\r
+\r
+Once I started using them more extensively, however, a different problem appeared: managing \`view-transition-name\` across a large component hierarchy quickly became verbose and difficult to maintain.\r
+\r
+That is the problem this article is about.\r
+\r
 # A Declarative Naming Layer for the View Transition API\r
 \r
 The View Transition API is one of the browser APIs I enjoy using most. For simple cases, it is remarkably compact: update the DOM inside \`document.startViewTransition()\`, assign a few \`view-transition-name\` values, and let the browser handle the snapshots and interpolation.\r
@@ -1495,7 +1511,7 @@ The code was becoming substantially more verbose than the UI behavior it describ
 \r
 I eventually moved the problem into a separate declarative naming layer.\r
 \r
-The result is a small internal system used in StereoBV Workshop. View transition participation is described directly in component templates using attributes, while a runtime function activates the required transition hierarchy only for the duration of a transition. Vite compiler transforms, generated TypeScript types, and a VS Code grammar provide the tooling around it.\r
+The result is a small internal system used in [StereoBV Workshop](/stereobv-workshop). View transition participation is described directly in component templates using attributes, while a runtime function activates the required transition hierarchy only for the duration of a transition. Vite compiler transforms, generated TypeScript types, and a VS Code grammar provide the tooling around it.\r
 \r
 The browser still performs the actual View Transition. The new layer deals with naming and orchestration.\r
 \r
@@ -1535,7 +1551,7 @@ Something like this would have been expressive:\r
 \r
 The limitation appeared as soon as the directive was placed on components.\r
 \r
-Vue directives used on components are applied to the component root. Unlike fallthrough attributes, they cannot be forwarded to another element with \`v-bind="$attrs"\`. Multi-root components add further restrictions. [Vue.js](https://vuejs.org/guide/reusability/custom-directives.html?utm_source=chatgpt.com)\r
+Vue directives used on components are applied to the component root. Unlike fallthrough attributes, they cannot be forwarded to another element with \`v-bind="$attrs"\`. Multi-root components add further restrictions.\r
 \r
 My UI has a deep component hierarchy, including many internal UI components. I needed transition metadata to move naturally through those abstraction layers.\r
 \r
@@ -1604,7 +1620,7 @@ The hierarchy can cross Vue component boundaries because the compiler output con
 \r
 Several transition families can also coexist in the same area of the application. An element can permanently declare metadata for several possible scenarios while receiving only the actual \`view-transition-name\` relevant to the transition currently being executed.\r
 \r
-This avoids a major practical problem of the native property: a rendered element taking part in a named View Transition has one \`view-transition-name\`, and custom names must be unique among participating rendered elements. [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/view-transition-name?utm_source=chatgpt.com)\r
+This avoids a major practical problem of the native property: a rendered element taking part in a named View Transition has one \`view-transition-name\`, and custom names must be unique among participating rendered elements.\r
 \r
 My layer therefore treats names as potential roles rather than permanent CSS state.\r
 \r
@@ -1650,7 +1666,7 @@ transition-modulator-panel\r
 transition--amount\r
 \`\`\`\r
 \r
-Additional marker attributes are generated when propagation or parent-only behavior is requested. The transform operates on the Vue compiler AST, including both static attributes and static \`v-bind\` argument names. vite-plugin-vue-transition-attr…\r
+Additional marker attributes are generated when propagation or parent-only behavior is requested. The transform operates on the Vue compiler AST, including both static attributes and static \`v-bind\` argument names. \r
 \r
 For example, the source-level \`!\` suffix becomes an internal \`--no-propagate\` marker, while a trailing \`-\` on a named family produces a \`--parent-only\` marker. vite-plugin-vue-transition-attr…\r
 \r
@@ -1698,7 +1714,7 @@ Multiple prefixes can also be supplied to activate several declarative hierarchi
 \r
 Internally, \`startTransition()\` performs the lifecycle that I previously had scattered across individual features.\r
 \r
-Before calling \`document.startViewTransition()\`, it resolves the requested prefixes and temporarily assigns \`viewTransitionName\` to matching elements. During the update callback it performs the application state change, waits for Vue's \`nextTick()\`, removes the old assignments, scans the updated DOM, and assigns names again for the new state. After the browser reports the transition as finished, all temporary names are removed. utils\r
+Before calling \`document.startViewTransition()\`, it resolves the requested prefixes and temporarily assigns \`viewTransitionName\` to matching elements. During the update callback it performs the application state change, waits for Vue's \`nextTick()\`, removes the old assignments, scans the updated DOM, and assigns names again for the new state. After the browser reports the transition as finished, all temporary names are removed.\r
 \r
 The second scan is important. A transition frequently changes which elements exist. The old snapshot and new snapshot therefore cannot rely on a single static set of DOM nodes.\r
 \r
@@ -1781,7 +1797,7 @@ The template is the source of truth.\r
 \r
 ## The Real Production Case\r
 \r
-This system grew out of StereoBV Workshop rather than an isolated animation experiment.\r
+This system grew out of [StereoBV Workshop](/stereobv-workshop) rather than an isolated animation experiment.\r
 \r
 A single modulation component already contains several examples: dynamically identified modulator panels, motion and amount children, target settings, slider values, dialog transitions, and transitions started both from DOM elements and from explicit hierarchical prefixes.\r
 \r
@@ -1797,7 +1813,7 @@ The runtime connects the two.\r
 \r
 ## This Is Not Fundamentally Vue-Specific\r
 \r
-My current implementation is integrated deeply with Vue because StereoBV Workshop uses Vue. The compiler transform uses Vue's compiler packages, the generated-name plugin scans \`.vue\` templates, and the transition runtime waits for \`nextTick()\` before resolving the new DOM.\r
+My current implementation is integrated deeply with Vue because [StereoBV Workshop](/stereobv-workshop) uses Vue. The compiler transform uses Vue's compiler packages, the generated-name plugin scans \`.vue\` templates, and the transition runtime waits for \`nextTick()\` before resolving the new DOM.\r
 \r
 The underlying model is framework-independent.\r
 \r
@@ -1819,7 +1835,7 @@ The final workflow is now straightforward: mark potential participants in the te
 \r
 Vite handles the source transformation and name discovery. TypeScript provides autocomplete and validation. The editor makes the structure visually recognizable. CSS focuses on the resulting animation.\r
 \r
-This changed View Transitions in StereoBV Workshop from feature-specific imperative code into reusable infrastructure.\r
+This changed View Transitions in [StereoBV Workshop](/stereobv-workshop) from feature-specific imperative code into reusable infrastructure.\r
 \r
 And, more importantly for a growing UI, adding the next transition no longer requires inventing another orchestration mechanism.`,f=`---\r
 date: 2026-09-01\r
