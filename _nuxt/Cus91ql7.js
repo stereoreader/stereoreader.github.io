@@ -1630,13 +1630,13 @@ The syntax gradually acquired a few compact controls as real cases appeared.\r
 \r
 The current model can be summarized like this:\r
 \r
-| Source syntax | Meaning |\r
-|---|---|\r
-| \`$panel\` | Start or participate in a transition family |\r
-| \`$-value\` | Extend the inherited family with \`value\` |\r
-| \`:$panel="id"\` | Add a dynamic instance value |\r
-| \`$panel!\` | Define the transition here without propagating it further |\r
-| \`$panel-\` | Establish a family for descendants without making this element participate |\r
+| Source syntax  | Meaning                                                                    |\r
+| -------------- | -------------------------------------------------------------------------- |\r
+| \`$panel\`       | Start or participate in a transition family                                |\r
+| \`$-value\`      | Extend the inherited family with \`value\`                                   |\r
+| \`:$panel="id"\` | Add a dynamic instance value                                               |\r
+| \`$panel!\`      | Define the transition here without propagating it further                  |\r
+| \`$panel-\`      | Establish a family for descendants without making this element participate |\r
 \r
 The last two are particularly useful in reusable component trees.\r
 \r
@@ -1837,7 +1837,21 @@ Vite handles the source transformation and name discovery. TypeScript provides a
 \r
 This changed View Transitions in [StereoBV Workshop](/stereobv-workshop) from feature-specific imperative code into reusable infrastructure.\r
 \r
-And, more importantly for a growing UI, adding the next transition no longer requires inventing another orchestration mechanism.`,f=`---\r
+And, more importantly for a growing UI, adding the next transition no longer requires inventing another orchestration mechanism.\r
+\r
+## A Useful Side Effect: Agent-Friendly Transitions\r
+\r
+A pleasant side effect of this architecture is how well coding agents work with it.\r
+\r
+Once an agent is told that \`$...\` attributes describe View Transition participation, it can usually extend fairly complex transitions without needing to understand the runtime implementation. For many tasks, the instruction can be as small as: use the \`$\` transition attributes to connect these elements into the same transition hierarchy.\r
+\r
+Even transitions involving several components and multiple moving elements can often be implemented without adding feature-specific JavaScript or CSS. The shared runtime already handles name resolution, DOM updates, View Transition lifecycle, and cleanup.\r
+\r
+This also makes agent-generated changes much easier to review. Instead of inspecting a new block of transition-specific JavaScript together with additional CSS selectors and animation rules, I can often review only a few attribute changes in the template. The transition structure is visible directly in the markup, and the diff stays small.\r
+\r
+In practice, modern coding agents handle this declarative syntax very well. Once the pattern exists in the codebase, they can infer the hierarchy from nearby examples and produce complex multi-element transitions with surprisingly little guidance.\r
+\r
+For me, this has become another argument for moving repeated UI behavior into declarative infrastructure: it improves developer experience for humans, and it also gives coding agents a much smaller and more constrained surface to modify.`,f=`---\r
 date: 2026-09-01\r
 slug: conditional-wrapping-in-vue-3\r
 seoDescription: Explore three approaches to conditional wrapping in Vue 3, from a simple wrapper prop to advanced VNode manipulation with nested wrappers.\r
