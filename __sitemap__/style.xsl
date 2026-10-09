@@ -292,7 +292,7 @@
         
         <div class="container">
           <div class="header">
-            <h1>Alek Labs</h1>
+            <h1>AlekLabs</h1>
             <div class="header-meta">
               
               <xsl:if test="count(sitemap:sitemapindex/sitemap:sitemap) &gt; 0">

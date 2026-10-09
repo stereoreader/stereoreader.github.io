@@ -470,7 +470,7 @@ The application demonstrates frontend engineering beyond screen implementation. 
 The strongest technical value is that the application solves complex operator workflows through custom frontend infrastructure: Vite plugins for developer productivity, client-side filtering for responsive result exploration, dynamic SVG compilation for train-seat selection, Yandex Maps for hotel exploration, and a reusable validation/form system for high-density booking forms.\r
 `,c=`---\r
 slug: virtual-scrolling-engineering\r
-seoDescription: Three virtual scrolling systems built for different constraints - variable-height AngularJS tables, editable Vue 3 data grids, and large-document rendering in Aleklabs Eye Trainer.\r
+seoDescription: Three virtual scrolling systems built for different constraints - variable-height AngularJS tables, editable Vue 3 data grids, and large-document rendering in AlekLabs Eye Trainer.\r
 description: Virtual scrolling has been a recurring engineering problem throughout my frontend work. These three cases show different approaches to variable-height tables, editable enterprise grids, tree selectors, and large-document layout.\r
 order: 0\r
 ---\r
@@ -479,7 +479,7 @@ order: 0\r
 \r
 Virtual scrolling has been a recurring area of my frontend work for many years.\r
 \r
-It first appeared as a performance problem: how do you display tens of thousands of records when rendering the complete DOM is prohibitively expensive? Later, it became an architectural primitive that I could reuse for editable tables, selectors, tree structures, and other large data sets. In Aleklabs Eye Trainer, the same underlying idea evolved further into a document-layout engine capable of working with large books, text lines, PDF pages, and other content.\r
+It first appeared as a performance problem: how do you display tens of thousands of records when rendering the complete DOM is prohibitively expensive? Later, it became an architectural primitive that I could reuse for editable tables, selectors, tree structures, and other large data sets. In AlekLabs Eye Trainer, the same underlying idea evolved further into a document-layout engine capable of working with large books, text lines, PDF pages, and other content.\r
 \r
 These systems all use virtual scrolling, but their constraints are substantially different.\r
 \r
@@ -612,15 +612,15 @@ It became a reusable **UI infrastructure layer**.\r
 \r
 The table could be embedded into pages, forms, selectors, and hierarchical components, while the rest of the application reused the same rendering, navigation, filtering, and data abstractions.\r
 \r
-## Aleklabs Eye Trainer: Virtual Scrolling as a Document Layout Engine\r
+## AlekLabs Eye Trainer: Virtual Scrolling as a Document Layout Engine\r
 \r
-The third case comes from my personal project, [Aleklabs Eye Trainer](/eye-trainer).\r
+The third case comes from my personal project, [AlekLabs Eye Trainer](/eye-trainer).\r
 \r
 Here the problem is no longer a conventional data table.\r
 \r
-Aleklabs Eye Trainer needs to display books, and books can contain very large amounts of text. Rendering an entire novel as one large DOM structure is unnecessary and increasingly expensive as document size grows.\r
+AlekLabs Eye Trainer needs to display books, and books can contain very large amounts of text. Rendering an entire novel as one large DOM structure is unnecessary and increasingly expensive as document size grows.\r
 \r
-More importantly, Aleklabs Eye Trainer allows the user to change parameters such as text width and font size while reading.\r
+More importantly, AlekLabs Eye Trainer allows the user to change parameters such as text width and font size while reading.\r
 \r
 Changing one of these values changes line wrapping throughout the document.\r
 \r
@@ -639,7 +639,7 @@ When the width or typography changes, line boundaries across potentially megabyt
 \r
 In some respects this brought me back to the Dignio problem.\r
 \r
-There I needed to determine the dimensions of thousands of text cells without rendering an entire table. In Aleklabs Eye Trainer, the same class of optimization appears at document scale: calculate where text wraps and where lines begin and end without constructing the entire book in the DOM first.\r
+There I needed to determine the dimensions of thousands of text cells without rendering an entire table. In AlekLabs Eye Trainer, the same class of optimization appears at document scale: calculate where text wraps and where lines begin and end without constructing the entire book in the DOM first.\r
 \r
 The implementation has gone through several generations.\r
 \r
@@ -691,7 +691,7 @@ At **Dignio**, the primary challenge was unknown row height. The system needed t
 \r
 At **Luqon**, row geometry became simpler, while interaction became much more complex. Virtualization had to work with editable cells, Vue components, selectors, tree structures, keyboard navigation, filtering, and reusable enterprise UI infrastructure.\r
 \r
-In **Aleklabs Eye Trainer**, the problem moved beyond tables entirely. Virtualization became part of a document layout system where changing typography can invalidate the line structure of an entire book and the reader still needs to remain at the same logical position.\r
+In **AlekLabs Eye Trainer**, the problem moved beyond tables entirely. Virtualization became part of a document layout system where changing typography can invalidate the line structure of an entire book and the reader still needs to remain at the same logical position.\r
 \r
 The recurring skill is therefore not simply implementing a virtual list.\r
 \r
