@@ -1,0 +1,1 @@
+import{_ as e,a as t}from"./demo-ru-DKtlDfro.js";import{d as s,c as a,o,a as c}from"./index-DS37h4LM.js";import"./image-DtwiZR_d.js";const _={class:"settings"},n=s({__name:"SpeedSettings",setup(r){return(p,i)=>(o(),a("div",_,[c(e)]))}}),l=t(n,[["__scopeId","data-v-6f97c1a1"]]);export{l as default};
